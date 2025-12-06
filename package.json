@@ -1,0 +1,46 @@
+{
+  "name": "trade",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "createComponent": "tsx src/View/Components/CreateComponent"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@material-icons/svg": "^1.0.33",
+    "framer-motion": "^12.23.24",
+    "material-icons": "^1.13.14",
+    "mobx": "^6.13.7",
+    "mobx-react": "^9.2.0",
+    "qr-code-styling": "^1.9.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router": "^7.8.2"
+  },
+  "devDependencies": {
+    "@emotion/babel-plugin": "^11.13.5",
+    "@eslint/js": "^9.33.0",
+    "@swc/plugin-emotion": "^11.1.0",
+    "@types/node": "^24.3.1",
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react-swc": "^4.0.0",
+    "eslint": "^9.33.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "prettier": "3.6.2",
+    "tsx": "^4.20.6",
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.39.1",
+    "vite": "^7.1.5",
+    "vite-plugin-checker": "^0.10.3",
+    "vite-plugin-svgr": "^4.5.0"
+  }
+}
