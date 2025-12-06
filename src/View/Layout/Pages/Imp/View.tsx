@@ -9,8 +9,10 @@ const View: NFC<typeof Model> = (props) => {
 
 	return (
 		<div css={Style.wrapper}>
-			<TemplateHead />
-			<RouterProvider router={router} />
+			<div css={Style.page}>
+				<TemplateHead />
+				<RouterProvider router={router} />
+			</div>
 		</div>
 	);
 };

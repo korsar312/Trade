@@ -13,7 +13,8 @@ class VariablesVars {
 	public fastTransition = `${this.timeFastTransition} ease-in-out`;
 	public soTransition = `${this.timeTransition} ease-in-out`;
 
-	public radiusStandard = 6;
+	public radiusStandard = 20;
+	public padStandard = 12;
 	public scrollSize = 4;
 }
 

@@ -5,6 +5,7 @@ import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceS
 class Style extends Styles {
 	public wrapper(color?: StyleInterface.TColorChoice): CSSObject {
 		return css`
+			padding: ${this.variables.padStandard}px;
 			border-radius: ${this.variables.radiusStandard}px;
 			background: ${this.getColor(color || "MAIN_2")};
 			transition: ${this.variables.fastTransition};

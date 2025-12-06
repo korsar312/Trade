@@ -6,7 +6,6 @@ import Text from "../../../0.Cores/Text";
 import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { ReactNode } from "react";
 import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
-import AtomPaperMajor from "../../../1.Atoms/AtomPaper/Variables/AtomPaperMajor";
 import AtomToggleRadio from "../../../1.Atoms/AtomToggle/Variables/AtomToggleRadio";
 import AtomToggleCheck from "../../../1.Atoms/AtomToggle/Variables/AtomToggleCheck";
 import AtomToggleSwitch from "../../../1.Atoms/AtomToggle/Variables/AtomToggleSwitch";
@@ -16,6 +15,7 @@ import { Act } from "../../../../../Logic/Core";
 import util from "../../../../../Logic/Libs/Util";
 import MoleculeRowInformDouble from "../../../2.Molecules/MoleculeRowInform/Variables/MoleculeRowInformDouble";
 import TemplateHead from "../../../4.Templates/TemplateHead";
+import AtomPaper from "../../../1.Atoms/AtomPaper";
 
 const View: NFC<typeof Model> = (props) => {
 	const { isShow, onClose, btnSwitch, comp } = props;
@@ -84,7 +84,7 @@ const View: NFC<typeof Model> = (props) => {
 
 	return (
 		<AtomModal css={Style.wrapper} isShow={isShow}>
-			<AtomPaperMajor color={"MAIN_4"}>
+			<AtomPaper color={"MAIN_4"}>
 				<div css={Style.titleBtn}>
 					{btnSwitch.map(({ title, click }) => (
 						<AtomButtonIcon icon={"Play"} key={title} click={click} />
@@ -94,7 +94,7 @@ const View: NFC<typeof Model> = (props) => {
 				<div css={Style.content}>{content[comp]}</div>
 
 				<AtomButtonIcon icon={"Play"} click={onClose} />
-			</AtomPaperMajor>
+			</AtomPaper>
 		</AtomModal>
 	);
 };

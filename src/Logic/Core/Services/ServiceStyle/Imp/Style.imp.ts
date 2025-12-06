@@ -1,7 +1,6 @@
 import type { StyleInterface as Interface } from "../Style.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 import { css, type CSSObject } from "@emotion/react";
-import { BP } from "../../../../Config/List/Consts.ts";
 
 class StyleImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
 	private hex2rgba(hex: Interface.TColorHEXFormat, opacity: number): Interface.TColorRGBFormat {
@@ -33,22 +32,7 @@ class StyleImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 
 		return css`
 			${fontMajor};
-
-			@media (min-width: ${BP.xs}px) {
-				font-size: ${setSize(size, 0.8)};
-			}
-			@media (min-width: ${BP.sm}px) {
-				font-size: ${setSize(size, 1.5)};
-			}
-			@media (min-width: ${BP.md}px) {
-				font-size: ${setSize(size, 1.5)};
-			}
-			@media (min-width: ${BP.xl}px) {
-				font-size: ${setSize(size, 1.5)};
-			}
-			@media (min-width: ${BP.lg}px) {
-				font-size: ${setSize(size, 1.7)};
-			}
+			font-size: ${setSize(size)};
 		`;
 	}
 

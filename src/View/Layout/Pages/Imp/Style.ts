@@ -2,17 +2,17 @@ import Styles from "../../../../Styles/Styles.ts";
 import { css, type CSSObject } from "@emotion/react";
 
 class Style extends Styles {
+	private width = 500;
+
 	public wrapper: CSSObject = css`
-		display: flex;
-		flex-direction: column;
-		gap: ${this.size(4)};
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
+		${this.mixins.fixed};
+		${this.mixins.flexCenter};
+	`;
+
+	public page: CSSObject = css`
+		width: ${this.width}px;
+		max-width: ${this.width}px;
 		height: 100%;
-		padding: ${this.size(5)};
-		box-sizing: border-box;
 	`;
 }
 

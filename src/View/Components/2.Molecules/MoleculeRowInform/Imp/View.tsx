@@ -3,14 +3,14 @@ import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 import Image from "../../../0.Cores/Image";
 import Text from "../../../0.Cores/Text";
-import AtomPaperMajor from "../../../1.Atoms/AtomPaper/Variables/AtomPaperMajor";
 import AtomLine from "../../../1.Atoms/AtomLine";
+import AtomPaper from "../../../1.Atoms/AtomPaper";
 
 const View: NFC<typeof Model> = (props) => {
 	const { extStyles, row } = props;
 
 	return (
-		<AtomPaperMajor color={"MAIN_2"} extStyle={[Style.wrapper, extStyles]}>
+		<AtomPaper color={"MAIN_2"} extStyle={[Style.wrapper, extStyles]}>
 			{row.map((el, i) => (
 				<>
 					{i >= 1 && <AtomLine isVert />}
@@ -21,7 +21,7 @@ const View: NFC<typeof Model> = (props) => {
 					</div>
 				</>
 			))}
-		</AtomPaperMajor>
+		</AtomPaper>
 	);
 };
 

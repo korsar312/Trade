@@ -26,7 +26,7 @@ class MessageImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 	private getProductWord(store: Interface.Store, word: string, lang: Interface.ELang, field: Interface.EField): string {
 		const product = store.dictionaryGoods[word]?.[field]?.[lang];
 
-		if (!product) return store.dictionary.OTHER[lang];
+		if (!product) return store.dictionary.ERROR[lang];
 
 		return product;
 	}

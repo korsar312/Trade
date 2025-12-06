@@ -109,22 +109,18 @@ function getPage(pathname: string, pathObj: Interface.TPath): Interface.EPath {
 		if (pattern === "*" && matchPath({ path: pattern, end: true }, cleanPath)) return key;
 	}
 
-	return "OTHER";
+	return "ERROR";
 }
 
 function redirectRole(role: Interface.ERole): Interface.EPath {
 	switch (role) {
-		case "PUB":
-			return "HOME";
-		case "CASS":
-			return "CASS_CHOICE_MENU";
-		case "ADM":
-			return "ADM_LOGIN";
+		default:
+			return "GOODS";
 	}
 }
 
 function isAccessRoute(currentRole: Interface.ERole, page: Interface.EPath, routeRole: Interface.TRouterListRole): boolean {
-	if (page === "OTHER") return false;
+	if (page === "ERROR") return false;
 	if (!routeRole[page]) return true;
 
 	return routeRole[page].includes(currentRole);

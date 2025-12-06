@@ -1,15 +1,15 @@
 import type Model from "./Model.ts";
 import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
-import AtomPaperCard from "../../../1.Atoms/AtomPaper/Variables/AtomPaperCard";
 import Image from "../../../0.Cores/Image";
 import Text from "../../../0.Cores/Text";
+import AtomPaper from "../../../1.Atoms/AtomPaper";
 
 const View: NFC<typeof Model> = (props) => {
 	const { image, name, price } = props;
 
 	return (
-		<AtomPaperCard extStyle={Style.wrapper}>
+		<AtomPaper color={"MAIN_2"} extStyle={Style.wrapper}>
 			<div css={Style.image}>
 				<Image color={"MAIN_2"} size={"100%"} img={image} />
 			</div>
@@ -23,7 +23,7 @@ const View: NFC<typeof Model> = (props) => {
 			</div>
 
 			<div css={Style.count}></div>
-		</AtomPaperCard>
+		</AtomPaper>
 	);
 };
 

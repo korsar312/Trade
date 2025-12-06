@@ -33,7 +33,7 @@ function createServices() {
 	const styleImp = new StyleImp(inf, Colors, Fonts, Weights);
 	const style = new ServiceStyle(styleImp);
 
-	const routerImp = new RouterImp(inf, Routes, RoutesRole, Path, "CASS");
+	const routerImp = new RouterImp(inf, Routes, RoutesRole, Path, "USER");
 	const router = new ServiceRouter(routerImp);
 
 	const basketImp = new BasketImp(inf);

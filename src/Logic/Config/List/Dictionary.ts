@@ -1,23 +1,8 @@
 import type { MessageInterface } from "../../Core/Services/ServiceMessage/Message.interface.ts";
 
 const Dictionary: MessageInterface.TDictionary = {
-	CASS_LOGIN: {
-		RU: "Вход на кассу",
-	},
-	HOME: {
-		RU: "Главная",
-	},
-	CASS_MENU: {
-		RU: "Меню",
-	},
-	CASS_CHOICE_MENU: {
-		RU: "Выбор действия",
-	},
-	ADM_LOGIN: {
-		RU: "Вход в админ панель",
-	},
-	OTHER: {
-		RU: "Прочее",
+	ERROR: {
+		RU: "Ошибка",
 	},
 	DAY_US_USDT: {
 		RU: "( {{1}} )  дней за {{2}} {{3}}",

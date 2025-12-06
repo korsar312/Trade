@@ -1,5 +1,3 @@
-import type { RouterInterface } from "../ServiceRouter/Router.interface.ts";
-
 export namespace MessageInterface {
 	export interface IAdapter {
 		initGoodsWord(): Promise<void>;
@@ -21,8 +19,7 @@ export namespace MessageInterface {
 	export type EField = keyof TField;
 
 	type TMapWord = Record<ELang, string>;
-	type EOtherIntWord = RouterInterface.EPath;
-	type EAllWord = EWord | EOtherIntWord;
+	type EAllWord = EWord;
 
 	export type TGoodsInfo = Record<string, TField>;
 	export type TDictionary = Record<EAllWord, TMapWord>;
@@ -32,6 +29,7 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	ERROR: "ERROR",
 	DAY_US_USDT: "DAY_US_USDT",
 	LOGIN_TO_ADMIN_MENU: "LOGIN_TO_ADMIN_MENU",
 	LOGIN_TO_CASH_DESK: "LOGIN_TO_CASH_DESK",

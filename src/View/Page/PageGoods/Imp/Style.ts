@@ -1,4 +1,4 @@
-import Styles from "../../../../../Styles/Styles.ts";
+import Styles from "../../../../Styles/Styles.ts";
 import { css, type CSSObject } from "@emotion/react";
 
 class Style extends Styles {
