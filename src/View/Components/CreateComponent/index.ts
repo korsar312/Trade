@@ -7,7 +7,7 @@ import * as readline from "readline";
 import * as process from "node:process";
 import { fileURLToPath } from "node:url";
 
-type DirKey = 0 | 1 | 2 | 3;
+type DirKey = 0 | 1 | 2 | 3 | 4;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,13 +17,16 @@ const CATALOGS: Record<DirKey, string> = {
 	1: "1.Atoms",
 	2: "2.Molecules",
 	3: "3.Substances",
+	4: "4.Structures",
 };
 
 function withPrefix(dirKey: DirKey, baseName: string): string {
 	if (dirKey === 0) return baseName;
 	if (dirKey === 1) return `Atom${baseName}`;
 	if (dirKey === 2) return `Molecule${baseName}`;
-	return `Substance${baseName}`;
+	if (dirKey === 3) return `Substance${baseName}`;
+	if (dirKey === 4) return `Structures${baseName}`;
+	return `${baseName}`;
 }
 
 async function prompt(question: string): Promise<string> {
@@ -66,9 +69,9 @@ function copyDirRecursiveSync(src: string, dest: string) {
 
 async function main() {
 	// 1) Выбор каталога
-	const dirAnswer = await prompt("Выберите каталог:\n0 → 0.Cores\n1 → 1.Atoms\n2 → 2.Molecules\n3 → 3.Substances\n> ");
-	if (!/^[0-3]$/.test(dirAnswer)) {
-		console.error("Ошибка: нужно ввести 0, 1, 2 или 3.");
+	const dirAnswer = await prompt("Выберите каталог:\n0 → 0.Cores\n1 → 1.Atoms\n2 → 2.Molecules\n3 → 3.Substances\n4 → 4.Structures\n> ");
+	if (!/^[0-4]$/.test(dirAnswer)) {
+		console.error("Ошибка: нужно ввести 0, 1, 2, 3 или 4.");
 		process.exit(1);
 	}
 	const dirKey = Number(dirAnswer) as DirKey;

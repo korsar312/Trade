@@ -30,6 +30,7 @@ export const buttonColor = {
 	SECOND_1: "SECOND_1",
 	MAIN_2: "MAIN_2",
 	MAIN_3: "MAIN_3",
+	BLUE_1: "BLUE_1",
 	BLUE_2: "BLUE_2",
 	RED_1: "RED_1",
 } satisfies { [K in StyleInterface.EColor]?: K };

@@ -3,34 +3,27 @@ import { css, type CSSObject } from "@emotion/react";
 
 class Style extends Styles {
 	public wrapper: CSSObject = css`
-		${this.mixins.flexCol}
-		box-sizing: border-box;
-		gap: 8px;
-		width: 160px;
-		height: 256px;
+		padding: 0;
+	`;
+
+	public imageWrap: CSSObject = css`
+		${this.mixins.flexCenter};
+		padding: 0;
 	`;
 
 	public image: CSSObject = css`
-		overflow: hidden;
-		border-radius: 14px;
-		height: 130px;
+		object-fit: cover;
 	`;
 
-	public body: CSSObject = css`
-		${this.mixins.flexCol};
-		align-items: flex-start;
-		justify-content: space-between;
-		overflow: auto;
-		flex: 1;
-		padding: 0 ${this.size(3)};
+	public body: CSSObject = css``;
+
+	public textWrap: CSSObject = css`
+		padding: ${this.variables.radiusStandard / 2}px;
 	`;
 
-	public name: CSSObject = css`
-		overflow: auto;
-		max-height: 40px;
+	public btnWrap: CSSObject = css`
+		padding: 0 ${this.variables.radiusStandard / 2}px ${this.variables.radiusStandard / 2}px ${this.variables.radiusStandard / 2}px;
 	`;
-
-	public count: CSSObject = css``;
 }
 
 export default new Style();

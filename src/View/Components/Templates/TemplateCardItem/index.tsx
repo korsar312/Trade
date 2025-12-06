@@ -17,8 +17,8 @@ const Index: FC<IComponent> = (props) => {
 	const price = Util.toMoney(sell);
 
 	const propsComponent: IProp = {
+		btn: [{ text: price }],
 		name,
-		price,
 		image,
 	};
 

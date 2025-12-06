@@ -16,22 +16,28 @@ function Model(props: IComponent) {
 	}
 
 	function changeImage(icon: IImage): IImage {
-		return { ...icon, color: icon.color || getColorText() };
+		return { ...icon, color: icon.color || getColorImage() };
 	}
 
 	function changeText(text: IText): IText {
 		return { ...text, color: text.color || getColorText() };
 	}
 
+	function getColorImage(): StyleInterface.EColor {
+		switch (color) {
+			case "BLUE_1":
+				return "BLUE_2";
+		}
+
+		return getColorText();
+	}
+
 	function getColorText(): StyleInterface.EColor {
 		switch (color) {
-			case "MAIN_2":
-			case "MAIN_3":
-			case "RED_1":
-			case "BLUE_2":
-				return "SECOND_1";
-			default:
+			case "SECOND_1":
 				return "MAIN_2";
+			default:
+				return "SECOND_1";
 		}
 	}
 

@@ -29,6 +29,7 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	CATALOG: "CATALOG",
 	ERROR: "ERROR",
 	DAY_US_USDT: "DAY_US_USDT",
 	LOGIN_TO_ADMIN_MENU: "LOGIN_TO_ADMIN_MENU",

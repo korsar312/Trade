@@ -11,7 +11,6 @@ const Index: FC<IComponent> = (props) => {
 			{ id: "1", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Message" } },
 			{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Play" } },
 			{ id: "3", options: {}, type: "SPACING" },
-			{ id: "4", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Message" } },
 			{ id: "5", type: "BTN_IMAGE", options: { color: "BLUE_2", icon: "Play" } },
 		],
 	};

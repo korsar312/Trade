@@ -1,6 +1,9 @@
 import type { MessageInterface } from "../../Core/Services/ServiceMessage/Message.interface.ts";
 
 const Dictionary: MessageInterface.TDictionary = {
+	CATALOG: {
+		RU: "Каталог",
+	},
 	ERROR: {
 		RU: "Ошибка",
 	},

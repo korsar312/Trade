@@ -13,8 +13,7 @@ import AtomInput from "../../../1.Atoms/AtomInput";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
 import { Act } from "../../../../../Logic/Core";
 import util from "../../../../../Logic/Libs/Util";
-import MoleculeRowInformDouble from "../../../2.Molecules/MoleculeRowInform/Variables/MoleculeRowInformDouble";
-import TemplateHead from "../../../4.Templates/TemplateHead";
+import TemplateHead from "../../../Templates/TemplateHead";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 
 const View: NFC<typeof Model> = (props) => {
@@ -60,13 +59,9 @@ const View: NFC<typeof Model> = (props) => {
 		),
 		card: (
 			<>
-				{row("MoleculeItemCard", <SubstanceItemCard image={imagePath} name={"Cheese Burst Pizza"} price={price} />)}
 				{row(
-					"MoleculeRowInformDouble",
-					<MoleculeRowInformDouble
-						left={{ text: "LOGIN", icon: "Bug", iconColor: "SECOND_1" }}
-						right={{ text: "CLOSE", icon: "Add", iconColor: "MAIN_4" }}
-					/>,
+					"MoleculeItemCard",
+					<SubstanceItemCard image={imagePath} name={"Cheese Burst Pizza"} btn={[{ text: price, color: "BLUE_2" }]} />,
 				)}
 				{row("SubstanceHeadNav", <TemplateHead />)}
 			</>

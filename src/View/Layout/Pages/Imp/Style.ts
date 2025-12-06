@@ -9,10 +9,18 @@ class Style extends Styles {
 		${this.mixins.flexCenter};
 	`;
 
-	public page: CSSObject = css`
-		width: ${this.width}px;
+	public content: CSSObject = css`
+		${this.mixins.flexCol};
+
 		max-width: ${this.width}px;
+		width: ${this.width}px;
 		height: 100%;
+		gap: 12px;
+	`;
+
+	public page: CSSObject = css`
+		overflow: hidden;
+		flex: 1;
 	`;
 }
 
