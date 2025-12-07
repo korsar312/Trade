@@ -15,7 +15,6 @@ export namespace LinksInterface {
 		LOGOFF(): Promise<string>;
 		GET_BUSINESS_INFO(): Promise<SettingInterface.TBusinessInfo>;
 		SEND_ORDER(): Promise<string>;
-		GET_CATEGORY_LIST(): Promise<CatalogueInterface.TCategoryMap>;
 		GET_ALL_GOODS(): Promise<CatalogueInterface.TItemMap>;
 		GET_PRODUCT_TEXT(): Promise<MessageInterface.TGoodsInfo>;
 	}

@@ -6,12 +6,13 @@ import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyl
 import type { IComponent as IImage, TImageComponent } from "../../0.Cores/Image";
 
 export interface IComponent extends TTagPartial<HTMLInputElement, "name" | "onClick" | "type" | "disabled"> {
-	initText: TAtomInputTextPick | MessageInterface.EWordAll;
+	initText?: TAtomInputTextPick | MessageInterface.EWordAll;
 	placeholder?: TAtomInputTextPick | MessageInterface.EWordAll;
-	onChange?: (val: MessageInterface.EWordAll) => void;
+	onChange?: (val: string) => void;
 	iconsLeft?: TAtomInputIcon;
 	iconsRight?: TAtomInputIcon;
 	valid?: Array<(val: MessageInterface.EWordAll) => boolean>;
+	value?: string;
 }
 
 export type TAtomInputText = {

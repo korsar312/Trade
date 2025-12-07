@@ -1,14 +1,11 @@
 export namespace CatalogueInterface {
 	export interface IAdapter {
-		initCategory(): Promise<void>;
 		initGoods(): Promise<void>;
-		getCategoryIdList(): string[];
 		getGoodsIdList(): string[];
+		getBank(itemId: string): EBank;
 		getPrice(itemId: string): number;
 		getImage(itemId: string): string;
 	}
-
-	export type TCategory = {};
 
 	export type TItem = {
 		image: string;
@@ -17,11 +14,9 @@ export namespace CatalogueInterface {
 	};
 
 	export type EBank = keyof typeof Bank;
-	export type TCategoryMap = Record<string, TCategory>;
 	export type TItemMap = Record<string, TItem>;
 
 	export interface Store {
-		category: TCategoryMap;
 		goods: TItemMap;
 	}
 }

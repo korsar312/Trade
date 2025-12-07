@@ -2,10 +2,6 @@ import type { CatalogueInterface as Interface } from "../Catalogue.interface.ts"
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
 class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private setCategory(store: Interface.Store, category: Interface.TCategoryMap): Interface.Store {
-		return { ...store, category };
-	}
-
 	private setGoods(store: Interface.Store, goods: Interface.TItemMap): Interface.Store {
 		return { ...store, goods };
 	}
@@ -15,6 +11,10 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		if (!item) throw new Error(`Item with id "${itemId}" not found`);
 
 		return item;
+	}
+
+	private getBankGoods(item: Interface.TItem): Interface.EBank {
+		return item.bank;
 	}
 
 	private getPriceGoods(item: Interface.TItem): number {
@@ -29,7 +29,6 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	constructor(props: IServiceProps) {
 		const store: Interface.Store = {
-			category: {},
 			goods: {},
 		};
 
@@ -38,22 +37,18 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	//==============================================================================================
 
-	public async initCategory() {
-		const res = await this.API.Links.GET_CATEGORY_LIST();
-		this.store = this.setCategory(this.store, res);
-	}
-
 	public async initGoods() {
 		const res = await this.API.Links.GET_ALL_GOODS();
 		this.store = this.setGoods(this.store, res);
 	}
 
-	public getCategoryIdList() {
-		return Object.keys(this.store.category);
-	}
-
 	public getGoodsIdList() {
 		return Object.keys(this.store.goods);
+	}
+
+	public getBank(itemId: string) {
+		const item = this.getCurrentItem(this.store.goods, itemId);
+		return this.getBankGoods(item);
 	}
 
 	public getPrice(itemId: string) {

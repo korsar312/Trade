@@ -59,15 +59,6 @@ class LinksImp implements Interface.IAdapter {
 	public SEND_ORDER() {
 		return this.request<string>({ link: "SEND_ORDER", method: "GET" }, "ссылка");
 	}
-	public GET_CATEGORY_LIST() {
-		const res: CatalogueInterface.TCategoryMap = {
-			catalog_1: {},
-			catalog_2: {},
-			catalog_3: {},
-			catalog_4: {},
-		};
-		return this.request<CatalogueInterface.TCategoryMap>({ link: "GET_CATEGORY_LIST", method: "GET" }, res);
-	}
 	public GET_ALL_GOODS() {
 		const res: CatalogueInterface.TItemMap = {
 			goods_1: { image: "/Test/img_1.png", price: 4666, bank: "TINK" },

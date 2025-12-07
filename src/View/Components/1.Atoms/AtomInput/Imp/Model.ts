@@ -6,14 +6,13 @@ import type { IComponent as IImage } from "../../../0.Cores/Image";
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
 function Model(props: IComponent) {
-	const { initText, onClick, onChange, name, type, iconsLeft, iconsRight, disabled, placeholder, valid } = props;
+	const { initText, onClick, onChange, name, type, iconsLeft, iconsRight, disabled, placeholder, valid, value } = props;
 
 	const [isValid, setIsValid] = useState<boolean | undefined>();
 
 	const textObj = changePlace(initText, "SECOND_1", "BLUE_3", "RED_3");
 	const placeObj = changePlace(placeholder, "SECOND_2", "BLUE_2", "RED_2");
 
-	const isTextExist = Boolean(textObj?.text?.toString().length);
 	const text = Act.Message.getWord(textObj?.text);
 
 	const imageLeft = changeImage(iconsLeft);
@@ -60,7 +59,7 @@ function Model(props: IComponent) {
 		setIsValid(undefined);
 	}
 
-	return { textObj, onClick, handleChange, text, name, type, imageLeft, imageRight, isTextExist, disabled, placeObj, isValid, onValid };
+	return { textObj, onClick, handleChange, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value };
 }
 
 export default Model;
