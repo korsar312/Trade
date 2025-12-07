@@ -11,8 +11,8 @@ class Style extends Styles {
 
 	public content: CSSObject = css`
 		${this.mixins.flexCol};
-
 		max-width: ${this.width}px;
+		min-width: 0;
 		width: ${this.width}px;
 		height: 100%;
 		gap: 12px;

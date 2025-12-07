@@ -72,12 +72,15 @@ const Color = {
 	MAIN_4: "MAIN_4",
 
 	SECOND_1: "SECOND_1",
+	SECOND_2: "SECOND_2",
 
 	BLUE_1: "BLUE_1",
 	BLUE_2: "BLUE_2",
 	BLUE_3: "BLUE_3",
 
 	RED_1: "RED_1",
+	RED_2: "RED_2",
+	RED_3: "RED_3",
 } as const;
 
 const Theme = {

@@ -8,11 +8,14 @@ export const Colors: StyleInterface.TColor = {
 		MAIN_4: "#353535",
 
 		SECOND_1: "#FFFFFF",
+		SECOND_2: "#858585",
 
 		BLUE_1: "#0D2540",
 		BLUE_2: "#007aff",
 		BLUE_3: "#44a6ff",
 
-		RED_1: "#FF3B30",
+		RED_1: "#5e1311",
+		RED_2: "#a2241c",
+		RED_3: "#FF3B30",
 	},
 };

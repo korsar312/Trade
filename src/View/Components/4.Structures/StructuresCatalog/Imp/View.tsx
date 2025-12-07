@@ -10,7 +10,7 @@ import AtomLine from "../../../1.Atoms/AtomLine";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
 
 const View: NFC<typeof Model> = (props) => {
-	const {} = props;
+	const { itemList } = props;
 
 	return (
 		<AtomPaper color={"MAIN_2"} extStyle={Style.wrapper}>
@@ -20,26 +20,28 @@ const View: NFC<typeof Model> = (props) => {
 			</div>
 
 			<div css={Style.btnRow}>
-				<AtomInput initText={""} />
-				<AtomButtonIcon color={"MAIN_3"} icon={"Message"} />
-				<AtomButtonIcon color={"MAIN_3"} icon={"Message"} />
+				<AtomInput iconsLeft={"Search"} placeholder={"CATALOG_SEARCH"} initText={""} />
+				<AtomButtonIcon color={"MAIN_3"} icon={"Sort"} />
+				<AtomButtonIcon color={"MAIN_3"} icon={"Refresh"} />
 			</div>
 
 			<div css={Style.btnRow}>
-				<AtomButtonIcon color={"BLUE_1"} icon={"Message"} />
-				<AtomButtonIcon color={"MAIN_3"} icon={"Message"} />
-				<AtomButtonMain color={"MAIN_3"} text={"Message"} leftImage={"Message"} />
-				<AtomButtonMain color={"MAIN_3"} text={"Message"} leftImage={"Message"} />
-				<AtomButtonMain color={"MAIN_3"} text={"Message"} leftImage={"Message"} />
-				<AtomButtonMain color={"MAIN_3"} text={"Message"} leftImage={"Message"} />
-				<AtomButtonMain color={"MAIN_3"} text={"Message"} leftImage={"Message"} />
+				<AtomButtonIcon color={"BLUE_1"} icon={"PlusSquare"} />
+				<AtomButtonIcon color={"MAIN_3"} icon={"Clear"} />
+				<AtomButtonMain color={"MAIN_3"} text={"Message"} rightImage={"ArrowDown"} />
+				<AtomButtonMain color={"MAIN_3"} text={"Message"} rightImage={"ArrowDown"} />
+				<AtomButtonMain color={"MAIN_3"} text={"Message"} rightImage={"ArrowDown"} />
+				<AtomButtonMain color={"MAIN_3"} text={"Message"} rightImage={"ArrowDown"} />
+				<AtomButtonMain color={"MAIN_3"} text={"Message"} rightImage={"ArrowDown"} />
 			</div>
 
 			<div css={Style.catalogWrap}>
 				<div css={Style.catalog}>
-					{[1, 2, 3, 3, 3, 3, 2, 3, 3, 3, 3].map(() => (
-						<SubstanceItemCard image={"Message"} name={"df"} btn={[{ text: "asddsa", isFullWidth: true, color: "BLUE_2" }]} />
-					))}
+					{itemList.map((el) => {
+						const { id, ...props } = el;
+
+						return <SubstanceItemCard key={id} {...props} />;
+					})}
 				</div>
 			</div>
 		</AtomPaper>

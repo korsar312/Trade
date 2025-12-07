@@ -2,16 +2,16 @@ import type { IComponent, TAtomInputGeneralGroup, TAtomInputIcon, TAtomInputText
 import { type ChangeEvent, useState } from "react";
 import { Act } from "../../../../../Logic/Core";
 import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
-import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { IComponent as IImage } from "../../../0.Cores/Image";
+import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
 function Model(props: IComponent) {
 	const { initText, onClick, onChange, name, type, iconsLeft, iconsRight, disabled, placeholder, valid } = props;
 
 	const [isValid, setIsValid] = useState<boolean | undefined>();
 
-	const textObj = changePlace(initText, "MAIN_4");
-	const placeObj = changePlace(placeholder, "MAIN_4");
+	const textObj = changePlace(initText, "SECOND_1", "BLUE_3", "RED_3");
+	const placeObj = changePlace(placeholder, "SECOND_2", "BLUE_2", "RED_2");
 
 	const isTextExist = Boolean(textObj?.text?.toString().length);
 	const text = Act.Message.getWord(textObj?.text);
@@ -19,9 +19,18 @@ function Model(props: IComponent) {
 	const imageLeft = changeImage(iconsLeft);
 	const imageRight = changeImage(iconsRight);
 
-	function changePlace(text: TAtomInputTextPick | MessageInterface.EWordAll, colorValid: StyleInterface.EColor): TAtomInputText {
+	function changePlace(
+		text: TAtomInputTextPick | MessageInterface.EWordAll,
+		color: StyleInterface.EColor,
+		colorValid: StyleInterface.EColor,
+		colorNotValid: StyleInterface.EColor,
+	): TAtomInputText {
 		const props: TAtomInputTextPick = typeof text === "object" ? text : { text };
-		return { ...props, color: props.color || isValid === false ? "RED_1" : colorValid, font: props.font || "BlockLead" };
+		return {
+			...props,
+			color: props.color || isValid === false ? colorNotValid : isValid ? colorValid : color,
+			font: props.font || "BodyMain",
+		};
 	}
 
 	function changeImage(img: TAtomInputIcon): TAtomInputGeneralGroup | undefined {
@@ -30,7 +39,7 @@ function Model(props: IComponent) {
 		const props: TAtomInputGeneralGroup = typeof img === "object" ? img : { value: [{ img }] };
 		const imgArr: IImage[] = props.value.map((el) => ({
 			...el,
-			color: el.color || isValid === false ? "RED_1" : isValid ? "MAIN_4" : "MAIN_3",
+			color: el.color || isValid === false ? "RED_1" : isValid ? "BLUE_2" : "SECOND_2",
 			size: el.size || 24,
 		}));
 

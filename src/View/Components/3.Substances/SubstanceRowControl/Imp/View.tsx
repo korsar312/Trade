@@ -3,7 +3,7 @@ import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import type { TSubstanceRowControlCompType } from "../index.tsx";
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 
 const View: NFC<typeof Model> = (props) => {
@@ -12,7 +12,7 @@ const View: NFC<typeof Model> = (props) => {
 	function rowRender(row: TSubstanceRowControlCompType): ReactNode {
 		switch (row.type) {
 			case "BTN_IMAGE":
-				return <AtomButtonIcon {...row.options} key={row.id} />;
+				return <AtomButtonIcon {...row.options} />;
 			case "SPACING":
 				return <div css={Style.pub.f1} />;
 		}
@@ -20,7 +20,9 @@ const View: NFC<typeof Model> = (props) => {
 
 	return (
 		<AtomPaper color={"MAIN_2"} extStyle={Style.wrapper}>
-			{compRow.map((el) => rowRender(el))}
+			{compRow.map((el) => (
+				<Fragment key={el.id}>{rowRender(el)}</Fragment>
+			))}
 		</AtomPaper>
 	);
 };

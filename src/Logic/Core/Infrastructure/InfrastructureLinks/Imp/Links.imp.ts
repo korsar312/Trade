@@ -70,31 +70,27 @@ class LinksImp implements Interface.IAdapter {
 	}
 	public GET_ALL_GOODS() {
 		const res: CatalogueInterface.TItemMap = {
-			goods_1: { image: "/Test/img_1.png", price: 4666, categoryInclude: 1, tags: [] },
-			goods_2: { image: "/Test/img_2.png", price: 4521, categoryInclude: 1, tags: [] },
-			goods_3: { image: "/Test/img_3.png", price: 4234, categoryInclude: 1, tags: [] },
-			goods_4: { image: "/Test/img_4.png", price: 43436, categoryInclude: 1, tags: [] },
-			goods_5: { image: "/Test/img_5.png", price: 5354, categoryInclude: 1, tags: [] },
-			goods_6: { image: "/Test/img_1.png", price: 4534, categoryInclude: 1, tags: [] },
-			goods_7: { image: "/Test/img_2.png", price: 1244, categoryInclude: 1, tags: [] },
-			goods_8: { image: "/Test/img_3.png", price: 5434, categoryInclude: 1, tags: [] },
+			goods_1: { image: "/Test/img_1.png", price: 4666, bank: "TINK" },
+			goods_2: { image: "/Test/img_2.png", price: 4521, bank: "TINK" },
+			goods_3: { image: "/Test/img_3.png", price: 4234, bank: "SBER" },
+			goods_4: { image: "/Test/img_4.png", price: 4343, bank: "ALFA" },
+			goods_5: { image: "/Test/img_5.png", price: 5354, bank: "ALFA" },
+			goods_6: { image: "/Test/img_1.png", price: 4534, bank: "ALFA" },
+			goods_7: { image: "/Test/img_2.png", price: 1244, bank: "SBER" },
+			goods_8: { image: "/Test/img_3.png", price: 5434, bank: "TINK" },
 		};
 		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ALL_GOODS", method: "GET" }, res);
 	}
 	public GET_PRODUCT_TEXT() {
 		const res: MessageInterface.TGoodsInfo = {
-			goods_1: { dict: { RU: "SD" }, name: { RU: "SD" } },
-			goods_2: { dict: { RU: "SD" }, name: { RU: "SD" } },
-			goods_3: { dict: { RU: "SD" }, name: { RU: "SD" } },
-			goods_4: { dict: { RU: "SD" }, name: { RU: "SD" } },
-			goods_5: { dict: { RU: "SD" }, name: { RU: "SD" } },
-			goods_6: { dict: { RU: "SD" }, name: { RU: "SD" } },
-			goods_7: { dict: { RU: "SD" }, name: { RU: "SD" } },
-			goods_8: { dict: { RU: "SD" }, name: { RU: "SD" } },
-			catalog_1: { name: { RU: "SD" } },
-			catalog_2: { name: { RU: "SD" } },
-			catalog_3: { name: { RU: "SD" } },
-			catalog_4: { name: { RU: "SD" } },
+			goods_1: { dict: { RU: "Продаю Т-банк. Дроп 14 лет" }, name: { RU: "Тиньк" } },
+			goods_2: { dict: { RU: "Продаю тинькоф." }, name: { RU: "Т-банк" } },
+			goods_3: { dict: { RU: "Толкаю сбер. Дроп 25 лет с кредитом" }, name: { RU: "Сбер" } },
+			goods_4: { dict: { RU: "Отдам Т-банк. Дроп сидит" }, name: { RU: "Альфа" } },
+			goods_5: { dict: { RU: "Продаю Т-банк. Дроп 24 лет" }, name: { RU: "Альфа банк" } },
+			goods_6: { dict: { RU: "Продаю Т-банк. Дроп 54 лет" }, name: { RU: "АльфаБанк" } },
+			goods_7: { dict: { RU: "Продаю Т-банк. Дроп 15 годов" }, name: { RU: "Сбербанк" } },
+			goods_8: { dict: { RU: "Продаю Т-банк. Дроп 12 лет" }, name: { RU: "Т=банк" } },
 		};
 
 		return this.request<MessageInterface.TGoodsInfo>({ link: "GET_ALL_GOODS", method: "GET" }, res);

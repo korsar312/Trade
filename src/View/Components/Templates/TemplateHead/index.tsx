@@ -8,10 +8,10 @@ const Index: FC<IComponent> = (props) => {
 
 	const propsComponent: IProp = {
 		compRow: [
-			{ id: "1", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Message" } },
-			{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Play" } },
+			{ id: "1", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Gear" } },
+			{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Plus" } },
 			{ id: "3", options: {}, type: "SPACING" },
-			{ id: "5", type: "BTN_IMAGE", options: { color: "BLUE_2", icon: "Play" } },
+			{ id: "5", type: "BTN_IMAGE", options: { color: "BLUE_2", icon: "AddCard" } },
 		],
 	};
 

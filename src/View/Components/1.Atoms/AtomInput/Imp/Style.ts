@@ -23,12 +23,10 @@ class Style extends Styles {
 		const isError = valid === false;
 		const isValid = valid === true;
 
-		const borderColor = this.getColor(isError ? "MAIN_4" : isValid ? "MAIN_4" : "MAIN_3");
-		const bgColor = this.getColor(isError ? "MAIN_2" : undefined);
+		const borderColor = this.getColor(isError ? "RED_1" : isValid ? "BLUE_1" : "MAIN_3");
 
 		return css`
 			border-color: ${borderColor};
-			background: ${bgColor};
 
 			&:has(input[disabled]) {
 				border-color: ${this.getColor("BLUE_1")};

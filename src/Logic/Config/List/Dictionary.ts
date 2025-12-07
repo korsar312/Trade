@@ -1,6 +1,9 @@
 import type { MessageInterface } from "../../Core/Services/ServiceMessage/Message.interface.ts";
 
 const Dictionary: MessageInterface.TDictionary = {
+	CATALOG_SEARCH: {
+		RU: "Поиск по каталогу",
+	},
 	CATALOG: {
 		RU: "Каталог",
 	},

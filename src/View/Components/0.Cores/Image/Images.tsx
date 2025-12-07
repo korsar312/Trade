@@ -1,37 +1,41 @@
 import type { FunctionComponent, SVGProps } from "react";
 
-import Chat from "@material-icons/svg/svg/forum/outline.svg?react";
-import Tune from "@material-icons/svg/svg/tune/outline.svg?react";
-import Bug from "@material-icons/svg/svg/bug_report/outline.svg?react";
-import Message from "@material-icons/svg/svg/mail/outline.svg?react";
-import Key from "@material-icons/svg/svg/key/outline.svg?react";
-import History from "@material-icons/svg/svg/schedule/outline.svg?react";
-import Settings from "@material-icons/svg/svg/settings/outline.svg?react";
-import ArrowRight from "@material-icons/svg/svg/east/outline.svg?react";
-import Block from "@material-icons/svg/svg/block/outline.svg?react";
-import Add from "@material-icons/svg/svg/add/outline.svg?react";
-import Play from "@material-icons/svg/svg/play_arrow/outline.svg?react";
-import Pending from "@material-icons/svg/svg/pending/outline.svg?react";
-import Send from "@material-icons/svg/svg/send/outline.svg?react";
+import ArrowDown from "@material-icons/svg/svg/keyboard_arrow_down/outline.svg?react";
+import Gear from "@material-icons/svg/svg/settings/outline.svg?react";
+import Money from "@material-icons/svg/svg/money/outline.svg?react";
+import Plus from "@material-icons/svg/svg/plus/outline.svg?react";
+import Minus from "@material-icons/svg/svg/minus/outline.svg?react";
+import AddCard from "@material-icons/svg/svg/add_card/outline.svg?react";
+import PlusSquare from "@material-icons/svg/svg/add_box/outline.svg?react";
+import Sort from "@material-icons/svg/svg/sort/outline.svg?react";
+import Refresh from "@material-icons/svg/svg/autorenew/outline.svg?react";
 import Search from "@material-icons/svg/svg/search/outline.svg?react";
+import Clear from "@material-icons/svg/svg/clear_all/outline.svg?react";
+import Person from "@material-icons/svg/svg/person/outline.svg?react";
+import Bag from "@material-icons/svg/svg/local_mall/outline.svg?react";
+import Stats from "@material-icons/svg/svg/query_stats/outline.svg?react";
+import Sell from "@material-icons/svg/svg/sell/outline.svg?react";
+import Bug from "@material-icons/svg/svg/bug_report/outline.svg?react";
 
 type TIcons = Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>;
 
 const icons = {
-	Key,
-	ArrowRight,
-	History,
-	Tune,
-	Chat,
-	Bug,
-	Message,
-	Settings,
-	Block,
-	Add,
-	Play,
-	Pending,
-	Send,
+	ArrowDown,
+	Gear,
+	Money,
+	Plus,
+	Minus,
+	AddCard,
+	PlusSquare,
+	Sort,
+	Refresh,
 	Search,
+	Clear,
+	Person,
+	Bag,
+	Stats,
+	Sell,
+	Bug,
 } satisfies TIcons;
 
 const Images = {

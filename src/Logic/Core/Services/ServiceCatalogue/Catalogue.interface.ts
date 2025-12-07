@@ -13,13 +13,10 @@ export namespace CatalogueInterface {
 	export type TItem = {
 		image: string;
 		price: number;
-		categoryInclude: number;
-		tags: string[];
-		kKal?: number;
-		weight?: number;
-		craftTime?: number;
+		bank: EBank;
 	};
 
+	export type EBank = keyof typeof Bank;
 	export type TCategoryMap = Record<string, TCategory>;
 	export type TItemMap = Record<string, TItem>;
 
@@ -28,3 +25,9 @@ export namespace CatalogueInterface {
 		goods: TItemMap;
 	}
 }
+
+const Bank = {
+	ALFA: "ALFA",
+	SBER: "SBER",
+	TINK: "TINK",
+} as const;
