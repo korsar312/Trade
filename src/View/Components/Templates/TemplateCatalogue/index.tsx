@@ -45,8 +45,8 @@ const Index: FC<IComponent> = (props) => {
 		},
 		{
 			id: "2",
-			type: "BTN_IMAGE",
-			options: { color: "MAIN_3", icon: "Sort" },
+			type: "BTN_MAIN",
+			options: { color: "MAIN_3", leftImage: "Sort", text: "SORT" },
 		},
 		{
 			id: "3",
@@ -69,17 +69,17 @@ const Index: FC<IComponent> = (props) => {
 		{
 			id: "3",
 			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "Message", rightImage: "ArrowDown" },
+			options: { color: "MAIN_3", text: "BANK", rightImage: "ArrowDown" },
 		},
 		{
 			id: "4",
 			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "Message", rightImage: "ArrowDown" },
+			options: { color: "MAIN_3", text: "PRISE_DOWN", rightImage: "ArrowDown" },
 		},
 		{
 			id: "5",
 			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "Message", rightImage: "ArrowDown" },
+			options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" },
 		},
 		{
 			id: "6",

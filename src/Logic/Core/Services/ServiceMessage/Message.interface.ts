@@ -29,6 +29,10 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	PRISE_UP: "PRISE_UP",
+	PRISE_DOWN: "PRISE_DOWN",
+	BANK: "BANK",
+	SORT: "SORT",
 	CATALOG_SEARCH: "CATALOG_SEARCH",
 	CATALOG: "CATALOG",
 	ERROR: "ERROR",

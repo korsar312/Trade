@@ -1,6 +1,18 @@
 import type { MessageInterface } from "../../Core/Services/ServiceMessage/Message.interface.ts";
 
 const Dictionary: MessageInterface.TDictionary = {
+	PRISE_UP: {
+		RU: "Цена до",
+	},
+	PRISE_DOWN: {
+		RU: "Цена от",
+	},
+	BANK: {
+		RU: "Банк",
+	},
+	SORT: {
+		RU: "Сортировка",
+	},
 	CATALOG_SEARCH: {
 		RU: "Поиск по каталогу",
 	},
