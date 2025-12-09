@@ -11,10 +11,15 @@ const Index: FC<IComponent> = (props) => {
 			type: "ROW_CONTROL",
 			options: {
 				compRow: [
-					{ id: "1", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Gear" } },
-					{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Plus" } },
+					{ id: "1", options: {}, type: "SPACING" },
+					{ id: "2", type: "BTN_IMAGE", options: { icon: "Store", isBig: true } },
 					{ id: "3", options: {}, type: "SPACING" },
-					{ id: "4", type: "BTN_IMAGE", options: { color: "BLUE_2", icon: "AddCard" } },
+					{ id: "4", type: "BTN_IMAGE", options: { icon: "Person", isBig: true } },
+					{ id: "5", options: {}, type: "SPACING" },
+					{ id: "6", type: "BTN_IMAGE", options: { icon: "CheckList", isBig: true } },
+					{ id: "7", options: {}, type: "SPACING" },
+					{ id: "6", type: "BTN_IMAGE", options: { icon: "Info", isBig: true } },
+					{ id: "7", options: {}, type: "SPACING" },
 				],
 			},
 		},

@@ -85,4 +85,35 @@ export namespace typesUtils {
 	 */
 	type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 	export type XOR<T, U> = (Without<T, U> & U) | (Without<U, T> & T);
+
+	/**
+	 * CreateOptionsUnion формирует union-тип из карты:
+	 * {
+	 *   KEY1: Type1,
+	 *   KEY2: Type2,
+	 *   ...
+	 * }
+	 *
+	 * На выходе получается объединение структур вида:
+	 * { type: KEY1; options: Type1 } & Extra
+	 * { type: KEY2; options: Type2 } & Extra
+	 * ...
+	 *
+	 * Параметры:
+	 * - Map — объект-карта: ключ → тип options
+	 * - Extra — дополнительные поля (например id)
+	 *
+	 * Пример:
+	 * type UI = CreateOptionsUnion<{
+	 *   BTN: BtnOptions;
+	 *   INPUT: InputOptions;
+	 * }, { id: string }>;
+	 *
+	 * // Результат:
+	 * // { type: "BTN"; options: BtnOptions; id: string }
+	 * // | { type: "INPUT"; options: InputOptions; id: string }
+	 */
+	export type OptionsUnion<Map extends Record<string, any>, Extra extends object = {}> = {
+		[K in keyof Map]: { type: K; options: Map[K] } & Extra;
+	}[keyof Map];
 }

@@ -1,20 +1,18 @@
 import Model from "./Imp/Model.ts";
 import View from "./Imp/View.tsx";
 import type { IComponent as IFormLogin } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaLogin";
+import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
 
-export type IComponent = {
+export interface IComponent {
 	isShow: boolean;
-} & TConcat;
+	form: TSubstanceModalCompType;
+}
 
-export type TSubstanceModalType = "LOGIN";
-
-type TAdd = TForm<"LOGIN", IFormLogin>;
-type TConcat = TAdd;
-
-type TForm<T extends TSubstanceModalType, F> = {
-	type: T;
-	form: F;
+type TMap = {
+	LOGIN: IFormLogin;
 };
+
+export type TSubstanceModalCompType = typesUtils.OptionsUnion<TMap>;
 
 const Index = (props: IComponent) => {
 	const model = Model(props);

@@ -29,6 +29,7 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	RATING: "RATING",
 	PRISE_UP: "PRISE_UP",
 	PRISE_DOWN: "PRISE_DOWN",
 	BANK: "BANK",

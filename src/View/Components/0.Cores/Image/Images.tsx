@@ -12,10 +12,12 @@ import Refresh from "@material-icons/svg/svg/autorenew/outline.svg?react";
 import Search from "@material-icons/svg/svg/search/outline.svg?react";
 import Clear from "@material-icons/svg/svg/clear_all/outline.svg?react";
 import Person from "@material-icons/svg/svg/person/outline.svg?react";
-import Bag from "@material-icons/svg/svg/local_mall/outline.svg?react";
+import Store from "@material-icons/svg/svg/store/outline.svg?react";
 import Stats from "@material-icons/svg/svg/query_stats/outline.svg?react";
 import Sell from "@material-icons/svg/svg/sell/outline.svg?react";
 import Bug from "@material-icons/svg/svg/bug_report/outline.svg?react";
+import Info from "@material-icons/svg/svg/info/outline.svg?react";
+import CheckList from "@material-icons/svg/svg/checklist/outline.svg?react";
 
 type TIcons = Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>;
 
@@ -32,10 +34,12 @@ const icons = {
 	Search,
 	Clear,
 	Person,
-	Bag,
+	Store,
 	Stats,
 	Sell,
 	Bug,
+	Info,
+	CheckList,
 } satisfies TIcons;
 
 const Images = {

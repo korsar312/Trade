@@ -4,6 +4,7 @@ import { Act } from "../../../../Logic/Core";
 import Util from "../../../../Logic/Libs/Util";
 import type { TSubstanceRowControlCompType } from "../../3.Substances/SubstanceRowControl";
 import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import { observer } from "mobx-react";
 
 export interface IComponent {}
 
@@ -28,14 +29,8 @@ const Index: FC<IComponent> = (props) => {
 
 	const [filters, setFilters] = useState<TFilter>(initFilter);
 
-	const catalogRender = catalog.filter((el) => {
-		if (filters.name && !getName(el).toLowerCase().includes(filters.name.toLowerCase())) return false;
-		if (filters.bank && getBank(el) !== filters.bank) return false;
-		if (filters.priseUp !== null && getPrice(el) > filters.priseUp) return false;
-		if (filters.priseDown !== null && getPrice(el) < filters.priseDown) return false;
-
-		return true;
-	});
+	const isEmptyFilter = Object.values(filters).every((el) => el === null);
+	const catalogRender = isEmptyFilter ? catalog : catalog.filter(filterFn);
 
 	const topRow: TSubstanceRowControlCompType[] = [
 		{
@@ -82,14 +77,9 @@ const Index: FC<IComponent> = (props) => {
 			options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" },
 		},
 		{
-			id: "6",
+			id: "5",
 			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "Message", rightImage: "ArrowDown" },
-		},
-		{
-			id: "7",
-			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "Message", rightImage: "ArrowDown" },
+			options: { color: "MAIN_3", text: "RATING", rightImage: "ArrowDown" },
 		},
 	];
 
@@ -105,6 +95,15 @@ const Index: FC<IComponent> = (props) => {
 			{ compRow: botRow, id: "2" },
 		],
 	};
+
+	function filterFn(itemId: string): boolean {
+		if (filters.name && !getName(itemId).toLowerCase().includes(filters.name.toLowerCase())) return false;
+		if (filters.bank && getBank(itemId) !== filters.bank) return false;
+		if (filters.priseUp !== null && getPrice(itemId) > filters.priseUp) return false;
+		if (filters.priseDown !== null && getPrice(itemId) < filters.priseDown) return false;
+
+		return true;
+	}
 
 	function getName(id: string) {
 		return Act.Message.getGoodsWord(id, "name");
@@ -141,4 +140,4 @@ const Index: FC<IComponent> = (props) => {
 	return <Substance {...propsComponent} />;
 };
 
-export default Index;
+export default observer(Index);

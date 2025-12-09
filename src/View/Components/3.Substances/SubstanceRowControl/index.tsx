@@ -3,27 +3,20 @@ import View from "./Imp/View.tsx";
 import type { IComponent as IBtnImage } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import type { IComponent as IBtnMain } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import type { IComponent as IInput } from "../../1.Atoms/AtomInput";
+import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
 
 export interface IComponent {
 	compRow: TSubstanceRowControlCompType[];
 }
 
-const Types = {
-	BTN_IMAGE: "BTN_IMAGE",
-	BTN_MAIN: "BTN_MAIN",
-	SPACING: "SPACING",
-	INPUT: "INPUT",
-} as const;
+type TMap = {
+	BTN_IMAGE: IBtnImage;
+	BTN_MAIN: IBtnMain;
+	SPACING: {};
+	INPUT: IInput;
+};
 
-export type ESubstanceRowControlCompType = keyof typeof Types;
-export type TSubstanceRowControlCompType = TBtnImage | TBtnMain | TInput | TSpace;
-
-type TOptions<T extends ESubstanceRowControlCompType, O> = { type: T; options: O; id: string };
-
-type TBtnImage = TOptions<"BTN_IMAGE", IBtnImage>;
-type TBtnMain = TOptions<"BTN_MAIN", IBtnMain>;
-type TSpace = TOptions<"SPACING", {}>;
-type TInput = TOptions<"INPUT", IInput>;
+export type TSubstanceRowControlCompType = typesUtils.OptionsUnion<TMap, { id: string }>;
 
 const Index = (props: IComponent) => {
 	const model = Model(props);
