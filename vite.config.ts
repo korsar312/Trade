@@ -5,7 +5,7 @@ import vitePluginSvgr from "vite-plugin-svgr";
 
 // https://vite.dev/config/
 export default defineConfig({
-	base: "/trade/",
+	base: "/",
 	plugins: [
 		react({
 			jsxImportSource: "@emotion/react",
