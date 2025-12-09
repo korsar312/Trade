@@ -1,0 +1,19 @@
+name: Deploy Vite site to GitHub Pages
+
+on:
+  push:
+    branches: [ master ] # или main — откуда хочешь деплоить
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - run: npm ci
+      - run: npm run build
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist     # куда Vite кладёт билд
