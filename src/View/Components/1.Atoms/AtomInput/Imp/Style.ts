@@ -3,12 +3,14 @@ import { css, type CSSObject } from "@emotion/react";
 import type { TAtomInputText } from "../index.tsx";
 
 class Style extends Styles {
+	private sidePad = 8;
+
 	public wrapper: CSSObject = css`
 		${this.mixins.flexCenter};
 		position: relative;
 		box-sizing: border-box;
-		padding: 8px 16px;
-		gap: 12px;
+		padding: ${this.sidePad / 2}px ${this.sidePad}px;
+		gap: ${this.sidePad / 2}px;
 		border: 2px solid ${this.getColor("SECOND_1")};
 		border-radius: 12px;
 		transition: ${this.variables.fastTransition};
@@ -51,7 +53,7 @@ class Style extends Styles {
 		background: ${this.getColor()};
 		outline: none;
 		border: none;
-		height: calc(100% - 4px);
+		height: calc(100% - ${this.sidePad / 2}px);
 		padding: 0;
 
 		&::placeholder {
