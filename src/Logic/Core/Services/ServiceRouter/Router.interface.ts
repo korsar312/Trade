@@ -23,6 +23,8 @@ export namespace RouterInterface {
 	export type EPath = keyof typeof Router;
 	export type ERole = keyof typeof RouterRole;
 	export type TPath = Record<EPath, string>;
+	export type TRouterMap = Pick<RouteObject, "Component" | "loader"> & { path: EPath };
+	export type TRouterMapList = TRouterMap[];
 	export type TRouterList = RouteObject[];
 	export type TRouterListRole = Partial<Record<EPath, ERole[]>>;
 	export type TRouter = ReturnType<typeof createBrowserRouter>;
@@ -34,5 +36,8 @@ const RouterRole = {
 	USER: "USER",
 } as const;
 
-const Raw = ["GOODS", "PROFILE", "ERROR"] as const;
-const Router = {} as { [K in (typeof Raw)[number]]: string };
+const Router = {
+	GOODS: "GOODS",
+	PROFILE: "PROFILE",
+	ERROR: "ERROR",
+} as const;

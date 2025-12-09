@@ -1,6 +1,7 @@
 import type { IComponent } from "../index";
 import { type SyntheticEvent, useEffect, useState } from "react";
 import getImage from "../Images.tsx";
+import { Consts } from "../../../../../Logic/Config/Consts.ts";
 
 function Model(props: IComponent) {
 	const { img, color, extStyle, size } = props;
@@ -16,7 +17,7 @@ function Model(props: IComponent) {
 	function handleErrorImage(e: SyntheticEvent<HTMLImageElement, Event>) {
 		const target = e.target as HTMLImageElement;
 		target.onerror = null;
-		target.src = getImage("IconBug");
+		target.src = Consts.basePath + "vite.svg";
 	}
 
 	return { imageIcon, img, color, extStyle, handleErrorImage, isShow, size };

@@ -16,17 +16,17 @@ export const RoutesRole: RouterInterface.TRouterListRole = {
 	PROFILE: ["USER", "ADM"],
 };
 
-export const Routes: RouterInterface.TRouterList = [
+export const Routes: RouterInterface.TRouterMapList = [
 	{
-		path: Path.GOODS,
+		path: "GOODS",
 		Component: PageGoods,
 	},
 	{
-		path: Path.PROFILE,
+		path: "PROFILE",
 		Component: PageProfile,
 	},
 	{
-		path: Path.ERROR,
+		path: "ERROR",
 		loader: () => redirect(Path.GOODS),
 	},
 ];

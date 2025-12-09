@@ -1,4 +1,4 @@
-import type { RouterInterface, RouterInterface as Interface } from "../Router.interface.ts";
+import type { RouterInterface as Interface } from "../Router.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 import { createBrowserRouter, generatePath, matchPath } from "react-router";
 
@@ -26,11 +26,19 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 
 	constructor(
 		props: IServiceProps,
-		routes: Interface.TRouterList,
+		oldRoutes: Interface.TRouterMapList,
 		routesRole: Interface.TRouterListRole,
-		path: Interface.TPath,
+		oldPath: Interface.TPath,
 		role: Interface.ERole,
+		basePath: string,
 	) {
+		const path = Object.entries(oldPath).reduce(
+			(prev, [key, value]) => ({ ...prev, [key]: `${basePath}${value}` }),
+			{} as Interface.TPath,
+		);
+
+		const routes: Interface.TRouterList = oldRoutes.map((el) => ({ ...el, path: path[el.path] }));
+
 		const browserRouter = createBrowserRouter(routes);
 		const pageName = getPage(browserRouter.state.location.pathname, path);
 		const isAccess = isAccessRoute(role, pageName, routesRole);
@@ -40,9 +48,9 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		const store: Interface.Store = {
 			currentPathName: getPage(browserRouter.state.location.pathname, path),
 			routes: browserRouter,
+			path,
 			routesRole,
 			role,
-			path,
 		};
 
 		super(props, store);
@@ -81,11 +89,11 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		this.store = this.setCurrentRole(this.store, role);
 	}
 
-	isAccessPage(page: RouterInterface.EPath): boolean {
+	isAccessPage(page: Interface.EPath): boolean {
 		return isAccessRoute(this.getRole(), page, this.store.routesRole);
 	}
 
-	getCurPage(): RouterInterface.EPath {
+	getCurPage(): Interface.EPath {
 		return this.store.currentPathName;
 	}
 

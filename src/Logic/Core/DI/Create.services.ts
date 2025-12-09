@@ -23,6 +23,7 @@ import { ServiceSetting } from "../Services/ServiceSetting";
 import CatalogueImp from "../Services/ServiceCatalogue/Imp/Catalogue.imp.ts";
 import { ServiceCatalogue } from "../Services/ServiceCatalogue";
 import { createHmrSingleton } from "./CreateHmrSingleton.ts";
+import { Consts } from "../../Config/Consts.ts";
 
 function createServices() {
 	const inf: IServiceProps = { infrastructure: Infrastructure };
@@ -33,7 +34,7 @@ function createServices() {
 	const styleImp = new StyleImp(inf, Colors, Fonts, Weights);
 	const style = new ServiceStyle(styleImp);
 
-	const routerImp = new RouterImp(inf, Routes, RoutesRole, Path, "USER");
+	const routerImp = new RouterImp(inf, Routes, RoutesRole, Path, "USER", Consts.basePath);
 	const router = new ServiceRouter(routerImp);
 
 	const basketImp = new BasketImp(inf);
