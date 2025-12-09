@@ -5,7 +5,7 @@ import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
 const View: NFC<typeof Model> = (props) => {
 	const {} = props;
 
-	document.body.style = Style.wrapper;
+	document.body.setAttribute("style", Style.wrapper);
 
 	return null;
 };

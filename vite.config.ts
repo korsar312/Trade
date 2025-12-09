@@ -8,7 +8,11 @@ export default defineConfig({
 	plugins: [
 		react({
 			jsxImportSource: "@emotion/react",
-			plugins: [["@swc/plugin-emotion", { sourceMap: true, autoLabel: "dev-only", labelFormat: "[local]" }]],
+			plugins: [
+				//[
+				//	"@swc/plugin-emotion", { sourceMap: true, autoLabel: "dev-only", labelFormat: "[local]" }
+				//]
+			],
 		}),
 		checker({
 			overlay: { initialIsOpen: true },
