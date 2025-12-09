@@ -12,7 +12,9 @@ class Style extends Styles {
 		border: 2px solid ${this.getColor("SECOND_1")};
 		border-radius: 12px;
 		transition: ${this.variables.fastTransition};
+		overflow: hidden;
 		width: 100%;
+		height: 100%;
 
 		&:has(input[disabled]) {
 			background: ${this.getColor("SECOND_1")};
@@ -41,18 +43,16 @@ class Style extends Styles {
 		height: 100%;
 	`;
 
-	public inputContent: CSSObject = css`
+	public input: CSSObject = css`
 		position: absolute;
 		left: 0;
-	`;
+		right: 0;
 
-	public input: CSSObject = css`
 		background: ${this.getColor()};
 		outline: none;
 		border: none;
 		height: calc(100% - 4px);
 		padding: 0;
-		width: 100%;
 
 		&::placeholder {
 			color: ${this.getColor(undefined)};
@@ -63,9 +63,10 @@ class Style extends Styles {
 		const topSide = "translate(0, -66%) scale(0.65)";
 
 		return css`
-			display: inline-block;
 			transform: ${!1 ? topSide : "none"};
 			transform-origin: left;
+			text-wrap: nowrap;
+			position: absolute;
 
 			&:has(+ input:focus),
 			&:has(+ input:not(:placeholder-shown)) {

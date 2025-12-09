@@ -31,7 +31,7 @@ const View: NFC<typeof Model> = (props) => {
 					type={type}
 					name={name}
 					defaultValue={String(text)}
-					css={[Style.input, Style.inputContent, Style.text(textObj)]}
+					css={[Style.input, Style.text(textObj)]}
 					onClick={onClick}
 					onInput={handleChange}
 					disabled={disabled}
