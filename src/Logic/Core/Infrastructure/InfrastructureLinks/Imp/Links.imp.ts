@@ -74,14 +74,14 @@ class LinksImp implements Interface.IAdapter {
 	}
 	public GET_PRODUCT_TEXT() {
 		const res: MessageInterface.TGoodsInfo = {
-			goods_1: { dict: { RU: "Продаю Т-банк. Дроп 14 лет" }, name: { RU: "Тиньк" } },
-			goods_2: { dict: { RU: "Продаю тинькоф." }, name: { RU: "Т-банк" } },
-			goods_3: { dict: { RU: "Толкаю сбер. Дроп 25 лет с кредитом" }, name: { RU: "Сбер" } },
-			goods_4: { dict: { RU: "Отдам Т-банк. Дроп сидит" }, name: { RU: "Альфа" } },
-			goods_5: { dict: { RU: "Продаю Т-банк. Дроп 24 лет" }, name: { RU: "Альфа банк" } },
-			goods_6: { dict: { RU: "Продаю Т-банк. Дроп 54 лет" }, name: { RU: "АльфаБанк" } },
-			goods_7: { dict: { RU: "Продаю Т-банк. Дроп 15 годов" }, name: { RU: "Сбербанк" } },
-			goods_8: { dict: { RU: "Продаю Т-банк. Дроп 12 лет" }, name: { RU: "Т=банк" } },
+			goods_1: { dict: { RU: "Про Т. Что то 14 л" }, name: { RU: "Тиньк" } },
+			goods_2: { dict: { RU: "Про тинькоф." }, name: { RU: "Т-банк" } },
+			goods_3: { dict: { RU: "Толк сбер. Что то 25 л с кредитом" }, name: { RU: "Сбер" } },
+			goods_4: { dict: { RU: "Отд Т. Что то сидит" }, name: { RU: "Альфа" } },
+			goods_5: { dict: { RU: "Про Т. Что то 24 л" }, name: { RU: "Альфа банк" } },
+			goods_6: { dict: { RU: "Про Т. Что то 54 л" }, name: { RU: "АльфаБанк" } },
+			goods_7: { dict: { RU: "Про Т. Что то 15 г" }, name: { RU: "Сбербанк" } },
+			goods_8: { dict: { RU: "Про Т. Что то 12 л" }, name: { RU: "Т=банк" } },
 		};
 
 		return this.request<MessageInterface.TGoodsInfo>({ link: "GET_ALL_GOODS", method: "GET" }, res);
