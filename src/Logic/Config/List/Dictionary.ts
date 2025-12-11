@@ -16,9 +16,6 @@ const Dictionary: MessageInterface.TDictionary = {
 	SORT: {
 		RU: "Сортировка",
 	},
-	CATALOG_SEARCH: {
-		RU: "Поиск по каталогу",
-	},
 	CATALOG: {
 		RU: "Каталог",
 	},

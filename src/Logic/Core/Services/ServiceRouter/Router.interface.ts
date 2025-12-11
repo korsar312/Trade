@@ -26,7 +26,7 @@ export namespace RouterInterface {
 	export type TRouterMap = Pick<RouteObject, "Component" | "loader"> & { path: EPath };
 	export type TRouterMapList = TRouterMap[];
 	export type TRouterList = RouteObject[];
-	export type TRouterListRole = Partial<Record<EPath, ERole[]>>;
+	export type TRouterListRole = Record<EPath, ERole[]>;
 	export type TRouter = ReturnType<typeof createBrowserRouter>;
 	export type TRouterFn = TRouter["navigate"];
 }
@@ -38,6 +38,11 @@ const RouterRole = {
 
 const Router = {
 	GOODS: "GOODS",
+	ITEM: "ITEM",
 	PROFILE: "PROFILE",
+	USER: "USER",
+	ORDER_LIST: "ORDER_LIST",
+	ORDER: "ORDER",
+	INFO: "INFO",
 	ERROR: "ERROR",
 } as const;

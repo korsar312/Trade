@@ -36,7 +36,7 @@ const Index: FC<IComponent> = (props) => {
 		{
 			id: "1",
 			type: "INPUT",
-			options: { iconsLeft: "Search", placeholder: "CATALOG_SEARCH", value: filters.name ?? "", onChange: textFilter },
+			options: { iconsLeft: "Search", placeholder: "SEARCHING", value: filters.name ?? "", onChange: textFilter },
 		},
 		{
 			id: "2",
@@ -77,7 +77,7 @@ const Index: FC<IComponent> = (props) => {
 			options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" },
 		},
 		{
-			id: "5",
+			id: "6",
 			type: "BTN_MAIN",
 			options: { color: "MAIN_3", text: "RATING", rightImage: "ArrowDown" },
 		},
