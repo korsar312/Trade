@@ -2,6 +2,7 @@ import type { IComponent, TAtomButtonGeneralGroup } from "../index";
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { IComponent as IImage } from "../../../0.Cores/Image";
 import type { IComponent as IText } from "../../../0.Cores//Text";
+import type { MouseEvent } from "react";
 
 function Model(props: IComponent) {
 	const { textVars, color, extStyles, icons, isFullWidth, isFullHeight, click, type = "button", isDisable } = props;
@@ -41,8 +42,8 @@ function Model(props: IComponent) {
 		}
 	}
 
-	function handleClick() {
-		click?.();
+	function handleClick(e: MouseEvent<HTMLButtonElement>) {
+		click?.(e);
 	}
 
 	return { textChanged, color, extStyles, leftIcon, rightIcon, isFullWidth, isFullHeight, handleClick, type, isDisable };

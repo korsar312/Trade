@@ -5,6 +5,7 @@ import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMe
 import type { IComponent as IBtn } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 export interface IComponent {
+	click?: () => void;
 	image: TImageComponent;
 	name: MessageInterface.EWordAll;
 	btn: IBtn[];

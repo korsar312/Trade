@@ -31,61 +31,27 @@ const Index: FC<IComponent> = (props) => {
 
 	const isEmptyFilter = Object.values(filters).every((el) => el === null);
 	const catalogRender = isEmptyFilter ? catalog : catalog.filter(filterFn);
+	const filterName = filters.name ?? "";
 
 	const topRow: TSubstanceRowControlCompType[] = [
-		{
-			id: "1",
-			type: "INPUT",
-			options: { iconsLeft: "Search", placeholder: "SEARCHING", value: filters.name ?? "", onChange: textFilter },
-		},
-		{
-			id: "2",
-			type: "BTN_IMAGE",
-			options: { color: "MAIN_3", icon: "Sort" },
-		},
-		{
-			id: "3",
-			type: "BTN_IMAGE",
-			options: { color: "MAIN_3", icon: "Refresh" },
-		},
+		{ id: "1", type: "INPUT", options: { iconsLeft: "Search", placeholder: "SEARCHING", value: filterName, onChange: textFilter } },
+		{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Sort" } },
+		{ id: "3", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Refresh" } },
 	];
 
 	const botRow: TSubstanceRowControlCompType[] = [
-		{
-			id: "1",
-			type: "BTN_IMAGE",
-			options: { color: "BLUE_1", icon: "PlusSquare" },
-		},
-		{
-			id: "2",
-			type: "BTN_IMAGE",
-			options: { color: "MAIN_3", icon: "Clear", click: clearFilter },
-		},
-		{
-			id: "3",
-			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "BANK", rightImage: "ArrowDown" },
-		},
-		{
-			id: "4",
-			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "PRISE_DOWN", rightImage: "ArrowDown" },
-		},
-		{
-			id: "5",
-			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" },
-		},
-		{
-			id: "6",
-			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "RATING", rightImage: "ArrowDown" },
-		},
+		{ id: "1", type: "BTN_IMAGE", options: { color: "BLUE_1", icon: "PlusSquare" } },
+		{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Clear", click: clearFilter } },
+		{ id: "3", type: "BTN_MAIN", options: { color: "MAIN_3", text: "BANK", rightImage: "ArrowDown" } },
+		{ id: "4", type: "BTN_MAIN", options: { color: "MAIN_3", text: "PRISE_DOWN", rightImage: "ArrowDown" } },
+		{ id: "5", type: "BTN_MAIN", options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" } },
+		{ id: "6", type: "BTN_MAIN", options: { color: "MAIN_3", text: "RATING", rightImage: "ArrowDown" } },
 	];
 
 	const propsComponent: IProp = {
 		itemList: catalogRender.map((el) => ({
-			btn: [{ text: getFormatPrice(el), isFullWidth: true, color: "BLUE_2" }],
+			btn: [{ text: getFormatPrice(el), isFullWidth: true, color: "BLUE_2", click: () => "" }],
+			click: () => goItemDetail(el),
 			image: getImage(el),
 			name: getName(el),
 			id: el,
@@ -135,6 +101,10 @@ const Index: FC<IComponent> = (props) => {
 
 	function textFilter(value: string) {
 		newFilter("name", value);
+	}
+
+	function goItemDetail(id: string) {
+		Act.Router.goTo("ITEM", { id });
 	}
 
 	return <Substance {...propsComponent} />;

@@ -7,10 +7,10 @@ import AtomPaper from "../../../1.Atoms/AtomPaper";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 const View: NFC<typeof Model> = (props) => {
-	const { image, name, btn } = props;
+	const { image, name, btnList, click } = props;
 
 	return (
-		<AtomPaper color={"MAIN_3"} extStyle={Style.wrapper}>
+		<AtomPaper onClick={click} color={"MAIN_3"} extStyle={Style.wrapper}>
 			<AtomPaper color={"MAIN_4"} extStyle={Style.imageWrap}>
 				<Image size={"100%"} img={image} extStyle={Style.image} />
 			</AtomPaper>
@@ -21,7 +21,7 @@ const View: NFC<typeof Model> = (props) => {
 				</div>
 
 				<div css={Style.btnWrap}>
-					{btn.map((el) => (
+					{btnList.map((el) => (
 						<AtomButtonMain key={el.text} {...el} />
 					))}
 				</div>
