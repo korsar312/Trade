@@ -43,7 +43,9 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		const pageName = getPage(browserRouter.state.location.pathname, path);
 		const isAccess = isAccessRoute(role, pageName, routesRole);
 
-		if (!isAccess) window.location.href = path[redirectRole(role)];
+		if (!isAccess) {
+		}
+		//window.location.href = path[redirectRole(role)];
 
 		const store: Interface.Store = {
 			currentPathName: getPage(browserRouter.state.location.pathname, path),
