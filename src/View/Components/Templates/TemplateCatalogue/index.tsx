@@ -97,8 +97,8 @@ const Index: FC<IComponent> = (props) => {
 	};
 
 	function filterFn(itemId: string): boolean {
-		if (filters.name && !getName(itemId).toLowerCase().includes(filters.name.toLowerCase())) return false;
-		if (filters.bank && getBank(itemId) !== filters.bank) return false;
+		if (filters.name !== null && !getName(itemId).toLowerCase().includes(filters.name.toLowerCase())) return false;
+		if (filters.bank !== null && getBank(itemId) !== filters.bank) return false;
 		if (filters.priseUp !== null && getPrice(itemId) > filters.priseUp) return false;
 		if (filters.priseDown !== null && getPrice(itemId) < filters.priseDown) return false;
 
