@@ -30,7 +30,6 @@ const View: NFC<typeof Model> = (props) => {
 				<input
 					type={type}
 					name={name}
-					defaultValue={String(text)}
 					css={[Style.input, Style.text(textObj)]}
 					onClick={onClick}
 					onInput={handleChange}
@@ -38,6 +37,7 @@ const View: NFC<typeof Model> = (props) => {
 					onChange={onValid}
 					placeholder={""}
 					value={value}
+					defaultValue={value === undefined ? String(text) : undefined}
 				/>
 			</div>
 
