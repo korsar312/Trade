@@ -2,20 +2,27 @@ import type { FC } from "react";
 import Style from "./Style.ts";
 import Component, { type IComponent as IParent } from "../../index";
 import type { TImageComponent } from "../../../../0.Cores/Image";
+import type { StyleInterface } from "../../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
-export type IComponent = TBase & (TBig | TColor);
+export type IComponent = {} & TPick & TBase & (TBig | TColor);
 
-type TBase = Pick<IParent, "isDisable" | "click"> & { icon: TImageComponent };
 type TColor = Pick<IParent, "color"> & { isBig?: never };
 type TBig = { isBig: true; color?: never };
 
+type TPick = Pick<IParent, "isDisable" | "click">;
+
+type TBase = {
+	icon: TImageComponent;
+	colorIcon?: StyleInterface.TColorChoice;
+};
+
 const Index: FC<IComponent> = (props) => {
-	const { icon, isBig } = props;
+	const { icon, isBig, colorIcon } = props;
 
 	const propsComponent: IParent = {
 		...props,
 		type: "submit",
-		icons: { left: { value: [{ img: icon, size: isBig ? 30 : 20 }] } },
+		icons: { left: { value: [{ img: icon, size: isBig ? 30 : 20, color: colorIcon }] } },
 		extStyles: Style.wrapper(isBig),
 	};
 

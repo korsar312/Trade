@@ -1,6 +1,5 @@
 import { type FC } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/4.Structures/StructuresWrapPaper";
-import { BasePage } from "../../../../Logic/Config/List/Routes.ts";
 import type { RouterInterface } from "../../../../Logic/Core/Services/ServiceRouter/Router.interface.ts";
 import type { TImageComponent } from "../../0.Cores/Image";
 import type { TSubstanceRowControlCompType } from "../../3.Substances/SubstanceRowControl";
@@ -8,37 +7,43 @@ import { Act } from "../../../../Logic/Core";
 
 export interface IComponent {}
 
-type TBtn = { base: keyof typeof BasePage; path: RouterInterface.EPath; image: TImageComponent };
-//type TRowUnId = Pick<TSubstanceRowControlCompType, "id">;
+const Btn = {
+	CATALOG: "CATALOG",
+	INFO: "CATALOG",
+	ORDER: "CATALOG",
+	PROFILE: "CATALOG",
+} as const;
+
+type EBtn = keyof typeof Btn;
+
+type TBtn = { path: RouterInterface.EPath; image: TImageComponent };
+type TBtnMap = Record<EBtn, TBtn>;
+type TRowUnId = Omit<TSubstanceRowControlCompType, "id">;
+
+const includesPath: Record<RouterInterface.EPath, EBtn> = {
+	GOODS: "CATALOG",
+	ITEM: "CATALOG",
+	PROFILE: "PROFILE",
+	USER: "PROFILE",
+	ORDER_LIST: "ORDER",
+	ORDER: "ORDER",
+	INFO: "INFO",
+	ERROR: "INFO",
+};
 
 const Index: FC<IComponent> = (props) => {
 	const {} = props;
 
-	const btnPath: TBtn[] = [
-		{
-			base: "TRADE",
-			path: "GOODS",
-			image: "Store",
-		},
-		{
-			base: "PROFILE",
-			path: "PROFILE",
-			image: "Person",
-		},
-		{
-			base: "ORDER",
-			path: "ORDER",
-			image: "CheckList",
-		},
-		{
-			base: "INFO",
-			path: "INFO",
-			image: "Info",
-		},
-	];
+	const curPage = Act.Router.getCurPage();
 
-	const space: TSubstanceRowControlCompType = { type: "SPACING", options: {}, id: "1" };
+	const btnPath: TBtnMap = {
+		CATALOG: { path: "GOODS", image: "Store" },
+		PROFILE: { path: "PROFILE", image: "Person" },
+		ORDER: { path: "ORDER", image: "CheckList" },
+		INFO: { path: "INFO", image: "Info" },
+	};
 
+	const space: TRowUnId = { type: "SPACING", options: {} };
 	const btnNorm = adapterBtn(btnPath);
 
 	const propsComponent: IProp = {
@@ -57,14 +62,21 @@ const Index: FC<IComponent> = (props) => {
 		Act.Router.goTo(page);
 	}
 
-	function adapterBtn(btn: TBtn[]): TSubstanceRowControlCompType[] {
-		return btn.map((el) => ({ id: "1", type: "BTN_IMAGE", options: { icon: el.image, isBig: true, click: () => goPage(el.path) } }));
+	function adapterBtn(btn: TBtnMap): TRowUnId[] {
+		return Object.entries(btn).map(([key, value]) => ({
+			type: "BTN_IMAGE",
+			options: { colorIcon: isActive(key as EBtn) ? "BLUE_2" : "", icon: value.image, isBig: true, click: () => goPage(value.path) },
+		}));
 	}
 
-	function addSpacing(items: TSubstanceRowControlCompType[]): TSubstanceRowControlCompType[] {
-		const unId: TSubstanceRowControlCompType[] = items.flatMap((item) => [space, item]).concat(space);
+	function addSpacing(items: TRowUnId[]): TSubstanceRowControlCompType[] {
+		const unId: TRowUnId[] = items.flatMap((item) => [space, item]).concat(space);
 
-		return unId.map((el, i) => ({ ...el, id: String(i) }));
+		return unId.map((el, i) => ({ ...el, id: String(i) }) as TSubstanceRowControlCompType);
+	}
+
+	function isActive(group: EBtn) {
+		return includesPath[curPage] === group;
 	}
 
 	return <Substance {...propsComponent} />;
