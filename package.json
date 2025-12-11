@@ -14,7 +14,7 @@
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
     "@material-icons/svg": "^1.0.33",
-    "framer-motion": "^12.23.25",
+    "framer-motion": "^12.23.26",
     "material-icons": "^1.13.14",
     "mobx": "^6.15.0",
     "mobx-react": "^9.2.1",
