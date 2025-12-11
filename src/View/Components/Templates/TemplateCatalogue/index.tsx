@@ -40,8 +40,8 @@ const Index: FC<IComponent> = (props) => {
 		},
 		{
 			id: "2",
-			type: "BTN_MAIN",
-			options: { color: "MAIN_3", leftImage: "Sort", text: "SORT" },
+			type: "BTN_IMAGE",
+			options: { color: "MAIN_3", icon: "Sort" },
 		},
 		{
 			id: "3",
