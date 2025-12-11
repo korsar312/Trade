@@ -3,8 +3,8 @@ import { lazy } from "react";
 import { redirect } from "react-router";
 
 export const BasePage = {
-	TRADE: "",
 	PROFILE: "profile",
+	TRADE: "trade",
 	ORDER: "order",
 	INFO: "info",
 } as const;
