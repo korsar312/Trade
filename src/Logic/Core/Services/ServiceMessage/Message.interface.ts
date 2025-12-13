@@ -1,3 +1,5 @@
+import type { CatalogueInterface } from "../ServiceCatalogue/Catalogue.interface.ts";
+
 export namespace MessageInterface {
 	export interface IAdapter {
 		initGoodsWord(): Promise<void>;
@@ -19,7 +21,8 @@ export namespace MessageInterface {
 	export type EField = keyof TField;
 
 	type TMapWord = Record<ELang, string>;
-	type EAllWord = EWord;
+	type EOtherWord = CatalogueInterface.EBank;
+	type EAllWord = EWord | EOtherWord;
 
 	export type TGoodsInfo = Record<string, TField>;
 	export type TDictionary = Record<EAllWord, TMapWord>;
@@ -29,6 +32,8 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	BUY: "BUY",
+	BACK: "BACK",
 	RATING: "RATING",
 	PRISE_UP: "PRISE_UP",
 	PRISE_DOWN: "PRISE_DOWN",

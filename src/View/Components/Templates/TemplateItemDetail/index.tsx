@@ -5,6 +5,7 @@ import type { IComponent as IText } from "../../../Components/0.Cores/Text";
 import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
 import { Act } from "../../../../Logic/Core";
 import Util from "../../../../Logic/Libs/Util";
+import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowControl";
 
 export interface IComponent {}
 
@@ -17,9 +18,11 @@ const Index: FC<IComponent> = (props) => {
 	const name = Act.Message.getGoodsWord(itemId, "name");
 	const bank = Act.Catalogue.getBank(itemId);
 	const price = Act.Catalogue.getPrice(itemId);
-	const priceForm = Util.toMoney(price);
-	const seller = Act.Message.getGoodsWord(itemId, "name");
+	const rating = Act.Catalogue.getRating(itemId);
+	const seller = Act.Catalogue.getSellerName(itemId);
 	const disc = Act.Message.getGoodsWord(itemId, "dict");
+
+	const priceForm = Util.toMoney(price);
 
 	const propsComponent: IProp = {
 		rows: [
@@ -48,13 +51,7 @@ const Index: FC<IComponent> = (props) => {
 				id: "4",
 				key: { text: "Рейтинг" },
 				value: {
-					compRow: [
-						{ id: "1", type: "BTN_IMAGE", options: { icon: "Star", isBig: true, colorIcon: "BLUE_3" } },
-						{ id: "2", type: "BTN_IMAGE", options: { icon: "Star", isBig: true, colorIcon: "BLUE_3" } },
-						{ id: "3", type: "BTN_IMAGE", options: { icon: "Star", isBig: true, colorIcon: "BLUE_3" } },
-						{ id: "4", type: "BTN_IMAGE", options: { icon: "Star", isBig: true, colorIcon: "BLUE_3" } },
-						{ id: "5", type: "BTN_IMAGE", options: { icon: "Star", isBig: true, colorIcon: "BLUE_3" } },
-					],
+					compRow: starProp(rating),
 				},
 			},
 			{
@@ -75,7 +72,15 @@ const Index: FC<IComponent> = (props) => {
 	};
 
 	function textProp(text: string): IText {
-		return { text };
+		return { text, pos: "left" };
+	}
+
+	function starProp(rating: number): TMoleculeRowControlCompType[] {
+		return Array.from(Array(5), (_el, i) => ({
+			id: String(i),
+			type: "BTN_IMAGE",
+			options: { icon: "Star", isBig: true, colorIcon: rating > i ? "BLUE_2" : "MAIN_4" },
+		}));
 	}
 
 	return <Substance {...propsComponent} />;

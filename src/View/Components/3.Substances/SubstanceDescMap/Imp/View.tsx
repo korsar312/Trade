@@ -24,13 +24,15 @@ const View: NFC<typeof Model> = (props) => {
 	}
 
 	return (
-		<table css={Style.wrapper}>
-			<tbody>
-				{rows.map((el) => (
-					<Fragment key={el.id}>{row(el)}</Fragment>
-				))}
-			</tbody>
-		</table>
+		<div css={Style.wrapper}>
+			<table css={Style.table}>
+				<tbody>
+					{rows.map((el) => (
+						<Fragment key={el.id}>{row(el)}</Fragment>
+					))}
+				</tbody>
+			</table>
+		</div>
 	);
 };
 

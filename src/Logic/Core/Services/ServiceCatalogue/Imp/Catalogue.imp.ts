@@ -13,18 +13,6 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		return item;
 	}
 
-	private getBankGoods(item: Interface.TItem): Interface.EBank {
-		return item.bank;
-	}
-
-	private getPriceGoods(item: Interface.TItem): number {
-		return item.price;
-	}
-
-	private getImageGoods(item: Interface.TItem): string {
-		return item.image;
-	}
-
 	//==============================================================================================
 
 	constructor(props: IServiceProps) {
@@ -48,17 +36,32 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getBank(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return this.getBankGoods(item);
+		return item.bank;
 	}
 
 	public getPrice(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return this.getPriceGoods(item);
+		return item.price;
+	}
+
+	public getRating(itemId: string) {
+		const item = this.getCurrentItem(this.store.goods, itemId);
+		return item.sellerRating;
 	}
 
 	public getImage(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return this.getImageGoods(item);
+		return item.image;
+	}
+
+	public getSellerName(itemId: string) {
+		const item = this.getCurrentItem(this.store.goods, itemId);
+		return item.seller;
+	}
+
+	public getSellerId(itemId: string) {
+		const item = this.getCurrentItem(this.store.goods, itemId);
+		return item.sellerId;
 	}
 }
 

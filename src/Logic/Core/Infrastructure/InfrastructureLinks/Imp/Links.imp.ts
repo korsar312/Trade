@@ -4,18 +4,23 @@ import type { CatalogueInterface } from "../../../Services/ServiceCatalogue/Cata
 import type { MessageInterface } from "../../../Services/ServiceMessage/Message.interface.ts";
 
 const TEST_DATA_LIST: CatalogueInterface.TItemMap = {
-	goods_1: { image: "/Test/img_1.png", price: 4666, bank: "TINK", seller: "111", sellerRating: 2 },
-	goods_2: { image: "/Test/img_2.png", price: 4521, bank: "TINK", seller: "222", sellerRating: 3 },
-	goods_3: { image: "/Test/img_3.png", price: 4234, bank: "SBER", seller: "333", sellerRating: 4 },
-	goods_4: { image: "/Test/img_4.png", price: 4343, bank: "ALFA", seller: "111", sellerRating: 2 },
-	goods_5: { image: "/Test/img_5.png", price: 5354, bank: "ALFA", seller: "111", sellerRating: 2 },
-	goods_6: { image: "/Test/img_1.png", price: 4534, bank: "ALFA", seller: "222", sellerRating: 5 },
-	goods_7: { image: "/Test/img_2.png", price: 1244, bank: "SBER", seller: "333", sellerRating: 4 },
-	goods_8: { image: "/Test/img_3.png", price: 5434, bank: "TINK", seller: "888", sellerRating: 4 },
+	goods_1: { image: "/Test/img_1.png", price: 4666, bank: "TINK", seller: "FunMummy", sellerId: "111", sellerRating: 2 },
+	goods_2: { image: "/Test/img_2.png", price: 4521, bank: "TINK", seller: "AuMad", sellerId: "222", sellerRating: 3 },
+	goods_3: { image: "/Test/img_3.png", price: 4234, bank: "SBER", seller: "Kruger", sellerId: "333", sellerRating: 4 },
+	goods_4: { image: "/Test/img_4.png", price: 4343, bank: "ALFA", seller: "FunMummy", sellerId: "111", sellerRating: 2 },
+	goods_5: { image: "/Test/img_5.png", price: 5354, bank: "ALFA", seller: "FunMummy", sellerId: "111", sellerRating: 2 },
+	goods_6: { image: "/Test/img_1.png", price: 4534, bank: "ALFA", seller: "AuMad", sellerId: "222", sellerRating: 5 },
+	goods_7: { image: "/Test/img_2.png", price: 1244, bank: "SBER", seller: "Kruger", sellerId: "333", sellerRating: 4 },
+	goods_8: { image: "/Test/img_3.png", price: 5434, bank: "TINK", seller: "daddyTink", sellerId: "888", sellerRating: 4 },
 };
 
 const TEST_DATA_MSG_LIST: MessageInterface.TGoodsInfo = {
-	goods_1: { dict: { RU: "Про Т. Что то 14 л" }, name: { RU: "Тиньк" } },
+	goods_1: {
+		dict: {
+			RU: "Про Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 лПро Т. Что то 14 л",
+		},
+		name: { RU: "Тиньк" },
+	},
 	goods_2: { dict: { RU: "Про тинькоф." }, name: { RU: "Т-банк" } },
 	goods_3: { dict: { RU: "Толк сбер. Что то 25 л с кредитом" }, name: { RU: "Сбер" } },
 	goods_4: { dict: { RU: "Отд Т. Что то сидит" }, name: { RU: "Альфа" } },

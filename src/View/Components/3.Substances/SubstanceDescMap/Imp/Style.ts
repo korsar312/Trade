@@ -6,10 +6,15 @@ class Style extends Styles {
 	private border = `1px solid ${this.getColor("SECOND_2", 0.3)}`;
 
 	public wrapper: CSSObject = css`
+		${this.mixins.noScrollBar};
 		border-radius: ${this.variables.radiusStandard}px;
 		border-collapse: collapse;
-		overflow: hidden;
-		width: 100%;
+		overflow: auto;
+		max-height: 100%;
+	`;
+
+	public table: CSSObject = css`
+		border-collapse: collapse;
 
 		& tr:last-child td {
 			border-bottom: none;
@@ -17,14 +22,14 @@ class Style extends Styles {
 	`;
 
 	public key: CSSObject = css`
-		background: ${this.getColor("MAIN_4")};
+		background: ${this.getColor("MAIN_4", 0.5)};
 		border-right: ${this.border};
 		border-bottom: ${this.border};
 		padding: ${this.pad}px;
 	`;
 
 	public value: CSSObject = css`
-		background: ${this.getColor("MAIN_2")};
+		background: ${this.getColor("MAIN_2", 0.5)};
 		border-bottom: ${this.border};
 		padding: 0 ${this.pad}px;
 		width: 100%;

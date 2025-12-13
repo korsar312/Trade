@@ -1,6 +1,21 @@
 import type { MessageInterface } from "../../Core/Services/ServiceMessage/Message.interface.ts";
 
 const Dictionary: MessageInterface.TDictionary = {
+	BUY: {
+		RU: "Купить",
+	},
+	BACK: {
+		RU: "Назад",
+	},
+	ALFA: {
+		RU: "Альфа-банк",
+	},
+	SBER: {
+		RU: "Сбер-банк",
+	},
+	TINK: {
+		RU: "Т-банк",
+	},
 	RATING: {
 		RU: "Рейтинг",
 	},
