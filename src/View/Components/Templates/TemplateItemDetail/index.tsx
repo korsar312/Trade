@@ -78,8 +78,8 @@ const Index: FC<IComponent> = (props) => {
 	function starProp(rating: number): TMoleculeRowControlCompType[] {
 		return Array.from(Array(5), (_el, i) => ({
 			id: String(i),
-			type: "BTN_IMAGE",
-			options: { icon: "Star", isBig: true, colorIcon: rating > i ? "BLUE_2" : "MAIN_4" },
+			type: "ICON",
+			options: { img: "Star", color: rating > i ? "BLUE_2" : "MAIN_4" },
 		}));
 	}
 

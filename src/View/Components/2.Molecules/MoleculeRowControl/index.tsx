@@ -4,6 +4,7 @@ import type { IComponent as IBtnImage } from "../../1.Atoms/AtomButton/Variables
 import type { IComponent as IBtnMain } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import type { IComponent as IInput } from "../../1.Atoms/AtomInput";
 import type { IComponent as IText } from "../../0.Cores/Text";
+import type { IComponent as IIcon } from "../../0.Cores/Image";
 import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
 
 export interface IComponent {
@@ -16,6 +17,7 @@ type TMap = {
 	SPACING: {};
 	INPUT: IInput;
 	TEXT: IText;
+	ICON: IIcon;
 };
 
 export type TMoleculeRowControlCompType = typesUtils.OptionsUnion<TMap, { id: string }>;
