@@ -9,7 +9,7 @@ export type IComponent = {} & TPick & TBase & (TBig | TColor);
 type TColor = Pick<IParent, "color"> & { isBig?: never };
 type TBig = { isBig: true; color?: never };
 
-type TPick = Pick<IParent, "isDisable" | "click">;
+type TPick = Pick<IParent, "isDisable" | "click" | "isFullWidth">;
 
 type TBase = {
 	icon: TImageComponent;

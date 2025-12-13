@@ -10,6 +10,8 @@ export namespace CatalogueInterface {
 	export type TItem = {
 		image: string;
 		price: number;
+		seller: string;
+		sellerRating: 1 | 2 | 3 | 4 | 5;
 		bank: EBank;
 	};
 

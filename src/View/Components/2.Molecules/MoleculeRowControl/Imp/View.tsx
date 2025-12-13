@@ -1,16 +1,17 @@
 import type Model from "./Model.ts";
 import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
-import { type TSubstanceRowControlCompType } from "../index.tsx";
-import { Fragment, type ReactNode } from "react";
+import { type TMoleculeRowControlCompType } from "../index.tsx";
+import { Fragment, type ReactElement } from "react";
 import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import AtomInput from "../../../1.Atoms/AtomInput";
+import Text from "../../../0.Cores/Text";
 
 const View: NFC<typeof Model> = (props) => {
 	const { compRow } = props;
 
-	function render({ type, options }: TSubstanceRowControlCompType): ReactNode {
+	function render({ type, options }: TMoleculeRowControlCompType): ReactElement {
 		switch (type) {
 			case "BTN_IMAGE":
 				return <AtomButtonIcon {...options} />;
@@ -20,6 +21,8 @@ const View: NFC<typeof Model> = (props) => {
 				return <div css={Style.pub.f1} />;
 			case "INPUT":
 				return <AtomInput {...options} />;
+			case "TEXT":
+				return <Text {...options} />;
 		}
 	}
 

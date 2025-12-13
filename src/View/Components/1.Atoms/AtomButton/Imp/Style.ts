@@ -9,6 +9,7 @@ class Style extends Styles {
 			position: relative;
 			transition: ${this.variables.fastTransition};
 			width: ${isFullWidth ? "100%" : "auto"};
+			flex: ${isFullWidth ? 1 : "none"};
 			height: ${isFullHeight ? "100% !important" : "auto"};
 			gap: 4px;
 			cursor: pointer;

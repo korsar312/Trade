@@ -1,6 +1,6 @@
 import Model from "./Imp/Model.ts";
 import View from "./Imp/View.tsx";
-import type { IComponent as IControl } from "../../3.Substances/SubstanceRowControl";
+import type { IComponent as IControl } from "../../2.Molecules/MoleculeRowControl";
 import type { IComponent as IPaper } from "../../1.Atoms/AtomPaper";
 import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
 

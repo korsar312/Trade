@@ -5,7 +5,7 @@ import AtomPaper from "../../../1.Atoms/AtomPaper";
 import Text from "../../../0.Cores/Text";
 import AtomLine from "../../../1.Atoms/AtomLine";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
-import SubstanceRowControl from "../../../3.Substances/SubstanceRowControl";
+import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
 
 const View: NFC<typeof Model> = (props) => {
 	const { itemList, filterList } = props;
@@ -22,7 +22,7 @@ const View: NFC<typeof Model> = (props) => {
 
 				return (
 					<div key={id} css={Style.btnRow}>
-						<SubstanceRowControl {...propsControl} />
+						<MoleculeRowControl {...propsControl} />
 					</div>
 				);
 			})}

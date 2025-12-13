@@ -18,6 +18,7 @@ import Sell from "@material-icons/svg/svg/sell/outline.svg?react";
 import Bug from "@material-icons/svg/svg/bug_report/outline.svg?react";
 import Info from "@material-icons/svg/svg/info/outline.svg?react";
 import CheckList from "@material-icons/svg/svg/checklist/outline.svg?react";
+import Star from "@material-icons/svg/svg/star/outline.svg?react";
 
 type TIcons = Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>;
 
@@ -40,6 +41,7 @@ const icons = {
 	Bug,
 	Info,
 	CheckList,
+	Star,
 } satisfies TIcons;
 
 const Images = {

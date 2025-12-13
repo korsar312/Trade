@@ -2,7 +2,7 @@ import { type FC, useState } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/4.Structures/StructuresCatalog";
 import { Act } from "../../../../Logic/Core";
 import Util from "../../../../Logic/Libs/Util";
-import type { TSubstanceRowControlCompType } from "../../3.Substances/SubstanceRowControl";
+import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowControl";
 import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { observer } from "mobx-react";
 
@@ -33,13 +33,13 @@ const Index: FC<IComponent> = (props) => {
 	const catalogRender = isEmptyFilter ? catalog : catalog.filter(filterFn);
 	const filterName = filters.name ?? "";
 
-	const topRow: TSubstanceRowControlCompType[] = [
+	const topRow: TMoleculeRowControlCompType[] = [
 		{ id: "1", type: "INPUT", options: { iconsLeft: "Search", placeholder: "SEARCHING", value: filterName, onChange: textFilter } },
 		{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Sort" } },
 		{ id: "3", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Refresh" } },
 	];
 
-	const botRow: TSubstanceRowControlCompType[] = [
+	const botRow: TMoleculeRowControlCompType[] = [
 		{ id: "1", type: "BTN_IMAGE", options: { color: "BLUE_1", icon: "PlusSquare" } },
 		{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Clear", click: clearFilter } },
 		{ id: "3", type: "BTN_MAIN", options: { color: "MAIN_3", text: "BANK", rightImage: "ArrowDown" } },
