@@ -21,7 +21,7 @@ const View: NFC<typeof Model> = (props) => {
 
 			<div css={Style.btnWrap}>
 				<AtomButtonMain isFullWidth text={"BUY"} color={"BLUE_2"} />
-				<AtomButtonMain text={"BACK"} click={goBack} />
+				<AtomButtonMain text={"BACK"} color={"MAIN_3"} click={goBack} />
 			</div>
 		</AtomPaper>
 	);
