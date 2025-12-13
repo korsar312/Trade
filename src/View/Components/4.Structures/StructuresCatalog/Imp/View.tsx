@@ -1,7 +1,6 @@
 import type Model from "./Model.ts";
 import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
-import AtomPaper from "../../../1.Atoms/AtomPaper";
 import Text from "../../../0.Cores/Text";
 import AtomLine from "../../../1.Atoms/AtomLine";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
@@ -11,7 +10,7 @@ const View: NFC<typeof Model> = (props) => {
 	const { itemList, filterList } = props;
 
 	return (
-		<AtomPaper color={"MAIN_2"} extStyle={Style.wrapper}>
+		<div css={Style.wrapper}>
 			<div css={Style.header}>
 				<Text text={"CATALOG"} />
 				<AtomLine color={"MAIN_3"} />
@@ -36,7 +35,7 @@ const View: NFC<typeof Model> = (props) => {
 					})}
 				</div>
 			</div>
-		</AtomPaper>
+		</div>
 	);
 };
 
