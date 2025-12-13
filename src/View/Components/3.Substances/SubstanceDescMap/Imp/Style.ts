@@ -22,14 +22,14 @@ class Style extends Styles {
 	`;
 
 	public key: CSSObject = css`
-		background: ${this.getColor("MAIN_4", 0.5)};
+		background: ${this.getColor("MAIN_4")};
 		border-right: ${this.border};
 		border-bottom: ${this.border};
 		padding: ${this.pad}px;
 	`;
 
 	public value: CSSObject = css`
-		background: ${this.getColor("MAIN_2", 0.5)};
+		background: ${this.getColor("MAIN_3")};
 		border-bottom: ${this.border};
 		padding: 0 ${this.pad}px;
 		width: 100%;

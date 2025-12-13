@@ -14,7 +14,7 @@ const View: NFC<typeof Model> = (props) => {
 	}
 
 	return (
-		<AtomPaper extStyle={Style.wrapper} color={"MAIN_3"}>
+		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
 			<div css={Style.detailWrap}>
 				<TemplateItemDetail />
 			</div>
