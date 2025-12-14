@@ -39,23 +39,10 @@ export namespace StyleInterface {
 }
 
 const Font = {
-	fullSize: "fullSize",
-	PageTitle: "PageTitle",
-	SectionTitle: "SectionTitle",
-	BlockTitle: "BlockTitle",
-	SectionDesc: "SectionDesc",
-	BlockLead: "BlockLead",
 	BlockHeading: "BlockHeading",
 	ElementHeading: "ElementHeading",
 	BodyMain: "BodyMain",
-	BodySecondary: "BodySecondary",
-	BodySmall: "BodySmall",
-	BodyDense: "BodyDense",
-	LabelLarge: "LabelLarge",
-	LabelMain: "LabelMain",
 	LabelMedium: "LabelMedium",
-	LabelSmall: "LabelSmall",
-	Hint: "Hint",
 } as const;
 
 const Weight = {
