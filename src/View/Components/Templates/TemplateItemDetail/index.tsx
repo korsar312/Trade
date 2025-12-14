@@ -2,18 +2,16 @@ import { type FC } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceDescMap";
 import { observer } from "mobx-react";
 import type { IComponent as IText } from "../../../Components/0.Cores/Text";
-import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
 import { Act } from "../../../../Logic/Core";
 import Util from "../../../../Logic/Libs/Util";
 import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowControl";
 
-export interface IComponent {}
+export interface IComponent {
+	itemId: string;
+}
 
 const Index: FC<IComponent> = (props) => {
-	const {} = props;
-
-	const param = useParamPage("ITEM");
-	const itemId = param.id || "";
+	const { itemId } = props;
 
 	const name = Act.Message.getGoodsWord(itemId, "name");
 	const bank = Act.Catalogue.getBank(itemId);
