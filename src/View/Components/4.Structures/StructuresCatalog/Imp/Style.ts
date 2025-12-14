@@ -8,12 +8,6 @@ class Style extends Styles {
 		gap: 12px;
 	`;
 
-	public header: CSSObject = css`
-		${this.mixins.flexCol};
-		align-items: flex-start;
-		gap: 12px;
-	`;
-
 	public btnRow: CSSObject = css`
 		${this.mixins.noScrollBar};
 		${this.mixins.flexGorCenter};

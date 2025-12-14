@@ -1,8 +1,6 @@
 import type Model from "./Model.ts";
 import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
-import Text from "../../../0.Cores/Text";
-import AtomLine from "../../../1.Atoms/AtomLine";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
 import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
 
@@ -11,11 +9,6 @@ const View: NFC<typeof Model> = (props) => {
 
 	return (
 		<div css={Style.wrapper}>
-			<div css={Style.header}>
-				<Text text={"CATALOG"} />
-				<AtomLine color={"MAIN_3"} />
-			</div>
-
 			{filterList.map((el) => {
 				const { id, ...propsControl } = el;
 
