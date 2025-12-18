@@ -15,6 +15,7 @@ function Model(props: IComponent) {
 
 	function initRole() {
 		Act.Setting.initBusiness();
+		Act.User.initUser();
 	}
 
 	return {};

@@ -7,6 +7,7 @@ import type { ServiceSetting } from "../Services/ServiceSetting";
 import type { ServicePayment } from "../Services/ServicePayment";
 import type { ServiceOrder } from "../Services/ServiceOrder";
 import { ServiceCatalogue } from "../Services/ServiceCatalogue";
+import type { ServiceUser } from "../Services/ServiceUser";
 
 export namespace ProjectInterface {
 	export type TModuleInf = {
@@ -22,6 +23,7 @@ export namespace ProjectInterface {
 		Basket: ServiceBasket;
 		Style: ServiceStyle;
 		Order: ServiceOrder;
+		User: ServiceUser;
 	};
 
 	type TDI<M> = <T extends keyof M>(key: T) => M[T];

@@ -3,6 +3,7 @@ import type { LinksInterface as Interface } from "../Links.interface";
 import type { SettingInterface } from "../../../Services/ServiceSetting/Setting.interface.ts";
 import type { CatalogueInterface } from "../../../Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { OrderInterface } from "../../../Services/ServiceOrder/Order.interface.ts";
+import type { UserInterface } from "../../../Services/ServiceUser/User.interface.ts";
 
 class LinksImp implements Interface.IAdapter {
 	private readonly links: Interface.TLinksList;
@@ -65,6 +66,9 @@ class LinksImp implements Interface.IAdapter {
 	}
 	public GET_ALL_ORDERS() {
 		return this.request<OrderInterface.TOrderMap>({ link: "GET_ALL_ORDERS", method: "GET" }, TEST_DATA_LIST_ORDER);
+	}
+	public GET_USER() {
+		return this.request<UserInterface.TUser>({ link: "GET_USER", method: "GET" }, { id: "actor_seller_A" });
 	}
 }
 

@@ -24,6 +24,8 @@ import CatalogueImp from "../Services/ServiceCatalogue/Imp/Catalogue.imp.ts";
 import { ServiceCatalogue } from "../Services/ServiceCatalogue";
 import { createHmrSingleton } from "./CreateHmrSingleton.ts";
 import { Consts } from "../../Config/Consts.ts";
+import { ServiceUser } from "../Services/ServiceUser";
+import UserImp from "../Services/ServiceUser/Imp/User.imp.ts";
 
 function createServices() {
 	const inf: IServiceProps = { infrastructure: Infrastructure };
@@ -52,6 +54,9 @@ function createServices() {
 	const catalogueImp = new CatalogueImp(inf);
 	const catalogue = new ServiceCatalogue(catalogueImp);
 
+	const userImp = new UserImp(inf);
+	const user = new ServiceUser(userImp);
+
 	const service = new DI<ProjectInterface.TModuleService>();
 
 	service.use("Message", message);
@@ -62,6 +67,7 @@ function createServices() {
 	service.use("Payment", payment);
 	service.use("Order", order);
 	service.use("Catalogue", catalogue);
+	service.use("User", user);
 
 	return service.get;
 }

@@ -10,13 +10,17 @@ const Index: FC<IComponent> = (props) => {
 	const {} = props;
 
 	const orderList = Act.Order.getOrderIdList();
-
-	const orderFilter = orderList.filter(() => {
-		return true;
-	});
+	const userId = Act.User.getId();
 
 	const [isSell, setIsSell] = useState(true);
 	const [isComplete, setIsComplete] = useState(true);
+
+	const orderFilter = orderList.filter((el) => {
+		const itemIsSell = Act.Order.isSellUser(el, userId);
+		const itemIsComplete = !Act.Order.isActiveOrder(el);
+
+		return isSell === itemIsSell && isComplete === itemIsComplete;
+	});
 
 	const mySell: TMoleculeGroupBtn = {
 		id: "1",
