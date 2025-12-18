@@ -17,10 +17,10 @@ type TBase = {
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { icon, isBig, colorIcon } = props;
+	const { icon, isBig, colorIcon, ...other } = props;
 
 	const propsComponent: IParent = {
-		...props,
+		...other,
 		type: "submit",
 		icons: { left: { value: [{ img: icon, size: isBig ? 30 : 20, color: colorIcon }] } },
 		extStyles: Style.wrapper(isBig),

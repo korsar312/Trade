@@ -15,8 +15,6 @@ function Model(props: IComponent) {
 
 	function initRole() {
 		Act.Setting.initBusiness();
-		Act.Message.initGoodsWord();
-		Act.Catalogue.initGoods();
 	}
 
 	return {};

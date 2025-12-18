@@ -9,7 +9,6 @@ class Style extends Styles {
 		${this.mixins.noScrollBar};
 		border-radius: ${this.variables.radiusStandard}px;
 		border-collapse: collapse;
-		overflow: auto;
 		max-height: 100%;
 	`;
 

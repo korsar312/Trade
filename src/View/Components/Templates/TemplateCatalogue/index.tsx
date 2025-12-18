@@ -72,7 +72,7 @@ const Index: FC<IComponent> = (props) => {
 	}
 
 	function getName(id: string) {
-		return Act.Message.getGoodsWord(id, "name");
+		return Act.Catalogue.getName(id);
 	}
 
 	function getPrice(id: string) {

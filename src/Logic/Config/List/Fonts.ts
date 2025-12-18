@@ -3,7 +3,7 @@ import type { StyleInterface } from "../../Core/Services/ServiceStyle/Style.inte
 export const Fonts: StyleInterface.TFontList = {
 	BlockHeading: "S_14", // Заголовок внутри блока/формы/модалки
 	ElementHeading: "R_14", // Мини-заголовок элемента (разведён с лейблами)
-	BodyMain: "R_16", // Основной текст
+	BodyMain: "R_17", // Основной текст
 	LabelMedium: "S_15", // Инпуты/бейджи
 };
 

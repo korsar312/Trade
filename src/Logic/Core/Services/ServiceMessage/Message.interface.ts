@@ -2,29 +2,22 @@ import type { CatalogueInterface } from "../ServiceCatalogue/Catalogue.interface
 
 export namespace MessageInterface {
 	export interface IAdapter {
-		initGoodsWord(): Promise<void>;
 		getWord(text: EWordAll, param?: TWordParam): string;
-		getGoodsWord(text: string, field: EField, param?: TWordParam): string;
 	}
 
 	export interface Store {
 		dictionary: TDictionary;
-		dictionaryGoods: TGoodsInfo;
 		lang: ELang;
 	}
-
-	type TField = { name: TMapWord; dict?: TMapWord };
 
 	export type EWord = keyof typeof Word;
 	export type ELang = keyof typeof Lang;
 	export type ECase = keyof typeof Case;
-	export type EField = keyof TField;
 
 	type TMapWord = Record<ELang, string>;
 	type EOtherWord = CatalogueInterface.EBank;
 	type EAllWord = EWord | EOtherWord;
 
-	export type TGoodsInfo = Record<string, TField>;
 	export type TDictionary = Record<EAllWord, TMapWord>;
 	export type EWordAll = EWord | string | number | undefined;
 

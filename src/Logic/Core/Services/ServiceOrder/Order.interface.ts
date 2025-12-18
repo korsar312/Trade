@@ -1,7 +1,46 @@
+import type { PublicInterface } from "../Public.interface.ts";
+
 export namespace OrderInterface {
 	export interface IAdapter {
-		callWaiter(): Promise<void>;
+		initOrders(): Promise<void>;
+		getOrderIdList(): string[];
+		isActiveOrder(itemId: string): boolean;
+		isSellUser(itemId: string, userId: string): boolean;
+		isBuyUser(itemId: string, userId: string): boolean;
+		getName(itemId: string): string;
+		getBank(itemId: string): EBank;
+		getPrice(itemId: string): number;
+		getRating(itemId: string): TRating;
+		getImage(itemId: string): string;
+		getSellerName(itemId: string): string;
+		getSellerId(itemId: string): string;
+	}
+
+	export type TOrder = PublicInterface.TItem & {
+		status: EStatus;
+	};
+
+	export type TOrderDetail = TOrder & {
+		chat: string[];
+		dateStart: string;
+	};
+
+	export type TRating = PublicInterface.TRating;
+	export type EBank = PublicInterface.EBank;
+	export type EStatus = keyof typeof Status;
+	export type TOrderMap = Record<string, TOrder>;
+	export type TDetailMap = Record<string, TOrderDetail>;
+
+	export interface Store {
+		orders: TOrderMap;
+		ordersDetail: TDetailMap;
 	}
 
 	export interface Store {}
 }
+
+const Status = {
+	COMPLETE: "COMPLETE",
+	ACTIVE: "ACTIVE",
+	CANCEL: "CANCEL",
+} as const;

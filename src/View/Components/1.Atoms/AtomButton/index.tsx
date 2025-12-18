@@ -15,9 +15,11 @@ export interface IComponent extends TTagPartial<HTMLButtonElement, "type"> {
 	isFullWidth?: boolean;
 	isFullHeight?: boolean;
 	click?: (e: MouseEvent<HTMLButtonElement>) => void;
+	round?: EAtomButtonRound;
 }
 
 export type EAtomButtonIcon = "left" | "right";
+export type EAtomButtonRound = "square" | "round";
 
 export type TAtomButtonGeneralGroup<T> = {
 	groupStyle?: TDeepCSSObject;

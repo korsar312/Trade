@@ -39,6 +39,14 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		return item.bank;
 	}
 
+	public getName(itemId: string) {
+		const item = this.getCurrentItem(this.store.goods, itemId);
+		return item.name;
+	}
+	public getDesc(itemId: string) {
+		const item = this.getCurrentItem(this.store.goods, itemId);
+		return item.desc;
+	}
 	public getPrice(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
 		return item.price;
@@ -46,7 +54,7 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getRating(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.sellerRating;
+		return item.seller.rating;
 	}
 
 	public getImage(itemId: string) {
@@ -56,12 +64,12 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getSellerName(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.seller;
+		return item.seller.name;
 	}
 
 	public getSellerId(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.sellerId;
+		return item.seller.id;
 	}
 }
 

@@ -14,5 +14,5 @@ export const Links: LinksInterface.TLinksList = {
 	SEND_ORDER: "",
 	GET_CATEGORY_LIST: "",
 	GET_ALL_GOODS: "",
-	GET_PRODUCT_TEXT: "",
+	GET_ALL_ORDERS: "",
 };

@@ -47,6 +47,8 @@ class MixinsVars {
 	`;
 
 	public noScrollBar: CSSObject = css`
+		overflow: auto;
+
 		&::-webkit-scrollbar {
 			display: none;
 		}

@@ -5,7 +5,6 @@ class Style extends Styles {
 	public wrapper(isBig?: boolean): CSSObject {
 		return css`
 			padding: ${isBig ? 5 : 10}px;
-			border-radius: 12px;
 		`;
 	}
 }

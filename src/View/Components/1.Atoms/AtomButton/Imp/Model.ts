@@ -5,7 +5,7 @@ import type { IComponent as IText } from "../../../0.Cores//Text";
 import type { MouseEvent } from "react";
 
 function Model(props: IComponent) {
-	const { textVars, color, extStyles, icons, isFullWidth, isFullHeight, click, type = "button", isDisable } = props;
+	const { textVars, color, extStyles, icons, isFullWidth, isFullHeight, click, type = "button", isDisable, round } = props;
 
 	const leftIcon = spread(icons?.["left"], changeImage);
 	const rightIcon = spread(icons?.["right"], changeImage);
@@ -46,7 +46,7 @@ function Model(props: IComponent) {
 		click?.(e);
 	}
 
-	return { textChanged, color, extStyles, leftIcon, rightIcon, isFullWidth, isFullHeight, handleClick, type, isDisable };
+	return { textChanged, color, extStyles, leftIcon, rightIcon, isFullWidth, isFullHeight, handleClick, type, isDisable, round };
 }
 
 export default Model;

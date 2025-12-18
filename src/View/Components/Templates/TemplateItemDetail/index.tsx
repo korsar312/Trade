@@ -13,12 +13,12 @@ export interface IComponent {
 const Index: FC<IComponent> = (props) => {
 	const { itemId } = props;
 
-	const name = Act.Message.getGoodsWord(itemId, "name");
+	const name = Act.Catalogue.getName(itemId);
 	const bank = Act.Catalogue.getBank(itemId);
 	const price = Act.Catalogue.getPrice(itemId);
 	const rating = Act.Catalogue.getRating(itemId);
 	const seller = Act.Catalogue.getSellerName(itemId);
-	const disc = Act.Message.getGoodsWord(itemId, "dict");
+	const disc = Act.Catalogue.getDesc(itemId);
 
 	const priceForm = Util.toMoney(price);
 

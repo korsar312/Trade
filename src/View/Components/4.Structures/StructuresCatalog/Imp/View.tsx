@@ -3,6 +3,7 @@ import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
 import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
+import AtomGridGroup from "../../../1.Atoms/AtomGridGroup";
 
 const View: NFC<typeof Model> = (props) => {
 	const { itemList, filterList } = props;
@@ -20,13 +21,13 @@ const View: NFC<typeof Model> = (props) => {
 			})}
 
 			<div css={Style.catalogWrap}>
-				<div css={Style.catalog}>
+				<AtomGridGroup>
 					{itemList.map((el) => {
 						const { id, ...props } = el;
 
 						return <SubstanceItemCard key={id} {...props} />;
 					})}
-				</div>
+				</AtomGridGroup>
 			</div>
 		</div>
 	);

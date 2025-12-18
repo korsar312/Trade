@@ -3,12 +3,8 @@ import { css, type CSSObject } from "@emotion/react";
 
 class Style extends Styles {
 	public wrapper: CSSObject = css`
+		${this.mixins.noScrollBar}
 		height: 100%;
-	`;
-
-	public titleWrap: CSSObject = css`
-		display: flex;
-		gap: 12px;
 	`;
 }
 

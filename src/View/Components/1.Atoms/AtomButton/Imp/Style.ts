@@ -1,11 +1,23 @@
 import Styles from "../../../../../Styles/Styles.ts";
 import { css, type CSSObject } from "@emotion/react";
-import type { EAtomButtonColor } from "../index.tsx";
+import type { EAtomButtonColor, EAtomButtonRound } from "../index.tsx";
 
 class Style extends Styles {
-	public wrapper(isFullWidth?: boolean, isFullHeight?: boolean): CSSObject {
+	public wrapper(isFullWidth?: boolean, isFullHeight?: boolean, EAtomButtonRound?: EAtomButtonRound): CSSObject {
+		function getRound() {
+			switch (EAtomButtonRound) {
+				case "square":
+					return "0";
+				case "round":
+					return "50%";
+				default:
+					return "12px";
+			}
+		}
+
 		return css`
 			${this.mixins.flexCenter};
+			border-radius: ${getRound()};
 			position: relative;
 			transition: ${this.variables.fastTransition};
 			width: ${isFullWidth ? "100%" : "auto"};

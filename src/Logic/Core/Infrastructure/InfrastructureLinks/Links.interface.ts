@@ -1,6 +1,6 @@
 import type { SettingInterface } from "../../Services/ServiceSetting/Setting.interface.ts";
 import type { CatalogueInterface } from "../../Services/ServiceCatalogue/Catalogue.interface.ts";
-import type { MessageInterface } from "../../Services/ServiceMessage/Message.interface.ts";
+import type { OrderInterface } from "../../Services/ServiceOrder/Order.interface.ts";
 
 export namespace LinksInterface {
 	export interface IAdapter {
@@ -16,7 +16,7 @@ export namespace LinksInterface {
 		GET_BUSINESS_INFO(): Promise<SettingInterface.TBusinessInfo>;
 		SEND_ORDER(): Promise<string>;
 		GET_ALL_GOODS(): Promise<CatalogueInterface.TItemMap>;
-		GET_PRODUCT_TEXT(): Promise<MessageInterface.TGoodsInfo>;
+		GET_ALL_ORDERS(): Promise<OrderInterface.TOrderMap>;
 	}
 
 	export type EMethod = keyof typeof Method;
@@ -63,10 +63,7 @@ const Order = {
 const Catalogue = {
 	GET_CATEGORY_LIST: "GET_CATEGORY_LIST",
 	GET_ALL_GOODS: "GET_ALL_GOODS",
-} as const;
-
-const Message = {
-	GET_PRODUCT_TEXT: "GET_PRODUCT_TEXT",
+	GET_ALL_ORDERS: "GET_ALL_ORDERS",
 } as const;
 
 const Names = {
@@ -75,5 +72,4 @@ const Names = {
 	...Setting,
 	...Order,
 	...Catalogue,
-	...Message,
 } as const;
