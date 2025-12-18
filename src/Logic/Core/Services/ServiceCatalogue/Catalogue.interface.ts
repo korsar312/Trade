@@ -4,9 +4,10 @@ export namespace CatalogueInterface {
 	export interface IAdapter {
 		initGoods(): Promise<void>;
 		getGoodsIdList(): string[];
-		getBank(itemId: string): EBank;
+
 		getName(itemId: string): string;
 		getDesc(itemId: string): string;
+		getBank(itemId: string): EBank;
 		getPrice(itemId: string): number;
 		getRating(itemId: string): TRating;
 		getImage(itemId: string): string;

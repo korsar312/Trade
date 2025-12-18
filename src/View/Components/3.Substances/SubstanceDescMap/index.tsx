@@ -10,8 +10,11 @@ export interface IComponent {
 export type TSubstanceDescMapRow = {
 	id: string;
 	key: IText;
+	type?: TSubstanceDescMapRowType;
 	value: IControl;
 };
+
+export type TSubstanceDescMapRowType = "vert" | "hor";
 
 const Index = (props: IComponent) => {
 	const model = Model(props);

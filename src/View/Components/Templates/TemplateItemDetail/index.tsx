@@ -18,7 +18,7 @@ const Index: FC<IComponent> = (props) => {
 	const price = Act.Catalogue.getPrice(itemId);
 	const rating = Act.Catalogue.getRating(itemId);
 	const seller = Act.Catalogue.getSellerName(itemId);
-	const disc = Act.Catalogue.getDesc(itemId);
+	const desc = Act.Catalogue.getDesc(itemId);
 
 	const priceForm = Util.toMoney(price);
 
@@ -61,9 +61,10 @@ const Index: FC<IComponent> = (props) => {
 			},
 			{
 				id: "6",
+				type: "vert",
 				key: { text: "Описание" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(disc) }],
+					compRow: [{ id: "1", type: "TEXT", options: textProp(desc) }],
 				},
 			},
 		],

@@ -4,10 +4,13 @@ export namespace OrderInterface {
 	export interface IAdapter {
 		initOrders(): Promise<void>;
 		getOrderIdList(): string[];
+
 		isActiveOrder(itemId: string): boolean;
 		isSellUser(itemId: string, userId: string): boolean;
 		isBuyUser(itemId: string, userId: string): boolean;
+
 		getName(itemId: string): string;
+		getDesc(itemId: string): string;
 		getBank(itemId: string): EBank;
 		getPrice(itemId: string): number;
 		getRating(itemId: string): TRating;
@@ -23,6 +26,7 @@ export namespace OrderInterface {
 	export type TOrderDetail = TOrder & {
 		chat: string[];
 		dateStart: string;
+		deliveryStatus: string;
 	};
 
 	export type TRating = PublicInterface.TRating;

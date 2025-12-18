@@ -55,6 +55,11 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 		return item.name;
 	}
 
+	public getDesc(itemId: string) {
+		const item = this.getCurrentItem(this.store.orders, itemId);
+		return item.desc;
+	}
+
 	public getBank(itemId: string) {
 		const item = this.getCurrentItem(this.store.orders, itemId);
 		return item.bank;
