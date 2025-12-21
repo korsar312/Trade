@@ -24,23 +24,9 @@ export namespace CatalogueInterface {
 		rating: TRating;
 		sellerName: string;
 		sellerId: string;
-		info: TInfo;
+		info: PublicInterface.TInfoItem;
 	};
 
-	type TItemType = { type: ETypeItem };
-	type TInfo = TInfoVar;
-
-	type TInfoVar = TItemTypeCard | TDetailItemTypeCard;
-	export interface TItemTypeCard extends TItemType {
-		type: "CARD";
-		bank: EBank;
-	}
-	export interface TDetailItemTypeCard extends TItemTypeCard {
-		desc: string;
-		sellerId: string;
-	}
-
-	export type ETypeItem = keyof typeof TypeItem;
 	export type TRating = PublicInterface.TRating;
 	export type EBank = PublicInterface.EBank;
 	export type TItemMap = Record<string, TItem>;
@@ -49,7 +35,3 @@ export namespace CatalogueInterface {
 		goods: TItemMap;
 	}
 }
-
-const TypeItem = {
-	CARD: "CARD",
-} as const;

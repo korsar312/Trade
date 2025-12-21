@@ -6,11 +6,12 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 		return { ...store, orders };
 	}
 
-	private getCurrentItem(itemList: Interface.TOrderMap, itemId: string): Interface.TOrder {
-		const item = itemList[itemId];
-		if (!item) throw new Error(`Item with id "${itemId}" not found`);
+	private updateGoods(goodsList: Interface.TOrderMap, newGoods: Interface.TOrderMap): Interface.TOrderMap {
+		return { ...goodsList, ...newGoods };
+	}
 
-		return item;
+	private getCurrentOrder(orderList: Interface.TOrderMap, orderId: string): Interface.TOrder | undefined {
+		return orderList[orderId];
 	}
 
 	//==============================================================================================
@@ -18,7 +19,6 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 	constructor(props: IServiceProps) {
 		const store: Interface.Store = {
 			orders: {},
-			ordersDetail: {},
 		};
 
 		super(props, store);
@@ -26,68 +26,64 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 
 	//==============================================================================================
 
-	public async initOrders() {
+	public async requestOrders() {
 		const res = await this.API.Links.GET_ORDERS();
+
 		this.store = this.setGoods(this.store, res);
+	}
+
+	public async requestOrderDetail(idList: string[]) {
+		const res = await this.API.Links.GET_ORDER_DETAIL(idList);
+		const newStore = this.updateGoods(this.store.orders, res);
+
+		this.store = this.setGoods(this.store, newStore);
 	}
 
 	public getOrderIdList() {
 		return Object.keys(this.store.orders);
 	}
 
-	public isActiveOrder(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.name === "ACTIVE";
+	public getName(orderId: string) {
+		const order = this.getCurrentOrder(this.store.orders, orderId);
+		return order?.name;
 	}
 
-	public isSellUser(itemId: string, userId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.seller.id === userId;
+	public getDesc(orderId: string) {
+		const order = this.getCurrentOrder(this.store.orders, orderId);
+		if (order && "desc" in order.info) return order.info.desc;
+
+		return undefined;
 	}
 
-	public isBuyUser(itemId: string, userId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.name === userId;
+	public getBank(orderId: string) {
+		const order = this.getCurrentOrder(this.store.orders, orderId);
+		if (order && "bank" in order.info) return order.info.bank;
+
+		return undefined;
 	}
 
-	public getName(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.name;
+	public getPrice(orderId: string) {
+		const order = this.getCurrentOrder(this.store.orders, orderId);
+		return order?.price;
 	}
 
-	public getDesc(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.name;
+	public getImage(orderId: string) {
+		const order = this.getCurrentOrder(this.store.orders, orderId);
+		return order?.image;
 	}
 
-	public getBank(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.bank;
+	public getSellerName(orderId: string) {
+		const order = this.getCurrentOrder(this.store.orders, orderId);
+		if (order && "seller" in order.info) return order.info.seller.name;
+
+		return undefined;
 	}
 
-	public getPrice(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.price;
-	}
+	public getSellerId(orderId: string) {
+		const order = this.getCurrentOrder(this.store.orders, orderId);
+		if (order && "seller" in order.info) return order.info.seller.id;
 
-	public getRating(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.seller.rating;
-	}
-
-	public getImage(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.image;
-	}
-
-	public getSellerName(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.seller.name;
-	}
-
-	public getSellerId(itemId: string) {
-		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.seller.id;
+		return undefined;
 	}
 }
 

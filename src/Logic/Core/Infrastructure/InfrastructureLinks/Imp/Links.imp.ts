@@ -40,6 +40,9 @@ class LinksImp implements Interface.IAdapter {
 	public GET_ORDERS() {
 		return this.request<OrderInterface.TOrderMap>({ link: "GET_ORDERS", method: "GET" });
 	}
+	public GET_ORDER_DETAIL(itemId: string[]) {
+		return this.request<OrderInterface.TOrderMap>({ link: "GET_ORDERS", method: "GET", param: { itemId } });
+	}
 }
 
 export default LinksImp;

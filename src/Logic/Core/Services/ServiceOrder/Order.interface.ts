@@ -2,54 +2,51 @@ import type { PublicInterface } from "../Public.interface.ts";
 
 export namespace OrderInterface {
 	export interface IAdapter {
-		initOrders(): Promise<void>;
+		requestOrders(): Promise<void>;
+		requestOrderDetail(idList: string[]): Promise<void>;
+
 		getOrderIdList(): string[];
 
-		isActiveOrder(itemId: string): boolean;
-		isSellUser(itemId: string, userId: string): boolean;
-		isBuyUser(itemId: string, userId: string): boolean;
-
-		getName(itemId: string): string;
-		getDesc(itemId: string): string;
-		getBank(itemId: string): EBank;
-		getPrice(itemId: string): number;
-		getRating(itemId: string): TRating;
-		getImage(itemId: string): string;
-		getSellerName(itemId: string): string;
-		getSellerId(itemId: string): string;
+		getName(orderId: string): string | undefined;
+		getDesc(orderId: string): string | undefined;
+		getBank(orderId: string): EBank | undefined;
+		getPrice(orderId: string): number | undefined;
+		getImage(orderId: string): string | undefined;
+		getSellerName(orderId: string): string | undefined;
+		getSellerId(orderId: string): string | undefined;
 	}
 
 	export type TOrder = {
 		name: string;
 		image: string;
 		price: number;
-		seller: TActor;
-		bank: EBank;
+		info: PublicInterface.TInfoItem | TInfoConcat;
 	};
 
-	export type TOrderDetail = TOrder & {
+	type TInfoConcat = PublicInterface.TInfoItem & TDetailOrderTypeCard;
+
+	type TDetailOrderTypeCard = {
 		chat: string[];
-		desc: string;
 		dateStart: string;
+		seller: TActor;
 		buyer: TActor;
 		deliveryStatus: string;
+		status: EStatus;
 	};
 
 	export type TActor = {
 		id: string;
 		name: string;
-		rating: TRating;
 	};
 
 	export type TRating = PublicInterface.TRating;
 	export type EBank = PublicInterface.EBank;
 	export type EStatus = keyof typeof Status;
 	export type TOrderMap = Record<string, TOrder>;
-	export type TDetailMap = Record<string, TOrderDetail>;
+	export type TDetailMap = Record<string, TOrder>;
 
 	export interface Store {
 		orders: TOrderMap;
-		ordersDetail: TDetailMap;
 	}
 
 	export interface Store {}

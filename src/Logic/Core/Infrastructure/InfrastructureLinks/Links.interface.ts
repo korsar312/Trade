@@ -9,6 +9,7 @@ export namespace LinksInterface {
 		GET_ITEM(id: string[]): Promise<CatalogueInterface.TItemMap>;
 		GET_ITEM_DETAIL(id: string[]): Promise<CatalogueInterface.TItemMap>;
 		GET_ORDERS(): Promise<OrderInterface.TOrderMap>;
+		GET_ORDER_DETAIL(id: string[]): Promise<OrderInterface.TOrderMap>;
 	}
 
 	export type EMethod = keyof typeof Method;

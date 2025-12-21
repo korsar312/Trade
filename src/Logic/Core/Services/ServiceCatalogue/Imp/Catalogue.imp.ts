@@ -55,7 +55,6 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getDesc(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-
 		if (item && "desc" in item.info) return item.info.desc;
 
 		return undefined;
@@ -83,10 +82,7 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getSellerId(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-
-		if (item && "sellerId" in item.info) return item.info.sellerId;
-
-		return undefined;
+		return item?.sellerId;
 	}
 }
 
