@@ -9,15 +9,11 @@ class LinksImp implements Interface.IAdapter {
 
 	private async request<T>({ link, method, param }: Interface.ERequestParam): Promise<T> {
 		const url = new URL(this.links[link], "http://" + this.address);
+
 		url.search = new URLSearchParams(param).toString();
+		const res = await fetch(url.toString(), { method });
 
-		console.log(url.toString());
-
-		const res = (await fetch(url.toString(), { method })) as T;
-
-		console.log(res);
-
-		return res;
+		return await res.json();
 	}
 
 	//==============================================================================================

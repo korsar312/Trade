@@ -21,13 +21,15 @@ const View: NFC<typeof Model> = (props) => {
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
-			<div css={Style.imageWrap}>
-				<Image size={"100%"} img={image} />
-			</div>
+			<main css={Style.content}>
+				<figure css={Style.imageWrap}>
+					<Image size={"100%"} img={image} />
+				</figure>
 
-			<div css={Style.detailWrap}>
-				<TemplateItemDetail itemId={itemId} />
-			</div>
+				<div css={Style.detailWrap}>
+					<TemplateItemDetail itemId={itemId} />
+				</div>
+			</main>
 
 			<div css={Style.btnWrap}>
 				<AtomButtonMain isFullWidth text={"BUY"} color={"BLUE_2"} />

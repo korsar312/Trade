@@ -27,6 +27,7 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public async initGoods() {
 		const res = await this.API.Links.GET_GOODS();
+		console.log(res);
 		this.store = this.setGoods(this.store, res);
 	}
 
@@ -43,10 +44,12 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		const item = this.getCurrentItem(this.store.goods, itemId);
 		return item.name;
 	}
+
 	public getDesc(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
 		return item.sellerName;
 	}
+
 	public getPrice(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
 		return item.price;
