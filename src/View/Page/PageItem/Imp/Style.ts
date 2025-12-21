@@ -18,10 +18,10 @@ class Style extends Styles {
 	`;
 
 	public imageWrap: CSSObject = css`
-		flex: 1;
 		min-height: 150px;
 		border-radius: ${this.variables.radiusStandard}px;
 		overflow: hidden;
+		flex: 1;
 	`;
 
 	public detailWrap: CSSObject = css`

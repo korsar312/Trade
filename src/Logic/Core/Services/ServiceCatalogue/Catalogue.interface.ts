@@ -7,14 +7,14 @@ export namespace CatalogueInterface {
 
 		getGoodsIdList(): string[];
 
-		getName(itemId: string): string;
-		getDesc(itemId: string): string;
-		getBank(itemId: string): EBank;
-		getPrice(itemId: string): number;
-		getRating(itemId: string): TRating;
-		getImage(itemId: string): string;
-		getSellerName(itemId: string): string;
-		getSellerId(itemId: string): string;
+		getName(itemId: string): string | undefined;
+		getDesc(itemId: string): string | undefined;
+		getBank(itemId: string): EBank | undefined;
+		getPrice(itemId: string): number | undefined;
+		getRating(itemId: string): TRating | undefined;
+		getImage(itemId: string): string | undefined;
+		getSellerName(itemId: string): string | undefined;
+		getSellerId(itemId: string): string | undefined;
 	}
 
 	export type TItem = {

@@ -10,11 +10,8 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		return { ...goodsList, ...newGoods };
 	}
 
-	private getCurrentItem(itemList: Interface.TItemMap, itemId: string): Interface.TItem {
-		const item = itemList[itemId];
-		if (!item) throw new Error(`Item with id "${itemId}" not found`);
-
-		return item;
+	private getCurrentItem(itemList: Interface.TItemMap, itemId: string): Interface.TItem | undefined {
+		return itemList[itemId];
 	}
 
 	//==============================================================================================
@@ -46,42 +43,42 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getBank(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.info.bank;
+		return item?.info.bank;
 	}
 
 	public getName(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.name;
+		return item?.name;
 	}
 
 	public getDesc(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.sellerName;
+		return item?.sellerName;
 	}
 
 	public getPrice(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.price;
+		return item?.price;
 	}
 
 	public getRating(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.rating;
+		return item?.rating;
 	}
 
 	public getImage(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.image;
+		return item?.image;
 	}
 
 	public getSellerName(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.name;
+		return item?.name;
 	}
 
 	public getSellerId(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.sellerName;
+		return item?.sellerName;
 	}
 }
 

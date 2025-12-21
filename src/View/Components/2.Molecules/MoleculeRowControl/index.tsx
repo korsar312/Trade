@@ -3,6 +3,7 @@ import View from "./Imp/View.tsx";
 import type { IComponent as IBtnImage } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import type { IComponent as IBtnMain } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import type { IComponent as IInput } from "../../1.Atoms/AtomInput";
+import type { IComponent as ILoad } from "../../1.Atoms/AtomLoadRow";
 import type { IComponent as IText } from "../../0.Cores/Text";
 import type { IComponent as IIcon } from "../../0.Cores/Image";
 import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
@@ -18,6 +19,7 @@ type TMap = {
 	INPUT: IInput;
 	TEXT: IText;
 	ICON: IIcon;
+	LOAD: ILoad;
 };
 
 export type TMoleculeRowControlCompType = typesUtils.OptionsUnion<TMap, { id: string }>;

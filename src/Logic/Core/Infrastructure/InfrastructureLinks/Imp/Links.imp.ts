@@ -35,7 +35,7 @@ class LinksImp implements Interface.IAdapter {
 		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ITEM", method: "GET", param: { itemId } });
 	}
 	public GET_ITEM_DETAIL(itemId: string[]) {
-		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ITEM", method: "GET", param: { itemId } });
+		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ITEM_DETAIL", method: "GET", param: { itemId } });
 	}
 	public GET_ORDERS() {
 		return this.request<OrderInterface.TOrderMap>({ link: "GET_ORDERS", method: "GET" });

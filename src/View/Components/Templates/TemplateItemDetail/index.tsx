@@ -20,7 +20,13 @@ const Index: FC<IComponent> = (props) => {
 	const seller = Act.Catalogue.getSellerName(itemId);
 	const desc = Act.Catalogue.getDesc(itemId);
 
-	const priceForm = Util.toMoney(price);
+	const priceForm = price && Util.toMoney(price);
+
+	const skeletonEl: TMoleculeRowControlCompType = {
+		id: "1",
+		type: "LOAD",
+		options: {},
+	};
 
 	const propsComponent: IProp = {
 		rows: [
@@ -28,35 +34,35 @@ const Index: FC<IComponent> = (props) => {
 				id: "1",
 				key: { text: "Название" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(name) }],
+					compRow: [name ? { id: "1", type: "TEXT", options: textProp(name) } : skeletonEl],
 				},
 			},
 			{
 				id: "2",
 				key: { text: "Банк" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(bank) }],
+					compRow: [bank ? { id: "1", type: "TEXT", options: textProp(bank) } : skeletonEl],
 				},
 			},
 			{
 				id: "3",
 				key: { text: "Цена" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(priceForm) }],
+					compRow: [priceForm ? { id: "1", type: "TEXT", options: textProp(priceForm) } : skeletonEl],
 				},
 			},
 			{
 				id: "4",
 				key: { text: "Рейтинг" },
 				value: {
-					compRow: starProp(rating),
+					compRow: rating ? starProp(rating) : [skeletonEl],
 				},
 			},
 			{
 				id: "5",
 				key: { text: "Продавец" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(seller) }],
+					compRow: [seller ? { id: "1", type: "TEXT", options: textProp(seller) } : skeletonEl],
 				},
 			},
 			{
@@ -64,7 +70,7 @@ const Index: FC<IComponent> = (props) => {
 				type: "vert",
 				key: { text: "Описание" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(desc) }],
+					compRow: [desc ? { id: "1", type: "TEXT", options: textProp(desc) } : skeletonEl],
 				},
 			},
 		],

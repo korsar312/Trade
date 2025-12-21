@@ -8,6 +8,7 @@ import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain
 import AtomInput from "../../../1.Atoms/AtomInput";
 import Text from "../../../0.Cores/Text";
 import Image from "../../../0.Cores/Image";
+import AtomLoadRow from "../../../1.Atoms/AtomLoadRow";
 
 const View: NFC<typeof Model> = (props) => {
 	const { compRow } = props;
@@ -26,6 +27,8 @@ const View: NFC<typeof Model> = (props) => {
 				return <Text {...options} />;
 			case "ICON":
 				return <Image {...options} />;
+			case "LOAD":
+				return <AtomLoadRow {...options} />;
 		}
 	}
 
