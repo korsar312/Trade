@@ -28,12 +28,14 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public async requestGoods() {
 		const res = await this.API.Links.GET_GOODS();
+
 		this.store = this.setGoods(this.store, res);
 	}
 
 	public async requestItemDetail(idList: string[]) {
 		const res = await this.API.Links.GET_ITEM_DETAIL(idList);
 		const newStore = this.updateGoods(this.store.goods, res);
+
 		this.store = this.setGoods(this.store, newStore);
 	}
 
@@ -53,7 +55,10 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getDesc(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item?.sellerName;
+
+		if (item && "desc" in item.info) return item.info.desc;
+
+		return undefined;
 	}
 
 	public getPrice(itemId: string) {
@@ -73,12 +78,15 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getSellerName(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item?.name;
+		return item?.sellerName;
 	}
 
 	public getSellerId(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item?.sellerName;
+
+		if (item && "sellerId" in item.info) return item.info.sellerId;
+
+		return undefined;
 	}
 }
 

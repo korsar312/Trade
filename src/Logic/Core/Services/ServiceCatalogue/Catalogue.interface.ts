@@ -23,14 +23,12 @@ export namespace CatalogueInterface {
 		price: number;
 		rating: TRating;
 		sellerName: string;
+		sellerId: string;
 		info: TInfo;
 	};
 
-	type TItemType = {
-		type: ETypeItem;
-	};
-
-	export type TInfo = TInfoVar;
+	type TItemType = { type: ETypeItem };
+	type TInfo = TInfoVar;
 
 	type TInfoVar = TItemTypeCard | TDetailItemTypeCard;
 	export interface TItemTypeCard extends TItemType {
@@ -40,7 +38,6 @@ export namespace CatalogueInterface {
 	export interface TDetailItemTypeCard extends TItemTypeCard {
 		desc: string;
 		sellerId: string;
-		sellerName: string;
 	}
 
 	export type ETypeItem = keyof typeof TypeItem;
