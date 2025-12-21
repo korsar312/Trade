@@ -6,6 +6,10 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		return { ...store, goods };
 	}
 
+	private updateGoods(goodsList: Interface.TItemMap, newGoods: Interface.TItemMap): Interface.TItemMap {
+		return { ...goodsList, ...newGoods };
+	}
+
 	private getCurrentItem(itemList: Interface.TItemMap, itemId: string): Interface.TItem {
 		const item = itemList[itemId];
 		if (!item) throw new Error(`Item with id "${itemId}" not found`);
@@ -25,10 +29,15 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	//==============================================================================================
 
-	public async initGoods() {
+	public async requestGoods() {
 		const res = await this.API.Links.GET_GOODS();
-		console.log(res);
 		this.store = this.setGoods(this.store, res);
+	}
+
+	public async requestItemDetail(idList: string[]) {
+		const res = await this.API.Links.GET_ITEM_DETAIL(idList);
+		const newStore = this.updateGoods(this.store.goods, res);
+		this.store = this.setGoods(this.store, newStore);
 	}
 
 	public getGoodsIdList() {

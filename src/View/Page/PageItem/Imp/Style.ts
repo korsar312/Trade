@@ -12,14 +12,14 @@ class Style extends Styles {
 
 	public content: CSSObject = css`
 		${this.mixins.flexCol};
-		justify-content: space-between;
 		gap: ${this.gap}px;
 		overflow: hidden;
+		flex: 1;
 	`;
 
 	public imageWrap: CSSObject = css`
 		flex: 1;
-		min-height: 50px;
+		min-height: 150px;
 		border-radius: ${this.variables.radiusStandard}px;
 		overflow: hidden;
 	`;

@@ -6,7 +6,7 @@ function Model(props: IComponent) {
 	const {} = props;
 
 	useEffect(() => {
-		Act.Catalogue.initGoods();
+		Act.Catalogue.requestGoods();
 	}, []);
 
 	return {};

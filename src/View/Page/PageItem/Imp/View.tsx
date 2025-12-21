@@ -4,20 +4,10 @@ import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
 import TemplateItemDetail from "../../../Components/Templates/TemplateItemDetail";
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
 import AtomButtonMain from "../../../Components/1.Atoms/AtomButton/Variables/AtomButtonMain";
-import { Act } from "../../../../Logic/Core";
-import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
 import Image from "../../../Components/0.Cores/Image";
 
 const View: NFC<typeof Model> = (props) => {
-	const {} = props;
-
-	const param = useParamPage("ITEM");
-	const itemId = param.id || "";
-	const image = Act.Catalogue.getImage(itemId);
-
-	function goBack() {
-		Act.Router.goBack();
-	}
+	const { image, itemId, goBack } = props;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>

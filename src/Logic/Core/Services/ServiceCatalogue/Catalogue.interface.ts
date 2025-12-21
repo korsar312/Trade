@@ -2,7 +2,9 @@ import type { PublicInterface } from "../Public.interface.ts";
 
 export namespace CatalogueInterface {
 	export interface IAdapter {
-		initGoods(): Promise<void>;
+		requestGoods(): Promise<void>;
+		requestItemDetail(idList: string[]): Promise<void>;
+
 		getGoodsIdList(): string[];
 
 		getName(itemId: string): string;

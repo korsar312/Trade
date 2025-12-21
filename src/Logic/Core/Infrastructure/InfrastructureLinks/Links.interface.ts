@@ -6,6 +6,8 @@ export namespace LinksInterface {
 	export interface IAdapter {
 		LOGIN(token: string): Promise<UserInterface.TUser>;
 		GET_GOODS(): Promise<CatalogueInterface.TItemMap>;
+		GET_ITEM(id: string[]): Promise<CatalogueInterface.TItemMap>;
+		GET_ITEM_DETAIL(id: string[]): Promise<CatalogueInterface.TItemMap>;
 		GET_ORDERS(): Promise<OrderInterface.TOrderMap>;
 	}
 
@@ -30,5 +32,7 @@ const Method = {
 const Names = {
 	LOGIN: "LOGIN",
 	GET_GOODS: "GET_GOODS",
+	GET_ITEM: "GET_ITEM",
+	GET_ITEM_DETAIL: "GET_ITEM_DETAIL",
 	GET_ORDERS: "GET_ORDERS",
 } as const;
