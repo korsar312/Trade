@@ -19,14 +19,26 @@ export namespace OrderInterface {
 		getSellerId(itemId: string): string;
 	}
 
-	export type TOrder = PublicInterface.TItem & {
-		status: EStatus;
+	export type TOrder = {
+		name: string;
+		image: string;
+		price: number;
+		seller: TActor;
+		bank: EBank;
 	};
 
 	export type TOrderDetail = TOrder & {
 		chat: string[];
+		desc: string;
 		dateStart: string;
+		buyer: TActor;
 		deliveryStatus: string;
+	};
+
+	export type TActor = {
+		id: string;
+		name: string;
+		rating: TRating;
 	};
 
 	export type TRating = PublicInterface.TRating;

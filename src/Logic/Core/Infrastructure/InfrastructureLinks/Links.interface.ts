@@ -1,24 +1,12 @@
-import type { SettingInterface } from "../../Services/ServiceSetting/Setting.interface.ts";
 import type { CatalogueInterface } from "../../Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { OrderInterface } from "../../Services/ServiceOrder/Order.interface.ts";
 import type { UserInterface } from "../../Services/ServiceUser/User.interface.ts";
 
 export namespace LinksInterface {
 	export interface IAdapter {
-		GET_PAYMENT_QR(): Promise<string>;
-		GET_PAYMENT_STATUS(id: string): Promise<boolean>;
-		CANCEL_PAYMENT(): Promise<string>;
-		SPLIT_BILL(): Promise<string>;
-		GET_MENU(): Promise<string>;
-		CALL_WAITER(): Promise<void>;
-		LOGIN(login: string, password: string): Promise<SettingInterface.TLoginInfo>;
-		QR_ENTER(token: string): Promise<SettingInterface.TLoginInfo>;
-		LOGOFF(): Promise<string>;
-		GET_BUSINESS_INFO(): Promise<SettingInterface.TBusinessInfo>;
-		SEND_ORDER(): Promise<string>;
-		GET_ALL_GOODS(): Promise<CatalogueInterface.TItemMap>;
-		GET_ALL_ORDERS(): Promise<OrderInterface.TOrderMap>;
-		GET_USER(): Promise<UserInterface.TUser>;
+		LOGIN(token: string): Promise<UserInterface.TUser>;
+		GET_GOODS(): Promise<CatalogueInterface.TItemMap>;
+		GET_ORDERS(): Promise<OrderInterface.TOrderMap>;
 	}
 
 	export type EMethod = keyof typeof Method;
@@ -39,44 +27,8 @@ const Method = {
 	DELETE: "DELETE",
 } as const;
 
-const Payment = {
-	GET_PAYMENT_QR: "GET_PAYMENT_QR",
-	GET_PAYMENT_STATUS: "GET_PAYMENT_STATUS",
-	CANCEL_PAYMENT: "CANCEL_PAYMENT",
-	SPLIT_BILL: "SPLIT_BILL",
-} as const;
-
-const Service = {
-	GET_MENU: "GET_MENU",
-	CALL_WAITER: "CALL_WAITER",
-} as const;
-
-const Setting = {
-	QR_ENTER: "QR_ENTER",
-	LOGIN: "LOGIN",
-	LOGOFF: "LOGOFF",
-	GET_BUSINESS_INFO: "GET_BUSINESS_INFO",
-} as const;
-
-const Order = {
-	SEND_ORDER: "SEND_ORDER",
-} as const;
-
-const Catalogue = {
-	GET_CATEGORY_LIST: "GET_CATEGORY_LIST",
-	GET_ALL_GOODS: "GET_ALL_GOODS",
-	GET_ALL_ORDERS: "GET_ALL_ORDERS",
-} as const;
-
-const Users = {
-	GET_USER: "GET_USER",
-} as const;
-
 const Names = {
-	...Payment,
-	...Service,
-	...Setting,
-	...Order,
-	...Catalogue,
-	...Users,
+	LOGIN: "LOGIN",
+	GET_GOODS: "GET_GOODS",
+	GET_ORDERS: "GET_ORDERS",
 } as const;

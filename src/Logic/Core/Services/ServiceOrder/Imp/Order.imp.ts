@@ -27,7 +27,7 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 	//==============================================================================================
 
 	public async initOrders() {
-		const res = await this.API.Links.GET_ALL_ORDERS();
+		const res = await this.API.Links.GET_ORDERS();
 		this.store = this.setGoods(this.store, res);
 	}
 
@@ -37,7 +37,7 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 
 	public isActiveOrder(itemId: string) {
 		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.status === "ACTIVE";
+		return item.name === "ACTIVE";
 	}
 
 	public isSellUser(itemId: string, userId: string) {
@@ -47,7 +47,7 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 
 	public isBuyUser(itemId: string, userId: string) {
 		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.buyer.id === userId;
+		return item.name === userId;
 	}
 
 	public getName(itemId: string) {
@@ -57,7 +57,7 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 
 	public getDesc(itemId: string) {
 		const item = this.getCurrentItem(this.store.orders, itemId);
-		return item.desc;
+		return item.name;
 	}
 
 	public getBank(itemId: string) {

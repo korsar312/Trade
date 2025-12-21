@@ -26,7 +26,7 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 	//==============================================================================================
 
 	public async initGoods() {
-		const res = await this.API.Links.GET_ALL_GOODS();
+		const res = await this.API.Links.GET_GOODS();
 		this.store = this.setGoods(this.store, res);
 	}
 
@@ -36,7 +36,7 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getBank(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.bank;
+		return item.info.bank;
 	}
 
 	public getName(itemId: string) {
@@ -45,7 +45,7 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 	}
 	public getDesc(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.desc;
+		return item.sellerName;
 	}
 	public getPrice(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
@@ -54,7 +54,7 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getRating(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.seller.rating;
+		return item.rating;
 	}
 
 	public getImage(itemId: string) {
@@ -64,12 +64,12 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public getSellerName(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.seller.name;
+		return item.name;
 	}
 
 	public getSellerId(itemId: string) {
 		const item = this.getCurrentItem(this.store.goods, itemId);
-		return item.seller.id;
+		return item.sellerName;
 	}
 }
 

@@ -7,6 +7,10 @@ import { Consts } from "./src/Logic/Config/Consts";
 // https://vite.dev/config/
 export default defineConfig({
 	base: Consts.basePath,
+	server: {
+		port: 3000,
+		strictPort: true,
+	},
 	plugins: [
 		react({
 			jsxImportSource: "@emotion/react",

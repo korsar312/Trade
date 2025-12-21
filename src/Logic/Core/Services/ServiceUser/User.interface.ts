@@ -1,6 +1,6 @@
 export namespace UserInterface {
 	export interface IAdapter {
-		initUser(): Promise<void>;
+		login(token: string): Promise<TUser>;
 		getId(): string;
 	}
 
