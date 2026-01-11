@@ -4,11 +4,11 @@ import type { OrderInterface } from "../../../Services/ServiceOrder/Order.interf
 import type { UserInterface } from "../../../Services/ServiceUser/User.interface.ts";
 
 class LinksImp implements Interface.IAdapter {
-	private readonly links: Interface.TLinksList;
+	private readonly links: Interface.TLinks;
 	private readonly address: string;
 
 	private async request<T>({ link, method, param }: Interface.ERequestParam): Promise<T> {
-		const url = new URL(this.links[link], "http://" + this.address);
+		const url = new URL(this.links[link].link, "http://" + this.address);
 
 		url.search = new URLSearchParams(param).toString();
 		const res = await fetch(url.toString(), { method });
@@ -18,21 +18,18 @@ class LinksImp implements Interface.IAdapter {
 
 	//==============================================================================================
 
-	constructor(links: Interface.TLinksList, address: string) {
+	constructor(links: Interface.TLinks, address: string) {
 		this.links = links;
 		this.address = address;
 	}
 
 	//==============================================================================================
 
-	public LOGIN(token: string) {
-		return this.request<UserInterface.TUser>({ link: "LOGIN", method: "GET", param: { token } });
+	public LOGIN(login: string, token: string) {
+		return this.request<UserInterface.TUser>({ link: "LOGIN", method: "GET", param: { login, token } });
 	}
-	public GET_GOODS() {
-		return this.request<CatalogueInterface.TItemMap>({ link: "GET_GOODS", method: "GET" });
-	}
-	public GET_ITEM(itemId: string[]) {
-		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ITEM", method: "GET", param: { itemId } });
+	public GET_ITEMS(itemId: string[]) {
+		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ITEMS", method: "GET", param: { itemId } });
 	}
 	public GET_ITEM_DETAIL(itemId: string[]) {
 		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ITEM_DETAIL", method: "GET", param: { itemId } });
@@ -41,7 +38,7 @@ class LinksImp implements Interface.IAdapter {
 		return this.request<OrderInterface.TOrderMap>({ link: "GET_ORDERS", method: "GET" });
 	}
 	public GET_ORDER_DETAIL(itemId: string[]) {
-		return this.request<OrderInterface.TOrderMap>({ link: "GET_ORDERS", method: "GET", param: { itemId } });
+		return this.request<OrderInterface.TOrderMap>({ link: "GET_ORDER_DETAIL", method: "GET", param: { itemId } });
 	}
 }
 

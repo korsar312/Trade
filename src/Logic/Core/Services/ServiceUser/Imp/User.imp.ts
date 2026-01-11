@@ -16,8 +16,8 @@ class UserImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 
 	//==============================================================================================
 
-	public async login(token: string) {
-		const res = await this.API.Links.LOGIN(token);
+	public async login(login: string, token: string) {
+		const res = await this.API.Links.LOGIN(login, token);
 		this.store = this.setUser(this.store, res);
 
 		return res;

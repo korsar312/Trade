@@ -1,4 +1,5 @@
 import type { RouterInterface as Interface } from "../Router.interface.ts";
+import type { PublicInterface } from "../../Public.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 import { createBrowserRouter, generatePath, matchPath } from "react-router";
 
@@ -14,7 +15,7 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		await navFn(generatePath("/" + path[page], params), { replace, state });
 	}
 
-	private setCurrentRole(store: Interface.Store, role: Interface.ERole): Interface.Store {
+	private setCurrentRole(store: Interface.Store, role: PublicInterface.ERole): Interface.Store {
 		return { ...store, role };
 	}
 
@@ -29,7 +30,7 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		oldRoutes: Interface.TRouterMapList,
 		routesRole: Interface.TRouterListRole,
 		oldPath: Interface.TPath,
-		role: Interface.ERole,
+		role: PublicInterface.ERole,
 		basePath: string,
 	) {
 		const path = Object.entries(oldPath).reduce(
@@ -45,7 +46,6 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 
 		if (!isAccess) {
 		}
-		//window.location.href = path[redirectRole(role)];
 
 		const store: Interface.Store = {
 			currentPathName: getPage(browserRouter.state.location.pathname, path),
@@ -84,11 +84,11 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return this.store.routes;
 	}
 
-	getRole(): Interface.ERole {
+	getRole(): PublicInterface.ERole {
 		return this.store.role;
 	}
 
-	setRole(role: Interface.ERole): void {
+	setRole(role: PublicInterface.ERole): void {
 		this.store = this.setCurrentRole(this.store, role);
 	}
 
@@ -123,14 +123,14 @@ function getPage(pathname: string, pathObj: Interface.TPath): Interface.EPath {
 	return "ERROR";
 }
 
-function redirectRole(role: Interface.ERole): Interface.EPath {
+function redirectRole(role: PublicInterface.ERole): Interface.EPath {
 	switch (role) {
 		default:
 			return "GOODS";
 	}
 }
 
-function isAccessRoute(currentRole: Interface.ERole, page: Interface.EPath, routeRole: Interface.TRouterListRole): boolean {
+function isAccessRoute(currentRole: PublicInterface.ERole, page: Interface.EPath, routeRole: Interface.TRouterListRole): boolean {
 	if (page === "ERROR") return false;
 	if (!routeRole[page]) return true;
 

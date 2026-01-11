@@ -16,7 +16,7 @@ const Index: FC<IComponent> = (props) => {
 	const name = Act.Catalogue.getName(itemId);
 	const bank = Act.Catalogue.getBank(itemId);
 	const price = Act.Catalogue.getPrice(itemId);
-	const rating = Act.Catalogue.getRating(itemId);
+	const rating = Act.Catalogue.getSellerRating(itemId);
 	const seller = Act.Catalogue.getSellerName(itemId);
 	const desc = Act.Catalogue.getDesc(itemId);
 

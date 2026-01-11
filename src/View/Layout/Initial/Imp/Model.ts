@@ -14,7 +14,7 @@ function Model(props: IComponent) {
 	}, [currentRole]);
 
 	function initRole() {
-		Act.User.login("sdfg");
+		Act.User.login("asdasd", "sdfg");
 	}
 
 	return {};

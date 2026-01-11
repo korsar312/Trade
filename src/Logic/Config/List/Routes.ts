@@ -37,14 +37,14 @@ export const Path = {
 } satisfies RouterInterface.TPath;
 
 export const RoutesRole: RouterInterface.TRouterListRole = {
-	GOODS: ["USER", "ADM"],
-	ITEM: ["USER", "ADM"],
-	ORDER_LIST: ["USER", "ADM"],
-	ORDER: ["USER", "ADM"],
-	PROFILE: ["USER", "ADM"],
-	USER: ["USER", "ADM"],
-	INFO: ["USER", "ADM"],
-	ERROR: ["USER", "ADM"],
+	GOODS: ["USER", "ADMIN"],
+	ITEM: ["USER", "ADMIN"],
+	ORDER_LIST: ["USER", "ADMIN"],
+	ORDER: ["USER", "ADMIN"],
+	PROFILE: ["USER", "ADMIN"],
+	USER: ["USER", "ADMIN"],
+	INFO: ["USER", "ADMIN"],
+	ERROR: ["USER", "ADMIN"],
 };
 
 export const Routes: RouterInterface.TRouterMapList = [
