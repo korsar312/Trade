@@ -116,4 +116,110 @@ export namespace typesUtils {
 	export type OptionsUnion<Map extends Record<string, any>, Extra extends object = {}> = {
 		[K in keyof Map]: { type: K; options: Map[K] } & Extra;
 	}[keyof Map];
+
+	/**
+	 * TItemChange удаляет вложенный ключ K из объекта-поля T у типа A,
+	 * сохраняя остальные поля без изменений.
+	 *
+	 * Работает “структурно”:
+	 * - выбирается ключ T только среди тех полей A, которые являются object
+	 * - выбирается ключ K только среди ключей вложенного объекта A[T]
+	 * - в результате поле T становится объектом без ключа K
+	 *
+	 * На выходе получается структура вида:
+	 * Omit<A, T> & { [T]: Omit<A[T], K> }
+	 *
+	 * Параметры:
+	 * - A — исходный тип (в том числе может быть union)
+	 * - T — ключ поля в A, значение которого является object
+	 * - K — ключ вложенного объекта A[T], который нужно удалить
+	 *
+	 * Пример:
+	 * type A = {
+	 *   id: string;
+	 *   meta: { a: number; b: string; c: boolean };
+	 *   title: string;
+	 * };
+	 *
+	 * type R = TItemChange<A, "meta", "b">;
+	 * // Результат:
+	 * // {
+	 * // id: string;
+	 * // title: string;
+	 * // meta: { a: number; c: boolean };
+	 * // }
+	 *
+	 * Особенности:
+	 * - Если A — union, преобразование применяется к каждому варианту union.
+	 * - Если T/К не подходят ограничениям, тип не собирается (ошибка на уровне generic constraints).
+	 */
+	type ObjKeys<A> = { [P in keyof A]-?: A[P] extends object ? P : never }[keyof A];
+	type Nested<A, T extends PropertyKey> = A extends unknown
+		? T extends keyof A
+			? A[T] extends object
+				? keyof A[T]
+				: never
+			: never
+		: never;
+	type OmitKeys<T, K extends PropertyKey> = Omit<T, Extract<K, keyof T>>;
+	export type TItemChange<A, T extends ObjKeys<A>, K extends Nested<A, T>> = A extends unknown
+		? Omit<A, T> & { [P in T]-?: A[P] extends object ? OmitKeys<A[P], K> : A[P] }
+		: never;
+
+	/**
+	 * DeepPartial<T> делает все поля типа T опциональными
+	 * рекурсивно, на всей глубине вложенности.
+	 *
+	 * Работает каскадно:
+	 * - каждый ключ объекта становится optional (`?`)
+	 * - если значение поля — объект, правило применяется к нему рекурсивно
+	 * - массивы обрабатываются по элементам
+	 * - функции не модифицируются
+	 *
+	 * На выходе получается структура вида:
+	 * {
+	 *   [K in keyof T]?: DeepPartial<T[K]>
+	 * }
+	 *
+	 * Параметры:
+	 * - T — исходный тип (может быть union, массивом, объектом, примитивом)
+	 *
+	 * Пример:
+	 * type A = {
+	 *   id: string;
+	 *   meta: {
+	 *     a: number;
+	 *     b: {
+	 *       c: boolean;
+	 *     };
+	 *   };
+	 *   tags: string[];
+	 * };
+	 *
+	 * type R = DeepPartial<A>;
+	 * // Результат:
+	 * // {
+	 * //   id?: string;
+	 * //   meta?: {
+	 * //     a?: number;
+	 * //     b?: {
+	 * //       c?: boolean;
+	 * //     };
+	 * //   };
+	 * //   tags?: string[];
+	 * // }
+	 *
+	 * Особенности:
+	 * - Работает корректно с union-типами
+	 * - Не ломает функции
+	 * - Сохраняет структуру массивов
+	 * - Стандартный Partial<T> таким поведением не обладает
+	 */
+	export type DeepPartial<T> = T extends Function
+		? T
+		: T extends readonly (infer U)[]
+			? readonly DeepPartial<U>[]
+			: T extends object
+				? { [K in keyof T]?: DeepPartial<T[K]> }
+				: T;
 }

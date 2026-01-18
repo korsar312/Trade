@@ -12,11 +12,12 @@ const BasePage = {
 } as const;
 
 const ID = "/:id?" as const;
+const ID_TYPE = "/:type/:id" as const;
 
 export const RouteSpec = {
 	TRADE: {
 		GOODS: "",
-		ITEM: ID,
+		ITEM: ID_TYPE,
 	},
 	ORDER: {
 		ORDER_LIST: "",

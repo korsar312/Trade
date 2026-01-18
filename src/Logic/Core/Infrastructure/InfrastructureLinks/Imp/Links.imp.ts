@@ -1,45 +1,61 @@
 import type { LinksInterface as Interface } from "../Links.interface";
 import type { CatalogueInterface } from "../../../Services/ServiceCatalogue/Catalogue.interface.ts";
-import type { OrderInterface } from "../../../Services/ServiceOrder/Order.interface.ts";
 import type { UserInterface } from "../../../Services/ServiceUser/User.interface.ts";
 
 class LinksImp implements Interface.IAdapter {
-	private readonly links: Interface.TLinks;
-	private readonly address: string;
+	private authData: { login: string; token: string } | undefined;
 
-	private async request<T>({ link, method, param }: Interface.ERequestParam): Promise<T> {
-		const url = new URL(this.links[link].link, "http://" + this.address);
+	private async request<T>({ link, param }: Interface.ERequestParam): Promise<T> {
+		const curLink = this.links[link];
+		const method = curLink.http;
+		const url = new URL(curLink.link, "http://" + this.address);
 
-		url.search = new URLSearchParams(param).toString();
-		const res = await fetch(url.toString(), { method });
+		const headers: Record<string, string> = {
+			Accept: "application/json",
+			...this.authData,
+		};
 
+		const init: RequestInit = { method, headers };
+
+		switch (method) {
+			case "GET":
+				url.search = new URLSearchParams(param).toString();
+				break;
+			default:
+				headers["Content-Type"] = "application/json";
+				init.body = JSON.stringify(param);
+				break;
+		}
+
+		const res = await fetch(url.toString(), init);
 		return await res.json();
 	}
 
 	//==============================================================================================
 
-	constructor(links: Interface.TLinks, address: string) {
-		this.links = links;
-		this.address = address;
-	}
+	constructor(
+		private readonly links: Interface.TLinks,
+		private readonly address: string,
+	) {}
 
 	//==============================================================================================
 
-	public LOGIN(login: string, token: string) {
-		return this.request<UserInterface.TUser>({ link: "LOGIN", method: "GET", param: { login, token } });
-	}
-	public GET_ITEMS(itemId: string[]) {
-		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ITEMS", method: "GET", param: { itemId } });
-	}
-	public GET_ITEM_DETAIL(itemId: string[]) {
-		return this.request<CatalogueInterface.TItemMap>({ link: "GET_ITEM_DETAIL", method: "GET", param: { itemId } });
-	}
-	public GET_ORDERS() {
-		return this.request<OrderInterface.TOrderMap>({ link: "GET_ORDERS", method: "GET" });
-	}
-	public GET_ORDER_DETAIL(itemId: string[]) {
-		return this.request<OrderInterface.TOrderMap>({ link: "GET_ORDER_DETAIL", method: "GET", param: { itemId } });
-	}
+	public LOGIN = (login: string, token: string) => {
+		const param = { login, token };
+		const res = this.request<UserInterface.TUser>({ link: "LOGIN", param });
+
+		res.then(() => {
+			this.authData = param;
+		});
+
+		return res;
+	};
+	public GET_ITEMS = (param: CatalogueInterface.TReqCatalog) => {
+		return this.request<CatalogueInterface.TItemElPublic[]>({ link: "GET_ITEMS", param });
+	};
+	public GET_ITEM = (id: string, type: CatalogueInterface.ETypeItem) => {
+		return this.request<CatalogueInterface.TItemElPublic>({ link: "GET_ITEM", param: { id, type } });
+	};
 }
 
 export default LinksImp;

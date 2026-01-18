@@ -6,33 +6,13 @@ export const Links: LinksInterface.TLinks = {
 		http: "POST",
 		role: ["USER", "ADMIN"],
 	},
-	REGISTER: {
-		link: "/register",
-		http: "POST",
-		role: ["USER", "ADMIN"],
-	},
-	CREATE_LISTING: {
-		link: "/createListing",
-		http: "POST",
-		role: ["USER", "ADMIN"],
-	},
 	GET_ITEMS: {
 		link: "/getItems",
 		http: "POST",
 		role: ["USER", "ADMIN"],
 	},
-	GET_ITEM_DETAIL: {
-		link: "/getItemDetail",
-		http: "GET",
-		role: ["USER", "ADMIN"],
-	},
-	GET_ORDERS: {
-		link: "/getOrders",
-		http: "GET",
-		role: ["USER", "ADMIN"],
-	},
-	GET_ORDER_DETAIL: {
-		link: "/getOrderDetail",
+	GET_ITEM: {
+		link: "/getItem",
 		http: "GET",
 		role: ["USER", "ADMIN"],
 	},

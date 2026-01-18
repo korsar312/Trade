@@ -14,7 +14,7 @@ class ServiceBase<S extends object> {
 		this._store = store;
 
 		makeObservable<this, "_store">(this, {
-			_store: observable.ref,
+			_store: observable.deep,
 			store: computed,
 		});
 	}

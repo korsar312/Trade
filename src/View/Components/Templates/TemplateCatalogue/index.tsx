@@ -75,6 +75,10 @@ const Index: FC<IComponent> = (props) => {
 		return Act.Catalogue.getName(id);
 	}
 
+	function getType(id: string) {
+		return Act.Catalogue.getType(id);
+	}
+
 	function getPrice(id: string) {
 		return Act.Catalogue.getPrice(id);
 	}
@@ -104,7 +108,7 @@ const Index: FC<IComponent> = (props) => {
 	}
 
 	function goItemDetail(id: string) {
-		Act.Router.goTo("ITEM", { id });
+		Act.Router.goTo("ITEM", { id, type: getType(id) || "CARD" });
 	}
 
 	return <Substance {...propsComponent} />;

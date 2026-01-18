@@ -6,7 +6,12 @@ function Model(props: IComponent) {
 	const {} = props;
 
 	useEffect(() => {
-		Act.Catalogue.requestGoods();
+		Act.Catalogue.requestGoods({
+			limit: 10,
+			type: "CARD",
+			saleKind: "GOODS",
+			info: {},
+		});
 	}, []);
 
 	return {};

@@ -75,7 +75,6 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 
 	setInCurPage(path: string): void {
 		const pageName = getPage(path, this.store.path);
-		console.log(pageName);
 
 		this.store = this.setCurPath(this.store, pageName);
 	}

@@ -9,14 +9,12 @@ export interface IComponent {}
 const Index: FC<IComponent> = (props) => {
 	const {} = props;
 
-	const orderList = Act.Order.getOrderIdList();
+	const orderList = Act.Catalogue.getGoodsIdList();
 
 	const [isSell, setIsSell] = useState(true);
 	const [isComplete, setIsComplete] = useState(true);
 
-	useEffect(() => {
-		Act.Order.requestOrders();
-	}, [isSell, isComplete]);
+	useEffect(() => {}, [isSell, isComplete]);
 
 	const mySell: TMoleculeGroupBtn = {
 		id: "1",
@@ -60,8 +58,8 @@ const Index: FC<IComponent> = (props) => {
 		children: orderList.map((el) => ({
 			id: el,
 			options: {
-				name: Act.Order.getName(el),
-				image: Act.Order.getImage(el),
+				name: Act.Catalogue.getName(el),
+				image: Act.Catalogue.getImage(el),
 				btn: [],
 			},
 			type: "ITEM_CARD",

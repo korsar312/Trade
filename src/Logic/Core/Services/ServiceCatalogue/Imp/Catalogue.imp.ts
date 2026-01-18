@@ -2,16 +2,19 @@ import type { CatalogueInterface as Interface } from "../Catalogue.interface.ts"
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
 class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private SetGoods(store: Interface.Store, goods: Interface.TItemMap): Interface.Store {
-		return { ...store, goods };
+	private ArrToMap(goods: Interface.TItem[]): Interface.TItemMap {
+		return goods.reduce((prev, cur) => {
+			prev[cur.id] = cur;
+			return prev;
+		}, {} as Interface.TItemMap);
 	}
 
-	private UpdateGoods(goodsList: Interface.TItemMap, newGoods: Interface.TItemMap): Interface.TItemMap {
-		return { ...goodsList, ...newGoods };
+	private GetItem(itemList: Interface.TItemMap, itemId?: string): Interface.TItem | undefined {
+		return itemId == null ? undefined : itemList[itemId];
 	}
 
-	private GetItem(itemList: Interface.TItemMap, itemId: string): Interface.IItem | undefined {
-		return itemList[itemId];
+	private IsPickItem<T extends Interface.ETypeItem>(item?: Interface.TItem, type?: T): item is Interface.TPickItem<T> {
+		return item?.type === type;
 	}
 
 	private GetRating(like: number, dislike: number): Interface.TRating | null {
@@ -33,17 +36,16 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	//==============================================================================================
 
-	public async requestGoods() {
-		const res = await this.API.Links.GET_ITEMS([]);
+	public async requestGoods(param: Interface.TReqCatalog) {
+		const res = await this.API.Links.GET_ITEMS(param);
 
-		this.store = this.SetGoods(this.store, res);
+		this.store.goods = this.ArrToMap(res);
 	}
 
-	public async requestItemDetail(idList: string[]) {
-		const res = await this.API.Links.GET_ITEM_DETAIL(idList);
-		const newStore = this.UpdateGoods(this.store.goods, res);
+	public async requestItem(id: string, type: Interface.ETypeItem) {
+		const res = await this.API.Links.GET_ITEM(id, type);
 
-		this.store = this.SetGoods(this.store, newStore);
+		this.store.goods = this.ArrToMap([res]);
 	}
 
 	public getGoodsIdList() {
@@ -58,9 +60,13 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		const item = this.GetItem(this.store.goods, itemId);
 		return item?.price;
 	}
+	public getType(itemId: string) {
+		const item = this.GetItem(this.store.goods, itemId);
+		return item?.type;
+	}
 	public getDesc(itemId: string) {
 		const item = this.GetItem(this.store.goods, itemId);
-		return item?.detail?.desc;
+		return item?.desc;
 	}
 	public getSellerName(itemId: string) {
 		const item = this.GetItem(this.store.goods, itemId);
@@ -76,11 +82,17 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 	}
 	public getBank(itemId: string) {
 		const item = this.GetItem(this.store.goods, itemId);
-		return item?.info.bank;
+		if (this.IsPickItem(item, "CARD")) return item.info.bank;
+
+		return null;
 	}
-	public getImage(itemId: string) {
+	public getImage(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
-		return item?.info.bank || "";
+
+		if (this.IsPickItem(item, "CARD")) return item.info.bank;
+		if (this.IsPickItem(item, "GUARD")) return "item.info.bank";
+
+		return "";
 	}
 }
 
