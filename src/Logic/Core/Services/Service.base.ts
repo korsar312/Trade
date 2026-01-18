@@ -20,6 +20,8 @@ class ServiceBase<S extends object> {
 	}
 
 	set store(newStore: S) {
+		if (JSON.stringify(this._store) === JSON.stringify(newStore)) return;
+
 		runInAction(() => {
 			this._store = newStore;
 		});

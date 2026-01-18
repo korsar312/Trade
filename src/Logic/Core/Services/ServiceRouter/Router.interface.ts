@@ -1,5 +1,6 @@
 import { createBrowserRouter, type LoaderFunction, type NonIndexRouteObject, type RouteObject } from "react-router";
 import type { PublicInterface } from "../Public.interface.ts";
+import type { PageParam } from "../../../Config/List/Routes.ts";
 
 export namespace RouterInterface {
 	export interface IAdapter {
@@ -9,6 +10,7 @@ export namespace RouterInterface {
 		getRole(): PublicInterface.ERole;
 		setRole(role: PublicInterface.ERole): void;
 		getCurPage(): EPath;
+		getCurParam<T extends EPath>(): PageParam<T>;
 	}
 
 	export type TPath = Record<EPath, string>;
@@ -18,6 +20,7 @@ export namespace RouterInterface {
 	export type TRouterListRole = Record<EPath, PublicInterface.ERole[]>;
 	export type TRouter = ReturnType<typeof createBrowserRouter>;
 	export type TRouterFn = TRouter["navigate"];
+	export type TCurPage = { name: EPath; params: unknown };
 
 	export type EPath = keyof typeof Router;
 
@@ -26,7 +29,7 @@ export namespace RouterInterface {
 		routesRole: TRouterListRole;
 		role: PublicInterface.ERole;
 		path: TPath;
-		currentPathName: EPath;
+		currentPath: TCurPage;
 	}
 }
 

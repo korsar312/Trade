@@ -25,6 +25,13 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	PRODUCTS: "PRODUCTS",
+	PRODUCT: "PRODUCT",
+	PROFILE: "PROFILE",
+	USER: "USER",
+	ORDERS: "ORDERS",
+	ORDER: "ORDER",
+	INFO: "INFO",
 	BUY: "BUY",
 	BACK: "BACK",
 	RATING: "RATING",

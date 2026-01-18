@@ -1,21 +1,10 @@
 export namespace SettingInterface {
 	export interface IAdapter {
-		getLogo(): string | undefined;
-		getName(): string | undefined;
+		setInit(isDone: boolean): void;
+		getInit(): boolean;
 	}
 
 	export interface Store {
-		loginInfo?: TLoginInfo;
-		businessInfo?: TBusinessInfo;
+		init: boolean;
 	}
-
-	export type TLoginInfo = {
-		token: string;
-		id: string;
-	};
-
-	export type TBusinessInfo = {
-		logoPath: string;
-		name: string;
-	};
 }

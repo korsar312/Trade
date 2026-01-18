@@ -8,16 +8,16 @@ export namespace CatalogueInterface {
 
 		getGoodsIdList(): string[];
 
-		getName(itemId: string): string | undefined;
-		getDesc(itemId: string): string | undefined;
-		getType(itemId: string): ETypeItem | undefined;
-		getPrice(itemId: string): number | undefined;
-		getSellerName(itemId: string): string | undefined;
-		getSellerId(itemId: string): string | undefined;
-		getSellerRating(itemId: string): TRating | undefined | null;
+		getName(itemId?: string): string | undefined;
+		getDesc(itemId?: string): string | undefined;
+		getType(itemId?: string): ETypeItem | undefined;
+		getPrice(itemId?: string): number | undefined;
+		getSellerName(itemId?: string): string | undefined;
+		getSellerId(itemId?: string): string | undefined;
+		getSellerRating(itemId?: string): TRating | undefined | null;
 		getImage(itemId?: string): string;
 
-		getBank(itemId: string): EBank | undefined | null;
+		getBank(itemId?: string): EBank | undefined | null;
 	}
 
 	interface IReqCatalog {

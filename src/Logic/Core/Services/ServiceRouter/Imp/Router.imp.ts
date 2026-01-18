@@ -2,9 +2,10 @@ import type { RouterInterface as Interface } from "../Router.interface.ts";
 import type { PublicInterface } from "../../Public.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 import { createBrowserRouter, generatePath, type LoaderFunction, matchPath, redirect } from "react-router";
+import type { PageParam } from "../../../../Config/List/Routes.ts";
 
 class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private async go(
+	private Go(
 		navFn: Interface.TRouterFn,
 		path: Interface.TPath,
 		page: Interface.EPath,
@@ -12,19 +13,23 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		state?: Record<string, unknown>,
 		replace: boolean = false,
 	) {
-		await navFn(generatePath("/" + path[page], params), { replace, state });
+		navFn(generatePath("/" + path[page], params), { replace, state });
 	}
 
-	private setCurrentRole(store: Interface.Store, role: PublicInterface.ERole): Interface.Store {
+	private SetCurrentRole(store: Interface.Store, role: PublicInterface.ERole): Interface.Store {
 		return { ...store, role };
 	}
 
-	private setCurPath(store: Interface.Store, currentPathName: Interface.EPath): Interface.Store {
-		return { ...store, currentPathName };
+	private SetCurParam(store: Interface.Store, currentPathParam: unknown): Interface.Store {
+		return { ...store, currentPath: { ...store.currentPath, params: currentPathParam } };
 	}
 
-	private setInCurPage(path: Interface.EPath): void {
-		this.store = this.setCurPath(this.store, path);
+	private SetCurPath(store: Interface.Store, currentPathName: Interface.EPath): Interface.Store {
+		return { ...store, currentPath: { ...store.currentPath, name: currentPathName } };
+	}
+
+	private SetInCurPage(path: Interface.EPath): void {
+		this.store = this.SetCurPath(this.store, path);
 	}
 
 	//==============================================================================================
@@ -67,7 +72,7 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		const pageName = getPage(browserRouter.state.location.pathname, path);
 
 		const store: Interface.Store = {
-			currentPathName: pageName,
+			currentPath: { name: pageName, params: {} },
 			routes: browserRouter,
 			path,
 			routesRole,
@@ -77,33 +82,38 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		super(props, store);
 
 		getRoleFn = () => this.getRole();
-		setCurPage = (page: Interface.EPath) => this.setInCurPage(page);
+		setCurPage = (page: Interface.EPath) => this.SetInCurPage(page);
 	}
 
 	//==============================================================================================
 
-	goTo(page: Interface.EPath, param?: Record<string, string>): void {
-		this.go(this.store.routes.navigate, this.store.path, page, param);
+	public goTo(page: Interface.EPath, param?: Record<string, string>): void {
+		this.Go(this.store.routes.navigate, this.store.path, page, param);
+		this.store = this.SetCurParam(this.store, param);
 	}
 
-	goBack(): void {
+	public goBack(): void {
 		window.history.back();
 	}
 
-	getRouteObj(): Interface.TRouter {
+	public getRouteObj(): Interface.TRouter {
 		return this.store.routes;
 	}
 
-	getRole(): PublicInterface.ERole {
+	public getRole(): PublicInterface.ERole {
 		return this.store.role;
 	}
 
-	setRole(role: PublicInterface.ERole): void {
-		this.store = this.setCurrentRole(this.store, role);
+	public setRole(role: PublicInterface.ERole): void {
+		this.store = this.SetCurrentRole(this.store, role);
 	}
 
-	getCurPage(): Interface.EPath {
-		return this.store.currentPathName;
+	public getCurPage(): Interface.EPath {
+		return this.store.currentPath.name;
+	}
+
+	public getCurParam<T extends Interface.EPath>(): PageParam<T> {
+		return this.store.currentPath.params as PageParam<T>;
 	}
 }
 

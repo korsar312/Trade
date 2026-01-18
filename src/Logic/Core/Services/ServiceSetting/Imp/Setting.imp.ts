@@ -2,36 +2,26 @@ import type { SettingInterface as Interface } from "../Setting.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
 class SettingImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private getBusinessInfo(store?: Interface.Store): Interface.TBusinessInfo | undefined {
-		return store?.businessInfo;
-	}
-
-	private getBusinessLogo(Business?: Interface.TBusinessInfo): string | undefined {
-		return Business?.logoPath;
-	}
-
-	private getBusinessName(Business?: Interface.TBusinessInfo): string | undefined {
-		return Business?.name;
+	private SetInit(store: Interface.Store, init: boolean): Interface.Store {
+		return { ...store, init };
 	}
 
 	//==============================================================================================
 
 	constructor(props: IServiceProps) {
-		const store: Interface.Store = {};
+		const store: Interface.Store = { init: false };
 
 		super(props, store);
 	}
 
 	//==============================================================================================
 
-	public getLogo() {
-		const info = this.getBusinessInfo(this.store);
-		return this.getBusinessLogo(info);
+	public setInit(isDone: boolean) {
+		this.store = this.SetInit(this.store, isDone);
 	}
 
-	public getName() {
-		const info = this.getBusinessInfo(this.store);
-		return this.getBusinessName(info);
+	public getInit() {
+		return this.store.init;
 	}
 }
 

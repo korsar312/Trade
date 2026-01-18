@@ -58,35 +58,35 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		return Object.keys(this.store.goods);
 	}
 
-	public getName(itemId: string) {
+	public getName(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
 		return item?.name;
 	}
-	public getPrice(itemId: string) {
+	public getPrice(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
 		return item?.price;
 	}
-	public getType(itemId: string) {
+	public getType(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
 		return item?.type;
 	}
-	public getDesc(itemId: string) {
+	public getDesc(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
 		return item?.desc;
 	}
-	public getSellerName(itemId: string) {
+	public getSellerName(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
 		return item?.sellerName;
 	}
-	public getSellerId(itemId: string) {
+	public getSellerId(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
 		return item?.sellerId;
 	}
-	public getSellerRating(itemId: string) {
+	public getSellerRating(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
 		return item && this.GetRating(item.sellerLike, item.sellerDislike);
 	}
-	public getBank(itemId: string) {
+	public getBank(itemId?: string) {
 		const item = this.GetItem(this.store.goods, itemId);
 		if (this.IsPickItem(item, "CARD")) return item.info.bank;
 

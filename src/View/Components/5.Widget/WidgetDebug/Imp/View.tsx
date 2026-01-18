@@ -11,7 +11,6 @@ import AtomToggleCheck from "../../../1.Atoms/AtomToggle/Variables/AtomToggleChe
 import AtomToggleSwitch from "../../../1.Atoms/AtomToggle/Variables/AtomToggleSwitch";
 import AtomInput from "../../../1.Atoms/AtomInput";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
-import { Act } from "../../../../../Logic/Core";
 import util from "../../../../../Logic/Libs/Util";
 import TemplateHead from "../../../Templates/TemplateHead";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
@@ -19,7 +18,6 @@ import AtomPaper from "../../../1.Atoms/AtomPaper";
 const View: NFC<typeof Model> = (props) => {
 	const { isShow, onClose, btnSwitch, comp } = props;
 
-	const imagePath = Act.Setting.getLogo();
 	const price = util.toMoney(42124.67);
 
 	const content: Record<TWidgetDebugState, ReactNode> = {
@@ -61,7 +59,7 @@ const View: NFC<typeof Model> = (props) => {
 			<>
 				{row(
 					"MoleculeItemCard",
-					<SubstanceItemCard image={imagePath} name={"Cheese Burst Pizza"} btn={[{ text: price, color: "BLUE_2" }]} />,
+					<SubstanceItemCard image={"imagePath"} name={"Cheese Burst Pizza"} btn={[{ text: price, color: "BLUE_2" }]} />,
 				)}
 				{row("SubstanceHeadNav", <TemplateHead />)}
 			</>
