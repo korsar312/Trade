@@ -6,11 +6,11 @@ import TemplateHead from "../../../Components/Templates/TemplateHead";
 import TemplateFoot from "../../../Components/Templates/TemplateFoot";
 
 const View: NFC<typeof Model> = (props) => {
-	const { router } = props;
+	const { router, isInit } = props;
 
-	return (
-		<div css={Style.wrapper}>
-			<div css={Style.content}>
+	function content() {
+		return (
+			<>
 				<TemplateHead />
 
 				<div css={Style.page}>
@@ -18,7 +18,13 @@ const View: NFC<typeof Model> = (props) => {
 				</div>
 
 				<TemplateFoot />
-			</div>
+			</>
+		);
+	}
+
+	return (
+		<div css={Style.wrapper}>
+			<div css={Style.content}>{isInit && content()}</div>
 		</div>
 	);
 };

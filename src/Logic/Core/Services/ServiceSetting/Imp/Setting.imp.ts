@@ -16,11 +16,11 @@ class SettingImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 
 	//==============================================================================================
 
-	public setInit(isDone: boolean) {
-		this.store = this.SetInit(this.store, isDone);
+	public initDone() {
+		this.store = this.SetInit(this.store, true);
 	}
 
-	public getInit() {
+	public isInit() {
 		return this.store.init;
 	}
 }

@@ -1,7 +1,7 @@
 export namespace SettingInterface {
 	export interface IAdapter {
-		setInit(isDone: boolean): void;
-		getInit(): boolean;
+		initDone(): void;
+		isInit(): boolean;
 	}
 
 	export interface Store {

@@ -5,6 +5,8 @@ import { Act } from "../../../../Logic/Core";
 function Model(props: IComponent) {
 	const {} = props;
 
+	const isInit = Act.Setting.isInit();
+
 	const router = Act.Router.getRouteObj();
 	const name = Act.Router.getCurPage();
 
@@ -15,8 +17,8 @@ function Model(props: IComponent) {
 			case "GOODS":
 				return "PRODUCTS";
 			case "ITEM":
-				const { id } = Act.Router.getCurParam<"ITEM">();
-				const name = Act.Catalogue.getName(id);
+				const param = Act.Router.getCurParam<"ITEM">();
+				const name = Act.Catalogue.getName(param?.id);
 
 				return name || "PRODUCT";
 			case "PROFILE":
@@ -34,7 +36,7 @@ function Model(props: IComponent) {
 		}
 	}
 
-	return { router };
+	return { router, isInit };
 }
 
 export default Model;

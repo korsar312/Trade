@@ -10,7 +10,7 @@ export namespace RouterInterface {
 		getRole(): PublicInterface.ERole;
 		setRole(role: PublicInterface.ERole): void;
 		getCurPage(): EPath;
-		getCurParam<T extends EPath>(): PageParam<T>;
+		getCurParam<T extends EPath>(): Partial<PageParam<T>>;
 	}
 
 	export type TPath = Record<EPath, string>;
@@ -23,6 +23,11 @@ export namespace RouterInterface {
 	export type TCurPage = { name: EPath; params: unknown };
 
 	export type EPath = keyof typeof Router;
+
+	export type TParamSink = {
+		set: (name: EPath, params: unknown) => void;
+		pending?: { name: EPath; params: unknown };
+	};
 
 	export interface Store {
 		routes: TRouter;
