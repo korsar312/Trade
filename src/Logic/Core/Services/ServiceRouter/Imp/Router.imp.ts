@@ -1,7 +1,7 @@
 import type { RouterInterface as Interface } from "../Router.interface.ts";
 import type { PublicInterface } from "../../Public.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
-import { createBrowserRouter, generatePath, matchPath } from "react-router";
+import { createBrowserRouter, generatePath, type LoaderFunction, matchPath, redirect } from "react-router";
 
 class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
 	private async go(
@@ -23,32 +23,51 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return { ...store, currentPathName };
 	}
 
+	private setInCurPage(path: Interface.EPath): void {
+		this.store = this.setCurPath(this.store, path);
+	}
+
 	//==============================================================================================
 
 	constructor(
 		props: IServiceProps,
-		oldRoutes: Interface.TRouterMapList,
+		routesSpec: Interface.TRouterMapList,
 		routesRole: Interface.TRouterListRole,
 		oldPath: Interface.TPath,
 		role: PublicInterface.ERole,
 		basePath: string,
 	) {
+		let getRoleFn: () => PublicInterface.ERole = () => role;
+		let setCurPage: (page: Interface.EPath) => void = () => undefined;
+
 		const path = Object.entries(oldPath).reduce(
 			(prev, [key, value]) => ({ ...prev, [key]: `${basePath}${value}` }),
 			{} as Interface.TPath,
 		);
 
-		const routes: Interface.TRouterList = oldRoutes.map((el) => ({ ...el, path: path[el.path] }));
+		const guardedRoutes: Interface.TRouterList = routesSpec.map((el) => {
+			const page = el.path;
 
-		const browserRouter = createBrowserRouter(routes);
+			const guardedLoader = makeRoleGuardLoader({
+				allow: routesRole[page],
+				getRole: () => getRoleFn(),
+				redirectTo: (pageTo) => path[pageTo],
+				goLinkHandler: () => setCurPage(page),
+				inner: el.loader,
+			});
+
+			return {
+				...el,
+				path: path[page],
+				loader: guardedLoader,
+			};
+		});
+
+		const browserRouter = createBrowserRouter(guardedRoutes);
 		const pageName = getPage(browserRouter.state.location.pathname, path);
-		const isAccess = isAccessRoute(role, pageName, routesRole);
-
-		if (!isAccess) {
-		}
 
 		const store: Interface.Store = {
-			currentPathName: getPage(browserRouter.state.location.pathname, path),
+			currentPathName: pageName,
 			routes: browserRouter,
 			path,
 			routesRole,
@@ -57,10 +76,8 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 
 		super(props, store);
 
-		browserRouter.subscribe((page) => {
-			this.setInCurPage(page.location.pathname);
-			this.redirect();
-		});
+		getRoleFn = () => this.getRole();
+		setCurPage = (page: Interface.EPath) => this.setInCurPage(page);
 	}
 
 	//==============================================================================================
@@ -71,12 +88,6 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 
 	goBack(): void {
 		window.history.back();
-	}
-
-	setInCurPage(path: string): void {
-		const pageName = getPage(path, this.store.path);
-
-		this.store = this.setCurPath(this.store, pageName);
 	}
 
 	getRouteObj(): Interface.TRouter {
@@ -91,17 +102,8 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		this.store = this.setCurrentRole(this.store, role);
 	}
 
-	isAccessPage(page: Interface.EPath): boolean {
-		return isAccessRoute(this.getRole(), page, this.store.routesRole);
-	}
-
 	getCurPage(): Interface.EPath {
 		return this.store.currentPathName;
-	}
-
-	redirect(): void {
-		const isAccessPage = isAccessRoute(this.getRole(), this.store.currentPathName, this.store.routesRole);
-		if (!isAccessPage) this.goTo(redirectRole(this.store.role));
 	}
 }
 
@@ -129,9 +131,22 @@ function redirectRole(role: PublicInterface.ERole): Interface.EPath {
 	}
 }
 
-function isAccessRoute(currentRole: PublicInterface.ERole, page: Interface.EPath, routeRole: Interface.TRouterListRole): boolean {
-	if (page === "ERROR") return false;
-	if (!routeRole[page]) return true;
+function makeRoleGuardLoader(params: {
+	allow: readonly PublicInterface.ERole[] | undefined;
+	getRole: () => PublicInterface.ERole;
+	redirectTo: (page: Interface.EPath) => string;
+	goLinkHandler: () => void;
+	inner?: LoaderFunction;
+}): LoaderFunction {
+	const { allow, getRole, redirectTo, inner, goLinkHandler } = params;
 
-	return routeRole[page].includes(currentRole);
+	return async (args) => {
+		if (allow && allow.length > 0) {
+			const role = getRole();
+			if (!allow.includes(role)) throw redirect(redirectTo(redirectRole(role)));
+		}
+
+		goLinkHandler();
+		return inner ? inner(args) : null;
+	};
 }

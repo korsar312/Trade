@@ -1,4 +1,4 @@
-import { createBrowserRouter, type RouteObject } from "react-router";
+import { createBrowserRouter, type LoaderFunction, type NonIndexRouteObject, type RouteObject } from "react-router";
 import type { PublicInterface } from "../Public.interface.ts";
 
 export namespace RouterInterface {
@@ -8,10 +8,18 @@ export namespace RouterInterface {
 		getRouteObj(): TRouter;
 		getRole(): PublicInterface.ERole;
 		setRole(role: PublicInterface.ERole): void;
-		isAccessPage(page: EPath): boolean;
 		getCurPage(): EPath;
-		redirect(): void;
 	}
+
+	export type TPath = Record<EPath, string>;
+	export type TRouterMap = Omit<NonIndexRouteObject, "path" | "loader"> & { path: EPath; loader?: LoaderFunction };
+	export type TRouterMapList = TRouterMap[];
+	export type TRouterList = RouteObject[];
+	export type TRouterListRole = Record<EPath, PublicInterface.ERole[]>;
+	export type TRouter = ReturnType<typeof createBrowserRouter>;
+	export type TRouterFn = TRouter["navigate"];
+
+	export type EPath = keyof typeof Router;
 
 	export interface Store {
 		routes: TRouter;
@@ -20,15 +28,6 @@ export namespace RouterInterface {
 		path: TPath;
 		currentPathName: EPath;
 	}
-
-	export type EPath = keyof typeof Router;
-	export type TPath = Record<EPath, string>;
-	export type TRouterMap = Pick<RouteObject, "Component" | "loader"> & { path: EPath };
-	export type TRouterMapList = TRouterMap[];
-	export type TRouterList = RouteObject[];
-	export type TRouterListRole = Record<EPath, PublicInterface.ERole[]>;
-	export type TRouter = ReturnType<typeof createBrowserRouter>;
-	export type TRouterFn = TRouter["navigate"];
 }
 
 const Router = {

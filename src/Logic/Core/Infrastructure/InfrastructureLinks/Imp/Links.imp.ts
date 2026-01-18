@@ -28,6 +28,8 @@ class LinksImp implements Interface.IAdapter {
 		}
 
 		const res = await fetch(url.toString(), init);
+		if (!res.ok) throw new Error(res.status + res.statusText);
+
 		return await res.json();
 	}
 

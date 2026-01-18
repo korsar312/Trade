@@ -2,6 +2,10 @@ import type { CatalogueInterface as Interface } from "../Catalogue.interface.ts"
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
 class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
+	private SetGoods(store: Interface.Store, goods: Interface.TItemMap): Interface.Store {
+		return { ...store, goods };
+	}
+
 	private ArrToMap(goods: Interface.TItem[]): Interface.TItemMap {
 		return goods.reduce((prev, cur) => {
 			prev[cur.id] = cur;
@@ -38,14 +42,16 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 
 	public async requestGoods(param: Interface.TReqCatalog) {
 		const res = await this.API.Links.GET_ITEMS(param);
+		const normGoods = this.ArrToMap(res);
 
-		this.store.goods = this.ArrToMap(res);
+		this.store = this.SetGoods(this.store, normGoods);
 	}
 
 	public async requestItem(id: string, type: Interface.ETypeItem) {
 		const res = await this.API.Links.GET_ITEM(id, type);
+		const normGoods = this.ArrToMap([res]);
 
-		this.store.goods = this.ArrToMap([res]);
+		this.store = this.SetGoods(this.store, normGoods);
 	}
 
 	public getGoodsIdList() {
