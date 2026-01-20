@@ -41,7 +41,7 @@ const Index: FC<IComponent> = (props) => {
 
 	const btnField: TMoleculeFormSchemaRow = {
 		value: {
-			type: "btn",
+			type: "btnIcon",
 			options: {
 				icon: btnImg,
 			},

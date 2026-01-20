@@ -1,6 +1,7 @@
 import Model from "./Imp/Model.ts";
 import View from "./Imp/View.tsx";
-import type { IComponent as IButton } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
+import type { IComponent as IButtonIcon } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
+import type { IComponent as IButton } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import type { IComponent as IInput } from "../../1.Atoms/AtomInput/";
 import type { IComponent as IText } from "../../0.Cores/Text";
 import type { IComponent as IForm } from "../../0.Cores/Form";
@@ -21,7 +22,7 @@ export type TMoleculeFormSchemaRow = {
 export type TMoleculeFormSchemaField = {
 	label?: string;
 	required?: boolean;
-} & (TInputField | TTextField | TBtnField);
+} & (TInputField | TTextField | TBtnField | TBtn);
 
 type TTextField = {
 	type: "text";
@@ -34,6 +35,11 @@ type TInputField = {
 };
 
 type TBtnField = {
+	type: "btnIcon";
+	options: IButtonIcon;
+};
+
+type TBtn = {
 	type: "btn";
 	options: IButton;
 };

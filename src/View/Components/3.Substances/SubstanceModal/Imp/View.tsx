@@ -6,6 +6,7 @@ import MoleculeFormSchemaLogin from "../../../2.Molecules/MoleculeFormSchema/Var
 import type { ReactElement } from "react";
 import type { TSubstanceModalCompType } from "../index.tsx";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
+import MoleculeFormSchemaSimpleChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSimpleChoice";
 
 const View: NFC<typeof Model> = (props) => {
 	const { isShow, form, color } = props;
@@ -14,6 +15,8 @@ const View: NFC<typeof Model> = (props) => {
 		switch (type) {
 			case "LOGIN":
 				return <MoleculeFormSchemaLogin {...options} />;
+			case "CHOICE":
+				return <MoleculeFormSchemaSimpleChoice {...options} />;
 		}
 	}
 

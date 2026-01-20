@@ -81,10 +81,10 @@ export namespace CatalogueInterface {
 
 	/** ================= ENUMS ======================= */
 
-	export type ETypeItem = keyof typeof TypeItem;
-	export type EBank = keyof typeof Bank;
-	export type EStatus = keyof typeof Status;
-	export type ESaleKind = keyof typeof SaleKind;
+	export type ETypeItem = keyof typeof CatalogueTypeItem;
+	export type EBank = keyof typeof CatalogueBank;
+	export type EStatus = keyof typeof CatalogueStatus;
+	export type ESaleKind = keyof typeof CatalogueSaleKind;
 
 	/** ================= STORE ======================= */
 
@@ -93,18 +93,18 @@ export namespace CatalogueInterface {
 	}
 }
 
-const Bank = {
+export const CatalogueBank = {
 	ALFA: "ALFA",
 	SBER: "SBER",
 	TINK: "TINK",
 } as const;
 
-const TypeItem = {
+const CatalogueTypeItem = {
 	CARD: "CARD",
 	GUARD: "GUARD",
 } as const;
 
-const Status = {
+const CatalogueStatus = {
 	DRAFT: "DRAFT",
 	ACTIVE: "ACTIVE",
 	RESERVED: "RESERVED",
@@ -112,7 +112,7 @@ const Status = {
 	ARCHIVED: "ARCHIVED",
 } as const;
 
-const SaleKind = {
+const CatalogueSaleKind = {
 	GOODS: "GOODS",
 	SERVICE: "SERVICE",
 } as const;
