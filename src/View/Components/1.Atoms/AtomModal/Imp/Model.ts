@@ -2,7 +2,7 @@ import type { IComponent } from "../index";
 import { useEffect, useRef } from "react";
 
 function Model(props: IComponent) {
-	const { children, isShow } = props;
+	const { children, isShow, extStyle } = props;
 
 	const refDialog = useRef<HTMLDialogElement>(null);
 
@@ -24,7 +24,7 @@ function Model(props: IComponent) {
 		dialog.showModal();
 	}
 
-	return { children, refDialog };
+	return { children, refDialog, extStyle };
 }
 
 export default Model;

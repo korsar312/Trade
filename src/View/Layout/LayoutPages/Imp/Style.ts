@@ -2,7 +2,7 @@ import Styles from "../../../../Styles/Styles.ts";
 import { css, type CSSObject } from "@emotion/react";
 
 class Style extends Styles {
-	private width = 500;
+	private width = this.variables.pageWidth;
 
 	public wrapper: CSSObject = css`
 		${this.mixins.fixed};

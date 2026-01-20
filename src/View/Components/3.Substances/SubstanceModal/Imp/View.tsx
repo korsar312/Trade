@@ -5,9 +5,10 @@ import AtomModal from "../../../1.Atoms/AtomModal";
 import MoleculeFormSchemaLogin from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaLogin";
 import type { ReactElement } from "react";
 import type { TSubstanceModalCompType } from "../index.tsx";
+import AtomPaper from "../../../1.Atoms/AtomPaper";
 
 const View: NFC<typeof Model> = (props) => {
-	const { isShow, form } = props;
+	const { isShow, form, color } = props;
 
 	function render({ type, options }: TSubstanceModalCompType): ReactElement {
 		switch (type) {
@@ -17,8 +18,10 @@ const View: NFC<typeof Model> = (props) => {
 	}
 
 	return (
-		<AtomModal css={Style.wrapper} isShow={isShow}>
-			{render(form)}
+		<AtomModal extStyle={Style.wrapper} isShow={isShow}>
+			<AtomPaper color={color} extStyle={Style.content}>
+				{render(form)}
+			</AtomPaper>
 		</AtomModal>
 	);
 };

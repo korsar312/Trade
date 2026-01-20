@@ -10,7 +10,6 @@ import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyl
 export interface IComponent {
 	form: Pick<IForm, "onSubmit">;
 	schema: TMoleculeFormSchemaRow;
-	extStyle?: TDeepCSSObject;
 	color?: StyleInterface.TColorChoice;
 }
 

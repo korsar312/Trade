@@ -1,16 +1,26 @@
 import type Model from "./Model.ts";
-import Style from "./Style.ts";
 import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
-import WidgetDebug from "../../../Components/5.Widget/WidgetDebug";
+import SubstanceModal from "../../../Components/3.Substances/SubstanceModal";
 
 const View: NFC<typeof Model> = (props) => {
-	const { isShowDebug, toggleDebug } = props;
+	const {} = props;
 
 	return (
 		<>
-			<WidgetDebug isShow={isShowDebug} onClose={toggleDebug} />
-
-			<div css={Style.debugBtn}></div>
+			<SubstanceModal
+				isShow={true}
+				color={"MAIN_3"}
+				form={{
+					type: "LOGIN",
+					options: {
+						title: "ERROR",
+						labelLog: "ERROR",
+						labelPas: "ERROR",
+						btnImg: "ERROR",
+						submit: () => "",
+					},
+				}}
+			/>
 		</>
 	);
 };

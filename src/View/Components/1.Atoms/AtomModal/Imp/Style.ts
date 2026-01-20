@@ -18,11 +18,22 @@ class Style extends Styles {
 	`;
 
 	public wrapper = css`
+		${this.mixins.fixed};
+		position: fixed;
+		width: 100%;
+		height: 100%;
+
+		max-width: none;
+		max-height: none;
+
+		padding: 0;
+		margin: 0;
+		outline: none;
+
 		overflow: visible;
 		background: none;
 		border: none;
-		outline: none;
-		padding: 0;
+
 		transition:
 			display 1s,
 			overlay 1s;

@@ -1,9 +1,9 @@
 import type { IComponent } from "../";
 
 function Model(props: IComponent) {
-	const { schema, extStyle, color, form } = props;
+	const { schema, form } = props;
 
-	return { schema, extStyle, color, form };
+	return { schema, form };
 }
 
 export default Model;

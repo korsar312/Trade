@@ -8,10 +8,9 @@ import Text from "../../../0.Cores/Text";
 import type { TDeepCSSObject } from "../../../../ViewUtils.tsx";
 import AtomButtonMajor from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import AtomInput from "../../../1.Atoms/AtomInput";
-import AtomPaper from "../../../1.Atoms/AtomPaper";
 
 const View: NFC<typeof Model> = (props) => {
-	const { schema, extStyle, color, form } = props;
+	const { schema, form } = props;
 
 	function typeChoice(field: TMoleculeFormSchemaRow, id: number): ReactElement {
 		const { value: element, extStyle } = field;
@@ -40,10 +39,8 @@ const View: NFC<typeof Model> = (props) => {
 	}
 
 	return (
-		<Form {...form}>
-			<AtomPaper extStyle={[Style.form, extStyle]} color={color}>
-				{typeChoice(schema, 1)}
-			</AtomPaper>
+		<Form css={Style.form} {...form}>
+			{typeChoice(schema, 1)}
 		</Form>
 	);
 };

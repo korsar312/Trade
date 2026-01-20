@@ -84,7 +84,6 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 	//==============================================================================================
 
 	public goTo(page: Interface.EPath, param?: Record<string, string>): void {
-		console.log(this.store.role);
 		this.Go(this.store.routes.navigate, this.store.path, page, param);
 	}
 
@@ -143,7 +142,6 @@ function makeRoleGuardLoader(params: {
 		if (allow && allow.length > 0) {
 			const role = getRole();
 
-			console.log(role, 4444);
 			if (!allow.includes(role)) throw redirect(redirectTo(redirectRole(role)));
 		}
 

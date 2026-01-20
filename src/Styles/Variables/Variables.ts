@@ -16,6 +16,7 @@ class VariablesVars {
 	public radiusStandard = 20;
 	public padStandard = 12;
 	public scrollSize = 4;
+	public pageWidth = 500;
 }
 
 const Variables = new VariablesVars();
