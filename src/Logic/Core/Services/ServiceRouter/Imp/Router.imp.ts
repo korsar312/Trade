@@ -40,13 +40,14 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		);
 
 		const sink = createParamSink();
+		const roleSink = createRoleSink();
 
 		const guardedRoutes: Interface.TRouterList = routesSpec.map((el) => {
 			const page = el.path;
 
 			const guardedLoader = makeRoleGuardLoader({
 				allow: routesRole[page],
-				getRole: () => role,
+				getRole: () => roleSink.get(),
 				redirectTo: (pageTo) => path[pageTo],
 				goLinkHandler: (params) => {
 					sink.pending = { name: page, params };
@@ -76,12 +77,14 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		super(props, store);
 
 		sink.set = (name, params) => this.SetCurRoute(name, params);
+		roleSink.get = () => this.getRole();
 		if (sink.pending) this.SetCurRoute(sink.pending.name, sink.pending.params);
 	}
 
 	//==============================================================================================
 
 	public goTo(page: Interface.EPath, param?: Record<string, string>): void {
+		console.log(this.store.role);
 		this.Go(this.store.routes.navigate, this.store.path, page, param);
 	}
 
@@ -116,6 +119,10 @@ function createParamSink(): Interface.TParamSink {
 	return { set: (_name: Interface.EPath, _params: unknown) => {}, pending: undefined };
 }
 
+function createRoleSink(): { get: () => PublicInterface.ERole } {
+	return { get: () => "GUEST" as PublicInterface.ERole };
+}
+
 function redirectRole(role: PublicInterface.ERole): Interface.EPath {
 	switch (role) {
 		default:
@@ -135,6 +142,8 @@ function makeRoleGuardLoader(params: {
 	return async (args) => {
 		if (allow && allow.length > 0) {
 			const role = getRole();
+
+			console.log(role, 4444);
 			if (!allow.includes(role)) throw redirect(redirectTo(redirectRole(role)));
 		}
 
