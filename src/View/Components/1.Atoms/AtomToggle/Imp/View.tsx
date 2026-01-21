@@ -11,7 +11,7 @@ const View: NFC<typeof Model> = (props) => {
 			name={name}
 			disabled={disabled}
 			onClick={onClick}
-			checked={checked || false}
+			checked={checked}
 			type="checkbox"
 			css={[Style.wrapper, extStyles]}
 		/>

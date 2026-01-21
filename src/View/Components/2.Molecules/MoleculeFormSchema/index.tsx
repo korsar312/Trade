@@ -5,6 +5,7 @@ import type { IComponent as IButton } from "../../1.Atoms/AtomButton/Variables/A
 import type { IComponent as IInput } from "../../1.Atoms/AtomInput/";
 import type { IComponent as IText } from "../../0.Cores/Text";
 import type { IComponent as IForm } from "../../0.Cores/Form";
+import type { IComponent as ISwitch } from "../../1.Atoms/AtomToggle/Variables/AtomToggleSwitch";
 import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
@@ -22,7 +23,7 @@ export type TMoleculeFormSchemaRow = {
 export type TMoleculeFormSchemaField = {
 	label?: string;
 	required?: boolean;
-} & (TInputField | TTextField | TBtnField | TBtn);
+} & (TInputField | TTextField | TBtnField | TBtn | TSwitch);
 
 type TTextField = {
 	type: "text";
@@ -42,6 +43,11 @@ type TBtnField = {
 type TBtn = {
 	type: "btn";
 	options: IButton;
+};
+
+type TSwitch = {
+	type: "switch";
+	options: ISwitch;
 };
 
 const Index = (props: IComponent) => {

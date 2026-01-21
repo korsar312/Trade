@@ -1,13 +1,13 @@
 import type Model from "./Model.ts";
 import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
-import TemplateModalFormChoiceBank from "../../../Components/Templates/TemplateModalFormChoiceBank";
+import TemplateModalFormChoiceParam from "../../../Components/Templates/TemplateModalFormChoiceParam";
 
 const View: NFC<typeof Model> = (props) => {
 	const {} = props;
 
 	return (
 		<>
-			<TemplateModalFormChoiceBank submitFn={console.log} />
+			<TemplateModalFormChoiceParam type={"bank"} submitFn={console.log} />
 		</>
 	);
 };

@@ -25,6 +25,8 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	BANK_SELECTOR: "BANK_SELECTOR",
+	APPLY: "APPLY",
 	PRODUCTS: "PRODUCTS",
 	PRODUCT: "PRODUCT",
 	PROFILE: "PROFILE",

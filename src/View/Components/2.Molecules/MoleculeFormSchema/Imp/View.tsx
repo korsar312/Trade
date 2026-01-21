@@ -9,6 +9,7 @@ import type { TDeepCSSObject } from "../../../../ViewUtils.tsx";
 import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import AtomInput from "../../../1.Atoms/AtomInput";
+import AtomToggleSwitch from "../../../1.Atoms/AtomToggle/Variables/AtomToggleSwitch";
 
 const View: NFC<typeof Model> = (props) => {
 	const { schema, form } = props;
@@ -30,6 +31,8 @@ const View: NFC<typeof Model> = (props) => {
 				return <AtomButtonIcon {...field.options} />;
 			case "btn":
 				return <AtomButtonMain {...field.options} />;
+			case "switch":
+				return <AtomToggleSwitch {...field.options} />;
 		}
 	}
 

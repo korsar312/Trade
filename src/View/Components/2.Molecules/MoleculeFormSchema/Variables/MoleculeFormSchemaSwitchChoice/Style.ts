@@ -13,6 +13,11 @@ class Style extends Styles {
 		display: flex;
 		flex-direction: column;
 	`;
+
+	public switch = css`
+		${this.mixins.flexVerCenter};
+		gap: 12px;
+	`;
 }
 
 export default new Style();
