@@ -9,9 +9,11 @@ import type { ServiceOrder } from "../Services/ServiceOrder";
 import { ServiceCatalogue } from "../Services/ServiceCatalogue";
 import type { ServiceUser } from "../Services/ServiceUser";
 import type { ServiceApp } from "../Services/ServiceApp";
+import type { InfrastructureStorage } from "../Infrastructure/InfrastructureStorage";
 
 export namespace ProjectInterface {
 	export type TModuleInf = {
+		Storage: InfrastructureStorage;
 		Links: InfrastructureLinks;
 	};
 

@@ -1,6 +1,9 @@
 import type { MessageInterface } from "../../Core/Services/ServiceMessage/Message.interface.ts";
+import type { CatalogueInterface } from "../../Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 
-const Dictionary: MessageInterface.TDictionary = {
+type TOther = CatalogueInterface.EBank;
+
+const Dictionary: MessageInterface.TDictionary<TOther> = {
 	BANK_SELECTOR: { RU: "Выбор банка" },
 	APPLY: { RU: "Применить" },
 	PRODUCTS: { RU: "Товары" },
@@ -40,6 +43,6 @@ const Dictionary: MessageInterface.TDictionary = {
 	QR_TO_SMALL: { RU: "QR слишком мал" },
 	CLOSE: { RU: "Закрыть" },
 	SEARCHING: { RU: "Поиск..." },
-};
+} as const;
 
 export default Dictionary;

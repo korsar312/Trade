@@ -7,11 +7,6 @@ class Style extends Styles {
 		gap: 12px;
 		width: 100%;
 	`;
-
-	public card: CSSObject = css`
-		${this.mixins.flexCol};
-		gap: 12px;
-	`;
 }
 
 export default new Style();

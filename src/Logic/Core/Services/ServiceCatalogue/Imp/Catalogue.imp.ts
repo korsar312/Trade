@@ -41,6 +41,9 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 	//==============================================================================================
 
 	public async requestGoods(param: Interface.TReqCatalog) {
+		const normClear = this.ArrToMap([]);
+		this.store = this.SetGoods(this.store, normClear);
+
 		const res = await this.API.Links.GET_ITEMS(param);
 		const normGoods = this.ArrToMap(res);
 

@@ -30,7 +30,7 @@ export namespace CatalogueInterface {
 		priceDown?: number;
 		findStr?: string;
 	}
-	export type TReqCatalog = IReqCatalog & typesUtils.DeepPartial<TItemPublic> & Pick<TItemPublic, "type">;
+	export type TReqCatalog = IReqCatalog & typesUtils.DeepPartial<TItemFilter> & Pick<TItemFilter, "type">;
 
 	interface ICatalogEl {
 		id: string;
@@ -60,12 +60,14 @@ export namespace CatalogueInterface {
 		name: string;
 	}
 	type ICardInfoPublic = Omit<ICardInfoAll, "name">;
+	type ICardInfoFilter = typesUtils.ReplaceKeyStrict<ICardInfoPublic, "bank", EBank[]>;
 
 	interface IGuardInfoAll {
 		zxc: number;
 		cvb: string;
 	}
 	type IGuardInfoPublic = Omit<IGuardInfoAll, "zxc">;
+	type IGuardInfoFilter = IGuardInfoPublic;
 
 	type TItemVar<T extends ETypeItem, B> = { type: T; info: B };
 	export type TPickItem<T extends ETypeItem> = Extract<TItem, { type: T }>;
@@ -76,8 +78,12 @@ export namespace CatalogueInterface {
 	type TItemCardPublic = TItemVar<"CARD", ICardInfoPublic>;
 	type TItemGuardPublic = TItemVar<"GUARD", IGuardInfoPublic>;
 
+	type TItemCardFilter = TItemVar<"CARD", ICardInfoFilter>;
+	type TItemGuardFiler = TItemVar<"GUARD", IGuardInfoFilter>;
+
 	type TItemAll = TItemCard | TItemGuard;
 	type TItemPublic = TItemCardPublic | TItemGuardPublic;
+	type TItemFilter = TItemCardFilter | TItemGuardFiler;
 
 	/** ================= ENUMS ======================= */
 

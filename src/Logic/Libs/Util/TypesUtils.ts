@@ -222,4 +222,49 @@ export namespace typesUtils {
 			: T extends object
 				? { [K in keyof T]?: DeepPartial<T[K]> }
 				: T;
+
+	/**
+	 * ReplaceKey<T, K, V> заменяет тип значения у ключа K в объектном типе T
+	 * на новый тип V, сохраняя остальные поля без изменений.
+	 *
+	 * Работает точечно:
+	 * - проходит по всем ключам `keyof T`
+	 * - если текущий ключ совпадает с K — подставляет V
+	 * - иначе оставляет исходный тип `T[P]`
+	 * - optional (`?`) и readonly модификаторы сохраняются автоматически,
+	 *   потому что используется маппинг по существующим ключам
+	 *
+	 * На выходе получается структура вида:
+	 * {
+	 *   [P in keyof T]: P extends K ? V : T[P]
+	 * }
+	 *
+	 * Параметры:
+	 * - T — исходный объектный тип
+	 * - K — ключ, тип которого нужно заменить (PropertyKey: string | number | symbol)
+	 * - V — новый тип значения для ключа K
+	 *
+	 * Пример:
+	 * type A = {
+	 *   id: string;
+	 *   meta?: { a: number };
+	 *   readonly count: number;
+	 * };
+	 *
+	 * type R = ReplaceKey<A, "id", number>;
+	 * // Результат:
+	 * // {
+	 * //   id: number;
+	 * //   meta?: { a: number };
+	 * //   readonly count: number;
+	 * // }
+	 *
+	 * Особенности:
+	 * - Не меняет структуру типа, кроме указанного ключа
+	 * - Сохраняет `?` и `readonly` как в исходном T
+	 * - Если K отсутствует в T, результат совпадает с T (ничего не меняется)
+	 */
+	export type ReplaceKeyStrict<T extends object, K extends keyof T, V> = {
+		[P in keyof T]: P extends K ? V : T[P];
+	};
 }

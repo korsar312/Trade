@@ -1,4 +1,4 @@
-import { type FC, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/4.Structures/StructuresCatalog";
 import { Act } from "../../../../Logic/Core";
 import Util from "../../../../Logic/Libs/Util";
@@ -30,6 +30,8 @@ const Index: FC<IComponent> = (props) => {
 	const [filters, setFilters] = useState<TFilter>(initFilter);
 
 	const isEmptyFilter = Object.values(filters).every((el) => el === null);
+	const isBankFill = Boolean(filters.bank.length);
+
 	const catalogRender = isEmptyFilter ? catalog : catalog.filter(filterFn);
 	const filterName = filters.name ?? "";
 
@@ -40,12 +42,36 @@ const Index: FC<IComponent> = (props) => {
 	];
 
 	const botRow: TMoleculeRowControlCompType[] = [
-		{ id: "1", type: "BTN_IMAGE", options: { color: "BLUE_1", icon: "PlusSquare" } },
-		{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Clear", click: clearFilter } },
-		{ id: "3", type: "BTN_MAIN", options: { color: "MAIN_3", text: "BANK", rightImage: "ArrowDown", click: openFilterBank } },
-		{ id: "4", type: "BTN_MAIN", options: { color: "MAIN_3", text: "PRISE_DOWN", rightImage: "ArrowDown" } },
-		{ id: "5", type: "BTN_MAIN", options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" } },
-		{ id: "6", type: "BTN_MAIN", options: { color: "MAIN_3", text: "RATING", rightImage: "ArrowDown" } },
+		{
+			id: "1",
+			type: "BTN_IMAGE",
+			options: { color: "BLUE_1", icon: "PlusSquare" },
+		},
+		{
+			id: "2",
+			type: "BTN_IMAGE",
+			options: { color: "MAIN_3", icon: "Clear", click: clearFilter },
+		},
+		{
+			id: "3",
+			type: "BTN_MAIN",
+			options: { color: isBankFill ? "BLUE_2" : "MAIN_3", text: "BANK", rightImage: "ArrowDown", click: openFilterBank },
+		},
+		{
+			id: "4",
+			type: "BTN_MAIN",
+			options: { color: "MAIN_3", text: "PRISE_DOWN", rightImage: "ArrowDown" },
+		},
+		{
+			id: "5",
+			type: "BTN_MAIN",
+			options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" },
+		},
+		{
+			id: "6",
+			type: "BTN_MAIN",
+			options: { color: "MAIN_3", text: "RATING", rightImage: "ArrowDown" },
+		},
 	];
 
 	const propsComponent: IProp = {
@@ -62,14 +88,21 @@ const Index: FC<IComponent> = (props) => {
 		],
 	};
 
+	useEffect(() => {
+		Act.Catalogue.requestGoods({
+			limit: 10,
+			type: "CARD",
+			saleKind: "GOODS",
+			info: {
+				bank: isBankFill ? filters.bank : undefined,
+			},
+		});
+	}, [filters]);
+
 	function filterFn(itemId: string): boolean {
 		if (filters.name !== null && !getName(itemId)?.toLowerCase().includes(filters.name.toLowerCase())) return false;
 		if (filters.priseUp !== null && Number(getPrice(itemId)) > filters.priseUp) return false;
 		if (filters.priseDown !== null && Number(getPrice(itemId)) < filters.priseDown) return false;
-		if (filters.bank.length) {
-			const bankName = getBank(itemId);
-			return bankName ? filters.bank.includes(bankName) : false;
-		}
 
 		return true;
 	}
@@ -95,9 +128,9 @@ const Index: FC<IComponent> = (props) => {
 		return Act.Catalogue.getPrice(id);
 	}
 
-	function getBank(id: string) {
-		return Act.Catalogue.getBank(id);
-	}
+	//function getBank(id: string) {
+	//	return Act.Catalogue.getBank(id);
+	//}
 
 	function getFormatPrice(id: string) {
 		return Util.toMoney(getPrice(id));

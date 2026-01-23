@@ -1,5 +1,3 @@
-import type { CatalogueInterface } from "../ServiceCatalogue/Catalogue.interface.ts";
-
 export namespace MessageInterface {
 	export interface IAdapter {
 		getWord(text: EWordAll, param?: TWordParam): string;
@@ -15,10 +13,9 @@ export namespace MessageInterface {
 	export type ECase = keyof typeof Case;
 
 	type TMapWord = Record<ELang, string>;
-	type EOtherWord = CatalogueInterface.EBank;
-	type EAllWord = EWord | EOtherWord;
+	type EAllWord<T extends string> = EWord | T;
 
-	export type TDictionary = Record<EAllWord, TMapWord>;
+	export type TDictionary<T extends string = string> = Record<EAllWord<T>, TMapWord>;
 	export type EWordAll = EWord | string | number | undefined;
 
 	export type TWordParam = { arrReplace?: EWordAll[]; case?: ECase };
