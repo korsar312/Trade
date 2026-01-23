@@ -5,7 +5,7 @@ import { Act } from "../../../../Logic/Core";
 function Model(props: IComponent) {
 	const {} = props;
 
-	const isInit = Act.Setting.isInit();
+	const isInit = Act.App.isInit();
 
 	const router = Act.Router.getRouteObj();
 	const name = Act.Router.getCurPage();

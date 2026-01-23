@@ -1,30 +1,27 @@
 import type { FC } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
+import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { TMoleculeFormSchemaSwitchChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 import { CatalogueBank, type CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { Act } from "../../../../Logic/Core";
 
 type TProps<T extends "bank", F> = { type: T; submitFn: (value: F[]) => void };
+type TConfig = { list: CatalogueInterface.EBank[]; title: MessageInterface.EWord };
 
 export type TComponent = TProps<"bank", CatalogueInterface.EBank>;
 
 const Index: FC<TComponent> = (props) => {
 	const { type, submitFn } = props;
 
-	const list = getList();
+	const { list, title } = getConfig(type);
 
-	function submit(data: TMoleculeFormSchemaSwitchChoiceForm) {
+	function getConfig(type: TComponent["type"]): TConfig {
 		switch (type) {
 			case "bank":
-				const bankArr = Object.keys(data) as CatalogueInterface.EBank[];
-				submitFn(list.length === bankArr.length ? [] : bankArr);
-		}
-	}
-
-	function getList() {
-		switch (type) {
-			case "bank":
-				return Object.keys(CatalogueBank) as CatalogueInterface.EBank[];
+				return {
+					list: Object.keys(CatalogueBank) as CatalogueInterface.EBank[],
+					title: "BANK_SELECTOR",
+				};
 		}
 	}
 
@@ -35,13 +32,9 @@ const Index: FC<TComponent> = (props) => {
 		}
 	}
 
-	function getTitle() {
-		switch (type) {
-			case "bank":
-				return "BANK_SELECTOR";
-			default:
-				return "ERROR";
-		}
+	function submit(data: TMoleculeFormSchemaSwitchChoiceForm) {
+		const arr = Object.keys(data) as CatalogueInterface.EBank[];
+		submitFn(list.length === arr.length ? [] : arr);
 	}
 
 	const propsComponent: IProp = {
@@ -50,10 +43,10 @@ const Index: FC<TComponent> = (props) => {
 		form: {
 			type: "CHOICE_MANY",
 			options: {
-				title: getTitle(),
+				title,
+				submit,
 				choiceList: list.map((el) => ({ name: el, title: getName(el) })),
 				btnName: "APPLY",
-				submit: submit,
 			},
 		},
 	};

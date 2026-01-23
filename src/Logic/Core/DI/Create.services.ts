@@ -26,6 +26,8 @@ import { createHmrSingleton } from "./CreateHmrSingleton.ts";
 import { Consts } from "../../Config/Consts.ts";
 import { ServiceUser } from "../Services/ServiceUser";
 import UserImp from "../Services/ServiceUser/Imp/User.imp.ts";
+import AppImp from "../Services/ServiceApp/Imp/App.imp.ts";
+import { ServiceApp } from "../Services/ServiceApp";
 
 function createServices() {
 	const inf: IServiceProps = { infrastructure: Infrastructure };
@@ -57,6 +59,9 @@ function createServices() {
 	const userImp = new UserImp(inf);
 	const user = new ServiceUser(userImp);
 
+	const appImp = new AppImp(inf);
+	const app = new ServiceApp(appImp);
+
 	const service = new DI<ProjectInterface.TModuleService>();
 
 	service.use("Message", message);
@@ -68,6 +73,7 @@ function createServices() {
 	service.use("Order", order);
 	service.use("Catalogue", catalogue);
 	service.use("User", user);
+	service.use("App", app);
 
 	return service.get;
 }

@@ -1,10 +1,5 @@
 export namespace SettingInterface {
-	export interface IAdapter {
-		initDone(): void;
-		isInit(): boolean;
-	}
+	export interface IAdapter {}
 
-	export interface Store {
-		init: boolean;
-	}
+	export interface Store {}
 }

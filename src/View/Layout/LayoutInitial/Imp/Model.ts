@@ -26,7 +26,7 @@ function Model(props: IComponent) {
 	}
 
 	function initDone() {
-		Act.Setting.initDone();
+		Act.App.initDone();
 	}
 
 	return {};

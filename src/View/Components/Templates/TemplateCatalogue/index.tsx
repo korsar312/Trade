@@ -10,14 +10,14 @@ export interface IComponent {}
 
 type TFilter = {
 	name: string | null;
-	bank: CatalogueInterface.EBank | null;
+	bank: CatalogueInterface.EBank[];
 	priseUp: number | null;
 	priseDown: number | null;
 };
 
 const initFilter: TFilter = {
 	name: null,
-	bank: null,
+	bank: [],
 	priseUp: null,
 	priseDown: null,
 };
@@ -42,7 +42,7 @@ const Index: FC<IComponent> = (props) => {
 	const botRow: TMoleculeRowControlCompType[] = [
 		{ id: "1", type: "BTN_IMAGE", options: { color: "BLUE_1", icon: "PlusSquare" } },
 		{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Clear", click: clearFilter } },
-		{ id: "3", type: "BTN_MAIN", options: { color: "MAIN_3", text: "BANK", rightImage: "ArrowDown" } },
+		{ id: "3", type: "BTN_MAIN", options: { color: "MAIN_3", text: "BANK", rightImage: "ArrowDown", click: openFilterBank } },
 		{ id: "4", type: "BTN_MAIN", options: { color: "MAIN_3", text: "PRISE_DOWN", rightImage: "ArrowDown" } },
 		{ id: "5", type: "BTN_MAIN", options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" } },
 		{ id: "6", type: "BTN_MAIN", options: { color: "MAIN_3", text: "RATING", rightImage: "ArrowDown" } },
@@ -64,11 +64,23 @@ const Index: FC<IComponent> = (props) => {
 
 	function filterFn(itemId: string): boolean {
 		if (filters.name !== null && !getName(itemId)?.toLowerCase().includes(filters.name.toLowerCase())) return false;
-		if (filters.bank !== null && getBank(itemId) !== filters.bank) return false;
 		if (filters.priseUp !== null && Number(getPrice(itemId)) > filters.priseUp) return false;
 		if (filters.priseDown !== null && Number(getPrice(itemId)) < filters.priseDown) return false;
+		if (filters.bank.length) {
+			const bankName = getBank(itemId);
+			return bankName ? filters.bank.includes(bankName) : false;
+		}
 
 		return true;
+	}
+
+	function openFilterBank() {
+		const modalId = Act.App.addModals("BANK", (val) => setTimeout(() => setFilterBank(modalId, val)));
+	}
+
+	function setFilterBank(id: string, bank: CatalogueInterface.EBank[]) {
+		setFilters((old) => ({ ...old, bank }));
+		Act.App.removeModals(id);
 	}
 
 	function getName(id: string) {

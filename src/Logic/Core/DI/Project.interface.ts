@@ -8,6 +8,7 @@ import type { ServicePayment } from "../Services/ServicePayment";
 import type { ServiceOrder } from "../Services/ServiceOrder";
 import { ServiceCatalogue } from "../Services/ServiceCatalogue";
 import type { ServiceUser } from "../Services/ServiceUser";
+import type { ServiceApp } from "../Services/ServiceApp";
 
 export namespace ProjectInterface {
 	export type TModuleInf = {
@@ -24,6 +25,7 @@ export namespace ProjectInterface {
 		Style: ServiceStyle;
 		Order: ServiceOrder;
 		User: ServiceUser;
+		App: ServiceApp;
 	};
 
 	type TDI<M> = <T extends keyof M>(key: T) => M[T];
