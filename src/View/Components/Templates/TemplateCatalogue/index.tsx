@@ -4,18 +4,16 @@ import { Act } from "../../../../Logic/Core";
 import Util from "../../../../Logic/Libs/Util";
 import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowControl";
 import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import type { PublicInterface } from "../../../../Logic/Core/Services/Public.interface.ts";
+import type { SettingInterface } from "../../../../Logic/Core/Services/ServiceSetting/Setting.interface.ts";
 import { observer } from "mobx-react";
+import { useDidUpdate } from "../../../../Logic/Libs/Hooks/useDidUpdate/useDidUpdate.ts";
 
 export interface IComponent {}
 
-type TFilter = {
-	name: string | null;
-	bank: CatalogueInterface.EBank[];
-	priseUp: number | null;
-	priseDown: number | null;
-};
+const keyStorage: SettingInterface.ENameStorage = "CARD_FILTER_NAME";
 
-const initFilter: TFilter = {
+const initFilter: PublicInterface.TFilterCard = {
 	name: null,
 	bank: [],
 	priseUp: null,
@@ -27,18 +25,30 @@ const Index: FC<IComponent> = (props) => {
 
 	const catalog = Act.Catalogue.getGoodsIdList();
 
-	const [filters, setFilters] = useState<TFilter>(initFilter);
+	const [filters, setFilters] = useState<PublicInterface.TFilterCard>(getFilterData());
 
 	const isEmptyFilter = Object.values(filters).every((el) => el === null);
-	const isBankFill = Boolean(filters.bank.length);
+	const isBankFill = Boolean(filters.bank?.length);
 
 	const catalogRender = isEmptyFilter ? catalog : catalog.filter(filterFn);
 	const filterName = filters.name ?? "";
 
 	const topRow: TMoleculeRowControlCompType[] = [
-		{ id: "1", type: "INPUT", options: { iconsLeft: "Search", placeholder: "SEARCHING", value: filterName, onChange: textFilter } },
-		{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Sort" } },
-		{ id: "3", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Refresh" } },
+		{
+			id: "1",
+			type: "INPUT",
+			options: { iconsLeft: "Search", placeholder: "SEARCHING", value: filterName, onChange: textFilter },
+		},
+		{
+			id: "2",
+			type: "BTN_IMAGE",
+			options: { color: "MAIN_3", icon: "Sort" },
+		},
+		{
+			id: "3",
+			type: "BTN_IMAGE",
+			options: { color: "MAIN_3", icon: "Refresh" },
+		},
 	];
 
 	const botRow: TMoleculeRowControlCompType[] = [
@@ -88,6 +98,10 @@ const Index: FC<IComponent> = (props) => {
 		],
 	};
 
+	useDidUpdate(() => {
+		Act.Setting.setStorage(keyStorage, filters);
+	}, [filters]);
+
 	useEffect(() => {
 		Act.Catalogue.requestGoods({
 			limit: 10,
@@ -100,20 +114,32 @@ const Index: FC<IComponent> = (props) => {
 	}, [filters]);
 
 	function filterFn(itemId: string): boolean {
-		if (filters.name !== null && !getName(itemId)?.toLowerCase().includes(filters.name.toLowerCase())) return false;
+		if (filters.name !== null && !getName(itemId)?.toLowerCase().includes(filters.name?.toLowerCase())) return false;
 		if (filters.priseUp !== null && Number(getPrice(itemId)) > filters.priseUp) return false;
 		if (filters.priseDown !== null && Number(getPrice(itemId)) < filters.priseDown) return false;
 
 		return true;
 	}
 
+	function getFilterData() {
+		return Act.Setting.getStorage(keyStorage) || initFilter;
+	}
+
 	function openFilterBank() {
 		const modalId = Act.App.addModals("BANK", (val) => setTimeout(() => setFilterBank(modalId, val)));
 	}
 
+	function textFilter(value: string) {
+		setFilterHandle("name", value);
+	}
+
 	function setFilterBank(id: string, bank: CatalogueInterface.EBank[]) {
-		setFilters((old) => ({ ...old, bank }));
+		setFilterHandle("bank", bank);
 		Act.App.removeModals(id);
+	}
+
+	function setFilterHandle<T extends keyof PublicInterface.TFilterCard>(field: T, value: PublicInterface.TFilterCard[T]) {
+		setFilters((old) => ({ ...old, [field]: value }));
 	}
 
 	function getName(id: string) {
@@ -142,14 +168,6 @@ const Index: FC<IComponent> = (props) => {
 
 	function clearFilter() {
 		setFilters(initFilter);
-	}
-
-	function newFilter<K extends keyof TFilter>(field: K, value: TFilter[K]) {
-		setFilters((old) => ({ ...old, [field]: value }));
-	}
-
-	function textFilter(value: string) {
-		newFilter("name", value);
 	}
 
 	function goItemDetail(id: string) {

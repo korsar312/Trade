@@ -1,7 +1,14 @@
-export namespace SettingInterface {
-	export interface IAdapter {}
+import { PublicInterface } from "../Public.interface.ts";
 
-	export type EName = keyof typeof Name;
+export namespace SettingInterface {
+	export interface IAdapter {
+		getStorage<T extends ENameStorage>(key: T): TStorageValue<T> | null;
+		setStorage<T extends ENameStorage>(key: T, value: TStorageValue<T>): void;
+	}
+
+	export type TStorageValue<T extends ENameStorage> = PublicInterface.TStorageVal<T>;
+
+	export type ENameStorage = keyof typeof Name;
 
 	export interface Store {}
 }
