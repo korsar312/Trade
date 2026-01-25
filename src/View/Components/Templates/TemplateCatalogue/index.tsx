@@ -81,20 +81,6 @@ const Index: FC<IComponent> = (props) => {
 		},
 	];
 
-	const propsComponent: IProp = {
-		itemList: catalog.map((el) => ({
-			btn: [{ text: getFormatPrice(el), isFullWidth: true, color: "BLUE_2", click: () => "" }],
-			click: () => goItemDetail(el),
-			image: getImage(el),
-			name: getName(el),
-			id: el,
-		})),
-		filterList: [
-			{ compRow: topRow, id: "1" },
-			{ compRow: botRow, id: "2" },
-		],
-	};
-
 	useDidUpdate(() => {
 		Act.Setting.setStorage(keyStorageSort, sort);
 	}, [sort]);
@@ -209,6 +195,20 @@ const Index: FC<IComponent> = (props) => {
 	function goItemDetail(id: string) {
 		Act.Router.goTo("ITEM", { id, type: getType(id) || "CARD" });
 	}
+
+	const propsComponent: IProp = {
+		itemList: catalog.map((el) => ({
+			btn: [{ text: getFormatPrice(el), isFullWidth: true, color: "BLUE_2", click: () => "" }],
+			click: () => goItemDetail(el),
+			image: getImage(el),
+			name: getName(el),
+			id: el,
+		})),
+		filterList: [
+			{ compRow: topRow, id: "1" },
+			{ compRow: botRow, id: "2" },
+		],
+	};
 
 	return <Substance {...propsComponent} />;
 };

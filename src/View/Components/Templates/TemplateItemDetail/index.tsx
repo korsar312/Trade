@@ -28,6 +28,18 @@ const Index: FC<IComponent> = (props) => {
 		options: {},
 	};
 
+	function textProp(text: string): IText {
+		return { text, pos: "left" };
+	}
+
+	function starProp(rating: number): TMoleculeRowControlCompType[] {
+		return Array.from(Array(5), (_el, i) => ({
+			id: String(i),
+			type: "ICON",
+			options: { img: "Star", color: rating > i ? "BLUE_2" : "MAIN_4" },
+		}));
+	}
+
 	const propsComponent: IProp = {
 		rows: [
 			{
@@ -75,18 +87,6 @@ const Index: FC<IComponent> = (props) => {
 			},
 		],
 	};
-
-	function textProp(text: string): IText {
-		return { text, pos: "left" };
-	}
-
-	function starProp(rating: number): TMoleculeRowControlCompType[] {
-		return Array.from(Array(5), (_el, i) => ({
-			id: String(i),
-			type: "ICON",
-			options: { img: "Star", color: rating > i ? "BLUE_2" : "MAIN_4" },
-		}));
-	}
 
 	return <Substance {...propsComponent} />;
 };

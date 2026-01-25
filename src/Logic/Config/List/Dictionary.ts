@@ -5,6 +5,7 @@ import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	SELECT_SORT_TYPE: { RU: "Выберети тип сортировки" },
 	ENTER_DES_PRICE: { RU: "Введите желаемое значение цены" },
 	TO_UPPER: { RU: "В порядке возрастания" },
 	TO_LOWER: { RU: "В порядке убывания" },

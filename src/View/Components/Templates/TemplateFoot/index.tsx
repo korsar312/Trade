@@ -42,18 +42,6 @@ const Index: FC<IComponent> = (props) => {
 		INFO: { path: "INFO", image: "Info" },
 	};
 
-	const propsComponent: IProp = {
-		innerStruct: {
-			type: "ROW_CONTROL",
-			options: {
-				compRow: adapterBtn(btnPath),
-			},
-		},
-		wrapProp: {
-			color: "MAIN_2",
-		},
-	};
-
 	function goPage(page: RouterInterface.EPath) {
 		Act.Router.goTo(page);
 	}
@@ -78,6 +66,18 @@ const Index: FC<IComponent> = (props) => {
 	function isActive(group: EBtn) {
 		return includesPath[curPage] === group;
 	}
+
+	const propsComponent: IProp = {
+		innerStruct: {
+			type: "ROW_CONTROL",
+			options: {
+				compRow: adapterBtn(btnPath),
+			},
+		},
+		wrapProp: {
+			color: "MAIN_2",
+		},
+	};
 
 	return <Substance {...propsComponent} />;
 };

@@ -8,6 +8,7 @@ class Style extends Styles {
 
 	public imageWrap: CSSObject = css`
 		${this.mixins.flexCenter};
+		aspect-ratio: 4/4;
 		padding: 0;
 	`;
 
