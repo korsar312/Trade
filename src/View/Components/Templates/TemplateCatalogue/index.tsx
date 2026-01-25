@@ -95,6 +95,9 @@ const Index: FC<IComponent> = (props) => {
 			sort,
 			type: "CARD",
 			saleKind: "GOODS",
+			findStr: filters.name || undefined,
+			priceUp: filters.priseUp || undefined,
+			priceDown: filters.priseDown || undefined,
 			info: {
 				bank: isBankFill ? filters.bank : undefined,
 			},
