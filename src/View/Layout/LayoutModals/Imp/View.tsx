@@ -2,7 +2,7 @@ import type Model from "./Model.ts";
 import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
 import TemplateModalFormChoiceParam from "../../../Components/Templates/TemplateModalFormChoiceParam";
 import { Fragment } from "react";
-import { AppInterface } from "../../../../Logic/Core/Services/ServiceApp/App.interface.ts";
+import type { AppInterface } from "../../../../Logic/Core/Services/ServiceApp/App.interface.ts";
 
 const View: NFC<typeof Model> = (props) => {
 	const { modalList, closeModal } = props;

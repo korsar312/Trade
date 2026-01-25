@@ -24,7 +24,6 @@ class AppImp extends ServiceBase<Interface.Store> implements Interface.IAdapter 
 	): Interface.TModals {
 		return { id: crypto.randomUUID(), type, successFn };
 	}
-
 	//==============================================================================================
 
 	constructor(props: IServiceProps) {
@@ -51,7 +50,6 @@ class AppImp extends ServiceBase<Interface.Store> implements Interface.IAdapter 
 		const newModal = this.CreateModal(type, successFn);
 		const newModalList = this.AddModal(this.store.modals, newModal);
 		this.store = this.SetModal(this.store, newModalList);
-
 		return newModal.id;
 	}
 

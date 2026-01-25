@@ -1,4 +1,5 @@
 import type { CatalogueInterface } from "../ServiceCatalogue/Catalogue.interface.ts";
+import type { PublicInterface } from "../Public.interface.ts";
 
 export namespace AppInterface {
 	export interface IAdapter {
@@ -11,7 +12,8 @@ export namespace AppInterface {
 	}
 
 	const ModalPayload = {
-		BANK: null as unknown as CatalogueInterface.EBank[],
+		BANK: {} as CatalogueInterface.EBank[],
+		SORT: {} as PublicInterface.ESort,
 	} as const satisfies Record<EModalName, unknown>;
 
 	export type TModalPayloadMap = {
@@ -34,4 +36,5 @@ export namespace AppInterface {
 
 const ModalName = {
 	BANK: "BANK",
+	SORT: "SORT",
 } as const;

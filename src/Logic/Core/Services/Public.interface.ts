@@ -16,16 +16,16 @@ export namespace PublicInterface {
 	export type TStorageVal<T extends SettingInterface.ENameStorage> = { [K in keyof typeof nameValue]: (typeof nameValue)[K] }[T];
 
 	export type TRating = 0 | 1 | 2 | 3 | 4 | 5;
-	export type ERole = keyof typeof Role;
-	export type ESort = keyof typeof Sort;
+	export type ERole = keyof typeof PublicRole;
+	export type ESort = keyof typeof PublicSort;
 }
 
-const Role = {
+export const PublicRole = {
 	ADMIN: "ADMIN",
 	USER: "USER",
 } as const;
 
-const Sort = {
+export const PublicSort = {
 	TO_UPPER: "TO_UPPER",
 	TO_LOWER: "TO_LOWER",
 } as const;
