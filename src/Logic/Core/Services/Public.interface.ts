@@ -4,6 +4,7 @@ import type { SettingInterface } from "./ServiceSetting/Setting.interface.ts";
 export namespace PublicInterface {
 	const nameValue = {
 		CARD_FILTER_NAME: {} as TFilterCard,
+		CARD_SORT_NAME: {} as ESort,
 	} as const satisfies Record<SettingInterface.ENameStorage, unknown>;
 
 	export type TFilterCard = {

@@ -1,0 +1,35 @@
+import type { FC } from "react";
+import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
+import type { TMoleculeFormSchemaInputChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInputChoice";
+
+type TModal = Pick<IProp, "bgClick" | "color">;
+
+export interface IComponent extends TModal {
+	submitFn: (val: number | null) => void;
+}
+
+const Index: FC<IComponent> = (props) => {
+	const { submitFn, ...propRest } = props;
+
+	function submit(data: TMoleculeFormSchemaInputChoiceForm) {
+		const val = Number(data.input);
+		submitFn(isNaN(val) || !data.input.length ? null : val);
+	}
+
+	const propsComponent: IProp = {
+		...propRest,
+		form: {
+			type: "INPUT_ONE",
+			options: {
+				title: "ENTER_DES_PRICE",
+				labelImg: "Money",
+				btnName: "APPLY",
+				submit,
+			},
+		},
+	};
+
+	return <Substance {...propsComponent} />;
+};
+
+export default Index;

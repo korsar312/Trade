@@ -7,6 +7,8 @@ import type { ReactElement } from "react";
 import type { TSubstanceModalCompType } from "../index.tsx";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeFormSchemaSwitchChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
+import MoleculeFormSchemaRadioChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
+import MoleculeFormSchemaInputChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInputChoice";
 
 const View: NFC<typeof Model> = (props) => {
 	const { form, color, bgClick } = props;
@@ -17,6 +19,10 @@ const View: NFC<typeof Model> = (props) => {
 				return <MoleculeFormSchemaLogin {...options} />;
 			case "CHOICE_MANY":
 				return <MoleculeFormSchemaSwitchChoice {...options} />;
+			case "CHOICE_ONE":
+				return <MoleculeFormSchemaRadioChoice {...options} />;
+			case "INPUT_ONE":
+				return <MoleculeFormSchemaInputChoice {...options} />;
 		}
 	}
 

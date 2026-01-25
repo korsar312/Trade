@@ -8,28 +8,26 @@ import type { PublicInterface } from "../../../../Logic/Core/Services/Public.int
 import type { SettingInterface } from "../../../../Logic/Core/Services/ServiceSetting/Setting.interface.ts";
 import { observer } from "mobx-react";
 import { useDidUpdate } from "../../../../Logic/Libs/Hooks/useDidUpdate/useDidUpdate.ts";
+import type { EAtomButtonColor } from "../../1.Atoms/AtomButton";
 
 export interface IComponent {}
 
-const keyStorage: SettingInterface.ENameStorage = "CARD_FILTER_NAME";
+const keyStorageSort = "CARD_SORT_NAME" satisfies SettingInterface.ENameStorage;
+const keyStorageFilter = "CARD_FILTER_NAME" satisfies SettingInterface.ENameStorage;
 
-const initFilter: PublicInterface.TFilterCard = {
-	name: null,
-	bank: [],
-	priseUp: null,
-	priseDown: null,
-};
+const initSort: PublicInterface.ESort = "TO_UPPER";
+const initFilter: PublicInterface.TFilterCard = { name: null, bank: [], priseUp: null, priseDown: null };
 
 const Index: FC<IComponent> = (props) => {
 	const {} = props;
 
 	const catalog = Act.Catalogue.getGoodsIdList();
 
+	const [sort, setSort] = useState<PublicInterface.ESort>(getSortData());
 	const [filters, setFilters] = useState<PublicInterface.TFilterCard>(getFilterData());
 
 	const isBankFill = Boolean(filters.bank?.length);
 
-	const catalogRender = catalog.filter(filterFn);
 	const filterName = filters.name ?? "";
 
 	const topRow: TMoleculeRowControlCompType[] = [
@@ -41,7 +39,7 @@ const Index: FC<IComponent> = (props) => {
 		{
 			id: "2",
 			type: "BTN_IMAGE",
-			options: { color: "MAIN_3", icon: "Sort" },
+			options: { color: "MAIN_3", icon: "Sort", click: openFilterSort },
 		},
 		{
 			id: "3",
@@ -64,17 +62,17 @@ const Index: FC<IComponent> = (props) => {
 		{
 			id: "3",
 			type: "BTN_MAIN",
-			options: { color: isBankFill ? "BLUE_2" : "MAIN_3", text: "BANK", rightImage: "ArrowDown", click: openFilterBank },
+			options: { color: colorFillFilter("bank"), text: "BANK", rightImage: "ArrowDown", click: openFilterBank },
 		},
 		{
 			id: "4",
 			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "PRISE_DOWN", rightImage: "ArrowDown" },
+			options: { color: colorFillFilter("priseDown"), text: "PRISE_DOWN", rightImage: "ArrowDown", click: openFilterPrice(false) },
 		},
 		{
 			id: "5",
 			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "PRISE_UP", rightImage: "ArrowDown" },
+			options: { color: colorFillFilter("priseUp"), text: "PRISE_UP", rightImage: "ArrowDown", click: openFilterPrice(true) },
 		},
 		{
 			id: "6",
@@ -84,7 +82,7 @@ const Index: FC<IComponent> = (props) => {
 	];
 
 	const propsComponent: IProp = {
-		itemList: catalogRender.map((el) => ({
+		itemList: catalog.map((el) => ({
 			btn: [{ text: getFormatPrice(el), isFullWidth: true, color: "BLUE_2", click: () => "" }],
 			click: () => goItemDetail(el),
 			image: getImage(el),
@@ -98,34 +96,68 @@ const Index: FC<IComponent> = (props) => {
 	};
 
 	useDidUpdate(() => {
-		Act.Setting.setStorage(keyStorage, filters);
+		Act.Setting.setStorage(keyStorageSort, sort);
+	}, [sort]);
+
+	useDidUpdate(() => {
+		Act.Setting.setStorage(keyStorageFilter, filters);
 	}, [filters]);
 
 	useEffect(() => {
 		Act.Catalogue.requestGoods({
 			limit: 10,
+			sort,
 			type: "CARD",
 			saleKind: "GOODS",
 			info: {
 				bank: isBankFill ? filters.bank : undefined,
 			},
 		});
-	}, [filters]);
+	}, [sort, filters]);
 
-	function filterFn(itemId: string): boolean {
-		if (filters.name !== null && !getName(itemId)?.toLowerCase().includes(filters.name?.toLowerCase())) return false;
-		if (filters.priseUp !== null && Number(getPrice(itemId)) > filters.priseUp) return false;
-		if (filters.priseDown !== null && Number(getPrice(itemId)) < filters.priseDown) return false;
+	function colorFillFilter(field: keyof PublicInterface.TFilterCard): EAtomButtonColor {
+		let isError: boolean = false;
 
-		return true;
+		switch (field) {
+			case "bank": {
+				const item = filters[field];
+				return item && item.length ? "BLUE_2" : "MAIN_3";
+			}
+
+			default: {
+				const item = filters[field];
+				item == null && (isError = true);
+			}
+		}
+
+		return isError ? "MAIN_3" : "BLUE_2";
+	}
+
+	function getSortData() {
+		return Act.Setting.getStorage(keyStorageSort) || initSort;
 	}
 
 	function getFilterData() {
-		return Act.Setting.getStorage(keyStorage) || initFilter;
+		return Act.Setting.getStorage(keyStorageFilter) || initFilter;
+	}
+
+	function openFilterSort() {
+		const modalId = Act.App.addModals("SORT", (val) => setTimeout(() => setSortVal(modalId, val)));
 	}
 
 	function openFilterBank() {
 		const modalId = Act.App.addModals("BANK", (val) => setTimeout(() => setFilterBank(modalId, val)));
+	}
+
+	function openFilterPrice(isUp: boolean) {
+		return () => {
+			const modalId = Act.App.addModals("PRICE", (val) => setTimeout(() => setFilterPrice(modalId, isUp, val)));
+		};
+	}
+
+	function setSortVal(id: string, sort: PublicInterface.ESort) {
+		setSort(sort);
+		Act.App.removeModals(id);
 	}
 
 	function textFilter(value: string) {
@@ -134,6 +166,11 @@ const Index: FC<IComponent> = (props) => {
 
 	function setFilterBank(id: string, bank: CatalogueInterface.EBank[]) {
 		setFilterHandle("bank", bank);
+		Act.App.removeModals(id);
+	}
+
+	function setFilterPrice(id: string, isUp: boolean, price: number | null) {
+		setFilterHandle(isUp ? "priseUp" : "priseDown", price);
 		Act.App.removeModals(id);
 	}
 

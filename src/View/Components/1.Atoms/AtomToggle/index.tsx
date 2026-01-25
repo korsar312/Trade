@@ -2,7 +2,7 @@ import Model from "./Imp/Model.ts";
 import View from "./Imp/View.tsx";
 import type { TDeepCSSObject, TTagPartial } from "../../../ViewUtils.tsx";
 
-export interface IComponent extends TTagPartial<HTMLInputElement, "checked" | "onClick" | "disabled" | "name" | "type"> {
+export interface IComponent extends TTagPartial<HTMLInputElement, "checked" | "onClick" | "disabled" | "name" | "type" | "value"> {
 	extStyles?: TDeepCSSObject;
 }
 

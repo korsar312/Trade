@@ -1,27 +1,31 @@
 import Styles from "../../../../../Styles/Styles.ts";
 import { css, type CSSObject } from "@emotion/react";
 import type { TAtomInputText } from "../index.tsx";
+import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
 class Style extends Styles {
 	private sidePad = 8;
 
-	public wrapper: CSSObject = css`
-		${this.mixins.flexCenter};
-		position: relative;
-		box-sizing: border-box;
-		padding: ${this.sidePad / 2}px ${this.sidePad}px;
-		gap: ${this.sidePad / 2}px;
-		border: 2px solid ${this.getColor("SECOND_1")};
-		border-radius: 12px;
-		transition: ${this.variables.fastTransition};
-		overflow: hidden;
-		width: 100%;
-		height: 100%;
+	public wrapper(color?: StyleInterface.TColorChoice): CSSObject {
+		return css`
+			${this.mixins.flexCenter};
+			position: relative;
+			box-sizing: border-box;
+			padding: ${this.sidePad / 2}px ${this.sidePad}px;
+			gap: ${this.sidePad / 2}px;
+			border: 2px solid ${this.getColor("SECOND_1")};
+			background: ${this.getColor(color)};
+			border-radius: 12px;
+			transition: ${this.variables.fastTransition};
+			overflow: hidden;
+			width: 100%;
+			height: 100%;
 
-		&:has(input[disabled]) {
-			background: ${this.getColor("SECOND_1")};
-		}
-	`;
+			&:has(input[disabled]) {
+				background: ${this.getColor("SECOND_1")};
+			}
+		`;
+	}
 
 	public valid(valid?: boolean): CSSObject {
 		const isError = valid === false;
@@ -46,15 +50,13 @@ class Style extends Styles {
 	`;
 
 	public input: CSSObject = css`
-		position: absolute;
-		left: 0;
-		right: 0;
-
+		position: relative;
 		background: ${this.getColor()};
 		outline: none;
 		border: none;
 		height: calc(100% - ${this.sidePad / 2}px);
 		padding: 0;
+		width: 100%;
 
 		&::placeholder {
 			color: ${this.getColor(undefined)};

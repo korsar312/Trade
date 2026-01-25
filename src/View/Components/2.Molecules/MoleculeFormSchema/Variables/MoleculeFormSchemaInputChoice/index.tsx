@@ -2,23 +2,21 @@ import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } fr
 import Styles from "./Style.ts";
 import type { FC } from "react";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
+import type { TImageComponent } from "../../../../0.Cores/Image";
 
 export interface IComponent {
 	title: MessageInterface.EWord;
-	choiceList: TMoleculeFormSchemaChoice[];
+	labelImg: TImageComponent;
 	btnName: MessageInterface.EWord;
-	submit: (val: TMoleculeFormSchemaSwitchChoiceForm) => void;
+	submit: (val: TMoleculeFormSchemaInputChoiceForm) => void;
 }
 
-export type TMoleculeFormSchemaSwitchChoiceForm = Record<string, "on">;
-
-type TMoleculeFormSchemaChoice = {
-	name: string;
-	title: string;
+export type TMoleculeFormSchemaInputChoiceForm = {
+	input: string;
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, choiceList, btnName, submit } = props;
+	const { title, labelImg, btnName, submit } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
@@ -32,27 +30,17 @@ const Index: FC<IComponent> = (props) => {
 		},
 	};
 
-	const switchField: TMoleculeFormSchemaRow[] = choiceList.map((el) => ({
-		extStyle: Styles.switch,
-		value: [
-			{
-				value: {
-					type: "switch",
-					options: {
-						name: el.name,
-					},
-				},
+	const inputField: TMoleculeFormSchemaRow = {
+		value: {
+			type: "input",
+			options: {
+				iconsLeft: labelImg,
+				color: "MAIN_4",
+				type: "number",
+				name: "input",
 			},
-			{
-				value: {
-					type: "text",
-					options: {
-						text: el.title,
-					},
-				},
-			},
-		],
-	}));
+		},
+	};
 
 	const btnField: TMoleculeFormSchemaRow = {
 		value: {
@@ -68,7 +56,7 @@ const Index: FC<IComponent> = (props) => {
 	const propsComponent: IParent = {
 		schema: {
 			extStyle: Styles.wrapper,
-			value: [titleField, ...switchField, btnField],
+			value: [titleField, inputField, btnField],
 		},
 		form: { onSubmit: submit },
 	};

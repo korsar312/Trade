@@ -6,7 +6,7 @@ import type { IComponent as IImage } from "../../../0.Cores/Image";
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
 function Model(props: IComponent) {
-	const { initText, onClick, onChange, name, type, iconsLeft, iconsRight, disabled, placeholder, valid, value } = props;
+	const { color, initText, onClick, onChange, name, type, iconsLeft, iconsRight, disabled, placeholder, valid, value } = props;
 
 	const [isValid, setIsValid] = useState<boolean | undefined>();
 
@@ -59,7 +59,7 @@ function Model(props: IComponent) {
 		setIsValid(undefined);
 	}
 
-	return { textObj, onClick, handleChange, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value };
+	return { color, textObj, onClick, handleChange, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value };
 }
 
 export default Model;

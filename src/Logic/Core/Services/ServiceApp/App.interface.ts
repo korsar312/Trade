@@ -14,17 +14,14 @@ export namespace AppInterface {
 	const ModalPayload = {
 		BANK: {} as CatalogueInterface.EBank[],
 		SORT: {} as PublicInterface.ESort,
+		PRICE: {} as number | null,
 	} as const satisfies Record<EModalName, unknown>;
 
 	export type TModalPayloadMap = {
 		[K in keyof typeof ModalPayload]: (typeof ModalPayload)[K];
 	};
 
-	export type TModals<T extends EModalName = EModalName> = {
-		id: string;
-		type: T;
-		successFn: (val: TModalPayloadMap[T]) => void;
-	};
+	export type TModals = { [K in EModalName]: { id: string; type: K; successFn: (val: TModalPayloadMap[K]) => void } }[EModalName];
 
 	export type EModalName = keyof typeof ModalName;
 
@@ -37,4 +34,5 @@ export namespace AppInterface {
 const ModalName = {
 	BANK: "BANK",
 	SORT: "SORT",
+	PRICE: "PRICE",
 } as const;

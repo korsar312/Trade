@@ -15,4 +15,5 @@ export namespace SettingInterface {
 
 const Name = {
 	CARD_FILTER_NAME: "CARD_FILTER_NAME",
+	CARD_SORT_NAME: "CARD_SORT_NAME",
 } as const;

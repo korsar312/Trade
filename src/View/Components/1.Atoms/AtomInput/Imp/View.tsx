@@ -6,7 +6,8 @@ import type { TAtomInputGeneralGroup } from "../index.tsx";
 import Image from "../../../0.Cores/Image";
 
 const View: NFC<typeof Model> = (props) => {
-	const { textObj, onClick, handleChange, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value } = props;
+	const { color, textObj, onClick, handleChange, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value } =
+		props;
 
 	function images(icons?: TAtomInputGeneralGroup) {
 		return (
@@ -21,7 +22,7 @@ const View: NFC<typeof Model> = (props) => {
 	}
 
 	return (
-		<div css={[Style.wrapper, Style.valid(isValid)]}>
+		<div css={[Style.wrapper(color), Style.valid(isValid)]}>
 			{images(imageLeft)}
 
 			<div css={Style.inputWrap}>

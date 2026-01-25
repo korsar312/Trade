@@ -22,7 +22,7 @@ class AppImp extends ServiceBase<Interface.Store> implements Interface.IAdapter 
 		type: T,
 		successFn: (val: Interface.TModalPayloadMap[T]) => void,
 	): Interface.TModals {
-		return { id: crypto.randomUUID(), type, successFn };
+		return { id: crypto.randomUUID(), type, successFn } as Interface.TModals;
 	}
 	//==============================================================================================
 

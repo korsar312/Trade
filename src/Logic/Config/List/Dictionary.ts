@@ -1,9 +1,13 @@
 import type { MessageInterface } from "../../Core/Services/ServiceMessage/Message.interface.ts";
 import type { CatalogueInterface } from "../../Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 
-type TOther = CatalogueInterface.EBank;
+type TOther = CatalogueInterface.EBank | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	ENTER_DES_PRICE: { RU: "Введите желаемое значение цены" },
+	TO_UPPER: { RU: "В порядке возрастания" },
+	TO_LOWER: { RU: "В порядке убывания" },
 	BANK_SELECTOR: { RU: "Выбор банка" },
 	APPLY: { RU: "Применить" },
 	PRODUCTS: { RU: "Товары" },

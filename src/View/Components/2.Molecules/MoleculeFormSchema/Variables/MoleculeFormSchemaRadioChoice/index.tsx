@@ -1,20 +1,22 @@
-import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
+import Component, { type IComponent as IParent, type TMoleculeFormSchemaField, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import type { FC } from "react";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
+import type { TImageComponent } from "../../../../0.Cores/Image";
 
 export interface IComponent {
 	title: MessageInterface.EWord;
 	choiceList: TMoleculeFormSchemaChoice[];
 	btnName: MessageInterface.EWord;
-	submit: (val: TMoleculeFormSchemaSwitchChoiceForm) => void;
+	submit: (val: TMoleculeFormSchemaRadioChoiceForm) => void;
 }
 
-export type TMoleculeFormSchemaSwitchChoiceForm = Record<string, "on">;
+export type TMoleculeFormSchemaRadioChoiceForm = { radio: string };
 
 type TMoleculeFormSchemaChoice = {
 	name: string;
 	title: string;
+	img?: TImageComponent;
 };
 
 const Index: FC<IComponent> = (props) => {
@@ -37,12 +39,27 @@ const Index: FC<IComponent> = (props) => {
 		value: [
 			{
 				value: {
-					type: "switch",
+					type: "radio",
 					options: {
-						name: el.name,
+						name: "radio",
+						value: el.name,
 					},
 				},
 			},
+			...(el.img
+				? [
+						{
+							value: {
+								type: "img",
+								options: {
+									img: el.img,
+									color: "SECOND_1",
+									size: 22,
+								},
+							} satisfies TMoleculeFormSchemaField,
+						},
+					]
+				: []),
 			{
 				value: {
 					type: "text",

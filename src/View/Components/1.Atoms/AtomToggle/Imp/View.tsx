@@ -3,19 +3,9 @@ import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 
 const View: NFC<typeof Model> = (props) => {
-	const { onClick, checked, disabled, name, extStyles } = props;
+	const { extStyles, ...rest } = props;
 
-	return (
-		<input
-			readOnly
-			name={name}
-			disabled={disabled}
-			onClick={onClick}
-			checked={checked}
-			type="checkbox"
-			css={[Style.wrapper, extStyles]}
-		/>
-	);
+	return <input readOnly {...rest} css={[Style.wrapper, extStyles]} />;
 };
 
 export default View;

@@ -22,6 +22,7 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	ENTER_DES_PRICE: "ENTER_DES_PRICE",
 	BANK_SELECTOR: "BANK_SELECTOR",
 	APPLY: "APPLY",
 	PRODUCTS: "PRODUCTS",

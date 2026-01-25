@@ -13,6 +13,7 @@ export interface IComponent extends TTagPartial<HTMLInputElement, "name" | "onCl
 	iconsRight?: TAtomInputIcon;
 	valid?: Array<(val: MessageInterface.EWordAll) => boolean>;
 	value?: string;
+	color?: StyleInterface.TColorChoice;
 }
 
 export type TAtomInputText = {

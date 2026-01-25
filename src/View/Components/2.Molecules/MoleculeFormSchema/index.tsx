@@ -6,6 +6,8 @@ import type { IComponent as IInput } from "../../1.Atoms/AtomInput/";
 import type { IComponent as IText } from "../../0.Cores/Text";
 import type { IComponent as IForm } from "../../0.Cores/Form";
 import type { IComponent as ISwitch } from "../../1.Atoms/AtomToggle/Variables/AtomToggleSwitch";
+import type { IComponent as IRadio } from "../../1.Atoms/AtomToggle/Variables/AtomToggleRadio";
+import type { IComponent as IImage } from "../../0.Cores/Image";
 import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
@@ -23,7 +25,7 @@ export type TMoleculeFormSchemaRow = {
 export type TMoleculeFormSchemaField = {
 	label?: string;
 	required?: boolean;
-} & (TInputField | TTextField | TBtnField | TBtn | TSwitch);
+} & (TInputField | TTextField | TBtnField | TBtn | TSwitch | TRadio | TImage);
 
 type TTextField = {
 	type: "text";
@@ -48,6 +50,16 @@ type TBtn = {
 type TSwitch = {
 	type: "switch";
 	options: ISwitch;
+};
+
+type TRadio = {
+	type: "radio";
+	options: IRadio;
+};
+
+type TImage = {
+	type: "img";
+	options: IImage;
 };
 
 const Index = (props: IComponent) => {
