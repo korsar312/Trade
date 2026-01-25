@@ -27,10 +27,9 @@ const Index: FC<IComponent> = (props) => {
 
 	const [filters, setFilters] = useState<PublicInterface.TFilterCard>(getFilterData());
 
-	const isEmptyFilter = Object.values(filters).every((el) => el === null);
 	const isBankFill = Boolean(filters.bank?.length);
 
-	const catalogRender = isEmptyFilter ? catalog : catalog.filter(filterFn);
+	const catalogRender = catalog.filter(filterFn);
 	const filterName = filters.name ?? "";
 
 	const topRow: TMoleculeRowControlCompType[] = [
