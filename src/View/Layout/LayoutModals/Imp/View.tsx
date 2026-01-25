@@ -5,19 +5,23 @@ import { Fragment } from "react";
 import { AppInterface } from "../../../../Logic/Core/Services/ServiceApp/App.interface.ts";
 
 const View: NFC<typeof Model> = (props) => {
-	const { modalList } = props;
+	const { modalList, closeModal } = props;
 
-	function renderModal<T extends AppInterface.EModalName>(name: T, fn: (val: AppInterface.TModalPayloadMap[T]) => void) {
+	function renderModal<T extends AppInterface.EModalName>(
+		name: T,
+		fn: (val: AppInterface.TModalPayloadMap[T]) => void,
+		close: () => void,
+	) {
 		switch (name) {
 			case "BANK":
-				return <TemplateModalFormChoiceParam type={"bank"} submitFn={fn} />;
+				return <TemplateModalFormChoiceParam type={"bank"} submitFn={fn} bgClick={close} />;
 		}
 	}
 
 	return (
 		<>
 			{modalList.map((el, i) => (
-				<Fragment key={i}>{renderModal(el.type, el.successFn)}</Fragment>
+				<Fragment key={i}>{renderModal(el.type, el.successFn, () => closeModal(el.id))}</Fragment>
 			))}
 		</>
 	);

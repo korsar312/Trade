@@ -3,12 +3,13 @@ import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 
 const View: NFC<typeof Model> = (props) => {
-	const { children, refDialog, extStyle } = props;
+	const { children, extStyle, bgClick } = props;
 
 	return (
-		<dialog ref={refDialog} css={[Style.wrapper, extStyle]}>
+		<div css={[Style.wrapper, extStyle]}>
+			<div css={Style.backdrop} onClick={bgClick} />
 			{children}
-		</dialog>
+		</div>
 	);
 };
 

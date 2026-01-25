@@ -6,9 +6,9 @@ import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
 export interface IComponent {
-	isShow: boolean;
 	form: TSubstanceModalCompType;
 	color?: StyleInterface.TColorChoice;
+	bgClick?: () => void;
 }
 
 type TMap = {

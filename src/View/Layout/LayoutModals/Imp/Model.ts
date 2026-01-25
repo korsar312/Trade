@@ -6,7 +6,11 @@ function Model(props: IComponent) {
 
 	const modalList = Act.App.getModals();
 
-	return { modalList };
+	function closeModal(id: string) {
+		Act.App.removeModals(id);
+	}
+
+	return { modalList, closeModal };
 }
 
 export default Model;

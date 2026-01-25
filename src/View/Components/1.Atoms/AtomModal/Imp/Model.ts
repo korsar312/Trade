@@ -1,30 +1,9 @@
 import type { IComponent } from "../index";
-import { useEffect, useRef } from "react";
 
 function Model(props: IComponent) {
-	const { children, isShow, extStyle } = props;
+	const { children, extStyle, bgClick } = props;
 
-	const refDialog = useRef<HTMLDialogElement>(null);
-
-	useEffect(() => {
-		(isShow ? open : close)();
-	}, [isShow]);
-
-	function close() {
-		const { current: dialog } = refDialog;
-		if (!dialog) return;
-
-		dialog.close();
-	}
-
-	function open() {
-		const { current: dialog } = refDialog;
-		if (!dialog) return;
-
-		dialog.showModal();
-	}
-
-	return { children, refDialog, extStyle };
+	return { children, extStyle, bgClick };
 }
 
 export default Model;

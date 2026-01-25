@@ -5,8 +5,8 @@ import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 
 export interface IComponent {
 	children: ReactNode;
-	isShow: boolean;
 	extStyle?: TDeepCSSObject;
+	bgClick?: () => void;
 }
 
 const Index = (props: IComponent) => {

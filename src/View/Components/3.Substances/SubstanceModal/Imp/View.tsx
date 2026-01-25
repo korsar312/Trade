@@ -9,7 +9,7 @@ import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeFormSchemaSwitchChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 
 const View: NFC<typeof Model> = (props) => {
-	const { isShow, form, color } = props;
+	const { form, color, bgClick } = props;
 
 	function render({ type, options }: TSubstanceModalCompType): ReactElement {
 		switch (type) {
@@ -21,7 +21,7 @@ const View: NFC<typeof Model> = (props) => {
 	}
 
 	return (
-		<AtomModal extStyle={Style.wrapper} isShow={isShow}>
+		<AtomModal extStyle={Style.wrapper} bgClick={bgClick}>
 			<AtomPaper color={color} extStyle={Style.content}>
 				{render(form)}
 			</AtomPaper>

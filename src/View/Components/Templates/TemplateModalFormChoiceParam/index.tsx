@@ -6,12 +6,15 @@ import { CatalogueBank, type CatalogueInterface } from "../../../../Logic/Core/S
 import { Act } from "../../../../Logic/Core";
 
 type TProps<T extends "bank", F> = { type: T; submitFn: (value: F[]) => void };
+
 type TConfig = { list: CatalogueInterface.EBank[]; title: MessageInterface.EWord };
 
-export type TComponent = TProps<"bank", CatalogueInterface.EBank>;
+export type TComponent = {
+	bgClick?: () => void;
+} & TProps<"bank", CatalogueInterface.EBank>;
 
 const Index: FC<TComponent> = (props) => {
-	const { type, submitFn } = props;
+	const { type, submitFn, bgClick } = props;
 
 	const { list, title } = getConfig(type);
 
@@ -38,7 +41,7 @@ const Index: FC<TComponent> = (props) => {
 	}
 
 	const propsComponent: IProp = {
-		isShow: true,
+		bgClick,
 		color: "MAIN_3",
 		form: {
 			type: "CHOICE_MANY",
