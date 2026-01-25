@@ -1,22 +1,26 @@
 import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
-import type { FC } from "react";
+import { type FC, useState } from "react";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { TImageComponent } from "../../../../0.Cores/Image";
 
 export interface IComponent {
 	title: MessageInterface.EWord;
-	labelImg: TImageComponent;
+	imageList: TMoleculeFormSchemaChoice[];
 	btnName: MessageInterface.EWord;
-	submit: (val: TMoleculeFormSchemaInputChoiceForm) => void;
+	submit: (val: TMoleculeFormSchemaImageQtyChoiceForm) => void;
 }
 
-export type TMoleculeFormSchemaInputChoiceForm = {
-	input: string;
+export type TMoleculeFormSchemaImageQtyChoiceForm = { qtyIndex: string };
+
+type TMoleculeFormSchemaChoice = {
+	img: TImageComponent;
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, labelImg, btnName, submit } = props;
+	const { title, imageList, btnName, submit } = props;
+
+	const [qtyImage, setQtyImage] = useState<number>();
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
@@ -30,16 +34,20 @@ const Index: FC<IComponent> = (props) => {
 		},
 	};
 
-	const inputField: TMoleculeFormSchemaRow = {
-		value: {
-			type: "input",
-			options: {
-				iconsLeft: labelImg,
-				color: "MAIN_4",
-				type: "number",
-				name: "input",
+	const imagesField: TMoleculeFormSchemaRow = {
+		extStyle: Styles.row,
+		value: imageList.map((el, i) => ({
+			value: {
+				type: "btnIcon",
+				options: {
+					icon: el.img,
+					isBig: true,
+					type: "button",
+					colorIcon: typeof qtyImage === "number" && i <= qtyImage ? "BLUE_3" : "SECOND_1",
+					click: () => setQtyImage(i),
+				},
 			},
-		},
+		})),
 	};
 
 	const btnField: TMoleculeFormSchemaRow = {
@@ -53,10 +61,21 @@ const Index: FC<IComponent> = (props) => {
 		},
 	};
 
+	const hiddenField: TMoleculeFormSchemaRow = {
+		extStyle: Styles.hidden,
+		value: {
+			type: "input",
+			options: {
+				value: qtyImage == null ? "" : String(qtyImage),
+				name: "qtyIndex",
+			},
+		},
+	};
+
 	const propsComponent: IParent = {
 		schema: {
 			extStyle: Styles.wrapper,
-			value: [titleField, inputField, btnField],
+			value: [titleField, imagesField, btnField, hiddenField],
 		},
 		form: { onSubmit: submit },
 	};

@@ -3,20 +3,18 @@ import { css } from "@emotion/react";
 
 class Style extends Styles {
 	public wrapper = css`
-		display: flex;
-		flex-direction: column;
+		${this.mixins.flexCol};
 		padding: ${this.size(4)};
-		gap: ${this.size(3)};
+		gap: ${this.size(4)};
 	`;
 
 	public content = css`
-		display: flex;
-		flex-direction: column;
+		${this.mixins.flexGorCenter};
 	`;
 
 	public switch = css`
 		${this.mixins.flexVerCenter};
-		gap: 12px;
+		gap: ${this.size(4)};
 	`;
 }
 

@@ -20,7 +20,7 @@ class AppImp extends ServiceBase<Interface.Store> implements Interface.IAdapter 
 
 	private CreateModal<T extends Interface.EModalName>(
 		type: T,
-		successFn: (val: Interface.TModalPayloadMap[T]) => void,
+		successFn: (val: Interface.TModalPayloadMap<T>) => void,
 	): Interface.TModals {
 		return { id: crypto.randomUUID(), type, successFn } as Interface.TModals;
 	}
@@ -46,7 +46,7 @@ class AppImp extends ServiceBase<Interface.Store> implements Interface.IAdapter 
 		return this.store.modals;
 	}
 
-	public addModals<T extends Interface.EModalName>(type: T, successFn: (val: Interface.TModalPayloadMap[T]) => void): string {
+	public addModals<T extends Interface.EModalName>(type: T, successFn: (val: Interface.TModalPayloadMap<T>) => void): string {
 		const newModal = this.CreateModal(type, successFn);
 		const newModalList = this.AddModal(this.store.modals, newModal);
 		this.store = this.SetModal(this.store, newModalList);

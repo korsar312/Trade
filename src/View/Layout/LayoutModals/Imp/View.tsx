@@ -5,6 +5,7 @@ import type { AppInterface } from "../../../../Logic/Core/Services/ServiceApp/Ap
 import TemplateModalFormChoicePriceParam from "../../../Components/Templates/TemplateModalFormChoicePriceParam";
 import TemplateModalFormChoiceBank from "../../../Components/Templates/TemplateModalFormChoiceBank";
 import TemplateModalFormChoiceSort from "../../../Components/Templates/TemplateModalFormChoiceSort";
+import TemplateModalFormChoiceRating from "../../../Components/Templates/TemplateModalFormChoiceRating";
 
 const View: NFC<typeof Model> = (props) => {
 	const { modalList, closeModal } = props;
@@ -17,6 +18,8 @@ const View: NFC<typeof Model> = (props) => {
 				return <TemplateModalFormChoiceSort color={"MAIN_3"} submitFn={el.successFn} bgClick={close} />;
 			case "PRICE":
 				return <TemplateModalFormChoicePriceParam color={"MAIN_3"} submitFn={el.successFn} bgClick={close} />;
+			case "RATING":
+				return <TemplateModalFormChoiceRating color={"MAIN_3"} submitFn={el.successFn} bgClick={close} />;
 		}
 	}
 

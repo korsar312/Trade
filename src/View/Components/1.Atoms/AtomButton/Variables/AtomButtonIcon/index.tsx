@@ -9,19 +9,20 @@ export type IComponent = {} & TPick & TBase & (TBig | TColor);
 type TColor = Pick<IParent, "color"> & { isBig?: never };
 type TBig = { isBig: true; color?: never };
 
-type TPick = Pick<IParent, "isDisable" | "click" | "isFullWidth">;
+type TPick = Pick<IParent, "isDisable" | "click" | "isFullWidth" | "type">;
 
 type TBase = {
 	icon: TImageComponent;
 	colorIcon?: StyleInterface.TColorChoice;
+	isSubmit?: boolean;
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { icon, isBig, colorIcon, ...other } = props;
+	const { icon, isBig, colorIcon, isSubmit, ...other } = props;
 
 	const propsComponent: IParent = {
-		...other,
 		type: "submit",
+		...other,
 		icons: { left: { value: [{ img: icon, size: isBig ? 30 : 20, color: colorIcon }] } },
 		extStyles: Style.wrapper(isBig),
 	};

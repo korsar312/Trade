@@ -16,7 +16,7 @@ const keyStorageSort = "CARD_SORT_NAME" satisfies SettingInterface.ENameStorage;
 const keyStorageFilter = "CARD_FILTER_NAME" satisfies SettingInterface.ENameStorage;
 
 const initSort: PublicInterface.ESort = "TO_UPPER";
-const initFilter: PublicInterface.TFilterCard = { name: null, bank: [], priseUp: null, priseDown: null };
+const initFilter: PublicInterface.TFilterCard = { name: null, bank: [], priseUp: null, priseDown: null, rating: null };
 
 const Index: FC<IComponent> = (props) => {
 	const {} = props;
@@ -77,7 +77,7 @@ const Index: FC<IComponent> = (props) => {
 		{
 			id: "6",
 			type: "BTN_MAIN",
-			options: { color: "MAIN_3", text: "RATING", rightImage: "ArrowDown" },
+			options: { color: colorFillFilter("rating"), text: "RATING", rightImage: "ArrowDown", click: openFilterRating },
 		},
 	];
 
@@ -119,13 +119,7 @@ const Index: FC<IComponent> = (props) => {
 		return isError ? "MAIN_3" : "BLUE_2";
 	}
 
-	function getSortData() {
-		return Act.Setting.getStorage(keyStorageSort) || initSort;
-	}
-
-	function getFilterData() {
-		return Act.Setting.getStorage(keyStorageFilter) || initFilter;
-	}
+	// ======================= MODALS =======================
 
 	function openFilterSort() {
 		const modalId = Act.App.addModals("SORT", (val) => setTimeout(() => setSortVal(modalId, val)));
@@ -135,11 +129,17 @@ const Index: FC<IComponent> = (props) => {
 		const modalId = Act.App.addModals("BANK", (val) => setTimeout(() => setFilterBank(modalId, val)));
 	}
 
+	function openFilterRating() {
+		const modalId = Act.App.addModals("RATING", (val) => setTimeout(() => setFilterRating(modalId, val)));
+	}
+
 	function openFilterPrice(isUp: boolean) {
 		return () => {
 			const modalId = Act.App.addModals("PRICE", (val) => setTimeout(() => setFilterPrice(modalId, isUp, val)));
 		};
 	}
+
+	// ======================= SETTERS =======================
 
 	function setSortVal(id: string, sort: PublicInterface.ESort) {
 		setSort(sort);
@@ -155,6 +155,11 @@ const Index: FC<IComponent> = (props) => {
 		Act.App.removeModals(id);
 	}
 
+	function setFilterRating(id: string, rating: PublicInterface.TRating | null) {
+		setFilterHandle("rating", rating);
+		Act.App.removeModals(id);
+	}
+
 	function setFilterPrice(id: string, isUp: boolean, price: number | null) {
 		setFilterHandle(isUp ? "priseUp" : "priseDown", price);
 		Act.App.removeModals(id);
@@ -163,6 +168,18 @@ const Index: FC<IComponent> = (props) => {
 	function setFilterHandle<T extends keyof PublicInterface.TFilterCard>(field: T, value: PublicInterface.TFilterCard[T]) {
 		setFilters((old) => ({ ...old, [field]: value }));
 	}
+
+	// ======================= GETTER FILTER/SORT =======================
+
+	function getSortData() {
+		return Act.Setting.getStorage(keyStorageSort) || initSort;
+	}
+
+	function getFilterData() {
+		return Act.Setting.getStorage(keyStorageFilter) || initFilter;
+	}
+
+	// ======================= GETTER ITEM =======================
 
 	function getName(id: string) {
 		return Act.Catalogue.getName(id);
@@ -187,6 +204,8 @@ const Index: FC<IComponent> = (props) => {
 	function getImage(id: string) {
 		return Act.Catalogue.getImage(id);
 	}
+
+	// ======================= OTHERS =======================
 
 	function clearFilter() {
 		setFilters(initFilter);

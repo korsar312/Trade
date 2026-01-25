@@ -27,7 +27,7 @@ const Index: FC<IComponent> = (props) => {
 			options: {
 				text: title,
 				color: "SECOND_1",
-				font: "BlockHeading",
+				font: "BodyMain",
 			},
 		},
 	};

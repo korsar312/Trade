@@ -9,6 +9,7 @@ import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeFormSchemaSwitchChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 import MoleculeFormSchemaRadioChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
 import MoleculeFormSchemaInputChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInputChoice";
+import MoleculeFormSchemaImageQtyChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
 
 const View: NFC<typeof Model> = (props) => {
 	const { form, color, bgClick } = props;
@@ -23,6 +24,8 @@ const View: NFC<typeof Model> = (props) => {
 				return <MoleculeFormSchemaRadioChoice {...options} />;
 			case "INPUT_ONE":
 				return <MoleculeFormSchemaInputChoice {...options} />;
+			case "IMAGE_QTY":
+				return <MoleculeFormSchemaImageQtyChoice {...options} />;
 		}
 	}
 
