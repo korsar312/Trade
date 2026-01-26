@@ -6,6 +6,7 @@ class Style extends Styles {
 		${this.mixins.flexCol};
 		gap: 12px;
 		width: 100%;
+		height: 100%;
 	`;
 }
 

@@ -17,6 +17,7 @@ class Style extends Styles {
 	`;
 
 	public catalogWrap: CSSObject = css`
+		border-radius: ${this.variables.radiusStandard}px;
 		${this.mixins.noScrollBar};
 		flex: 1;
 	`;
