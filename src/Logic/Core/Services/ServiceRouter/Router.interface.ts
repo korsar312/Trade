@@ -4,7 +4,7 @@ import type { PageParam } from "../../../Config/List/Routes.ts";
 
 export namespace RouterInterface {
 	export interface IAdapter {
-		goTo(page: EPath, state?: Record<string, string>): void;
+		goTo(page: EPath, state?: Record<string, string>, options?: TOptions): void;
 		goBack(): void;
 		getRouteObj(): TRouter;
 		getRole(): PublicInterface.ERole;
@@ -27,6 +27,10 @@ export namespace RouterInterface {
 	export type TParamSink = {
 		set: (name: EPath, params: unknown) => void;
 		pending?: { name: EPath; params: unknown };
+	};
+
+	export type TOptions = {
+		noHistory?: boolean;
 	};
 
 	export interface Store {

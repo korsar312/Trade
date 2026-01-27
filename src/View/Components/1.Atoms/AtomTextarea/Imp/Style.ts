@@ -8,18 +8,14 @@ class Style extends Styles {
 
 	public wrapper(color?: StyleInterface.TColorChoice): CSSObject {
 		return css`
-			${this.mixins.flexCenter};
 			position: relative;
 			box-sizing: border-box;
-			padding: ${this.sidePad / 2}px ${this.sidePad}px;
-			gap: ${this.sidePad / 2}px;
+			padding: ${this.sidePad * 1.2}px ${this.sidePad}px;
 			border: 2px solid ${this.getColor("SECOND_1")};
 			background: ${this.getColor(color)};
-			border-radius: 12px;
+			border-radius: ${this.variables.radiusStandard / 2}px;
 			transition: ${this.variables.fastTransition};
 			overflow: hidden;
-			width: 100%;
-			height: 100%;
 
 			&:has(input[disabled]) {
 				background: ${this.getColor("SECOND_1")};
@@ -42,21 +38,18 @@ class Style extends Styles {
 		`;
 	}
 
-	public inputWrap: CSSObject = css`
-		${this.mixins.flexVerCenter}
-		position: relative;
-		width: 100%;
-		height: 100%;
-	`;
-
 	public input: CSSObject = css`
-		position: relative;
 		background: ${this.getColor()};
 		outline: none;
 		border: none;
-		height: calc(100% - ${this.sidePad / 2}px);
 		padding: 0;
 		width: 100%;
+		height: 100px;
+		resize: vertical;
+
+		&::-webkit-scrollbar-track {
+			margin-bottom: 10px;
+		}
 
 		&::placeholder {
 			color: ${this.getColor(undefined)};
@@ -72,8 +65,8 @@ class Style extends Styles {
 			text-wrap: nowrap;
 			position: absolute;
 
-			&:has(+ input:focus),
-			&:has(+ input:not(:placeholder-shown)) {
+			&:has(+ textarea:focus),
+			&:has(+ textarea:not(:placeholder-shown)) {
 				transform: ${topSide};
 			}
 		`;

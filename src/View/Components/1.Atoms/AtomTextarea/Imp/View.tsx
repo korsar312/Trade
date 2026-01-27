@@ -8,21 +8,18 @@ const View: NFC<typeof Model> = (props) => {
 
 	return (
 		<div css={[Style.wrapper(color), Style.valid(isValid)]}>
-			<div css={Style.inputWrap}>
-				<Text extStyle={Style.place()} color={placeObj.color} font={placeObj.font} text={placeObj.text} />
+			<Text extStyle={Style.place()} color={placeObj.color} font={placeObj.font} text={placeObj.text} />
 
-				<textarea
-					autoCorrect={"on"}
-					name={name}
-					css={[Style.input, Style.text(textObj)]}
-					onClick={onClick}
-					onInput={handleChange}
-					disabled={disabled}
-					onChange={onValid}
-					placeholder={""}
-					defaultValue={value === undefined ? String(text) : undefined}
-				/>
-			</div>
+			<textarea
+				name={name}
+				css={[Style.input, Style.text(textObj)]}
+				onClick={onClick}
+				onInput={handleChange}
+				disabled={disabled}
+				onChange={onValid}
+				placeholder={""}
+				defaultValue={value === undefined ? String(text) : undefined}
+			/>
 		</div>
 	);
 };

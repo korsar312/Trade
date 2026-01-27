@@ -4,12 +4,13 @@ import { css, type CSSObject } from "@emotion/react";
 class Style extends Styles {
 	public wrapper: CSSObject = css`
 		${this.mixins.noScrollBar};
+		border-radius: ${this.variables.radiusStandard}px;
 		height: 100%;
-		gap: 12px;
 	`;
 
-	public mainForm: CSSObject = css`
-		flex: 1;
+	public content: CSSObject = css`
+		${this.mixins.flexCol};
+		gap: 12px;
 	`;
 }
 

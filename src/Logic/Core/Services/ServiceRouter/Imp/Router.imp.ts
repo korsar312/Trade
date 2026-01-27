@@ -11,9 +11,9 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		page: Interface.EPath,
 		params?: Record<string, string>,
 		state?: Record<string, unknown>,
-		replace: boolean = false,
+		options?: Interface.TOptions,
 	) {
-		navFn(generatePath("/" + path[page], params), { replace, state });
+		navFn(generatePath("/" + path[page], params), { replace: Boolean(options?.noHistory), state });
 	}
 
 	private SetCurrentRole(store: Interface.Store, role: PublicInterface.ERole): Interface.Store {
@@ -83,8 +83,8 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 
 	//==============================================================================================
 
-	public goTo(page: Interface.EPath, param?: Record<string, string>): void {
-		this.Go(this.store.routes.navigate, this.store.path, page, param);
+	public goTo(page: Interface.EPath, param?: Record<string, string>, options?: Interface.TOptions): void {
+		this.Go(this.store.routes.navigate, this.store.path, page, param, undefined, options);
 	}
 
 	public goBack(): void {

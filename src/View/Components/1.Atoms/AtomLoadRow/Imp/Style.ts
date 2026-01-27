@@ -12,7 +12,7 @@ class Style extends Styles {
 		overflow: hidden;
 		width: 100%;
 		height: 18px;
-		border-radius: 6px;
+		border-radius: ${this.variables.radiusStandard / 2}px;
 		background: ${this.getColor("SECOND_1", 0.1)};
 
 		&::after {

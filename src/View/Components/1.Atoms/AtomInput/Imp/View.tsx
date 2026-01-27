@@ -22,7 +22,7 @@ const View: NFC<typeof Model> = (props) => {
 	}
 
 	return (
-		<div css={[Style.wrapper(color), Style.valid(isValid)]}>
+		<div css={[Style.wrapper(textObj.font, color), Style.valid(isValid)]}>
 			{images(imageLeft)}
 
 			<div css={Style.inputWrap}>

@@ -4,6 +4,7 @@ export namespace StyleInterface {
 	export interface IAdapter {
 		getColor(color?: TColorChoice, opacity?: number): string;
 		getFont(font: EFont): CSSObject;
+		getFontSize(font: EFont): number;
 		getSize(size: number): string;
 		getTheme(): ETheme;
 	}

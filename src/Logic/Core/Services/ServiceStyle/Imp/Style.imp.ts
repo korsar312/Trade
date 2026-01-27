@@ -3,21 +3,21 @@ import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 import { css, type CSSObject } from "@emotion/react";
 
 class StyleImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private hex2rgba(hex: Interface.TColorHEXFormat, opacity: number): Interface.TColorRGBFormat {
+	private Hex2rgba(hex: Interface.TColorHEXFormat, opacity: number): Interface.TColorRGBFormat {
 		const RGB = hex.match(/\w\w/g)?.map((x) => parseInt(x, 16));
 
 		return `rgba(${RGB},${opacity})`;
 	}
 
-	private getHexColor(store: Interface.Store, theme: Interface.ETheme, color: Interface.EColor): Interface.TColorHEXFormat {
+	private GetHexColor(store: Interface.Store, theme: Interface.ETheme, color: Interface.EColor): Interface.TColorHEXFormat {
 		return store.color[theme][color];
 	}
 
-	private getStoreFont(store: Interface.Store, font: Interface.EFont): CSSObject | undefined {
+	private GetStoreFont(store: Interface.Store, font: Interface.EFont): CSSObject | undefined {
 		return store.font[font];
 	}
 
-	private createNewFontObj(font: Interface.EFont, fontObj: Interface.TFontList, weightObj: Interface.TWeightList): CSSObject {
+	private CreateNewFontObj(font: Interface.EFont, fontObj: Interface.TFontList, weightObj: Interface.TWeightList): CSSObject {
 		const token = fontObj[font];
 		const [w, size] = token.split("_") as [Interface.EWeight, `${number}`];
 
@@ -26,14 +26,17 @@ class StyleImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 			font-weight: ${weightObj[w]};
 		`;
 
-		function setSize(size: string, modify: number = 1) {
-			return `${Number(size) * modify}px`;
-		}
-
 		return css`
 			${fontMajor};
-			font-size: ${setSize(size)};
+			font-size: ${Number(size)}px;
 		`;
+	}
+
+	private GetSizeFont(font: Interface.EFont, fontObj: Interface.TFontList): number {
+		const token = fontObj[font];
+		const [_w, size] = token.split("_") as [Interface.EWeight, `${number}`];
+
+		return Number(size);
 	}
 
 	private saveNewFontObj(name: Interface.EFont, newFont: CSSObject): Interface.Store {
@@ -57,28 +60,32 @@ class StyleImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 
 	//==============================================================================================
 
-	getColor(color?: Interface.TColorChoice, opacity: number = 1): string {
+	public getColor(color?: Interface.TColorChoice, opacity: number = 1): string {
 		if (color === undefined) return "transparent";
-		const hex = this.getHexColor(this.store, this.store.theme, color);
+		const hex = this.GetHexColor(this.store, this.store.theme, color);
 
-		return this.hex2rgba(hex, opacity);
+		return this.Hex2rgba(hex, opacity);
 	}
 
-	getFont(font: Interface.EFont): CSSObject {
-		const storeFont = this.getStoreFont(this.store, font);
+	public getFont(font: Interface.EFont): CSSObject {
+		const storeFont = this.GetStoreFont(this.store, font);
 		if (storeFont) return storeFont;
 
-		const newFont = this.createNewFontObj(font, this.store.fontProp.fontList, this.store.fontProp.weightList);
+		const newFont = this.CreateNewFontObj(font, this.store.fontProp.fontList, this.store.fontProp.weightList);
 		this.store = this.saveNewFontObj(font, newFont);
 
 		return newFont;
 	}
 
-	getSize(size: number): string {
+	public getFontSize(font: Interface.EFont): number {
+		return this.GetSizeFont(font, this.store.fontProp.fontList);
+	}
+
+	public getSize(size: number): string {
 		return `${size ** 2}px`;
 	}
 
-	getTheme(): Interface.ETheme {
+	public getTheme(): Interface.ETheme {
 		return this.store.theme;
 	}
 }

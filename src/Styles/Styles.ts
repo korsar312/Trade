@@ -20,6 +20,10 @@ export class Styles {
 		return Act.Style.getFont(font);
 	}
 
+	protected getFontSize(font: StyleInterface.EFont) {
+		return Act.Style.getFontSize(font);
+	}
+
 	protected size(num: number) {
 		return Act.Style.getSize(num);
 	}

@@ -4,7 +4,6 @@ import { css } from "@emotion/react";
 class Style extends Styles {
 	public wrapper = css`
 		${this.mixins.flexCol};
-		padding: ${this.size(4)};
 		gap: ${this.size(4)};
 	`;
 

@@ -5,7 +5,6 @@ class Style extends Styles {
 	public wrapper = css`
 		display: flex;
 		flex-direction: column;
-		padding: ${this.size(4)};
 		gap: ${this.size(3)};
 	`;
 

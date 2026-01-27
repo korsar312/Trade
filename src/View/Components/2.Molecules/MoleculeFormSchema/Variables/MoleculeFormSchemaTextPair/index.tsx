@@ -18,9 +18,6 @@ export type TMoleculeFormSchemaTextPairForm = {
 const Index: FC<IComponent> = (props) => {
 	const { title, labelTitle, labelDesc, submit } = props;
 
-	labelTitle;
-	labelDesc;
-
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
 		value: {
@@ -39,6 +36,7 @@ const Index: FC<IComponent> = (props) => {
 			options: {
 				color: "MAIN_4",
 				name: "title",
+				placeholder: labelTitle,
 			},
 		},
 	};
@@ -49,6 +47,7 @@ const Index: FC<IComponent> = (props) => {
 			options: {
 				color: "MAIN_4",
 				name: "desc",
+				placeholder: labelDesc,
 			},
 		},
 	};

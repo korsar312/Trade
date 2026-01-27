@@ -6,7 +6,7 @@ import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceS
 class Style extends Styles {
 	private sidePad = 8;
 
-	public wrapper(color?: StyleInterface.TColorChoice): CSSObject {
+	public wrapper(font: StyleInterface.EFont, color?: StyleInterface.TColorChoice): CSSObject {
 		return css`
 			${this.mixins.flexCenter};
 			position: relative;
@@ -15,10 +15,11 @@ class Style extends Styles {
 			gap: ${this.sidePad / 2}px;
 			border: 2px solid ${this.getColor("SECOND_1")};
 			background: ${this.getColor(color)};
-			border-radius: 12px;
+			border-radius: ${this.variables.radiusStandard / 2}px;
 			transition: ${this.variables.fastTransition};
 			overflow: hidden;
 			width: 100%;
+			min-height: ${this.sidePad * 3 + this.getFontSize(font)}px;
 			height: 100%;
 
 			&:has(input[disabled]) {
