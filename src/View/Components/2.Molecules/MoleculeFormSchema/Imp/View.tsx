@@ -12,6 +12,7 @@ import AtomInput from "../../../1.Atoms/AtomInput";
 import AtomToggleSwitch from "../../../1.Atoms/AtomToggle/Variables/AtomToggleSwitch";
 import AtomToggleRadio from "../../../1.Atoms/AtomToggle/Variables/AtomToggleRadio";
 import Image from "../../../0.Cores/Image";
+import AtomTextarea from "../../../1.Atoms/AtomTextarea";
 
 const View: NFC<typeof Model> = (props) => {
 	const { schema, form } = props;
@@ -29,6 +30,8 @@ const View: NFC<typeof Model> = (props) => {
 				return <Text {...field.options} />;
 			case "input":
 				return <AtomInput {...field.options} />;
+			case "textarea":
+				return <AtomTextarea {...field.options} />;
 			case "btnIcon":
 				return <AtomButtonIcon {...field.options} />;
 			case "btn":

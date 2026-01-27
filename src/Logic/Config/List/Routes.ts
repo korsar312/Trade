@@ -5,21 +5,24 @@ import { redirect } from "react-router";
 export type PageParam<K extends keyof typeof Path> = ExtractParams<(typeof Path)[K]>;
 
 const BasePage = {
+	CREATE: "create",
 	PROFILE: "profile",
 	TRADE: "trade",
 	ORDER: "order",
 	INFO: "info",
 } as const;
 
-const ID = "/:id" as const;
-const TYPE = "/:type" as const;
+const ID = "/:id?" as const;
+const TYPE = "/:type?" as const;
 const ID_TYPE = `${ID}${TYPE}` as const;
 
 export const RouteSpec = {
+	CREATE: {
+		CREATE_LISTING: TYPE,
+	},
 	TRADE: {
 		GOODS: "",
 		ITEM: ID_TYPE,
-		CREATE_LISTING: TYPE,
 	},
 	ORDER: {
 		ORDER_LIST: "",

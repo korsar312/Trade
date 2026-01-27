@@ -64,7 +64,7 @@ class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		const matches = browserRouter.state.matches;
 		const lastMatches = Number(matches.at(-1)?.route.id);
 
-		const pageName = lastMatches ? routesSpec[lastMatches].path : "ERROR";
+		const pageName = lastMatches == null ? "ERROR" : routesSpec[lastMatches].path;
 
 		const store: Interface.Store = {
 			currentPath: { name: pageName, params: {} },
@@ -119,7 +119,7 @@ function createParamSink(): Interface.TParamSink {
 }
 
 function createRoleSink(): { get: () => PublicInterface.ERole } {
-	return { get: () => "GUEST" as PublicInterface.ERole };
+	return { get: () => "USER" };
 }
 
 function redirectRole(role: PublicInterface.ERole): Interface.EPath {
@@ -142,7 +142,11 @@ function makeRoleGuardLoader(params: {
 		if (allow && allow.length > 0) {
 			const role = getRole();
 
-			if (!allow.includes(role)) throw redirect(redirectTo(redirectRole(role)));
+			if (!allow.includes(role)) {
+				console.log(role);
+				console.log(allow);
+				throw redirect(redirectTo(redirectRole(role)));
+			}
 		}
 
 		goLinkHandler(args.params);
