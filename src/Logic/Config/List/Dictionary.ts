@@ -2,10 +2,14 @@ import type { MessageInterface } from "../../Core/Services/ServiceMessage/Messag
 import type { CatalogueInterface } from "../../Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 
-type TOther = CatalogueInterface.EBank | PublicInterface.ESort;
+type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	LISTING_CREATE: { RU: "Создание лота" },
+	CARD: { RU: "Б. Карта" },
+	GUARD: { RU: "Свободный лот" },
 	SELECT_RATING_QTY: { RU: "Выберети желаемый рейтинг" },
+	SELECT_LISTING_TYPE: { RU: "Выберети тип лота" },
 	SELECT_SORT_TYPE: { RU: "Выберети тип сортировки" },
 	ENTER_DES_PRICE: { RU: "Введите желаемое значение цены" },
 	BANK_SELECTOR: { RU: "Выберети желаемые банки" },

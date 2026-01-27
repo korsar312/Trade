@@ -1,7 +1,7 @@
 import type { IComponent, TAtomButtonGeneralGroup } from "../index";
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { IComponent as IImage } from "../../../0.Cores/Image";
-import type { IComponent as IText } from "../../../0.Cores//Text";
+import type { IComponent as IText } from "../../../0.Cores/Text";
 import type { MouseEvent } from "react";
 
 function Model(props: IComponent) {

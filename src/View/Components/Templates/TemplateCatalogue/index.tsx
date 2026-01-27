@@ -52,7 +52,7 @@ const Index: FC<IComponent> = (props) => {
 		{
 			id: "1",
 			type: "BTN_IMAGE",
-			options: { color: "BLUE_1", icon: "PlusSquare" },
+			options: { color: "BLUE_1", icon: "PlusSquare", click: openListingAdd },
 		},
 		{
 			id: "2",
@@ -142,6 +142,10 @@ const Index: FC<IComponent> = (props) => {
 		};
 	}
 
+	function openListingAdd() {
+		const modalId = Act.App.addModals("TYPE_ITEM", (val) => setTimeout(() => goCreateListing(modalId, val)));
+	}
+
 	// ======================= SETTERS =======================
 
 	function setSortVal(id: string, sort: PublicInterface.ESort) {
@@ -209,6 +213,11 @@ const Index: FC<IComponent> = (props) => {
 	}
 
 	// ======================= OTHERS =======================
+
+	function goCreateListing(id: string, type: CatalogueInterface.ETypeItem) {
+		Act.Router.goTo("CREATE_LISTING", { type });
+		Act.App.removeModals(id);
+	}
 
 	function clearFilter() {
 		setFilters(initFilter);

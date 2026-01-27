@@ -23,6 +23,7 @@ export namespace PublicInterface {
 		SORT: {} as ESort,
 		PRICE: {} as number | null,
 		RATING: {} as TRating | null,
+		TYPE_ITEM: {} as CatalogueInterface.ETypeItem,
 	} as const satisfies Record<AppInterface.EModalName, unknown>;
 
 	export type TModalVal<T extends AppInterface.EModalName> = { [K in keyof typeof ModalValue]: (typeof ModalValue)[K] }[T];

@@ -22,6 +22,7 @@ type TBtnMap = Record<EBtn, TBtn>;
 const includesPath: Record<RouterInterface.EPath, EBtn> = {
 	GOODS: "CATALOG",
 	ITEM: "CATALOG",
+	CREATE_LISTING: "CATALOG",
 	PROFILE: "PROFILE",
 	USER: "PROFILE",
 	ORDER_LIST: "ORDER",

@@ -46,5 +46,6 @@ const Router = {
 	ORDER_LIST: "ORDER_LIST",
 	ORDER: "ORDER",
 	INFO: "INFO",
+	CREATE_LISTING: "CREATE_LISTING",
 	ERROR: "ERROR",
 } as const;

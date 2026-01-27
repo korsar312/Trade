@@ -6,6 +6,7 @@ import TemplateModalFormChoicePriceParam from "../../../Components/Templates/Tem
 import TemplateModalFormChoiceBank from "../../../Components/Templates/TemplateModalFormChoiceBank";
 import TemplateModalFormChoiceSort from "../../../Components/Templates/TemplateModalFormChoiceSort";
 import TemplateModalFormChoiceRating from "../../../Components/Templates/TemplateModalFormChoiceRating";
+import TemplateModalFormChoiceItemType from "../../../Components/Templates/TemplateModalFormChoiceItemType";
 
 const View: NFC<typeof Model> = (props) => {
 	const { modalList, closeModal } = props;
@@ -20,6 +21,8 @@ const View: NFC<typeof Model> = (props) => {
 				return <TemplateModalFormChoicePriceParam color={"MAIN_3"} submitFn={el.successFn} bgClick={close} />;
 			case "RATING":
 				return <TemplateModalFormChoiceRating color={"MAIN_3"} submitFn={el.successFn} bgClick={close} />;
+			case "TYPE_ITEM":
+				return <TemplateModalFormChoiceItemType color={"MAIN_3"} submitFn={el.successFn} bgClick={close} />;
 		}
 	}
 

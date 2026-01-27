@@ -105,7 +105,7 @@ export const CatalogueBank = {
 	TINK: "TINK",
 } as const;
 
-const CatalogueTypeItem = {
+export const CatalogueTypeItem = {
 	CARD: "CARD",
 	GUARD: "GUARD",
 } as const;

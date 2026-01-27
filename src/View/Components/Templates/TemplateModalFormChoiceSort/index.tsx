@@ -15,10 +15,6 @@ const Index: FC<IComponent> = (props) => {
 
 	const list = Object.keys(PublicSort) as PublicInterface.ESort[];
 
-	function getName(word: string): string {
-		return Act.Message.getWord(word);
-	}
-
 	function submit(data: TMoleculeFormSchemaRadioChoiceForm) {
 		const val = (data.radio || "TO_UPPER") as PublicInterface.ESort;
 		submitFn(val);
@@ -31,7 +27,7 @@ const Index: FC<IComponent> = (props) => {
 			options: {
 				title: "SELECT_SORT_TYPE",
 				submit,
-				choiceList: list.map((el) => ({ name: el, title: getName(el) })),
+				choiceList: list.map((el) => ({ name: el, title: Act.Message.getWord(el) })),
 				btnName: "APPLY",
 			},
 		},

@@ -11,13 +11,15 @@ const BasePage = {
 	INFO: "info",
 } as const;
 
-const ID = "/:id?" as const;
-const ID_TYPE = "/:type/:id" as const;
+const ID = "/:id" as const;
+const TYPE = "/:type" as const;
+const ID_TYPE = `${ID}${TYPE}` as const;
 
 export const RouteSpec = {
 	TRADE: {
 		GOODS: "",
 		ITEM: ID_TYPE,
+		CREATE_LISTING: TYPE,
 	},
 	ORDER: {
 		ORDER_LIST: "",
@@ -45,20 +47,19 @@ export const RoutesRole: RouterInterface.TRouterListRole = {
 	PROFILE: ["ADMIN"],
 	USER: ["USER", "ADMIN"],
 	INFO: ["USER", "ADMIN"],
+	CREATE_LISTING: ["USER", "ADMIN"],
 	ERROR: ["USER", "ADMIN"],
 };
 
 export const Routes: RouterInterface.TRouterMapList = [
 	{ Component: lazy(() => import("./../../../View/Page/PageGoods")), path: "GOODS" },
 	{ Component: lazy(() => import("./../../../View/Page/PageItem")), path: "ITEM" },
-
 	{ Component: lazy(() => import("./../../../View/Page/PageProfile")), path: "PROFILE" },
 	{ Component: lazy(() => import("./../../../View/Page/PageUser")), path: "USER" },
-
 	{ Component: lazy(() => import("./../../../View/Page/PageOrderList")), path: "ORDER_LIST" },
 	{ Component: lazy(() => import("./../../../View/Page/PageOrder")), path: "ORDER" },
-
 	{ Component: lazy(() => import("./../../../View/Page/PageInfo")), path: "INFO" },
+	{ Component: lazy(() => import("./../../../View/Page/PageCreateListing")), path: "CREATE_LISTING" },
 	{ loader: () => redirect(Path.GOODS), path: "ERROR" },
 ];
 

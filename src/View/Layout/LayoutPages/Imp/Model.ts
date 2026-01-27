@@ -31,6 +31,8 @@ function Model(props: IComponent) {
 				return "ORDER";
 			case "INFO":
 				return "INFO";
+			case "CREATE_LISTING":
+				return "LISTING_CREATE";
 			case "ERROR":
 				return "ERROR";
 		}

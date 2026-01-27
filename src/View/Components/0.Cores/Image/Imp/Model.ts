@@ -6,13 +6,13 @@ import { Consts } from "../../../../../Logic/Config/Consts.ts";
 function Model(props: IComponent) {
 	const { img, color, extStyle, size } = props;
 
-	useEffect(() => {
-		setIsShow(true);
-	}, [img]);
-
 	const [isShow, setIsShow] = useState(true);
 
 	const imageIcon = img && getImage(img);
+
+	useEffect(() => {
+		setIsShow(true);
+	}, [img]);
 
 	function handleErrorImage(e: SyntheticEvent<HTMLImageElement, Event>) {
 		const target = e.target as HTMLImageElement;

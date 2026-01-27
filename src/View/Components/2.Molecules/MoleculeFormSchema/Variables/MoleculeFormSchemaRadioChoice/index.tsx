@@ -34,7 +34,7 @@ const Index: FC<IComponent> = (props) => {
 		},
 	};
 
-	const switchField: TMoleculeFormSchemaRow[] = choiceList.map((el) => ({
+	const switchField: TMoleculeFormSchemaRow[] = choiceList.map((el, i) => ({
 		extStyle: Styles.switch,
 		value: [
 			{
@@ -43,6 +43,7 @@ const Index: FC<IComponent> = (props) => {
 					options: {
 						name: "radio",
 						value: el.name,
+						defaultChecked: i == 0,
 					},
 				},
 			},

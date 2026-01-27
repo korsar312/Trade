@@ -27,4 +27,5 @@ const ModalName = {
 	SORT: "SORT",
 	PRICE: "PRICE",
 	RATING: "RATING",
+	TYPE_ITEM: "TYPE_ITEM",
 } as const;
