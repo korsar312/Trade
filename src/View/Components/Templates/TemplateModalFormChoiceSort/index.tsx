@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
 import { Act } from "../../../../Logic/Core";
-import { PublicInterface, PublicSort } from "../../../../Logic/Core/Services/Public.interface.ts";
+import { PublicInterface, PublicSortArr } from "../../../../Logic/Core/Services/Public.interface.ts";
 import type { TMoleculeFormSchemaRadioChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
 
 type TModal = Pick<IProp, "bgClick" | "color">;
@@ -12,8 +12,6 @@ export interface IComponent extends TModal {
 
 const Index: FC<IComponent> = (props) => {
 	const { submitFn, ...propRest } = props;
-
-	const list = Object.keys(PublicSort) as PublicInterface.ESort[];
 
 	function submit(data: TMoleculeFormSchemaRadioChoiceForm) {
 		const val = (data.radio || "TO_UPPER") as PublicInterface.ESort;
@@ -27,7 +25,7 @@ const Index: FC<IComponent> = (props) => {
 			options: {
 				title: "SELECT_SORT_TYPE",
 				submit,
-				choiceList: list.map((el) => ({ name: el, title: Act.Message.getWord(el) })),
+				choiceList: PublicSortArr.map((el) => ({ name: el, title: Act.Message.getWord(el) })),
 				btnName: "APPLY",
 			},
 		},

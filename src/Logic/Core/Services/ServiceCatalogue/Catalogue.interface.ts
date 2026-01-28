@@ -104,11 +104,14 @@ export const CatalogueBank = {
 	SBER: "SBER",
 	TINK: "TINK",
 } as const;
+export const CatalogueBankArr = Object.keys(CatalogueBank) as CatalogueInterface.EBank[];
 
 export const CatalogueTypeItem = {
 	CARD: "CARD",
 	GUARD: "GUARD",
 } as const;
+
+export const CatalogueTypeItemArr = Object.keys(CatalogueTypeItem) as CatalogueInterface.ETypeItem[];
 
 const CatalogueStatus = {
 	DRAFT: "DRAFT",

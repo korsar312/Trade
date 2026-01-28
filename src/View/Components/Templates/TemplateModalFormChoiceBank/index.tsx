@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
 import type { TMoleculeFormSchemaSwitchChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
-import { CatalogueBank, type CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import { CatalogueBankArr, type CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { Act } from "../../../../Logic/Core";
 
 type TModal = Pick<IProp, "bgClick" | "color">;
@@ -13,7 +13,7 @@ export interface IComponent extends TModal {
 const Index: FC<IComponent> = (props) => {
 	const { submitFn, ...propRest } = props;
 
-	const list = Object.keys(CatalogueBank) as CatalogueInterface.EBank[];
+	const list = CatalogueBankArr;
 
 	function submit(data: TMoleculeFormSchemaSwitchChoiceForm) {
 		const arr = Object.keys(data) as CatalogueInterface.EBank[];

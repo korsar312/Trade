@@ -1,4 +1,4 @@
-import type { CatalogueInterface } from "./ServiceCatalogue/Catalogue.interface.ts";
+import { type CatalogueInterface } from "./ServiceCatalogue/Catalogue.interface.ts";
 import type { SettingInterface } from "./ServiceSetting/Setting.interface.ts";
 import type { AppInterface } from "./ServiceApp/App.interface.ts";
 
@@ -42,3 +42,4 @@ export const PublicSort = {
 	TO_UPPER: "TO_UPPER",
 	TO_LOWER: "TO_LOWER",
 } as const;
+export const PublicSortArr = Object.keys(PublicSort) as PublicInterface.ESort[];
