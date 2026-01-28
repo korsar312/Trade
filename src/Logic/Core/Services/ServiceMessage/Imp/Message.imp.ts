@@ -1,5 +1,6 @@
 import type { MessageInterface as Interface } from "../Message.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
+import type { CSSObject } from "@emotion/react";
 
 class MessageImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
 	private getCurrentLang(store: Interface.Store): Interface.ELang {
@@ -21,16 +22,43 @@ class MessageImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 
 	private textReplace(text: string, arrReplace: Interface.EWordAll[]): string {
 		return text.replace(/\{\{(\d+)}}/g, (_, group1) => {
-			const idx = Number(group1) - 1; // {{1}} → индекс 0
+			const idx = Number(group1) - 1;
 			const replacement = arrReplace[idx];
-			return replacement !== undefined // если есть замена
-				? String(replacement) // – приводим к строке
-				: `{{${group1}}}`; // – иначе оставляем как есть
+			return replacement !== undefined ? String(replacement) : `{{${group1}}}`;
 		});
 	}
 
-	private changeCase(text: string, arrReplace: Interface.ECase): string {
-		switch (arrReplace) {
+	private styleReplace(text: string, arrStyle: CSSObject[]): Interface.TWordChunk[] {
+		const chunks: Interface.TWordChunk[] = [];
+		let rest = text;
+
+		for (let sIdx = 0; sIdx < arrStyle.length; sIdx++) {
+			const open = `[[${sIdx + 1}]]`;
+			const close = `[[${sIdx + 2}]]`;
+
+			const openPos = rest.indexOf(open);
+			if (openPos === -1) break;
+
+			const afterOpen = openPos + open.length;
+			const closePos = rest.indexOf(close, afterOpen);
+			if (closePos === -1) break;
+
+			const before = rest.slice(0, openPos);
+			if (before) chunks.push({ text: before });
+
+			const inside = rest.slice(afterOpen, closePos);
+			if (inside) chunks.push({ text: inside, style: arrStyle[sIdx] });
+
+			rest = rest.slice(closePos + close.length);
+		}
+
+		if (rest) chunks.push({ text: rest });
+
+		return chunks;
+	}
+
+	private changeCase(text: string, wordCase: Interface.ECase): string {
+		switch (wordCase) {
 			case "CAPITAL":
 				return text.toUpperCase();
 			case "SMALL":
@@ -40,13 +68,19 @@ class MessageImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 		}
 	}
 
-	private changeWord(text: string, param?: Interface.TWordParam): string {
-		let word = text;
+	private buildText(word: Interface.EWordAll, param?: Interface.TWordParam): string {
+		const lang = this.getCurrentLang(this.store);
+		let text = this.getStoreWord(this.store, word, lang);
 
-		if (param?.case) word = this.changeCase(word, param.case);
-		if (param?.arrReplace?.length) word = this.textReplace(word, param.arrReplace);
+		if (param?.case) text = this.changeCase(text, param.case);
+		if (param?.arrReplace?.length) text = this.textReplace(text, param.arrReplace);
 
-		return word;
+		return text;
+	}
+
+	private toChunks(text: string, param?: Interface.TWordParam): Interface.TWordChunk[] {
+		if (param?.arrStyle?.length) return this.styleReplace(text, param.arrStyle);
+		return [{ text }];
 	}
 
 	//==============================================================================================
@@ -62,11 +96,13 @@ class MessageImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 
 	//==============================================================================================
 
+	public getWord(word: Interface.EWordAll, param?: Interface.TWordParamBase & { arrStyle?: undefined }): string;
+	public getWord(word: Interface.EWordAll, param: Interface.TWordParamBase & { arrStyle: CSSObject[] }): Interface.TWordChunk[];
 	public getWord(word: Interface.EWordAll, param?: Interface.TWordParam) {
-		const lang = this.getCurrentLang(this.store);
-		const text = this.getStoreWord(this.store, word, lang);
+		const text = this.buildText(word, param);
 
-		return this.changeWord(text, param);
+		if (param?.arrStyle?.length) return this.toChunks(text, param);
+		return text;
 	}
 }
 

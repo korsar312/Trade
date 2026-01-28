@@ -7,6 +7,7 @@ import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain
 import MoleculeGroupBtn from "../../../2.Molecules/MoleculeGroupBtn";
 import MoleculeFormSchemaTextPair from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextPair";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
+import MoleculeFormSchemaTextareaChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextareaChoice";
 
 const View: NFC<typeof Model> = (props) => {
 	const { compRow } = props;
@@ -15,6 +16,8 @@ const View: NFC<typeof Model> = (props) => {
 		switch (type) {
 			case "FORM_TEXT_PAIR":
 				return <MoleculeFormSchemaTextPair {...options} />;
+			case "FORM_TEXTAREA":
+				return <MoleculeFormSchemaTextareaChoice {...options} />;
 			case "BTN_MAIN":
 				return <AtomButtonMain {...options} />;
 			case "TABS":

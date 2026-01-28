@@ -1,42 +1,30 @@
 import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
+import { type IComponent as IText } from "../../../../0.Cores/Text";
 import Styles from "./Style.ts";
 import type { FC } from "react";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 
 export interface IComponent {
-	title: MessageInterface.EWord;
+	title: Pick<IText, "text" | "addStyle">;
 	labelTitle: MessageInterface.EWord;
-	labelDesc: MessageInterface.EWord;
-	submit: (val: TMoleculeFormSchemaTextPairForm) => void;
+	submit: (val: TMoleculeFormSchemaTextareaChoiceForm) => void;
 }
 
-export type TMoleculeFormSchemaTextPairForm = {
-	title: string;
-	desc: string;
+export type TMoleculeFormSchemaTextareaChoiceForm = {
+	input: string;
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, labelTitle, labelDesc, submit } = props;
+	const { title, labelTitle, submit } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
 		value: {
 			type: "text",
 			options: {
-				text: title,
 				color: "SECOND_1",
 				font: "BodyMain",
-			},
-		},
-	};
-
-	const inputField: TMoleculeFormSchemaRow = {
-		value: {
-			type: "input",
-			options: {
-				color: "MAIN_4",
-				name: "title",
-				placeholder: labelTitle,
+				...title,
 			},
 		},
 	};
@@ -46,8 +34,8 @@ const Index: FC<IComponent> = (props) => {
 			type: "textarea",
 			options: {
 				color: "MAIN_4",
-				name: "desc",
-				placeholder: labelDesc,
+				placeholder: labelTitle,
+				name: "input",
 			},
 		},
 	};
@@ -55,7 +43,7 @@ const Index: FC<IComponent> = (props) => {
 	const propsComponent: IParent = {
 		schema: {
 			extStyle: Styles.wrapper,
-			value: [titleField, inputField, textareaField],
+			value: [titleField, textareaField],
 		},
 		form: { onSubmit: submit },
 	};

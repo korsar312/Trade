@@ -1,27 +1,37 @@
+import type { CSSObject } from "@emotion/react";
+
 export namespace MessageInterface {
 	export interface IAdapter {
-		getWord(text: EWordAll, param?: TWordParam): string;
+		getWord(text: EWordAll, param?: TWordParamBase & { arrStyle?: undefined }): string;
+		getWord(text: EWordAll, param: TWordParamBase & { arrStyle?: CSSObject[] }): TWordChunk[];
 	}
-
-	export interface Store {
-		dictionary: TDictionary;
-		lang: ELang;
-	}
-
-	export type EWord = keyof typeof Word;
-	export type ELang = keyof typeof Lang;
-	export type ECase = keyof typeof Case;
 
 	type TMapWord = Record<ELang, string>;
 	type EAllWord<T extends string> = EWord | T;
 
 	export type TDictionary<T extends string = string> = Record<EAllWord<T>, TMapWord>;
-	export type EWordAll = EWord | string | number | undefined;
 
-	export type TWordParam = { arrReplace?: EWordAll[]; case?: ECase };
+	export type TWordParamBase = { arrReplace?: EWordAll[]; case?: ECase };
+	export type TWordParam = (TWordParamBase & { arrStyle?: undefined }) | (TWordParamBase & { arrStyle: CSSObject[] });
+	export type TWordChunk = { text: string; style?: CSSObject };
+
+	export type EWordAll = EWord | string | number | undefined;
+	export type EWord = keyof typeof Word;
+	export type ELang = keyof typeof Lang;
+	export type ECase = keyof typeof Case;
+
+	export interface Store {
+		dictionary: TDictionary;
+		lang: ELang;
+	}
 }
 
 const Word = {
+	TEXT_AFTER_PAYMENT: "TEXT_AFTER_PAYMENT",
+	LISTING_AFTER_PAYMENT_DATA: "LISTING_AFTER_PAYMENT_DATA",
+	LISTING_MAIN_DATA: "LISTING_MAIN_DATA",
+	LISTING_DESC: "LISTING_DESC",
+	LISTING_NAME: "LISTING_NAME",
 	LISTING_CREATE: "LISTING_CREATE",
 	SELECT_RATING_QTY: "SELECT_RATING_QTY",
 	SELECT_LISTING_TYPE: "SELECT_LISTING_TYPE",

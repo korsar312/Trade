@@ -3,6 +3,7 @@ import View from "./Imp/View.tsx";
 import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
+import type { CSSObject } from "@emotion/react";
 
 export interface IComponent {
 	text: MessageInterface.EWordAll;
@@ -13,6 +14,7 @@ export interface IComponent {
 	opacity?: number;
 	extStyle?: TDeepCSSObject;
 	addContent?: MessageInterface.EWordAll[];
+	addStyle?: CSSObject[];
 }
 
 export type TTextPos = "left" | "right" | "center";

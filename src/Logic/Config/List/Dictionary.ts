@@ -5,6 +5,11 @@ import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	TEXT_AFTER_PAYMENT: { RU: "Текст, для оплатившего покупателя" },
+	LISTING_AFTER_PAYMENT_DATA: { RU: "Поля, доступные покупателю [[1]] только после оплаты [[2]] лота" },
+	LISTING_MAIN_DATA: { RU: "Основная информация лота" },
+	LISTING_DESC: { RU: "Описание лота" },
+	LISTING_NAME: { RU: "Наименование лота" },
 	LISTING_CREATE: { RU: "Создание лота" },
 	CARD: { RU: "Б. Карта" },
 	GUARD: { RU: "Свободный лот" },
