@@ -19,54 +19,29 @@ export interface IComponent {
 }
 
 export type TMoleculeFormSchemaRow = {
-	value: TMoleculeFormSchemaField | TMoleculeFormSchemaRow[];
+	value: TMoleculeFormSchemaField | (TMoleculeFormSchemaRow | undefined)[] | undefined;
 	extStyle?: TDeepCSSObject;
+};
+
+export type TMoleculeFormSchemaRowNorm = Omit<TMoleculeFormSchemaRow, "value"> & {
+	value: TMoleculeFormSchemaField | TMoleculeFormSchemaRowNorm[];
 };
 
 export type TMoleculeFormSchemaField = {
 	label?: string;
 	required?: boolean;
-} & (TInputField | TTextField | TBtnField | TBtn | TSwitch | TRadio | TImage | TTextareaField);
+} & TConcat;
 
-type TTextField = {
-	type: "text";
-	options: IText;
-};
+type TConcat = TInputField | TTextField | TBtnField | TBtn | TSwitch | TRadio | TImage | TTextareaField;
 
-type TInputField = {
-	type: "input";
-	options: IInput;
-};
-
-type TTextareaField = {
-	type: "textarea";
-	options: ITextarea;
-};
-
-type TBtnField = {
-	type: "btnIcon";
-	options: IButtonIcon;
-};
-
-type TBtn = {
-	type: "btn";
-	options: IButton;
-};
-
-type TSwitch = {
-	type: "switch";
-	options: ISwitch;
-};
-
-type TRadio = {
-	type: "radio";
-	options: IRadio;
-};
-
-type TImage = {
-	type: "img";
-	options: IImage;
-};
+type TTextField = { type: "text"; options: IText };
+type TInputField = { type: "input"; options: IInput };
+type TTextareaField = { type: "textarea"; options: ITextarea };
+type TBtnField = { type: "btnIcon"; options: IButtonIcon };
+type TBtn = { type: "btn"; options: IButton };
+type TSwitch = { type: "switch"; options: ISwitch };
+type TRadio = { type: "radio"; options: IRadio };
+type TImage = { type: "img"; options: IImage };
 
 const Index = (props: IComponent) => {
 	const model = Model(props);

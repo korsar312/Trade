@@ -2,7 +2,7 @@ import type Model from "./Model.ts";
 import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 import type { ReactElement } from "react";
-import type { TMoleculeFormSchemaField, TMoleculeFormSchemaRow } from "../index.tsx";
+import type { TMoleculeFormSchemaField, TMoleculeFormSchemaRowNorm } from "../index.tsx";
 import Form from "../../../0.Cores/Form";
 import Text from "../../../0.Cores/Text";
 import type { TDeepCSSObject } from "../../../../ViewUtils.tsx";
@@ -15,9 +15,9 @@ import Image from "../../../0.Cores/Image";
 import AtomTextarea from "../../../1.Atoms/AtomTextarea";
 
 const View: NFC<typeof Model> = (props) => {
-	const { schema, form } = props;
+	const { schemaNorm, form } = props;
 
-	function typeChoice(field: TMoleculeFormSchemaRow, id: number): ReactElement {
+	function typeChoice(field: TMoleculeFormSchemaRowNorm, id: number): ReactElement {
 		const { value: element, extStyle } = field;
 		const value = Array.isArray(element) ? element.map((el, i) => typeChoice(el, i)) : fieldChoice(element);
 
@@ -55,7 +55,7 @@ const View: NFC<typeof Model> = (props) => {
 
 	return (
 		<Form css={Style.form} {...form}>
-			{typeChoice(schema, 1)}
+			{typeChoice(schemaNorm, 1)}
 		</Form>
 	);
 };

@@ -1,9 +1,22 @@
-import type { IComponent } from "../";
+import type { IComponent, TMoleculeFormSchemaRow, TMoleculeFormSchemaRowNorm } from "../";
 
 function Model(props: IComponent) {
 	const { schema, form } = props;
 
-	return { schema, form };
+	const schemaNorm = normalizeRow(schema) ?? ({ ...schema, value: [] } satisfies TMoleculeFormSchemaRowNorm);
+
+	function normalizeRow(row?: TMoleculeFormSchemaRow): TMoleculeFormSchemaRowNorm | null {
+		if (row?.value == null) return null;
+
+		if (Array.isArray(row.value)) {
+			const list = row.value.map(normalizeRow).filter((x): x is TMoleculeFormSchemaRowNorm => x != null);
+			return { extStyle: row.extStyle ?? {}, value: list };
+		}
+
+		return { extStyle: row.extStyle, value: row.value };
+	}
+
+	return { schemaNorm, form };
 }
 
 export default Model;

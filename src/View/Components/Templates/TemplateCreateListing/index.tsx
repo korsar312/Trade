@@ -34,6 +34,7 @@ const Index: FC<IComponent> = (props) => {
 						submit: () => "",
 					},
 				};
+
 			case "GUARD":
 				return {
 					id,

@@ -7,10 +7,10 @@ import type { MessageInterface } from "../../../../../../Logic/Core/Services/Ser
 export interface IComponent {
 	title: Pick<IText, "text" | "addStyle">;
 	labelTitle: MessageInterface.EWord;
-	submit: (val: TMoleculeFormSchemaTextareaChoiceForm) => void;
+	submit: (val: TMoleculeFormSchemaTextareaForm) => void;
 }
 
-export type TMoleculeFormSchemaTextareaChoiceForm = {
+export type TMoleculeFormSchemaTextareaForm = {
 	input: string;
 };
 

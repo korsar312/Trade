@@ -1,4 +1,4 @@
-import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
+import Component, { type IComponent as IParent, type TMoleculeFormSchemaField, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import type { FC } from "react";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
@@ -7,11 +7,11 @@ import type { TImageComponent } from "../../../../0.Cores/Image";
 export interface IComponent {
 	title: MessageInterface.EWord;
 	labelImg: TImageComponent;
-	btnName: MessageInterface.EWord;
-	submit: (val: TMoleculeFormSchemaInputChoiceForm) => void;
+	btnName?: MessageInterface.EWord;
+	submit: (val: TMoleculeFormSchemaInputForm) => void;
 }
 
-export type TMoleculeFormSchemaInputChoiceForm = {
+export type TMoleculeFormSchemaInputForm = {
 	input: string;
 };
 
@@ -42,21 +42,27 @@ const Index: FC<IComponent> = (props) => {
 		},
 	};
 
-	const btnField: TMoleculeFormSchemaRow = {
-		value: {
-			type: "btn",
-			options: {
-				text: btnName,
-				isFullWidth: true,
-				color: "BLUE_2",
-			},
-		},
+	const btnField: TMoleculeFormSchemaRow[] = {
+		...(btnName
+			? [
+					{
+						value: {
+							type: "btn",
+							options: {
+								text: btnName,
+								isFullWidth: true,
+								color: "BLUE_2",
+							},
+						} satisfies TMoleculeFormSchemaField,
+					},
+				]
+			: []),
 	};
 
 	const propsComponent: IParent = {
 		schema: {
 			extStyle: Styles.wrapper,
-			value: [titleField, inputField, btnField],
+			value: [titleField, inputField, ...btnField],
 		},
 		form: { onSubmit: submit },
 	};

@@ -7,7 +7,7 @@ import type { TSubstanceModalCompType } from "../index.tsx";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeFormSchemaSwitchChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 import MoleculeFormSchemaRadioChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
-import MoleculeFormSchemaInputChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInputChoice";
+import MoleculeFormSchemaInput from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import MoleculeFormSchemaImageQtyChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
 
 const View: NFC<typeof Model> = (props) => {
@@ -20,7 +20,7 @@ const View: NFC<typeof Model> = (props) => {
 			case "CHOICE_ONE":
 				return <MoleculeFormSchemaRadioChoice {...options} />;
 			case "INPUT_ONE":
-				return <MoleculeFormSchemaInputChoice {...options} />;
+				return <MoleculeFormSchemaInput {...options} />;
 			case "IMAGE_QTY":
 				return <MoleculeFormSchemaImageQtyChoice {...options} />;
 		}

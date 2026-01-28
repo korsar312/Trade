@@ -47,20 +47,16 @@ const Index: FC<IComponent> = (props) => {
 					},
 				},
 			},
-			...(el.img
-				? [
-						{
-							value: {
-								type: "img",
-								options: {
-									img: el.img,
-									color: "SECOND_1",
-									size: 22,
-								},
-							} satisfies TMoleculeFormSchemaField,
-						},
-					]
-				: []),
+			isFill(el.img) && {
+				value: {
+					type: "img",
+					options: {
+						img: el.img,
+						color: "SECOND_1",
+						size: 22,
+					},
+				} satisfies TMoleculeFormSchemaField,
+			},
 			{
 				value: {
 					type: "text",
@@ -82,6 +78,10 @@ const Index: FC<IComponent> = (props) => {
 			},
 		},
 	};
+
+	function isFill(val: unknown) {
+		return val == null ? undefined : true;
+	}
 
 	const propsComponent: IParent = {
 		schema: {
