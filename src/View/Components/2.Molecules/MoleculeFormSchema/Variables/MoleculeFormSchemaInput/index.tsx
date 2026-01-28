@@ -2,11 +2,12 @@ import Component, { type IComponent as IParent, type TMoleculeFormSchemaField, t
 import Styles from "./Style.ts";
 import type { FC } from "react";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
-import type { TImageComponent } from "../../../../0.Cores/Image";
+import type { IComponent as IInput } from "../../../../../Components/1.Atoms/AtomInput/";
+import type { IComponent as IText } from "../../../../0.Cores/Text";
 
 export interface IComponent {
-	title: MessageInterface.EWord;
-	labelImg: TImageComponent;
+	title: Pick<IText, "text" | "addStyle">;
+	input?: Pick<IInput, "type" | "iconsLeft" | "placeholder">;
 	btnName?: MessageInterface.EWord;
 	submit: (val: TMoleculeFormSchemaInputForm) => void;
 }
@@ -16,14 +17,14 @@ export type TMoleculeFormSchemaInputForm = {
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, labelImg, btnName, submit } = props;
+	const { title, input, btnName, submit } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
 		value: {
 			type: "text",
 			options: {
-				text: title,
+				...title,
 				color: "SECOND_1",
 				font: "BodyMain",
 			},
@@ -34,35 +35,34 @@ const Index: FC<IComponent> = (props) => {
 		value: {
 			type: "input",
 			options: {
-				iconsLeft: labelImg,
 				color: "MAIN_4",
-				type: "number",
 				name: "input",
+				...input,
 			},
 		},
 	};
 
-	const btnField: TMoleculeFormSchemaRow[] = {
-		...(btnName
-			? [
-					{
-						value: {
-							type: "btn",
-							options: {
-								text: btnName,
-								isFullWidth: true,
-								color: "BLUE_2",
-							},
-						} satisfies TMoleculeFormSchemaField,
-					},
-				]
-			: []),
+	const btnField: TMoleculeFormSchemaRow = {
+		value:
+			isFill(btnName) &&
+			({
+				type: "btn",
+				options: {
+					text: btnName,
+					isFullWidth: true,
+					color: "BLUE_2",
+				},
+			} satisfies TMoleculeFormSchemaField),
 	};
+
+	function isFill(val: unknown) {
+		return val == null ? undefined : true;
+	}
 
 	const propsComponent: IParent = {
 		schema: {
 			extStyle: Styles.wrapper,
-			value: [titleField, inputField, ...btnField],
+			value: [titleField, inputField, btnField],
 		},
 		form: { onSubmit: submit },
 	};

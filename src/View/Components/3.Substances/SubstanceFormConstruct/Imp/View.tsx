@@ -6,6 +6,7 @@ import { type ReactElement } from "react";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import MoleculeGroupBtn from "../../../2.Molecules/MoleculeGroupBtn";
 import MoleculeFormSchemaTextPair from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextPair";
+import MoleculeFormSchemaInput from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeFormSchemaTextarea from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextarea";
 
@@ -22,6 +23,8 @@ const View: NFC<typeof Model> = (props) => {
 				return <AtomButtonMain {...options} />;
 			case "TABS":
 				return <MoleculeGroupBtn {...options} />;
+			case "FORM_INPUT":
+				return <MoleculeFormSchemaInput {...options} />;
 		}
 	}
 

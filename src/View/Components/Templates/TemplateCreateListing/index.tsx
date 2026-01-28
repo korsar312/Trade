@@ -19,32 +19,44 @@ const Index: FC<IComponent> = (props) => {
 		return typeItem === type;
 	}
 
-	function tabRender(): TSubstanceFormConstructCompType {
+	function tabRender(): TSubstanceFormConstructCompType[] {
 		const id = "3";
 
 		switch (typeItem) {
 			case "CARD":
-				return {
-					id,
-					type: "FORM_TEXT_PAIR",
-					options: {
-						title: "ENTER",
-						labelDesc: "ENTER",
-						labelTitle: "ENTER",
-						submit: () => "",
+				return [
+					{
+						id,
+						type: "FORM_INPUT",
+						options: {
+							title: { text: "LISTING_BEFORE_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("RED_3") }] },
+							input: { placeholder: "CARD_HOLDER_AGE", type: "number" },
+							submit: () => "",
+						},
 					},
-				};
+					{
+						id: String(+id + 1),
+						type: "FORM_INPUT",
+						options: {
+							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
+							input: { placeholder: "CARD_HOLDER_FULL_NAME" },
+							submit: () => "",
+						},
+					},
+				];
 
 			case "GUARD":
-				return {
-					id,
-					type: "FORM_TEXTAREA",
-					options: {
-						title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
-						labelTitle: "TEXT_AFTER_PAYMENT",
-						submit: () => "",
+				return [
+					{
+						id,
+						type: "FORM_TEXTAREA",
+						options: {
+							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
+							labelTitle: "TEXT_AFTER_PAYMENT",
+							submit: () => "",
+						},
 					},
-				};
+				];
 		}
 	}
 
@@ -54,7 +66,7 @@ const Index: FC<IComponent> = (props) => {
 				id: "1",
 				type: "FORM_TEXT_PAIR",
 				options: {
-					title: "LISTING_MAIN_DATA",
+					title: { text: "LISTING_MAIN_DATA" },
 					labelDesc: "LISTING_DESC",
 					labelTitle: "LISTING_NAME",
 					submit: () => "",
@@ -71,7 +83,7 @@ const Index: FC<IComponent> = (props) => {
 					})),
 				},
 			},
-			tabRender(),
+			...tabRender(),
 		],
 	};
 

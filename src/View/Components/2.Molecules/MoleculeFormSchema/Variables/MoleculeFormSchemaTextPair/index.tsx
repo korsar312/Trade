@@ -2,9 +2,10 @@ import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } fr
 import Styles from "./Style.ts";
 import type { FC } from "react";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
+import type { IComponent as IText } from "../../../../0.Cores/Text";
 
 export interface IComponent {
-	title: MessageInterface.EWord;
+	title: Pick<IText, "text" | "addStyle">;
 	labelTitle: MessageInterface.EWord;
 	labelDesc: MessageInterface.EWord;
 	submit: (val: TMoleculeFormSchemaTextPairForm) => void;
@@ -23,7 +24,7 @@ const Index: FC<IComponent> = (props) => {
 		value: {
 			type: "text",
 			options: {
-				text: title,
+				...title,
 				color: "SECOND_1",
 				font: "BodyMain",
 			},

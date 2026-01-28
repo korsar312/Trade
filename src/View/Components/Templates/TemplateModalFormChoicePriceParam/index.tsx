@@ -21,8 +21,8 @@ const Index: FC<IComponent> = (props) => {
 		form: {
 			type: "INPUT_ONE",
 			options: {
-				title: "ENTER_DES_PRICE",
-				labelImg: "Money",
+				title: { text: "ENTER_DES_PRICE" },
+				input: { type: "number", iconsLeft: "Money" },
 				btnName: "APPLY",
 				submit,
 			},
