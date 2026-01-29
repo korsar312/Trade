@@ -1,12 +1,13 @@
 import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import type { FC } from "react";
-import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
+import type { IComponent as IText } from "../../../../0.Cores/Text";
+import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 export interface IComponent {
-	title: MessageInterface.EWord;
+	title: IText;
 	choiceList: TMoleculeFormSchemaChoice[];
-	btnName: MessageInterface.EWord;
+	btn: Omit<IBtn, "type">;
 	submit: (val: TMoleculeFormSchemaSwitchChoiceForm) => void;
 }
 
@@ -14,32 +15,32 @@ export type TMoleculeFormSchemaSwitchChoiceForm = Record<string, "on">;
 
 type TMoleculeFormSchemaChoice = {
 	name: string;
-	title: string;
+	title: IText;
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, choiceList, btnName, submit } = props;
+	const { title, choiceList, btn, submit } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
 		value: {
 			type: "text",
 			options: {
-				text: title,
 				color: "SECOND_1",
 				font: "BodyMain",
+				...title,
 			},
 		},
 	};
 
-	const switchField: TMoleculeFormSchemaRow[] = choiceList.map((el) => ({
+	const switchField: TMoleculeFormSchemaRow[] = choiceList.map(({ title, name }) => ({
 		extStyle: Styles.switch,
 		value: [
 			{
 				value: {
 					type: "switch",
 					options: {
-						name: el.name,
+						name,
 					},
 				},
 			},
@@ -47,7 +48,7 @@ const Index: FC<IComponent> = (props) => {
 				value: {
 					type: "text",
 					options: {
-						text: el.title,
+						...title,
 					},
 				},
 			},
@@ -58,9 +59,9 @@ const Index: FC<IComponent> = (props) => {
 		value: {
 			type: "btn",
 			options: {
-				text: btnName,
 				isFullWidth: true,
 				color: "BLUE_2",
+				...btn,
 			},
 		},
 	};

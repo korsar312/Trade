@@ -27,10 +27,10 @@ const Index: FC<IComponent> = (props) => {
 		form: {
 			type: "IMAGE_QTY",
 			options: {
-				title: "SELECT_RATING_QTY",
+				title: { text: "SELECT_RATING_QTY" },
 				submit,
-				imageList: list.map(() => ({ img: "Star" })),
-				btnName: "APPLY",
+				btnImageList: list.map(() => ({ icon: "Star" })),
+				btn: { text: "APPLY" },
 			},
 		},
 	};

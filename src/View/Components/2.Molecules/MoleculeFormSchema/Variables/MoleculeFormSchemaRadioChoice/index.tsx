@@ -1,13 +1,14 @@
 import Component, { type IComponent as IParent, type TMoleculeFormSchemaField, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import type { FC } from "react";
-import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
-import type { TImageComponent } from "../../../../0.Cores/Image";
+import type { IComponent as IText } from "../../../../0.Cores/Text";
+import type { IComponent as IImg } from "../../../../0.Cores/Image";
+import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 export interface IComponent {
-	title: MessageInterface.EWord;
+	title: IText;
 	choiceList: TMoleculeFormSchemaChoice[];
-	btnName: MessageInterface.EWord;
+	btn: Omit<IBtn, "type">;
 	submit: (val: TMoleculeFormSchemaRadioChoiceForm) => void;
 }
 
@@ -15,26 +16,26 @@ export type TMoleculeFormSchemaRadioChoiceForm = { radio: string };
 
 type TMoleculeFormSchemaChoice = {
 	name: string;
-	title: string;
-	img?: TImageComponent;
+	title: IText;
+	img?: IImg;
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, choiceList, btnName, submit } = props;
+	const { title, choiceList, btn, submit } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
 		value: {
 			type: "text",
 			options: {
-				text: title,
 				color: "SECOND_1",
 				font: "BodyMain",
+				...title,
 			},
 		},
 	};
 
-	const switchField: TMoleculeFormSchemaRow[] = choiceList.map((el, i) => ({
+	const switchField: TMoleculeFormSchemaRow[] = choiceList.map(({ img, name, title }, i) => ({
 		extStyle: Styles.switch,
 		value: [
 			{
@@ -42,18 +43,18 @@ const Index: FC<IComponent> = (props) => {
 					type: "radio",
 					options: {
 						name: "radio",
-						value: el.name,
+						value: name,
 						defaultChecked: i == 0,
 					},
 				},
 			},
-			isFill(el.img) && {
+			img && {
 				value: {
 					type: "img",
 					options: {
-						img: el.img,
 						color: "SECOND_1",
 						size: 22,
+						...img,
 					},
 				} satisfies TMoleculeFormSchemaField,
 			},
@@ -61,7 +62,7 @@ const Index: FC<IComponent> = (props) => {
 				value: {
 					type: "text",
 					options: {
-						text: el.title,
+						...title,
 					},
 				},
 			},
@@ -72,16 +73,12 @@ const Index: FC<IComponent> = (props) => {
 		value: {
 			type: "btn",
 			options: {
-				text: btnName,
 				isFullWidth: true,
 				color: "BLUE_2",
+				...btn,
 			},
 		},
 	};
-
-	function isFill(val: unknown) {
-		return val == null ? undefined : true;
-	}
 
 	const propsComponent: IParent = {
 		schema: {

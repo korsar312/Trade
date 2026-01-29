@@ -4,18 +4,14 @@ import Component, { type IComponent as IParent } from "../../index";
 import type { TImageComponent } from "../../../../0.Cores/Image";
 import type { StyleInterface } from "../../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
-export type IComponent = {} & TPick & TBase & (TBig | TColor);
-
-type TColor = Pick<IParent, "color"> & { isBig?: never };
-type TBig = { isBig: true; color?: never };
-
-type TPick = Pick<IParent, "isDisable" | "click" | "isFullWidth" | "type">;
-
-type TBase = {
+export interface IComponent extends TPick {
 	icon: TImageComponent;
 	colorIcon?: StyleInterface.TColorChoice;
 	isSubmit?: boolean;
-};
+	isBig?: boolean;
+}
+
+type TPick = Pick<IParent, "isDisable" | "click" | "isFullWidth" | "type" | "color">;
 
 const Index: FC<IComponent> = (props) => {
 	const { icon, isBig, colorIcon, isSubmit, ...other } = props;

@@ -1,24 +1,21 @@
 import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import { type FC, useState } from "react";
-import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
-import type { TImageComponent } from "../../../../0.Cores/Image";
+import type { IComponent as IText } from "../../../../0.Cores/Text";
+import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
+import type { IComponent as IBtnIcon } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 
 export interface IComponent {
-	title: MessageInterface.EWord;
-	imageList: TMoleculeFormSchemaChoice[];
-	btnName: MessageInterface.EWord;
+	title: IText;
+	btnImageList: Omit<IBtnIcon, "click" | "type">[];
+	btn: Omit<IBtn, "type">;
 	submit: (val: TMoleculeFormSchemaImageQtyChoiceForm) => void;
 }
 
 export type TMoleculeFormSchemaImageQtyChoiceForm = { qtyIndex: string };
 
-type TMoleculeFormSchemaChoice = {
-	img: TImageComponent;
-};
-
 const Index: FC<IComponent> = (props) => {
-	const { title, imageList, btnName, submit } = props;
+	const { title, btnImageList, btn, submit } = props;
 
 	const [qtyImage, setQtyImage] = useState<number>();
 
@@ -27,24 +24,24 @@ const Index: FC<IComponent> = (props) => {
 		value: {
 			type: "text",
 			options: {
-				text: title,
 				color: "SECOND_1",
 				font: "BodyMain",
+				...title,
 			},
 		},
 	};
 
 	const imagesField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.row,
-		value: imageList.map((el, i) => ({
+		value: btnImageList.map((el, i, arr) => ({
 			value: {
 				type: "btnIcon",
 				options: {
-					icon: el.img,
 					isBig: true,
-					type: "button",
-					colorIcon: typeof qtyImage === "number" && i <= qtyImage ? "BLUE_3" : "SECOND_1",
+					colorIcon: i <= arr.length ? "BLUE_3" : "SECOND_1",
+					...el,
 					click: () => setQtyImage(i),
+					type: "button",
 				},
 			},
 		})),
@@ -54,9 +51,9 @@ const Index: FC<IComponent> = (props) => {
 		value: {
 			type: "btn",
 			options: {
-				text: btnName,
 				isFullWidth: true,
 				color: "BLUE_2",
+				...btn,
 			},
 		},
 	};

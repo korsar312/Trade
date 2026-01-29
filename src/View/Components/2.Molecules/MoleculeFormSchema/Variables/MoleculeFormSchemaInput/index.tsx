@@ -1,14 +1,14 @@
 import Component, { type IComponent as IParent, type TMoleculeFormSchemaField, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import type { FC } from "react";
-import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { IComponent as IInput } from "../../../../../Components/1.Atoms/AtomInput/";
 import type { IComponent as IText } from "../../../../0.Cores/Text";
+import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 export interface IComponent {
-	title: Pick<IText, "text" | "addStyle">;
-	input?: Pick<IInput, "type" | "iconsLeft" | "placeholder">;
-	btnName?: MessageInterface.EWord;
+	title: IText;
+	input?: Omit<IInput, "name">;
+	btn?: Omit<IBtn, "type">;
 	submit: (val: TMoleculeFormSchemaInputForm) => void;
 }
 
@@ -17,7 +17,7 @@ export type TMoleculeFormSchemaInputForm = {
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, input, btnName, submit } = props;
+	const { title, input, btn, submit } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
@@ -44,20 +44,16 @@ const Index: FC<IComponent> = (props) => {
 
 	const btnField: TMoleculeFormSchemaRow = {
 		value:
-			isFill(btnName) &&
+			btn &&
 			({
 				type: "btn",
 				options: {
-					text: btnName,
 					isFullWidth: true,
 					color: "BLUE_2",
+					...btn,
 				},
 			} satisfies TMoleculeFormSchemaField),
 	};
-
-	function isFill(val: unknown) {
-		return val == null ? undefined : true;
-	}
 
 	const propsComponent: IParent = {
 		schema: {

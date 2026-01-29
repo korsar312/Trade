@@ -4,7 +4,7 @@ import Component, { type IComponent as IParent } from "../../index";
 import type { TImageComponent } from "../../../../0.Cores/Image";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 
-export interface IComponent extends Pick<IParent, "isDisable" | "click" | "color" | "isFullWidth" | "round"> {
+export interface IComponent extends Pick<IParent, "isDisable" | "click" | "color" | "isFullWidth" | "round" | "type"> {
 	text: MessageInterface.EWordAll;
 	leftImage?: TImageComponent;
 	rightImage?: TImageComponent;
@@ -16,7 +16,6 @@ const Index: FC<IComponent> = (props) => {
 	const propsComponent: IParent = {
 		...other,
 		color: color,
-		type: "submit",
 		textVars: { value: [{ text }] },
 		icons: {
 			left: leftImage ? { value: [{ img: leftImage, size: 20 }] } : undefined,

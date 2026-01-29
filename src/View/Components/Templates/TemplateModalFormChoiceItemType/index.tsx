@@ -23,10 +23,10 @@ const Index: FC<IComponent> = (props) => {
 		form: {
 			type: "CHOICE_ONE",
 			options: {
-				title: "SELECT_LISTING_TYPE",
+				title: { text: "SELECT_LISTING_TYPE" },
 				submit,
-				choiceList: CatalogueTypeItemArr.map((el) => ({ name: el, title: Act.Message.getWord(el) })),
-				btnName: "APPLY",
+				choiceList: CatalogueTypeItemArr.map((el) => ({ name: el, title: { text: Act.Message.getWord(el) } })),
+				btn: { text: "APPLY" },
 			},
 		},
 	};

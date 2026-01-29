@@ -1,12 +1,12 @@
 import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
 import { type IComponent as IText } from "../../../../0.Cores/Text";
+import { type IComponent as ITextarea } from "../../../../1.Atoms/AtomTextarea";
 import Styles from "./Style.ts";
 import type { FC } from "react";
-import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 
 export interface IComponent {
 	title: Pick<IText, "text" | "addStyle">;
-	labelTitle: MessageInterface.EWord;
+	labelTitle: Omit<ITextarea, "name">;
 	submit: (val: TMoleculeFormSchemaTextareaForm) => void;
 }
 
@@ -34,7 +34,7 @@ const Index: FC<IComponent> = (props) => {
 			type: "textarea",
 			options: {
 				color: "MAIN_4",
-				placeholder: labelTitle,
+				...labelTitle,
 				name: "input",
 			},
 		},

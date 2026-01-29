@@ -23,7 +23,7 @@ const Index: FC<IComponent> = (props) => {
 			options: {
 				title: { text: "ENTER_DES_PRICE" },
 				input: { type: "number", iconsLeft: "Money" },
-				btnName: "APPLY",
+				btn: { text: "APPLY" },
 				submit,
 			},
 		},

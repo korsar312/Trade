@@ -1,13 +1,14 @@
 import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import type { FC } from "react";
-import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { IComponent as IText } from "../../../../0.Cores/Text";
+import type { IComponent as IInput } from "../../../../1.Atoms/AtomInput";
+import type { IComponent as ITextarea } from "../../../../1.Atoms/AtomTextarea";
 
 export interface IComponent {
-	title: Pick<IText, "text" | "addStyle">;
-	labelTitle: MessageInterface.EWord;
-	labelDesc: MessageInterface.EWord;
+	title: IText;
+	labelTitle: Omit<IInput, "name">;
+	labelDesc: Omit<ITextarea, "name">;
 	submit: (val: TMoleculeFormSchemaTextPairForm) => void;
 }
 
@@ -24,9 +25,9 @@ const Index: FC<IComponent> = (props) => {
 		value: {
 			type: "text",
 			options: {
-				...title,
 				color: "SECOND_1",
 				font: "BodyMain",
+				...title,
 			},
 		},
 	};
@@ -36,8 +37,8 @@ const Index: FC<IComponent> = (props) => {
 			type: "input",
 			options: {
 				color: "MAIN_4",
+				...labelTitle,
 				name: "title",
-				placeholder: labelTitle,
 			},
 		},
 	};
@@ -47,8 +48,8 @@ const Index: FC<IComponent> = (props) => {
 			type: "textarea",
 			options: {
 				color: "MAIN_4",
+				...labelDesc,
 				name: "desc",
-				placeholder: labelDesc,
 			},
 		},
 	};

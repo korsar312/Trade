@@ -5,6 +5,7 @@ import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	CREATE_LISTING: { RU: "Создать лот" },
 	CARD_HOLDER_AGE: { RU: "Полных лет держателя карты" },
 	CARD_HOLDER_FULL_NAME: { RU: "ФИО держателя карты" },
 	TEXT_AFTER_PAYMENT: { RU: "Текст, для оплатившего покупателя" },

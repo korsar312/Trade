@@ -12,21 +12,46 @@ export interface IComponent {
 	changeTabFn: (tab: CatalogueInterface.ETypeItem) => void;
 }
 
+type CompTypeOmit = Omit<TSubstanceFormConstructCompType, "id">;
+
 const Index: FC<IComponent> = (props) => {
 	const { typeItem, changeTabFn } = props;
 
-	function isChoiceTab(type: CatalogueInterface.ETypeItem) {
-		return typeItem === type;
-	}
+	const constForm: CompTypeOmit[] = [
+		{
+			type: "BTN_MAIN",
+			options: {
+				text: "CREATE_LISTING",
+				isFullWidth: true,
+				color: "BLUE_2",
+			},
+		},
+		{
+			type: "FORM_TEXT_PAIR",
+			options: {
+				title: { text: "LISTING_MAIN_DATA" },
+				labelDesc: { placeholder: "LISTING_DESC" },
+				labelTitle: { placeholder: "LISTING_NAME" },
+				submit: () => "",
+			},
+		},
+		{
+			type: "TABS",
+			options: {
+				btnRow: CatalogueTypeItemArr.map((el) => ({
+					id: el,
+					options: { click: () => changeTabFn(el), text: el },
+					isActive: isChoiceTab(el),
+				})),
+			},
+		},
+	];
 
-	function tabRender(): TSubstanceFormConstructCompType[] {
-		const id = "3";
-
+	function tabRender(): CompTypeOmit[] {
 		switch (typeItem) {
 			case "CARD":
 				return [
 					{
-						id,
 						type: "FORM_INPUT",
 						options: {
 							title: { text: "LISTING_BEFORE_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("RED_3") }] },
@@ -35,7 +60,6 @@ const Index: FC<IComponent> = (props) => {
 						},
 					},
 					{
-						id: String(+id + 1),
 						type: "FORM_INPUT",
 						options: {
 							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
@@ -48,11 +72,10 @@ const Index: FC<IComponent> = (props) => {
 			case "GUARD":
 				return [
 					{
-						id,
 						type: "FORM_TEXTAREA",
 						options: {
 							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
-							labelTitle: "TEXT_AFTER_PAYMENT",
+							labelTitle: { placeholder: "TEXT_AFTER_PAYMENT" },
 							submit: () => "",
 						},
 					},
@@ -60,31 +83,12 @@ const Index: FC<IComponent> = (props) => {
 		}
 	}
 
+	function isChoiceTab(type: CatalogueInterface.ETypeItem) {
+		return typeItem === type;
+	}
+
 	const propsComponent: IProp = {
-		compRow: [
-			{
-				id: "1",
-				type: "FORM_TEXT_PAIR",
-				options: {
-					title: { text: "LISTING_MAIN_DATA" },
-					labelDesc: "LISTING_DESC",
-					labelTitle: "LISTING_NAME",
-					submit: () => "",
-				},
-			},
-			{
-				id: "2",
-				type: "TABS",
-				options: {
-					btnRow: CatalogueTypeItemArr.map((el) => ({
-						id: el,
-						options: { click: () => changeTabFn(el), text: el },
-						isActive: isChoiceTab(el),
-					})),
-				},
-			},
-			...tabRender(),
-		],
+		compRow: [...constForm, ...tabRender()].map((el, i) => ({ ...el, id: String(i) }) as TSubstanceFormConstructCompType),
 	};
 
 	return <Substance {...propsComponent} />;
