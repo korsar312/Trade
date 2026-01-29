@@ -64,6 +64,7 @@ class Style extends Styles {
 			transform-origin: left;
 			text-wrap: nowrap;
 			position: absolute;
+			pointer-events: none;
 
 			&:has(+ textarea:focus),
 			&:has(+ textarea:not(:placeholder-shown)) {

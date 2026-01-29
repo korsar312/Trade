@@ -28,11 +28,16 @@ const Index: FC<IComponent> = (props) => {
 			},
 		},
 		{
-			type: "FORM_TEXT_PAIR",
+			type: "FORM_TEXT_TRIPLE",
 			options: {
 				title: { text: "LISTING_MAIN_DATA" },
-				labelDesc: { placeholder: "LISTING_DESC" },
 				labelTitle: { placeholder: "LISTING_NAME" },
+				labelSubtitle: {
+					placeholder: "LISTING_PRICE",
+					type: "number",
+					valid: [(val) => ({ isValid: Number(val) > 0, error: "MUST_GREAT_ZERO" })],
+				},
+				labelDesc: { placeholder: "LISTING_DESC" },
 				submit: () => "",
 			},
 		},
@@ -89,7 +94,21 @@ const Index: FC<IComponent> = (props) => {
 	}
 
 	function createListing(id: string, val: boolean) {
-		console.log(val);
+		if (val) {
+			Act.Catalogue.createListing({
+				saleKind: "GOODS",
+				type: "CARD",
+				desc: "",
+				name: "",
+				price: 111,
+				info: {
+					bank: "SBER",
+					age: "11",
+					name: "",
+				},
+			}).then(() => Act.Router.goTo("GOODS"));
+		}
+
 		Act.App.removeModals(id);
 	}
 

@@ -27,6 +27,8 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	LISTING_PRICE: "LISTING_PRICE",
+	MUST_GREAT_ZERO: "MUST_GREAT_ZERO",
 	CANCEL: "CANCEL",
 	I_CONFIRM: "I_CONFIRM",
 	CONFIRM_ACTION: "CONFIRM_ACTION",

@@ -7,6 +7,13 @@ function Model(props: IComponent) {
 	function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
+		console.log(event.currentTarget.reportValidity());
+
+		if (!event.currentTarget.checkValidity()) {
+			event.currentTarget.reportValidity();
+			return;
+		}
+
 		if (!onSubmit) return;
 
 		const formData = new FormData(event.currentTarget);

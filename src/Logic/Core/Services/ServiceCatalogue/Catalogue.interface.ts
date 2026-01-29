@@ -5,6 +5,7 @@ export namespace CatalogueInterface {
 	export interface IAdapter {
 		requestGoods(params: TReqCatalog): Promise<void>;
 		requestItem(id: string, type: ETypeItem): Promise<void>;
+		createListing(params: TReqCreate): Promise<void>;
 
 		getGoodsIdList(): string[];
 
@@ -31,6 +32,13 @@ export namespace CatalogueInterface {
 		findStr?: string;
 	}
 	export type TReqCatalog = IReqCatalog & typesUtils.DeepPartial<TItemFilter> & Pick<TItemFilter, "type">;
+
+	export type TReqCreate = {
+		name: string;
+		desc: string;
+		price: number;
+		saleKind: ESaleKind;
+	} & TItemAll;
 
 	interface ICatalogEl {
 		id: string;

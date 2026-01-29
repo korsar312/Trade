@@ -11,10 +11,15 @@ export interface IComponent extends TTagPartial<HTMLInputElement, "name" | "onCl
 	onChange?: (val: string) => void;
 	iconsLeft?: TAtomInputIcon;
 	iconsRight?: TAtomInputIcon;
-	valid?: Array<(val: MessageInterface.EWordAll) => boolean>;
+	valid?: Array<(val: MessageInterface.EWordAll) => TValid>;
 	value?: string;
 	color?: StyleInterface.TColorChoice;
 }
+
+type TValid = {
+	isValid: boolean;
+	error: MessageInterface.EWord;
+};
 
 export type TAtomInputText = {
 	text: MessageInterface.EWordAll;

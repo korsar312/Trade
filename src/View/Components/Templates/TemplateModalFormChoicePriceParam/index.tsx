@@ -22,7 +22,7 @@ const Index: FC<IComponent> = (props) => {
 			type: "INPUT_ONE",
 			options: {
 				title: { text: "ENTER_DES_PRICE" },
-				input: { type: "number", iconsLeft: "Money" },
+				input: { type: "number", iconsLeft: "Money", valid: [(val) => ({ isValid: Number(val) > 0, error: "MUST_GREAT_ZERO" })] },
 				btn: { text: "APPLY" },
 				submit,
 			},

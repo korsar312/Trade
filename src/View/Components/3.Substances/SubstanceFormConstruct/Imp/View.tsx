@@ -5,7 +5,7 @@ import type { TSubstanceFormConstructCompType } from "../";
 import { type ReactElement } from "react";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import MoleculeGroupBtn from "../../../2.Molecules/MoleculeGroupBtn";
-import MoleculeFormSchemaTextPair from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextPair";
+import MoleculeFormSchemaTextTriple from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextTriple";
 import MoleculeFormSchemaInput from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeFormSchemaTextarea from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextarea";
@@ -15,8 +15,8 @@ const View: NFC<typeof Model> = (props) => {
 
 	function render({ type, options }: TSubstanceFormConstructCompType): ReactElement {
 		switch (type) {
-			case "FORM_TEXT_PAIR":
-				return <MoleculeFormSchemaTextPair {...options} />;
+			case "FORM_TEXT_TRIPLE":
+				return <MoleculeFormSchemaTextTriple {...options} />;
 			case "FORM_TEXTAREA":
 				return <MoleculeFormSchemaTextarea {...options} />;
 			case "BTN_MAIN":

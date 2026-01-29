@@ -8,14 +8,15 @@ import type { IComponent as ITextarea } from "../../../../1.Atoms/AtomTextarea";
 export interface IComponent {
 	title: IText;
 	labelTitle: Omit<IInput, "name">;
+	labelSubtitle: Omit<IInput, "name">;
 	labelDesc: Omit<ITextarea, "name">;
-	submit: (val: TMoleculeFormSchemaTextPairForm) => void;
+	submit: (val: TMoleculeFormSchemaTextTripleForm) => void;
 }
 
-export type TMoleculeFormSchemaTextPairForm = { title: string; desc: string };
+export type TMoleculeFormSchemaTextTripleForm = { title: string; subtitle: string; desc: string };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, labelTitle, labelDesc, submit } = props;
+	const { title, labelTitle, labelSubtitle, labelDesc, submit } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
@@ -40,6 +41,17 @@ const Index: FC<IComponent> = (props) => {
 		},
 	};
 
+	const subInputField: TMoleculeFormSchemaRow = {
+		value: {
+			type: "input",
+			options: {
+				color: "MAIN_4",
+				...labelSubtitle,
+				name: "subtitle",
+			},
+		},
+	};
+
 	const textareaField: TMoleculeFormSchemaRow = {
 		value: {
 			type: "textarea",
@@ -54,7 +66,7 @@ const Index: FC<IComponent> = (props) => {
 	const propsComponent: IParent = {
 		schema: {
 			extStyle: Styles.wrapper,
-			value: [titleField, inputField, textareaField],
+			value: [titleField, inputField, subInputField, textareaField],
 		},
 		form: { onSubmit: submit },
 	};

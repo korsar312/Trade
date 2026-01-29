@@ -54,6 +54,10 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		this.store = this.SetGoods(this.store, normGoods);
 	}
 
+	public async createListing(params: Interface.TReqCreate) {
+		return void this.API.Links.CREATE_LISTING(params);
+	}
+
 	public getGoodsIdList() {
 		return Object.keys(this.store.goods);
 	}

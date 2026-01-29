@@ -1,5 +1,5 @@
 import type { IComponent, TAtomInputGeneralGroup, TAtomInputIcon, TAtomInputText, TAtomInputTextPick } from "../index";
-import { type ChangeEvent, useState } from "react";
+import React, { type ChangeEvent, useState } from "react";
 import { Act } from "../../../../../Logic/Core";
 import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { IComponent as IImage } from "../../../0.Cores/Image";
@@ -11,7 +11,7 @@ function Model(props: IComponent) {
 	const [isValid, setIsValid] = useState<boolean | undefined>();
 
 	const textObj = changePlace(initText, "SECOND_1", "BLUE_3", "RED_3");
-	const placeObj = changePlace(placeholder, "SECOND_2", "BLUE_2", "RED_2");
+	const placeObj = changePlace(placeholder, "SECOND_2", "BLUE_2", "RED_3");
 
 	const text = Act.Message.getWord(textObj?.text);
 
@@ -50,13 +50,30 @@ function Model(props: IComponent) {
 		onChange?.(newValue);
 	}
 
+	//function onValidы(e: React.ChangeEvent<HTMLInputElement>) {
+	//	const value = e.currentTarget.value;
+	//
+	//	let error: MessageInterface.EWord | undefined;
+	//
+	//	for (const fn of valid ?? []) {
+	//		const res = fn(value);
+	//		if (!res.isValid) {
+	//			error = res.error;
+	//			break;
+	//		}
+	//	}
+	//
+	//	e.currentTarget.setCustomValidity(error ? Act.Message.getWord(error) : "");
+	//	setIsValid(!error);
+	//}
+
 	function onValid(e: React.ChangeEvent<HTMLInputElement>) {
 		const value = e.target.value;
 
-		const isValidEx = Boolean(value?.length);
+		const invalid = valid?.map((el) => el(value)).find((el) => !el.isValid);
 
-		if (isValidEx) return setIsValid(valid?.some((el) => el(value)));
-		setIsValid(undefined);
+		e.currentTarget.setCustomValidity(invalid ? Act.Message.getWord(invalid.error) : "");
+		setIsValid(valid?.length ? !invalid : undefined);
 	}
 
 	return { color, textObj, onClick, handleChange, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value };

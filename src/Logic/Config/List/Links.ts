@@ -16,4 +16,9 @@ export const Links: LinksInterface.TLinks = {
 		http: "GET",
 		role: ["USER", "ADMIN"],
 	},
+	CREATE_LISTING: {
+		link: "/createListing",
+		http: "POST",
+		role: ["USER", "ADMIN"],
+	},
 } as const;

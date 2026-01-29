@@ -3,8 +3,8 @@ import { css, type CSSObject } from "@emotion/react";
 
 class Style extends Styles {
 	public wrapper: CSSObject = css`
-		${this.mixins.fixed};
-		max-width: ${this.variables.pageWidth}px;
+		${this.mixins.absolute};
+		width: ${this.variables.pageWidth}px;
 		left: 50%;
 		transform: translateX(-50%);
 	`;

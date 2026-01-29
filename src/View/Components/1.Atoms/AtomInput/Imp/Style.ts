@@ -32,7 +32,7 @@ class Style extends Styles {
 		const isError = valid === false;
 		const isValid = valid === true;
 
-		const borderColor = this.getColor(isError ? "RED_1" : isValid ? "BLUE_1" : "MAIN_3");
+		const borderColor = this.getColor(isError ? "RED_2" : isValid ? "BLUE_1" : "MAIN_3");
 
 		return css`
 			border-color: ${borderColor};
@@ -58,6 +58,7 @@ class Style extends Styles {
 		height: calc(100% - ${this.sidePad / 2}px);
 		padding: 0;
 		width: 100%;
+		transition: ${this.variables.fastTransition};
 
 		&::placeholder {
 			color: ${this.getColor(undefined)};
@@ -72,6 +73,7 @@ class Style extends Styles {
 			transform-origin: left;
 			text-wrap: nowrap;
 			position: absolute;
+			pointer-events: none;
 
 			&:has(+ input:focus),
 			&:has(+ input:not(:placeholder-shown)) {

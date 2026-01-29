@@ -44,7 +44,7 @@ const Index: FC<IComponent> = (props) => {
 		{
 			id: "3",
 			type: "BTN_IMAGE",
-			options: { color: "MAIN_3", icon: "Refresh" },
+			options: { color: "MAIN_3", icon: "Refresh", click: requestGoods },
 		},
 	];
 
@@ -90,6 +90,10 @@ const Index: FC<IComponent> = (props) => {
 	}, [filters]);
 
 	useEffect(() => {
+		requestGoods();
+	}, [sort, filters]);
+
+	function requestGoods() {
 		Act.Catalogue.requestGoods({
 			limit: 10,
 			sort,
@@ -102,7 +106,7 @@ const Index: FC<IComponent> = (props) => {
 				bank: isBankFill ? filters.bank : undefined,
 			},
 		});
-	}, [sort, filters]);
+	}
 
 	function colorFillFilter(field: keyof PublicInterface.TFilterCard): EAtomButtonColor {
 		let isError: boolean = false;

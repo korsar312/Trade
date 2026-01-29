@@ -58,6 +58,9 @@ class LinksImp implements Interface.IAdapter {
 	public GET_ITEM = (id: string, type: CatalogueInterface.ETypeItem) => {
 		return this.request<CatalogueInterface.TItemElPublic>({ link: "GET_ITEM", param: { id, type } });
 	};
+	public CREATE_LISTING = (param: CatalogueInterface.TReqCreate) => {
+		return this.request<Interface.TResDefault>({ link: "GET_ITEM", param });
+	};
 }
 
 export default LinksImp;
