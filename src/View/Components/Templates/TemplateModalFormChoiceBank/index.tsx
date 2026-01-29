@@ -2,7 +2,6 @@ import type { FC } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
 import type { TMoleculeFormSchemaSwitchChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 import { CatalogueBankArr, type CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
-import { Act } from "../../../../Logic/Core";
 
 type TModal = Pick<IProp, "bgClick" | "color">;
 
@@ -27,7 +26,7 @@ const Index: FC<IComponent> = (props) => {
 			options: {
 				title: { text: "BANK_SELECTOR" },
 				submit,
-				choiceList: list.map((el) => ({ name: el, title: { text: Act.Message.getWord(el) } })),
+				choiceList: list.map((el) => ({ name: el, title: { text: el } })),
 				btn: { text: "APPLY" },
 			},
 		},

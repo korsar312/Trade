@@ -12,10 +12,7 @@ export interface IComponent {
 	submit: (val: TMoleculeFormSchemaTextPairForm) => void;
 }
 
-export type TMoleculeFormSchemaTextPairForm = {
-	title: string;
-	desc: string;
-};
+export type TMoleculeFormSchemaTextPairForm = { title: string; desc: string };
 
 const Index: FC<IComponent> = (props) => {
 	const { title, labelTitle, labelDesc, submit } = props;

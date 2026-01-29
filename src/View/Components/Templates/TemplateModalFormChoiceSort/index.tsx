@@ -1,6 +1,5 @@
 import type { FC } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
-import { Act } from "../../../../Logic/Core";
 import { PublicInterface, PublicSortArr } from "../../../../Logic/Core/Services/Public.interface.ts";
 import type { TMoleculeFormSchemaRadioChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
 
@@ -25,7 +24,7 @@ const Index: FC<IComponent> = (props) => {
 			options: {
 				title: { text: "SELECT_SORT_TYPE" },
 				submit,
-				choiceList: PublicSortArr.map((el) => ({ name: el, title: { text: Act.Message.getWord(el) } })),
+				choiceList: PublicSortArr.map((el) => ({ name: el, title: { text: el } })),
 				btn: { text: "APPLY" },
 			},
 		},

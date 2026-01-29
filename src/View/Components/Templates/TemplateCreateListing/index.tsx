@@ -24,6 +24,7 @@ const Index: FC<IComponent> = (props) => {
 				text: "CREATE_LISTING",
 				isFullWidth: true,
 				color: "BLUE_2",
+				click: openConfirm,
 			},
 		},
 		{
@@ -81,6 +82,15 @@ const Index: FC<IComponent> = (props) => {
 					},
 				];
 		}
+	}
+
+	function openConfirm() {
+		const modalId = Act.App.addModals("CONFIRM", (val) => setTimeout(() => createListing(modalId, val)));
+	}
+
+	function createListing(id: string, val: boolean) {
+		console.log(val);
+		Act.App.removeModals(id);
 	}
 
 	function isChoiceTab(type: CatalogueInterface.ETypeItem) {

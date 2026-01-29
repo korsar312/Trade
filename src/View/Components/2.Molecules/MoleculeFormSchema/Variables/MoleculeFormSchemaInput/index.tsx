@@ -12,9 +12,7 @@ export interface IComponent {
 	submit: (val: TMoleculeFormSchemaInputForm) => void;
 }
 
-export type TMoleculeFormSchemaInputForm = {
-	input: string;
-};
+export type TMoleculeFormSchemaInputForm = { input: string };
 
 const Index: FC<IComponent> = (props) => {
 	const { title, input, btn, submit } = props;

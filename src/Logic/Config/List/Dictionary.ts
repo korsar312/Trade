@@ -5,6 +5,9 @@ import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	CANCEL: { RU: "Отмена" },
+	I_CONFIRM: { RU: "Подтверждаю" },
+	CONFIRM_ACTION: { RU: "Подтвердите действие" },
 	CREATE_LISTING: { RU: "Создать лот" },
 	CARD_HOLDER_AGE: { RU: "Полных лет держателя карты" },
 	CARD_HOLDER_FULL_NAME: { RU: "ФИО держателя карты" },

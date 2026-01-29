@@ -28,4 +28,5 @@ const ModalName = {
 	PRICE: "PRICE",
 	RATING: "RATING",
 	TYPE_ITEM: "TYPE_ITEM",
+	CONFIRM: "CONFIRM",
 } as const;

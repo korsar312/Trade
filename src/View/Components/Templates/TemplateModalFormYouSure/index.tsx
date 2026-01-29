@@ -1,20 +1,20 @@
 import type { FC } from "react";
 import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
 import type { TMoleculeFormSchemaRadioChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
-import { type CatalogueInterface, CatalogueTypeItemArr } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 
 type TModal = Pick<IProp, "bgClick" | "color">;
 
 export interface IComponent extends TModal {
-	submitFn: (val: CatalogueInterface.ETypeItem) => void;
+	submitFn: (val: boolean) => void;
 }
 
 const Index: FC<IComponent> = (props) => {
 	const { submitFn, ...propRest } = props;
 
+	const list = [0, 1] as const;
+
 	function submit(data: TMoleculeFormSchemaRadioChoiceForm) {
-		const val = (data.radio || "CARD") as CatalogueInterface.ETypeItem;
-		submitFn(val);
+		submitFn(Boolean(Number(data.radio || "0")));
 	}
 
 	const propsComponent: IProp = {
@@ -22,10 +22,10 @@ const Index: FC<IComponent> = (props) => {
 		form: {
 			type: "CHOICE_ONE",
 			options: {
-				title: { text: "SELECT_LISTING_TYPE" },
-				submit,
-				choiceList: CatalogueTypeItemArr.map((el) => ({ name: el, title: { text: el } })),
+				title: { text: "CONFIRM_ACTION" },
+				choiceList: list.map((el) => ({ name: String(el), title: { text: el ? "I_CONFIRM" : "CANCEL" } })),
 				btn: { text: "APPLY" },
+				submit,
 			},
 		},
 	};
