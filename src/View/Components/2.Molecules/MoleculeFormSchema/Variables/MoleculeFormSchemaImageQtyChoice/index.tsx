@@ -33,12 +33,12 @@ const Index: FC<IComponent> = (props) => {
 
 	const imagesField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.row,
-		value: btnImageList.map((el, i, arr) => ({
+		value: btnImageList.map((el, i) => ({
 			value: {
 				type: "btnIcon",
 				options: {
 					isBig: true,
-					colorIcon: i <= arr.length ? "BLUE_3" : "SECOND_1",
+					colorIcon: qtyImage != null && i <= qtyImage ? "BLUE_3" : "SECOND_1",
 					...el,
 					click: () => setQtyImage(i),
 					type: "button",
@@ -54,6 +54,7 @@ const Index: FC<IComponent> = (props) => {
 				isFullWidth: true,
 				color: "BLUE_2",
 				...btn,
+				type: "submit",
 			},
 		},
 	};

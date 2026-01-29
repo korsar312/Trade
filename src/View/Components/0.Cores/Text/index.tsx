@@ -15,7 +15,10 @@ export interface IComponent {
 	extStyle?: TDeepCSSObject;
 	addContent?: MessageInterface.EWordAll[];
 	addStyle?: CSSObject[];
+	label?: TLabelPick;
 }
+
+type TLabelPick = Pick<HTMLLabelElement, "htmlFor">;
 
 export type TTextPos = "left" | "right" | "center";
 

@@ -62,6 +62,7 @@ const Index: FC<IComponent> = (props) => {
 				isFullWidth: true,
 				color: "BLUE_2",
 				...btn,
+				type: "submit",
 			},
 		},
 	};
