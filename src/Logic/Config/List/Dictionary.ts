@@ -15,7 +15,7 @@ const Dictionary: MessageInterface.TDictionary<TOther> = {
 	CARD_HOLDER_FULL_NAME: { RU: "ФИО держателя карты" },
 	TEXT_AFTER_PAYMENT: { RU: "Текст, для оплатившего покупателя" },
 	LISTING_BEFORE_PAYMENT_DATA: { RU: "Поля, доступные покупателю [[1]] до оплаты [[2]] лота" },
-	LISTING_AFTER_PAYMENT_DATA: { RU: "Поля, доступные покупателю только [[1]] после оплаты [[2]] лота" },
+	LISTING_AFTER_PAYMENT_DATA: { RU: "Поля, доступные покупателю [[1]] после оплаты [[2]] лота" },
 	LISTING_MAIN_DATA: { RU: "Основная информация лота" },
 	LISTING_DESC: { RU: "Описание лота" },
 	LISTING_NAME: { RU: "Наименование лота" },

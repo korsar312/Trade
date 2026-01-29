@@ -6,6 +6,7 @@ import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variable
 import type { IComponent as IBtnIcon } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 
 export interface IComponent {
+	idForm?: string;
 	title: IText;
 	btnImageList: Omit<IBtnIcon, "click" | "type">[];
 	btn: Omit<IBtn, "type">;
@@ -15,7 +16,7 @@ export interface IComponent {
 export type TMoleculeFormSchemaImageQtyChoiceForm = { qtyIndex: string };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, btnImageList, btn, submit } = props;
+	const { title, btnImageList, btn, submit, idForm } = props;
 
 	const [qtyImage, setQtyImage] = useState<number>();
 
@@ -75,7 +76,7 @@ const Index: FC<IComponent> = (props) => {
 			extStyle: Styles.wrapper,
 			value: [titleField, imagesField, btnField, hiddenField],
 		},
-		form: { onSubmit: submit },
+		form: { onSubmit: submit, id: idForm },
 	};
 
 	return <Component {...propsComponent} />;

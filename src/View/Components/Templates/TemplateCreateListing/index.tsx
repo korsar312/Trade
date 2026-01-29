@@ -1,24 +1,27 @@
 import { type FC } from "react";
 import Substance, {
 	type IComponent as IProp,
+	SubstanceFormRow,
 	type TSubstanceFormConstructCompType,
 } from "../../../Components/3.Substances/SubstanceFormConstruct";
 import { observer } from "mobx-react";
 import { type CatalogueInterface, CatalogueTypeItemArr } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { Act } from "../../../../Logic/Core";
+import Util from "../../../../Logic/Libs/Util";
 
 export interface IComponent {
 	typeItem: CatalogueInterface.ETypeItem;
 	changeTabFn: (tab: CatalogueInterface.ETypeItem) => void;
 }
 
-type CompTypeOmit = Omit<TSubstanceFormConstructCompType, "id">;
-
 const Index: FC<IComponent> = (props) => {
 	const { typeItem, changeTabFn } = props;
 
-	const constForm: CompTypeOmit[] = [
-		{
+	const genId = Util.idGen();
+
+	const constForm: TSubstanceFormConstructCompType[] = [
+		SubstanceFormRow({
+			id: genId(),
 			type: "BTN_MAIN",
 			options: {
 				text: "CREATE_LISTING",
@@ -26,8 +29,9 @@ const Index: FC<IComponent> = (props) => {
 				color: "BLUE_2",
 				click: openConfirm,
 			},
-		},
-		{
+		}),
+		SubstanceFormRow({
+			id: genId(),
 			type: "FORM_TEXT_TRIPLE",
 			options: {
 				title: { text: "LISTING_MAIN_DATA" },
@@ -38,10 +42,10 @@ const Index: FC<IComponent> = (props) => {
 					valid: [(val) => ({ isValid: Number(val) > 0, error: "MUST_GREAT_ZERO" })],
 				},
 				labelDesc: { placeholder: "LISTING_DESC" },
-				submit: () => "",
 			},
-		},
-		{
+		}),
+		SubstanceFormRow({
+			id: genId(),
 			type: "TABS",
 			options: {
 				btnRow: CatalogueTypeItemArr.map((el) => ({
@@ -50,41 +54,41 @@ const Index: FC<IComponent> = (props) => {
 					isActive: isChoiceTab(el),
 				})),
 			},
-		},
+		}),
 	];
 
-	function tabRender(): CompTypeOmit[] {
+	function tabRender(): TSubstanceFormConstructCompType[] {
 		switch (typeItem) {
 			case "CARD":
 				return [
-					{
+					SubstanceFormRow({
+						id: genId(),
 						type: "FORM_INPUT",
 						options: {
 							title: { text: "LISTING_BEFORE_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("RED_3") }] },
 							input: { placeholder: "CARD_HOLDER_AGE", type: "number" },
-							submit: () => "",
 						},
-					},
-					{
+					}),
+					SubstanceFormRow({
+						id: genId(),
 						type: "FORM_INPUT",
 						options: {
 							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
 							input: { placeholder: "CARD_HOLDER_FULL_NAME" },
-							submit: () => "",
 						},
-					},
+					}),
 				];
 
 			case "GUARD":
 				return [
-					{
+					SubstanceFormRow({
+						id: genId(),
 						type: "FORM_TEXTAREA",
 						options: {
 							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
 							labelTitle: { placeholder: "TEXT_AFTER_PAYMENT" },
-							submit: () => "",
 						},
-					},
+					}),
 				];
 		}
 	}

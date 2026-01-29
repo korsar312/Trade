@@ -6,16 +6,17 @@ import type { IComponent as IText } from "../../../../0.Cores/Text";
 import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 export interface IComponent {
+	idForm?: string;
 	title: IText;
 	input?: Omit<IInput, "name">;
 	btn?: Omit<IBtn, "type">;
-	submit: (val: TMoleculeFormSchemaInputForm) => void;
+	submit?: (val: TMoleculeFormSchemaInputForm) => void;
 }
 
 export type TMoleculeFormSchemaInputForm = { input: string };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, input, btn, submit } = props;
+	const { title, input, btn, submit, idForm } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
@@ -59,7 +60,7 @@ const Index: FC<IComponent> = (props) => {
 			extStyle: Styles.wrapper,
 			value: [titleField, inputField, btnField],
 		},
-		form: { onSubmit: submit },
+		form: { onSubmit: submit, id: idForm },
 	};
 
 	return <Component {...propsComponent} />;

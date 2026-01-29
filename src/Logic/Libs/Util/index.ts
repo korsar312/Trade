@@ -1,6 +1,7 @@
 import { GetArray } from "./GetArray/GetArray";
 import { ToArray } from "./ToArray/ToArray";
 import { ToMoney } from "./ToMoney/ToMoney.ts";
+import { IdGen } from "./IdGen/IdGen.ts";
 
 class Index {
 	/** Возвращает массив */
@@ -11,6 +12,9 @@ class Index {
 
 	/** Преобразует в денежный формат */
 	public toMoney = ToMoney.execute();
+
+	/** ID генератор */
+	public idGen = IdGen.execute();
 }
 
 export default new Index();

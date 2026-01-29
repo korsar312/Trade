@@ -13,7 +13,7 @@ import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
 export interface IComponent {
-	form: Pick<IForm, "onSubmit">;
+	form: Pick<IForm, "onSubmit" | "id">;
 	schema: TMoleculeFormSchemaRow;
 	color?: StyleInterface.TColorChoice;
 }

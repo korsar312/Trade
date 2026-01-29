@@ -21,6 +21,9 @@ type TMap = {
 
 export type TSubstanceFormConstructCompType = typesUtils.OptionsUnion<TMap, { id: string }>;
 
+type TRow<K extends keyof TMap> = { type: K; options: TMap[K]; id: string };
+export const SubstanceFormRow = <K extends keyof TMap>(x: TRow<K>) => x;
+
 const Index = (props: IComponent) => {
 	const model = Model(props);
 	return <View {...model} />;
