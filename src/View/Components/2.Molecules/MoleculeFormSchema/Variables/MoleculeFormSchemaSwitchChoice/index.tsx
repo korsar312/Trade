@@ -15,7 +15,7 @@ export type TMoleculeFormSchemaSwitchChoiceForm = Record<string, "on">;
 
 type TMoleculeFormSchemaChoice = {
 	name: string;
-	title: IText;
+	title: Omit<IText, "label">;
 };
 
 const Index: FC<IComponent> = (props) => {
@@ -41,6 +41,7 @@ const Index: FC<IComponent> = (props) => {
 					type: "switch",
 					options: {
 						name,
+						id: name,
 					},
 				},
 			},
@@ -49,6 +50,7 @@ const Index: FC<IComponent> = (props) => {
 					type: "text",
 					options: {
 						...title,
+						label: { htmlFor: name },
 					},
 				},
 			},

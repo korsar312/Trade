@@ -16,7 +16,7 @@ export type TMoleculeFormSchemaRadioChoiceForm = { radio: string };
 
 type TMoleculeFormSchemaChoice = {
 	name: string;
-	title: IText;
+	title: Omit<IText, "label">;
 	img?: IImg;
 };
 
@@ -45,6 +45,7 @@ const Index: FC<IComponent> = (props) => {
 						name: "radio",
 						value: name,
 						defaultChecked: i == 0,
+						id: name,
 					},
 				},
 			},
@@ -63,6 +64,7 @@ const Index: FC<IComponent> = (props) => {
 					type: "text",
 					options: {
 						...title,
+						label: { htmlFor: name },
 					},
 				},
 			},

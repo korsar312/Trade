@@ -2,7 +2,10 @@ import Model from "./Imp/Model.ts";
 import View from "./Imp/View.tsx";
 import type { TDeepCSSObject, TTagPartial } from "../../../ViewUtils.tsx";
 
-type THTMLInputPick = TTagPartial<HTMLInputElement, "checked" | "onClick" | "disabled" | "name" | "type" | "value" | "defaultChecked">;
+type THTMLInputPick = TTagPartial<
+	HTMLInputElement,
+	"checked" | "onClick" | "disabled" | "name" | "type" | "value" | "defaultChecked" | "id"
+>;
 
 export interface IComponent extends THTMLInputPick {
 	extStyles?: TDeepCSSObject;

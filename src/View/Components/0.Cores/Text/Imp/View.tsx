@@ -23,7 +23,11 @@ const View: NFC<typeof Model> = (props) => {
 		return textFind;
 	}
 
-	return <Tag css={styles}>{text()}</Tag>;
+	return (
+		<Tag css={styles} {...label}>
+			{text()}
+		</Tag>
+	);
 };
 
 export default View;
