@@ -141,12 +141,7 @@ function makeRoleGuardLoader(params: {
 	return async (args) => {
 		if (allow && allow.length > 0) {
 			const role = getRole();
-
-			if (!allow.includes(role)) {
-				console.log(role);
-				console.log(allow);
-				throw redirect(redirectTo(redirectRole(role)));
-			}
+			if (!allow.includes(role)) throw redirect(redirectTo(redirectRole(role)));
 		}
 
 		goLinkHandler(args.params);

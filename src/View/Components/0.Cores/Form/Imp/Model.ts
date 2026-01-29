@@ -2,18 +2,12 @@ import type { IComponent } from "../index";
 import type { FormEvent } from "react";
 
 function Model(props: IComponent) {
-	const { onSubmit, children } = props;
+	const { onSubmit, children, id } = props;
 
 	function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
 
-		console.log(event.currentTarget.reportValidity());
-
-		if (!event.currentTarget.checkValidity()) {
-			event.currentTarget.reportValidity();
-			return;
-		}
-
+		if (!event.currentTarget.checkValidity()) return event.currentTarget.reportValidity();
 		if (!onSubmit) return;
 
 		const formData = new FormData(event.currentTarget);
@@ -24,7 +18,7 @@ function Model(props: IComponent) {
 		onSubmit(data);
 	}
 
-	return { handleSubmit, children };
+	return { handleSubmit, children, id };
 }
 
 export default Model;

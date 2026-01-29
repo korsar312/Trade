@@ -1,7 +1,6 @@
-import { type FC } from "react";
+import { type FC, useId } from "react";
 import Substance, {
 	type IComponent as IProp,
-	SubstanceFormRow,
 	type TSubstanceFormConstructCompType,
 } from "../../../Components/3.Substances/SubstanceFormConstruct";
 import { observer } from "mobx-react";
@@ -19,8 +18,12 @@ const Index: FC<IComponent> = (props) => {
 
 	const genId = Util.idGen();
 
+	const formMain = useId();
+	const formPublic = useId();
+	const formSecret = useId();
+
 	const constForm: TSubstanceFormConstructCompType[] = [
-		SubstanceFormRow({
+		{
 			id: genId(),
 			type: "BTN_MAIN",
 			options: {
@@ -29,11 +32,12 @@ const Index: FC<IComponent> = (props) => {
 				color: "BLUE_2",
 				click: openConfirm,
 			},
-		}),
-		SubstanceFormRow({
+		},
+		{
 			id: genId(),
 			type: "FORM_TEXT_TRIPLE",
 			options: {
+				idForm: formMain,
 				title: { text: "LISTING_MAIN_DATA" },
 				labelTitle: { placeholder: "LISTING_NAME" },
 				labelSubtitle: {
@@ -43,8 +47,8 @@ const Index: FC<IComponent> = (props) => {
 				},
 				labelDesc: { placeholder: "LISTING_DESC" },
 			},
-		}),
-		SubstanceFormRow({
+		},
+		{
 			id: genId(),
 			type: "TABS",
 			options: {
@@ -54,41 +58,44 @@ const Index: FC<IComponent> = (props) => {
 					isActive: isChoiceTab(el),
 				})),
 			},
-		}),
+		},
 	];
 
 	function tabRender(): TSubstanceFormConstructCompType[] {
 		switch (typeItem) {
 			case "CARD":
 				return [
-					SubstanceFormRow({
+					{
 						id: genId(),
 						type: "FORM_INPUT",
 						options: {
+							idForm: formPublic,
 							title: { text: "LISTING_BEFORE_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("RED_3") }] },
 							input: { placeholder: "CARD_HOLDER_AGE", type: "number" },
 						},
-					}),
-					SubstanceFormRow({
+					},
+					{
 						id: genId(),
 						type: "FORM_INPUT",
 						options: {
+							idForm: formSecret,
 							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
 							input: { placeholder: "CARD_HOLDER_FULL_NAME" },
 						},
-					}),
+					},
 				];
 
 			case "GUARD":
 				return [
-					SubstanceFormRow({
+					{
 						id: genId(),
 						type: "FORM_TEXTAREA",
 						options: {
+							idForm: formSecret,
 							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
 							labelTitle: { placeholder: "TEXT_AFTER_PAYMENT" },
 						},
-					}),
+					},
 				];
 		}
 	}
@@ -99,18 +106,30 @@ const Index: FC<IComponent> = (props) => {
 
 	function createListing(id: string, val: boolean) {
 		if (val) {
-			Act.Catalogue.createListing({
-				saleKind: "GOODS",
-				type: "CARD",
-				desc: "",
-				name: "",
-				price: 111,
-				info: {
-					bank: "SBER",
-					age: "11",
-					name: "",
-				},
-			}).then(() => Act.Router.goTo("GOODS"));
+			const forms = [
+				document.getElementById(formMain) as HTMLFormElement | null,
+				document.getElementById(formPublic) as HTMLFormElement | null,
+				document.getElementById(formSecret) as HTMLFormElement | null,
+			].filter(Boolean) as HTMLFormElement[];
+
+			const ok = forms.every((f) => f.reportValidity());
+			console.log(ok, 22);
+			console.log(forms.length, 22);
+
+			if (ok) {
+				Act.Catalogue.createListing({
+					name: "QQQQ",
+					desc: "WWWWW.",
+					price: 6000,
+					type: "CARD",
+					saleKind: "GOODS",
+					info: {
+						name: "EEEE",
+						bank: "ALFA",
+						age: "11",
+					},
+				}).then(() => Act.Router.goTo("GOODS"));
+			}
 		}
 
 		Act.App.removeModals(id);

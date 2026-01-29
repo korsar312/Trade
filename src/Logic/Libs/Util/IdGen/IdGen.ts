@@ -5,7 +5,7 @@ export class IdGen {
 	static execute() {
 		return function (prefix = "", start = 0) {
 			const g = _idGen(prefix, start);
-			return () => g.next().value; // уже string
+			return () => g.next().value;
 		};
 	}
 }
