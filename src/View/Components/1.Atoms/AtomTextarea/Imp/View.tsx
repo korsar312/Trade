@@ -4,7 +4,7 @@ import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 import Text from "../../../0.Cores/Text";
 
 const View: NFC<typeof Model> = (props) => {
-	const { color, textObj, onClick, handleChange, text, name, disabled, placeObj, isValid, onValid, value } = props;
+	const { color, textObj, onClick, text, name, disabled, placeObj, isValid, onValid, value } = props;
 
 	return (
 		<div css={[Style.wrapper(color), Style.valid(isValid)]}>
@@ -14,7 +14,6 @@ const View: NFC<typeof Model> = (props) => {
 				name={name}
 				css={[Style.input, Style.text(textObj)]}
 				onClick={onClick}
-				onInput={handleChange}
 				disabled={disabled}
 				onChange={onValid}
 				placeholder={""}

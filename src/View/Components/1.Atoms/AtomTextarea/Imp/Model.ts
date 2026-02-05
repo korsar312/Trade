@@ -1,5 +1,5 @@
 import type { IComponent, TAtomTextareaText, TAtomTextareaTextPick } from "../index";
-import { type ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { Act } from "../../../../../Logic/Core";
 import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
@@ -28,13 +28,9 @@ function Model(props: IComponent) {
 		};
 	}
 
-	function handleChange(e: ChangeEvent<HTMLTextAreaElement>) {
-		const newValue = e.currentTarget.value;
-		onChange?.(newValue);
-	}
-
 	function onValid(e: React.ChangeEvent<HTMLTextAreaElement>) {
 		const value = e.target.value;
+		onChange?.(value);
 
 		const isValidEx = Boolean(value?.length);
 
@@ -42,7 +38,7 @@ function Model(props: IComponent) {
 		setIsValid(undefined);
 	}
 
-	return { color, textObj, onClick, handleChange, text, name, disabled, placeObj, isValid, onValid, value };
+	return { color, textObj, onClick, text, name, disabled, placeObj, isValid, onValid, value };
 }
 
 export default Model;

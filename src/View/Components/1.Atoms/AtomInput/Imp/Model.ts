@@ -1,5 +1,5 @@
 import type { IComponent, TAtomInputGeneralGroup, TAtomInputIcon, TAtomInputText, TAtomInputTextPick } from "../index";
-import React, { type ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import { Act } from "../../../../../Logic/Core";
 import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { IComponent as IImage } from "../../../0.Cores/Image";
@@ -45,30 +45,9 @@ function Model(props: IComponent) {
 		return { ...props, value: [...imgArr] };
 	}
 
-	function handleChange(e: ChangeEvent<HTMLInputElement>) {
-		const newValue = e.currentTarget.value;
-		onChange?.(newValue);
-	}
-
-	//function onValidы(e: React.ChangeEvent<HTMLInputElement>) {
-	//	const value = e.currentTarget.value;
-	//
-	//	let error: MessageInterface.EWord | undefined;
-	//
-	//	for (const fn of valid ?? []) {
-	//		const res = fn(value);
-	//		if (!res.isValid) {
-	//			error = res.error;
-	//			break;
-	//		}
-	//	}
-	//
-	//	e.currentTarget.setCustomValidity(error ? Act.Message.getWord(error) : "");
-	//	setIsValid(!error);
-	//}
-
 	function onValid(e: React.ChangeEvent<HTMLInputElement>) {
 		const value = e.target.value;
+		onChange?.(value);
 
 		const invalid = valid?.map((el) => el(value)).find((el) => !el.isValid);
 
@@ -76,7 +55,7 @@ function Model(props: IComponent) {
 		setIsValid(valid?.length ? !invalid : undefined);
 	}
 
-	return { color, textObj, onClick, handleChange, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value };
+	return { color, textObj, onClick, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value };
 }
 
 export default Model;
