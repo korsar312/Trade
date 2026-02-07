@@ -5,6 +5,7 @@ import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	FILL_FIELD: { RU: "Заполните поля" },
 	SEARCH_BANK: { RU: "Поиск банка" },
 	CHOOSE_BANK: { RU: "Выберете банк" },
 	LISTING_PRICE: { RU: "Цена лота" },
@@ -16,8 +17,6 @@ const Dictionary: MessageInterface.TDictionary<TOther> = {
 	CARD_HOLDER_AGE: { RU: "Полных лет держателя карты" },
 	CARD_HOLDER_FULL_NAME: { RU: "ФИО держателя карты" },
 	TEXT_AFTER_PAYMENT: { RU: "Текст, для оплатившего покупателя" },
-	LISTING_BEFORE_PAYMENT_DATA: { RU: "Поля, доступные покупателю [[1]] до оплаты [[2]] лота" },
-	LISTING_AFTER_PAYMENT_DATA: { RU: "Поля, доступные покупателю [[1]] после оплаты [[2]] лота" },
 	LISTING_MAIN_DATA: { RU: "Основная информация лота" },
 	LISTING_DESC: { RU: "Описание лота" },
 	LISTING_NAME: { RU: "Наименование лота" },

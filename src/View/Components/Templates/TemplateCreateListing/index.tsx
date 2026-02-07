@@ -82,7 +82,7 @@ const Index: FC<IComponent> = (props) => {
 						type: "FORM_TEXT_BTN",
 						options: {
 							idForm: formPublic,
-							title: { text: "LISTING_BEFORE_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("RED_3") }] },
+							title: { text: "FILL_FIELD" },
 							labelTitle: { placeholder: "CARD_HOLDER_FULL_NAME" },
 							labelSubtitle: { placeholder: "CARD_HOLDER_AGE", type: "number" },
 							find: { placeholder: "SEARCH_BANK" },
@@ -98,7 +98,7 @@ const Index: FC<IComponent> = (props) => {
 						type: "FORM_TEXTAREA",
 						options: {
 							idForm: formSecret,
-							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
+							title: { text: "FILL_FIELD" },
 							labelTitle: { placeholder: "TEXT_AFTER_PAYMENT" },
 						},
 					},

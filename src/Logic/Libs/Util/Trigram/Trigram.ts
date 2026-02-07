@@ -1,57 +1,109 @@
-/**
- * Поиск в 3 буквы
- */
 export class Trigram {
 	static execute() {
-		return function <T>(list: readonly T[], query: string, extract: (item: T) => string, minMatchRatio = 0): T[] {
-			const q = query.trim().toLowerCase();
-			if (!q) return [...list];
+		return function <T>(
+			list: readonly T[],
+			query: string,
+			extract: (item: T) => string,
+			minMatchRatio = 0.15, // 0..1 (Jaccard)
+			limit?: number,
+		): T[] {
+			const normalize = (s: string): string => {
+				if (!s) return "";
+				return s
+					.normalize("NFKD")
+					.replace(/\p{M}+/gu, "")
+					.toLowerCase()
+					.replace(/ё/g, "е")
+					.replace(/\s+/g, " ")
+					.trim();
+			};
 
-			const buildGrams = (s: string): string[] => {
-				const t = s.trim().toLowerCase();
+			const qn = normalize(query);
+			if (!qn) return [...list];
+
+			// short query => rank by first occurrence + length
+			if (qn.length < 3) {
+				const scored: Array<{ item: T; pos: number; len: number }> = [];
+				for (const item of list) {
+					const tn = normalize(extract(item));
+					const pos = tn.indexOf(qn);
+					if (pos !== -1) scored.push({ item, pos, len: tn.length });
+				}
+				scored.sort((a, b) => a.pos - b.pos || a.len - b.len);
+				const out = scored.map((x) => x.item);
+				return typeof limit === "number" ? out.slice(0, Math.max(0, limit)) : out;
+			}
+
+			const buildTrigrams = (s: string): string[] => {
+				const t = normalize(s);
 				if (!t) return [];
-				if (t.length < 3) return [t];
+				const padded = `__${t}_`;
 				const grams: string[] = [];
-				for (let i = 0; i <= t.length - 3; i++) grams.push(t.slice(i, i + 3));
+				for (let i = 0; i + 3 <= padded.length; i++) grams.push(padded.slice(i, i + 3));
 				return grams;
 			};
 
-			if (q.length < 3) {
-				return list.filter((item) => extract(item)?.toLowerCase().includes(q));
-			}
+			const qSet = new Set<string>(buildTrigrams(qn));
+			const qSize = qSet.size;
+			if (qSize === 0) return [];
 
-			const qSet = new Set(buildGrams(q));
-			if (qSet.size === 0) return [...list];
+			const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
+			const thr = clamp01(minMatchRatio);
 
-			const gramsCache = new Map<string, Set<string>>();
-
-			const getTextSet = (textRaw: string): Set<string> => {
-				const text = textRaw.trim().toLowerCase();
-				if (!text) return new Set();
-				const cached = gramsCache.get(text);
-				if (cached) return cached;
-				const s = new Set(buildGrams(text));
-				gramsCache.set(text, s);
-				return s;
+			type Scored = {
+				item: T;
+				exact: boolean;
+				jaccard: number;
+				pos: number;
+				len: number;
 			};
 
-			return list.filter((item) => {
-				const textRaw = extract(item);
-				if (!textRaw) return false;
+			const scored: Scored[] = [];
 
-				const tSet = getTextSet(textRaw);
-				if (tSet.size === 0) return false;
+			for (const item of list) {
+				const tn = normalize(extract(item));
+				if (!tn) continue;
+
+				const pos = tn.indexOf(qn);
+				const exact = pos !== -1;
+
+				const grams = buildTrigrams(tn);
+				if (grams.length === 0) continue;
 
 				let inter = 0;
-				for (const g of qSet) if (tSet.has(g)) inter++;
+				const tSet = new Set<string>();
+				for (let i = 0; i < grams.length; i++) {
+					const g = grams[i];
+					if (tSet.has(g)) continue;
+					tSet.add(g);
+					if (qSet.has(g)) inter++;
+				}
+				if (inter === 0 && !exact) continue;
 
-				if (minMatchRatio <= 0) return inter > 0;
+				const union = qSize + tSet.size - inter;
+				const jaccard = union > 0 ? inter / union : 0;
 
-				const union = qSet.size + tSet.size - inter;
-				const score = union === 0 ? 0 : inter / union;
+				if (exact || jaccard + 1e-12 >= thr) {
+					scored.push({
+						item,
+						exact,
+						jaccard: exact ? 1 : jaccard,
+						pos: exact ? pos : Number.MAX_SAFE_INTEGER,
+						len: tn.length,
+					});
+				}
+			}
 
-				return score >= minMatchRatio;
+			scored.sort((a, b) => {
+				if (a.exact !== b.exact) return a.exact ? -1 : 1;
+				if (a.jaccard !== b.jaccard) return b.jaccard - a.jaccard;
+				if (a.pos !== b.pos) return a.pos - b.pos;
+				if (a.len !== b.len) return a.len - b.len;
+				return 0;
 			});
+
+			const out = scored.map((x) => x.item);
+			return typeof limit === "number" ? out.slice(0, Math.max(0, limit)) : out;
 		};
 	}
 }
