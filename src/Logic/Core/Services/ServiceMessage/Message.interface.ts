@@ -27,6 +27,8 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	SEARCH_BANK: "SEARCH_BANK",
+	CHOOSE_BANK: "CHOOSE_BANK",
 	LISTING_PRICE: "LISTING_PRICE",
 	MUST_GREAT_ZERO: "MUST_GREAT_ZERO",
 	CANCEL: "CANCEL",

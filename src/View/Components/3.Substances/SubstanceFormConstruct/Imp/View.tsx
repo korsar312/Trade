@@ -4,6 +4,7 @@ import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 import type { TSubstanceFormConstructCompType } from "../";
 import { type ReactElement } from "react";
 import MoleculeGroupBtn from "../../../2.Molecules/MoleculeGroupBtn";
+import MoleculeFormSchemaTextBtn from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextBtn";
 import MoleculeFormSchemaTextTriple from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextTriple";
 import MoleculeFormSchemaInput from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
@@ -17,6 +18,8 @@ const View: NFC<typeof Model> = (props) => {
 		switch (type) {
 			case "FORM_TEXT_TRIPLE":
 				return <MoleculeFormSchemaTextTriple {...options} />;
+			case "FORM_TEXT_BTN":
+				return <MoleculeFormSchemaTextBtn {...options} />;
 			case "FORM_TEXTAREA":
 				return <MoleculeFormSchemaTextarea {...options} />;
 			case "FORM_INPUT":

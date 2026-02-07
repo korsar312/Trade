@@ -17,7 +17,6 @@ class Style extends Styles {
 			background: ${this.getColor(color)};
 			border-radius: ${this.variables.radiusStandard / 2}px;
 			transition: ${this.variables.fastTransition};
-			overflow: hidden;
 			width: 100%;
 			min-height: ${this.sidePad * 3 + this.getFontSize(font)}px;
 			height: 100%;

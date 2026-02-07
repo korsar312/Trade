@@ -129,51 +129,45 @@ const Index: FC<IComponent> = (props) => {
 	// ======================= MODALS =======================
 
 	function openFilterSort() {
-		const modalId = Act.App.addModals("SORT", (val) => setTimeout(() => setSortVal(modalId, val)));
+		Act.App.addModals("SORT", (val) => setTimeout(() => setSortVal(val)));
 	}
 
 	function openFilterBank() {
-		const modalId = Act.App.addModals("BANK", (val) => setTimeout(() => setFilterBank(modalId, val)));
+		Act.App.addModals("BANK_MANY", (val) => setTimeout(() => setFilterBank(val)));
 	}
 
 	function openFilterRating() {
-		const modalId = Act.App.addModals("RATING", (val) => setTimeout(() => setFilterRating(modalId, val)));
+		Act.App.addModals("RATING", (val) => setTimeout(() => setFilterRating(val)));
 	}
 
 	function openFilterPrice(isUp: boolean) {
-		return () => {
-			const modalId = Act.App.addModals("PRICE", (val) => setTimeout(() => setFilterPrice(modalId, isUp, val)));
-		};
+		return () => Act.App.addModals("PRICE", (val) => setTimeout(() => setFilterPrice(isUp, val)));
 	}
 
 	function openListingAdd() {
-		const modalId = Act.App.addModals("TYPE_ITEM", (val) => setTimeout(() => goCreateListing(modalId, val)));
+		Act.App.addModals("TYPE_ITEM", (val) => setTimeout(() => goCreateListing(val)));
 	}
 
 	// ======================= SETTERS =======================
 
-	function setSortVal(id: string, sort: PublicInterface.ESort) {
+	function setSortVal(sort: PublicInterface.ESort) {
 		setSort(sort);
-		Act.App.removeModals(id);
 	}
 
 	function textFilter(value: string) {
 		setFilterHandle("name", value);
 	}
 
-	function setFilterBank(id: string, bank: CatalogueInterface.EBank[]) {
+	function setFilterBank(bank: CatalogueInterface.EBank[]) {
 		setFilterHandle("bank", bank);
-		Act.App.removeModals(id);
 	}
 
-	function setFilterRating(id: string, rating: PublicInterface.TRating | null) {
+	function setFilterRating(rating: PublicInterface.TRating | null) {
 		setFilterHandle("rating", rating);
-		Act.App.removeModals(id);
 	}
 
-	function setFilterPrice(id: string, isUp: boolean, price: number | null) {
+	function setFilterPrice(isUp: boolean, price: number | null) {
 		setFilterHandle(isUp ? "priseUp" : "priseDown", price);
-		Act.App.removeModals(id);
 	}
 
 	function setFilterHandle<T extends keyof PublicInterface.TFilterCard>(field: T, value: PublicInterface.TFilterCard[T]) {
@@ -218,9 +212,8 @@ const Index: FC<IComponent> = (props) => {
 
 	// ======================= OTHERS =======================
 
-	function goCreateListing(id: string, type: CatalogueInterface.ETypeItem) {
+	function goCreateListing(type: CatalogueInterface.ETypeItem) {
 		Act.Router.goTo("CREATE_LISTING", { type });
-		Act.App.removeModals(id);
 	}
 
 	function clearFilter() {

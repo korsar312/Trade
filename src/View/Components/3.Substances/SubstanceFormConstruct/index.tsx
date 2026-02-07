@@ -1,6 +1,7 @@
 import Model from "./Imp/Model.ts";
 import View from "./Imp/View.tsx";
 import type { IComponent as ITextTriple } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextTriple";
+import type { IComponent as ITextBtn } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextBtn";
 import type { IComponent as ITextarea } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextarea";
 import type { IComponent as IInput } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import type { IComponent as ITabs } from "../../2.Molecules/MoleculeGroupBtn";
@@ -13,6 +14,7 @@ export interface IComponent {
 
 type TMap = {
 	FORM_TEXT_TRIPLE: ITextTriple;
+	FORM_TEXT_BTN: ITextBtn;
 	FORM_TEXTAREA: ITextarea;
 	FORM_INPUT: IInput;
 	TABS: ITabs;

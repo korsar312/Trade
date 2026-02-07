@@ -23,7 +23,7 @@ export namespace AppInterface {
 }
 
 const ModalName = {
-	BANK: "BANK",
+	BANK_MANY: "BANK_MANY",
 	SORT: "SORT",
 	PRICE: "PRICE",
 	RATING: "RATING",

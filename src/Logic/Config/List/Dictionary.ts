@@ -5,6 +5,8 @@ import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	SEARCH_BANK: { RU: "Поиск банка" },
+	CHOOSE_BANK: { RU: "Выберете банк" },
 	LISTING_PRICE: { RU: "Цена лота" },
 	MUST_GREAT_ZERO: { RU: "Должно быть больше 0" },
 	CANCEL: { RU: "Отмена" },

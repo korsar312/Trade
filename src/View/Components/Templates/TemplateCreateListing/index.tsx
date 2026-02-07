@@ -4,7 +4,11 @@ import Substance, {
 	type TSubstanceFormConstructCompType,
 } from "../../../Components/3.Substances/SubstanceFormConstruct";
 import { observer } from "mobx-react";
-import { type CatalogueInterface, CatalogueTypeItemArr } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import {
+	CatalogueBankArr,
+	type CatalogueInterface,
+	CatalogueTypeItemArr,
+} from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { Act } from "../../../../Logic/Core";
 import Util from "../../../../Logic/Libs/Util";
 
@@ -75,20 +79,14 @@ const Index: FC<IComponent> = (props) => {
 				return [
 					{
 						id: genId(),
-						type: "FORM_INPUT",
+						type: "FORM_TEXT_BTN",
 						options: {
 							idForm: formPublic,
 							title: { text: "LISTING_BEFORE_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("RED_3") }] },
-							input: { placeholder: "CARD_HOLDER_AGE", type: "number" },
-						},
-					},
-					{
-						id: genId(),
-						type: "FORM_INPUT",
-						options: {
-							idForm: formSecret,
-							title: { text: "LISTING_AFTER_PAYMENT_DATA", addStyle: [{ color: Act.Style.getColor("BLUE_2") }] },
-							input: { placeholder: "CARD_HOLDER_FULL_NAME" },
+							labelTitle: { placeholder: "CARD_HOLDER_FULL_NAME" },
+							labelSubtitle: { placeholder: "CARD_HOLDER_AGE", type: "number" },
+							find: { placeholder: "SEARCH_BANK" },
+							choiceList: CatalogueBankArr.map((el) => ({ name: el, title: { text: el } })),
 						},
 					},
 				];

@@ -19,7 +19,7 @@ export namespace PublicInterface {
 	export type TStorageVal<T extends SettingInterface.ENameStorage> = { [K in keyof typeof nameValue]: (typeof nameValue)[K] }[T];
 
 	const ModalValue = {
-		BANK: {} as CatalogueInterface.EBank[],
+		BANK_MANY: {} as CatalogueInterface.EBank[],
 		SORT: {} as ESort,
 		PRICE: {} as number | null,
 		RATING: {} as TRating | null,

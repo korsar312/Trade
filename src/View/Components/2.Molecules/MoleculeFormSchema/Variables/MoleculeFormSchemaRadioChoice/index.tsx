@@ -36,8 +36,8 @@ const Index: FC<IComponent> = (props) => {
 		},
 	};
 
-	const switchField: TMoleculeFormSchemaRow[] = choiceList.map(({ img, name, title }, i) => ({
-		extStyle: Styles.switch,
+	const radioField: TMoleculeFormSchemaRow[] = choiceList.map(({ img, name, title }, i) => ({
+		extStyle: Styles.radio,
 		value: [
 			{
 				value: {
@@ -87,7 +87,7 @@ const Index: FC<IComponent> = (props) => {
 	const propsComponent: IParent = {
 		schema: {
 			extStyle: Styles.wrapper,
-			value: [titleField, ...switchField, btnField],
+			value: [titleField, ...radioField, btnField],
 		},
 		form: { onSubmit: submit, id: idForm },
 	};
