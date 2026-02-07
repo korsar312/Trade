@@ -25,12 +25,20 @@ const Index: FC<IComponent> = (props) => {
 	const constForm: TSubstanceFormConstructCompType[] = [
 		{
 			id: genId(),
-			type: "BTN_MAIN",
+			type: "ROW",
 			options: {
-				text: "CREATE_LISTING",
-				isFullWidth: true,
-				color: "BLUE_2",
-				click: openConfirm,
+				compRow: [
+					{
+						id: genId(),
+						type: "BTN_MAIN",
+						options: {
+							text: "CREATE_LISTING",
+							isFullWidth: true,
+							color: "BLUE_2",
+							click: openConfirm,
+						},
+					},
+				],
 			},
 		},
 		{
@@ -140,7 +148,7 @@ const Index: FC<IComponent> = (props) => {
 	}
 
 	const propsComponent: IProp = {
-		compRow: [...constForm, ...tabRender()].map((el, i) => ({ ...el, id: String(i) }) as TSubstanceFormConstructCompType),
+		compRow: [...constForm, ...tabRender()],
 	};
 
 	return <Substance {...propsComponent} />;

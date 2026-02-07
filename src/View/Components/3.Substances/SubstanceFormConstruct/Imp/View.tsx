@@ -3,12 +3,12 @@ import Style from "./Style.ts";
 import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
 import type { TSubstanceFormConstructCompType } from "../";
 import { type ReactElement } from "react";
-import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import MoleculeGroupBtn from "../../../2.Molecules/MoleculeGroupBtn";
 import MoleculeFormSchemaTextTriple from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextTriple";
 import MoleculeFormSchemaInput from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeFormSchemaTextarea from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextarea";
+import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl/";
 
 const View: NFC<typeof Model> = (props) => {
 	const { compRow } = props;
@@ -19,12 +19,12 @@ const View: NFC<typeof Model> = (props) => {
 				return <MoleculeFormSchemaTextTriple {...options} />;
 			case "FORM_TEXTAREA":
 				return <MoleculeFormSchemaTextarea {...options} />;
-			case "BTN_MAIN":
-				return <AtomButtonMain {...options} />;
-			case "TABS":
-				return <MoleculeGroupBtn {...options} />;
 			case "FORM_INPUT":
 				return <MoleculeFormSchemaInput {...options} />;
+			case "TABS":
+				return <MoleculeGroupBtn {...options} />;
+			case "ROW":
+				return <MoleculeRowControl {...options} />;
 		}
 	}
 
