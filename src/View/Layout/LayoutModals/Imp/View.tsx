@@ -2,12 +2,12 @@ import type Model from "./Model.ts";
 import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
 import { Fragment, type ReactElement } from "react";
 import type { AppInterface } from "../../../../Logic/Core/Services/ServiceApp/App.interface.ts";
-import TemplateModalFormChoicePriceParam from "../../../Components/Templates/TemplateModalFormChoicePriceParam";
-import TemplateModalFormChoiceBank from "../../../Components/Templates/TemplateModalFormChoiceBank";
-import TemplateModalFormChoiceSort from "../../../Components/Templates/TemplateModalFormChoiceSort";
-import TemplateModalFormChoiceRating from "../../../Components/Templates/TemplateModalFormChoiceRating";
-import TemplateModalFormChoiceItemType from "../../../Components/Templates/TemplateModalFormChoiceItemType";
-import TemplateModalFormYouSure from "../../../Components/Templates/TemplateModalFormYouSure";
+import TemplateModalFormChoicePriceParam from "../../../Components/Templates/ModalForm/TemplateModalFormChoicePriceParam";
+import TemplateModalFormChoiceBank from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceBank";
+import TemplateModalFormChoiceSort from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceSort";
+import TemplateModalFormChoiceRating from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceRating";
+import TemplateModalFormChoiceItemType from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceItemType";
+import TemplateModalFormYouSure from "../../../Components/Templates/ModalForm/TemplateModalFormYouSure";
 
 const View: NFC<typeof Model> = (props) => {
 	const { modalList, closeModal } = props;

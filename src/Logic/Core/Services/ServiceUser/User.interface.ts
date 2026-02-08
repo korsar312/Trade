@@ -1,19 +1,22 @@
-import type { PublicInterface } from "../Public.interface.ts";
-
 export namespace UserInterface {
 	export interface IAdapter {
 		login(login: string, token: string): Promise<void>;
+		refreshMyInfo(): Promise<void>;
+
 		getId(): string;
+		getName(): string;
+		getLogin(): string;
+		getCreatedTime(): number;
 	}
 
-	export type TUser = {
+	export interface IUser {
 		id: string;
-		name: string;
+		nickname: string;
 		login: string;
-		role: PublicInterface.ERole;
-	};
+		createdAt: number;
+	}
 
 	export interface Store {
-		user?: TUser;
+		user?: IUser;
 	}
 }

@@ -44,11 +44,9 @@ class LinksImp implements Interface.IAdapter {
 
 	public LOGIN = (login: string, token: string) => {
 		const param = { login, token };
-		const res = this.request<UserInterface.TUser>({ link: "LOGIN", param });
+		const res = this.request<UserInterface.IUser>({ link: "LOGIN", param });
 
-		res.then(() => {
-			this.authData = param;
-		});
+		res.then(() => (this.authData = param));
 
 		return res;
 	};
@@ -60,6 +58,9 @@ class LinksImp implements Interface.IAdapter {
 	};
 	public CREATE_LISTING = (param: CatalogueInterface.TReqCreate) => {
 		return this.request<string>({ link: "CREATE_LISTING", param });
+	};
+	public GET_MY_ACC = () => {
+		return this.request<UserInterface.IUser>({ link: "GET_MY_ACC" });
 	};
 }
 

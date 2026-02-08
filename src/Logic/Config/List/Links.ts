@@ -21,4 +21,9 @@ export const Links: LinksInterface.TLinks = {
 		http: "POST",
 		role: ["USER", "ADMIN"],
 	},
+	GET_MY_ACC: {
+		link: "/getMyAcc",
+		http: "GET",
+		role: ["USER", "ADMIN"],
+	},
 } as const;

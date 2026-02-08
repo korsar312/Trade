@@ -1,7 +1,7 @@
-import type { IComponent } from "./index";
-import type { IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
-import { CatalogueBankArr, type CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
-import type { TMoleculeFormSchemaSwitchChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
+import type { IComponent } from "./index.tsx";
+import type { IComponent as IProp } from "../../../3.Substances/SubstanceModal";
+import { CatalogueBankArr, type CatalogueInterface } from "../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import type { TMoleculeFormSchemaSwitchChoiceForm } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 
 function Model(props: IComponent) {
 	const { submitFn, ...propRest } = props;

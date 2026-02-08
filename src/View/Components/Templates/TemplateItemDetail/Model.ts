@@ -5,8 +5,12 @@ import Util from "../../../../Logic/Libs/Util";
 import { Act } from "../../../../Logic/Core";
 import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowControl";
 
+const skeletonEl: TMoleculeRowControlCompType = { id: "-1", type: "LOAD", options: {} };
+
 function Model(props: IComponent) {
 	const { itemId } = props;
+
+	const genId = Util.idGen();
 
 	const name = Act.Catalogue.getName(itemId);
 	const bank = Act.Catalogue.getBank(itemId);
@@ -16,12 +20,6 @@ function Model(props: IComponent) {
 	const desc = Act.Catalogue.getDesc(itemId);
 
 	const priceForm = price && Util.toMoney(price);
-
-	const skeletonEl: TMoleculeRowControlCompType = {
-		id: "1",
-		type: "LOAD",
-		options: {},
-	};
 
 	function textProp(text: string): IText {
 		return { text, pos: "left" };
@@ -38,44 +36,44 @@ function Model(props: IComponent) {
 	const propsComponent: IProp = {
 		rows: [
 			{
-				id: "1",
-				key: { text: "Название" },
+				id: genId(),
+				key: { text: "TITLE" },
 				value: {
 					compRow: [name ? { id: "1", type: "TEXT", options: textProp(name) } : skeletonEl],
 				},
 			},
 			{
-				id: "2",
-				key: { text: "Банк" },
+				id: genId(),
+				key: { text: "BANK" },
 				value: {
 					compRow: [bank ? { id: "1", type: "TEXT", options: textProp(bank) } : skeletonEl],
 				},
 			},
 			{
-				id: "3",
-				key: { text: "Цена" },
+				id: genId(),
+				key: { text: "PRICE" },
 				value: {
 					compRow: [priceForm ? { id: "1", type: "TEXT", options: textProp(priceForm) } : skeletonEl],
 				},
 			},
 			{
-				id: "4",
-				key: { text: "Рейтинг" },
+				id: genId(),
+				key: { text: "RATING" },
 				value: {
 					compRow: rating ? starProp(rating) : [skeletonEl],
 				},
 			},
 			{
-				id: "5",
-				key: { text: "Продавец" },
+				id: genId(),
+				key: { text: "SELLER" },
 				value: {
 					compRow: [seller ? { id: "1", type: "TEXT", options: textProp(seller) } : skeletonEl],
 				},
 			},
 			{
-				id: "6",
+				id: genId(),
 				type: "vert",
-				key: { text: "Описание" },
+				key: { text: "DESCRIPTION" },
 				value: {
 					compRow: [desc ? { id: "1", type: "TEXT", options: textProp(desc) } : skeletonEl],
 				},

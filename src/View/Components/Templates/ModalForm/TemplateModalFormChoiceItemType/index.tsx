@@ -1,10 +1,10 @@
 import Model from "./Model.ts";
-import View, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
+import View, { type IComponent as IProp } from "../../../3.Substances/SubstanceModal";
 import { observer } from "mobx-react";
-import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import type { CatalogueInterface } from "../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 
 export interface IComponent extends TModal {
-	submitFn: (val: CatalogueInterface.EBank[]) => void;
+	submitFn: (val: CatalogueInterface.ETypeItem) => void;
 }
 
 type TModal = Pick<IProp, "bgClick" | "color">;

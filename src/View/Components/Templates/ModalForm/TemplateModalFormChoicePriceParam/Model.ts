@@ -1,6 +1,6 @@
-import type { IComponent } from "./index";
-import type { IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal";
-import type { TMoleculeFormSchemaInputForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
+import type { IComponent } from "./index.tsx";
+import type { IComponent as IProp } from "../../../3.Substances/SubstanceModal";
+import type { TMoleculeFormSchemaInputForm } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 
 function Model(props: IComponent) {
 	const { submitFn, ...propRest } = props;

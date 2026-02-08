@@ -5,6 +5,17 @@ import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	CREATED: { RU: "Создан" },
+	ID: { RU: "Id" },
+	NAME: { RU: "Имя" },
+	MY_SALES: { RU: "Мои Продажи" },
+	MY_PURCHASES: { RU: "Мои Покупки" },
+	ACTIVE: { RU: "Активные" },
+	COMPLETED: { RU: "Завершенные" },
+	TITLE: { RU: "Название" },
+	PRICE: { RU: "Цена" },
+	SELLER: { RU: "Продавец" },
+	DESCRIPTION: { RU: "Описание" },
 	FILL_FIELD: { RU: "Заполните поля" },
 	SEARCH_BANK: { RU: "Поиск банка" },
 	CHOOSE_BANK: { RU: "Выберете банк" },

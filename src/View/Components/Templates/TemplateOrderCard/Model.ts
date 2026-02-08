@@ -16,25 +16,25 @@ function Model(props: IComponent) {
 
 	const mySell: TMoleculeGroupBtn = {
 		id: "1",
-		options: { text: "Мои Продажи", click: () => setIsSell(false) },
+		options: { text: "MY_SALES", click: () => setIsSell(false) },
 		isActive: !isSell,
 	};
 
 	const myBuy: TMoleculeGroupBtn = {
 		id: "2",
-		options: { text: "Мои Покупки", click: () => setIsSell(true) },
+		options: { text: "MY_PURCHASES", click: () => setIsSell(true) },
 		isActive: isSell,
 	};
 
 	const complete: TMoleculeGroupBtn = {
 		id: "3",
-		options: { text: "Активные", click: () => setIsComplete(false) },
+		options: { text: "ACTIVE", click: () => setIsComplete(false) },
 		isActive: !isComplete,
 	};
 
 	const unComplete: TMoleculeGroupBtn = {
 		id: "4",
-		options: { text: "Завершенные", click: () => setIsComplete(true) },
+		options: { text: "COMPLETED", click: () => setIsComplete(true) },
 		isActive: isComplete,
 	};
 

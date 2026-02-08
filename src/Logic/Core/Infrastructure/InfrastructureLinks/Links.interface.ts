@@ -4,20 +4,17 @@ import type { PublicInterface } from "../../Services/Public.interface.ts";
 
 export namespace LinksInterface {
 	export interface IAdapter {
-		LOGIN(login: string, token: string): Promise<UserInterface.TUser>;
+		LOGIN(login: string, token: string): Promise<UserInterface.IUser>;
 		GET_ITEMS(params: CatalogueInterface.TReqCatalog): Promise<CatalogueInterface.TItemElPublic[]>;
 		GET_ITEM(id: string, type: CatalogueInterface.ETypeItem): Promise<CatalogueInterface.TItemElPublic>;
 		CREATE_LISTING(params: CatalogueInterface.TReqCreate): Promise<string>;
+		GET_MY_ACC(): Promise<UserInterface.IUser>;
 	}
 
 	type TLinksParam = {
 		link: string;
 		http: EMethod;
 		role: PublicInterface.ERole[];
-	};
-
-	export type TResDefault = {
-		ok: boolean;
 	};
 
 	export type EMethod = keyof typeof Method;
@@ -42,4 +39,5 @@ const Names = {
 	GET_ITEMS: "GET_ITEMS",
 	GET_ITEM: "GET_ITEM",
 	CREATE_LISTING: "CREATE_LISTING",
+	GET_MY_ACC: "GET_MY_ACC",
 } as const;

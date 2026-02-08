@@ -47,7 +47,7 @@ export const RoutesRole: RouterInterface.TRouterListRole = {
 	ITEM: ["USER", "ADMIN"],
 	ORDER_LIST: ["USER", "ADMIN"],
 	ORDER: ["USER", "ADMIN"],
-	PROFILE: ["ADMIN"],
+	PROFILE: ["USER", "ADMIN"],
 	USER: ["USER", "ADMIN"],
 	INFO: ["USER", "ADMIN"],
 	CREATE_LISTING: ["USER", "ADMIN"],
