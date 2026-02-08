@@ -23,14 +23,17 @@ type TMoleculeFormSchemaChoice = {
 	img?: IImg;
 };
 
-export type TMoleculeFormSchemaTextBtnForm = { title: string; subtitle: string; desc: string; radio: string };
+export type TMoleculeFormSchemaTextBtnForm = { title: string; subtitle: string; radio: string };
 
 const Index: FC<IComponent> = (props) => {
 	const { title, labelTitle, labelSubtitle, find, choiceList, submit, idForm } = props;
 
 	const [filterBtn, setFilterBtn] = useState("");
 
-	const btnList = Util.trigram(choiceList, filterBtn, (el) => Act.Message.getWord(el.title.text));
+	const btnFilter = Util.trigram(choiceList, filterBtn, (el) => Act.Message.getWord(el.title.text));
+
+	const order = new Map(btnFilter.map((x, i) => [x, i]));
+	const btnSort = choiceList.toSorted((a, b) => (order.get(a) ?? Infinity) - (order.get(b) ?? Infinity));
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
@@ -89,8 +92,8 @@ const Index: FC<IComponent> = (props) => {
 
 	const radioField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.radioWrap,
-		value: btnList.map(({ img, name, title }, i) => ({
-			extStyle: Styles.radio,
+		value: btnSort.map(({ img, name, title }, i) => ({
+			extStyle: [Styles.radio, isNotExistFilter(name) && Styles.hidden],
 			value: [
 				{
 					value: {
@@ -125,6 +128,10 @@ const Index: FC<IComponent> = (props) => {
 			],
 		})),
 	};
+
+	function isNotExistFilter(name: string) {
+		return !btnFilter.find((el) => el.name === name);
+	}
 
 	const propsComponent: IParent = {
 		schema: {

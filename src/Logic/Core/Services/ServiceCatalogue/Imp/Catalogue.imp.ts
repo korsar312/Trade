@@ -100,7 +100,7 @@ class CatalogueImp extends ServiceBase<Interface.Store> implements Interface.IAd
 		const item = this.GetItem(this.store.goods, itemId);
 
 		if (this.IsPickItem(item, "CARD")) return item.info.bank;
-		if (this.IsPickItem(item, "GUARD")) return "item.info.bank";
+		if (this.IsPickItem(item, "FREE")) return "item.info.bank";
 
 		return "";
 	}

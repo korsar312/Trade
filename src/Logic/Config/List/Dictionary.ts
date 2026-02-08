@@ -22,7 +22,7 @@ const Dictionary: MessageInterface.TDictionary<TOther> = {
 	LISTING_NAME: { RU: "Наименование лота" },
 	LISTING_CREATE: { RU: "Создание лота" },
 	CARD: { RU: "Б. Карта" },
-	GUARD: { RU: "Свободный лот" },
+	FREE: { RU: "Свободный лот" },
 	SELECT_RATING_QTY: { RU: "Выберети желаемый рейтинг" },
 	SELECT_LISTING_TYPE: { RU: "Выберети тип лота" },
 	SELECT_SORT_TYPE: { RU: "Выберети тип сортировки" },

@@ -1,6 +1,6 @@
 import type { IComponent } from "./index";
 import { Act } from "../../../../Logic/Core";
-import { useId } from "react";
+import { useId, useRef } from "react";
 import {
 	CatalogueBankArr,
 	type CatalogueInterface,
@@ -9,15 +9,26 @@ import {
 import Util from "../../../../Logic/Libs/Util";
 import type { IComponent as IProp } from "../../../Components/3.Substances/SubstanceFormConstruct";
 import type { TSubstanceFormConstructCompType } from "../../3.Substances/SubstanceFormConstruct";
+import type { TMoleculeFormSchemaTextTripleForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextTriple";
+import type { TMoleculeFormSchemaTextBtnForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextBtn";
+import type { TMoleculeFormSchemaTextareaForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextarea";
+
+type TSubmitForms = {
+	main: CatalogueInterface.TMain;
+	card: CatalogueInterface.ICardInfoAll;
+	free: CatalogueInterface.IFreeInfoAll;
+};
 
 function Model(props: IComponent) {
 	const { typeItem, changeTabFn } = props;
 
 	const genId = Util.idGen();
 
+	const forms = useRef<TSubmitForms>(null);
+
 	const formMain = useId();
-	const formPublic = useId();
-	const formSecret = useId();
+	const formCard = useId();
+	const formFree = useId();
 
 	const constForm: TSubstanceFormConstructCompType[] = [
 		{
@@ -51,6 +62,7 @@ function Model(props: IComponent) {
 					valid: [(val) => ({ isValid: Number(val) > 0, error: "MUST_GREAT_ZERO" })],
 				},
 				labelDesc: { placeholder: "LISTING_DESC" },
+				submit: handleMain,
 			},
 		},
 		{
@@ -66,72 +78,86 @@ function Model(props: IComponent) {
 		},
 	];
 
-	function tabRender(): TSubstanceFormConstructCompType[] {
+	function tabRender(): TSubstanceFormConstructCompType {
 		switch (typeItem) {
 			case "CARD":
-				return [
-					{
-						id: genId(),
-						type: "FORM_TEXT_BTN",
-						options: {
-							idForm: formPublic,
-							title: { text: "FILL_FIELD" },
-							labelTitle: { placeholder: "CARD_HOLDER_FULL_NAME" },
-							labelSubtitle: { placeholder: "CARD_HOLDER_AGE", type: "number" },
-							find: { placeholder: "SEARCH_BANK" },
-							choiceList: CatalogueBankArr.map((el) => ({ name: el, title: { text: el } })),
-						},
+				return {
+					id: genId(),
+					type: "FORM_TEXT_BTN",
+					options: {
+						idForm: formCard,
+						title: { text: "FILL_FIELD" },
+						labelTitle: { placeholder: "CARD_HOLDER_FULL_NAME" },
+						labelSubtitle: { placeholder: "CARD_HOLDER_AGE", type: "number" },
+						find: { placeholder: "SEARCH_BANK" },
+						choiceList: CatalogueBankArr.map((el) => ({ name: el, title: { text: el } })),
+						submit: handleCard,
 					},
-				];
+				};
 
-			case "GUARD":
-				return [
-					{
-						id: genId(),
-						type: "FORM_TEXTAREA",
-						options: {
-							idForm: formSecret,
-							title: { text: "FILL_FIELD" },
-							labelTitle: { placeholder: "TEXT_AFTER_PAYMENT" },
-						},
+			case "FREE":
+				return {
+					id: genId(),
+					type: "FORM_TEXTAREA",
+					options: {
+						idForm: formFree,
+						title: { text: "FILL_FIELD" },
+						labelTitle: { placeholder: "TEXT_AFTER_PAYMENT" },
+						submit: handleFree,
 					},
-				];
+				};
 		}
+	}
+
+	function handleMain(val: TMoleculeFormSchemaTextTripleForm): void {
+		setForm("main", { name: val.title, desc: val.desc, price: Number(val.subtitle), saleKind: "GOODS" });
+	}
+
+	function handleCard(val: TMoleculeFormSchemaTextBtnForm): void {
+		setForm("card", { name: val.title, age: val.subtitle, bank: val.radio as CatalogueInterface.EBank });
+	}
+
+	function handleFree(val: TMoleculeFormSchemaTextareaForm): void {
+		setForm("free", { desc: val.input });
+	}
+
+	function setForm<K extends keyof TSubmitForms>(key: K, value: TSubmitForms[K]): void {
+		if (!forms.current) forms.current = {} as TSubmitForms;
+
+		forms.current[key] = value;
 	}
 
 	function openConfirm() {
-		const modalId = Act.App.addModals("CONFIRM", (val) => setTimeout(() => createListing(modalId, val)));
+		Act.App.addModals("CONFIRM", (val) => setTimeout(() => createListing(val)));
 	}
 
-	function createListing(id: string, val: boolean) {
-		if (val) {
-			const forms = [
-				document.getElementById(formMain) as HTMLFormElement | null,
-				document.getElementById(formPublic) as HTMLFormElement | null,
-				document.getElementById(formSecret) as HTMLFormElement | null,
-			].filter(Boolean) as HTMLFormElement[];
+	function createListing(val: boolean) {
+		if (!val) return;
 
-			const ok = forms.every((f) => f.reportValidity());
-			console.log(ok, 22);
-			console.log(forms.length, 22);
+		const formList = [
+			document.getElementById(formMain) as HTMLFormElement | null,
+			document.getElementById(formCard) as HTMLFormElement | null,
+			document.getElementById(formFree) as HTMLFormElement | null,
+		].filter(Boolean) as HTMLFormElement[];
 
-			if (ok) {
-				Act.Catalogue.createListing({
-					name: "QQQQ",
-					desc: "WWWWW.",
-					price: 6000,
-					type: "CARD",
-					saleKind: "GOODS",
-					info: {
-						name: "EEEE",
-						bank: "ALFA",
-						age: "11",
-					},
-				}).then(() => Act.Router.goTo("GOODS"));
+		const ok = formList.every((f) => f.reportValidity());
+		ok && formList.forEach((f) => f.requestSubmit());
+
+		if (ok && forms.current) {
+			const { free, card, main } = forms.current;
+
+			function field(): CatalogueInterface.TItemAll {
+				switch (typeItem) {
+					case "CARD":
+						return { type: typeItem, info: card };
+
+					case "FREE":
+						return { type: typeItem, info: free };
+				}
 			}
-		}
 
-		Act.App.removeModals(id);
+			Act.Catalogue.createListing({ ...main, ...field() }).then(() => Act.Router.goTo("GOODS"));
+		}
 	}
 
 	function isChoiceTab(type: CatalogueInterface.ETypeItem) {
@@ -139,7 +165,7 @@ function Model(props: IComponent) {
 	}
 
 	const propsComponent: IProp = {
-		compRow: [...constForm, ...tabRender()],
+		compRow: [...constForm, tabRender()],
 	};
 
 	return propsComponent;

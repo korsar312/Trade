@@ -33,12 +33,14 @@ export namespace CatalogueInterface {
 	}
 	export type TReqCatalog = IReqCatalog & typesUtils.DeepPartial<TItemFilter> & Pick<TItemFilter, "type">;
 
-	export type TReqCreate = {
+	export type TMain = {
 		name: string;
 		desc: string;
 		price: number;
 		saleKind: ESaleKind;
-	} & TItemAll;
+	};
+
+	export type TReqCreate = TMain & TItemAll;
 
 	interface ICatalogEl {
 		id: string;
@@ -62,7 +64,7 @@ export namespace CatalogueInterface {
 
 	/** ================= GOODS ======================= */
 
-	interface ICardInfoAll {
+	export interface ICardInfoAll {
 		bank: EBank;
 		age: string;
 		name: string;
@@ -70,28 +72,27 @@ export namespace CatalogueInterface {
 	type ICardInfoPublic = Omit<ICardInfoAll, "name">;
 	type ICardInfoFilter = typesUtils.ReplaceKeyStrict<ICardInfoPublic, "bank", EBank[]>;
 
-	interface IGuardInfoAll {
-		zxc: number;
-		cvb: string;
+	export interface IFreeInfoAll {
+		desc: string;
 	}
-	type IGuardInfoPublic = Omit<IGuardInfoAll, "zxc">;
-	type IGuardInfoFilter = IGuardInfoPublic;
+	type IFreeInfoPublic = Omit<IFreeInfoAll, "desc">;
+	type IFreeInfoFilter = IFreeInfoPublic;
 
 	type TItemVar<T extends ETypeItem, B> = { type: T; info: B };
 	export type TPickItem<T extends ETypeItem> = Extract<TItem, { type: T }>;
 
 	type TItemCard = TItemVar<"CARD", ICardInfoAll>;
-	type TItemGuard = TItemVar<"GUARD", IGuardInfoAll>;
+	type TItemFree = TItemVar<"FREE", IFreeInfoAll>;
 
 	type TItemCardPublic = TItemVar<"CARD", ICardInfoPublic>;
-	type TItemGuardPublic = TItemVar<"GUARD", IGuardInfoPublic>;
+	type TItemFreePublic = TItemVar<"FREE", IFreeInfoPublic>;
 
 	type TItemCardFilter = TItemVar<"CARD", ICardInfoFilter>;
-	type TItemGuardFiler = TItemVar<"GUARD", IGuardInfoFilter>;
+	type TItemFreeFiler = TItemVar<"FREE", IFreeInfoFilter>;
 
-	type TItemAll = TItemCard | TItemGuard;
-	type TItemPublic = TItemCardPublic | TItemGuardPublic;
-	type TItemFilter = TItemCardFilter | TItemGuardFiler;
+	export type TItemAll = TItemCard | TItemFree;
+	type TItemPublic = TItemCardPublic | TItemFreePublic;
+	type TItemFilter = TItemCardFilter | TItemFreeFiler;
 
 	/** ================= ENUMS ======================= */
 
@@ -116,7 +117,7 @@ export const CatalogueBankArr = Object.keys(CatalogueBank) as CatalogueInterface
 
 export const CatalogueTypeItem = {
 	CARD: "CARD",
-	GUARD: "GUARD",
+	FREE: "FREE",
 } as const;
 
 export const CatalogueTypeItemArr = Object.keys(CatalogueTypeItem) as CatalogueInterface.ETypeItem[];
