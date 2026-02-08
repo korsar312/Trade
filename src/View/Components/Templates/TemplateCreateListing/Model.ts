@@ -102,7 +102,7 @@ function Model(props: IComponent) {
 					options: {
 						form: { ref: formFreeRef },
 						title: { text: "FILL_FIELD" },
-						labelTitle: { placeholder: "TEXT_AFTER_PAYMENT" },
+						labelTitle: { placeholder: "TEXT_AFTER_PAYMENT", required: true },
 						submit: handleFree,
 					},
 				};
