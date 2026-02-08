@@ -1,72 +1,12 @@
-import { type FC, useEffect, useState } from "react";
-import Substance, { type IComponent as IProp } from "../../../Components/4.Structures/StructuresTabCard";
+import Model from "./Model.ts";
+import View from "../../../Components/4.Structures/StructuresTabCard";
 import { observer } from "mobx-react";
-import { Act } from "../../../../Logic/Core";
-import type { TMoleculeGroupBtn } from "../../2.Molecules/MoleculeGroupBtn";
 
 export interface IComponent {}
 
-const Index: FC<IComponent> = (props) => {
-	const {} = props;
-
-	const orderList = Act.Catalogue.getGoodsIdList();
-
-	const [isSell, setIsSell] = useState(true);
-	const [isComplete, setIsComplete] = useState(true);
-
-	useEffect(() => {}, [isSell, isComplete]);
-
-	const mySell: TMoleculeGroupBtn = {
-		id: "1",
-		options: { text: "Мои Продажи", click: () => setIsSell(false) },
-		isActive: !isSell,
-	};
-
-	const myBuy: TMoleculeGroupBtn = {
-		id: "2",
-		options: { text: "Мои Покупки", click: () => setIsSell(true) },
-		isActive: isSell,
-	};
-
-	const complete: TMoleculeGroupBtn = {
-		id: "3",
-		options: { text: "Активные", click: () => setIsComplete(false) },
-		isActive: !isComplete,
-	};
-
-	const unComplete: TMoleculeGroupBtn = {
-		id: "4",
-		options: { text: "Завершенные", click: () => setIsComplete(true) },
-		isActive: isComplete,
-	};
-
-	const propsComponent: IProp = {
-		tabs: [
-			{
-				id: "1",
-				options: {
-					btnRow: [mySell, myBuy],
-				},
-			},
-			{
-				id: "2",
-				options: {
-					btnRow: [complete, unComplete],
-				},
-			},
-		],
-		children: orderList.map((el) => ({
-			id: el,
-			options: {
-				name: Act.Catalogue.getName(el),
-				image: Act.Catalogue.getImage(el),
-				btn: [],
-			},
-			type: "ITEM_CARD",
-		})),
-	};
-
-	return <Substance {...propsComponent} />;
+const Index = (props: IComponent) => {
+	const model = Model(props);
+	return <View {...model} />;
 };
 
 export default observer(Index);

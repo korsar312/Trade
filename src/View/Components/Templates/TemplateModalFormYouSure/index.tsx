@@ -1,36 +1,16 @@
-import type { FC } from "react";
-import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
-import type { TMoleculeFormSchemaRadioChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
-
-type TModal = Pick<IProp, "bgClick" | "color">;
+import Model from "./Model.ts";
+import View, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal";
+import { observer } from "mobx-react";
 
 export interface IComponent extends TModal {
 	submitFn: (val: boolean) => void;
 }
 
-const Index: FC<IComponent> = (props) => {
-	const { submitFn, ...propRest } = props;
+type TModal = Pick<IProp, "bgClick" | "color">;
 
-	const list = [0, 1] as const;
-
-	function submit(data: TMoleculeFormSchemaRadioChoiceForm) {
-		submitFn(Boolean(Number(data.radio || "0")));
-	}
-
-	const propsComponent: IProp = {
-		...propRest,
-		form: {
-			type: "CHOICE_ONE",
-			options: {
-				title: { text: "CONFIRM_ACTION" },
-				choiceList: list.map((el) => ({ name: String(el), title: { text: el ? "I_CONFIRM" : "CANCEL" } })),
-				btn: { text: "APPLY" },
-				submit,
-			},
-		},
-	};
-
-	return <Substance {...propsComponent} />;
+const Index = (props: IComponent) => {
+	const model = Model(props);
+	return <View {...model} />;
 };
 
-export default Index;
+export default observer(Index);

@@ -1,36 +1,17 @@
-import type { FC } from "react";
-import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
-import type { TMoleculeFormSchemaRadioChoiceForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
-import { type CatalogueInterface, CatalogueTypeItemArr } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
-
-type TModal = Pick<IProp, "bgClick" | "color">;
+import Model from "./Model.ts";
+import View, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal";
+import { observer } from "mobx-react";
+import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 
 export interface IComponent extends TModal {
 	submitFn: (val: CatalogueInterface.ETypeItem) => void;
 }
 
-const Index: FC<IComponent> = (props) => {
-	const { submitFn, ...propRest } = props;
+type TModal = Pick<IProp, "bgClick" | "color">;
 
-	function submit(data: TMoleculeFormSchemaRadioChoiceForm) {
-		const val = (data.radio || "CARD") as CatalogueInterface.ETypeItem;
-		submitFn(val);
-	}
-
-	const propsComponent: IProp = {
-		...propRest,
-		form: {
-			type: "CHOICE_ONE",
-			options: {
-				title: { text: "SELECT_LISTING_TYPE" },
-				submit,
-				choiceList: CatalogueTypeItemArr.map((el) => ({ name: el, title: { text: el } })),
-				btn: { text: "APPLY" },
-			},
-		},
-	};
-
-	return <Substance {...propsComponent} />;
+const Index = (props: IComponent) => {
+	const model = Model(props);
+	return <View {...model} />;
 };
 
-export default Index;
+export default observer(Index);

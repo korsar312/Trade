@@ -1,29 +1,12 @@
-import { type FC } from "react";
-import Substance, { type IComponent as IProp } from "../../../Components/4.Structures/StructuresWrapPaper";
+import Model from "./Model.ts";
+import View from "../../../Components/4.Structures/StructuresWrapPaper";
+import { observer } from "mobx-react";
 
 export interface IComponent {}
 
-const Index: FC<IComponent> = (props) => {
-	const {} = props;
-
-	const propsComponent: IProp = {
-		innerStruct: {
-			type: "ROW_CONTROL",
-			options: {
-				compRow: [
-					{ id: "1", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Gear" } },
-					{ id: "2", type: "BTN_IMAGE", options: { color: "MAIN_3", icon: "Plus" } },
-					{ id: "3", options: {}, type: "SPACING" },
-					{ id: "4", type: "BTN_IMAGE", options: { color: "BLUE_2", icon: "AddCard" } },
-				],
-			},
-		},
-		wrapProp: {
-			color: "MAIN_2",
-		},
-	};
-
-	return <Substance {...propsComponent} />;
+const Index = (props: IComponent) => {
+	const model = Model(props);
+	return <View {...model} />;
 };
 
-export default Index;
+export default observer(Index);

@@ -1,35 +1,16 @@
-import type { FC } from "react";
-import Substance, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal/index.tsx";
-import type { TMoleculeFormSchemaInputForm } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
-
-type TModal = Pick<IProp, "bgClick" | "color">;
+import Model from "./Model.ts";
+import View, { type IComponent as IProp } from "../../../Components/3.Substances/SubstanceModal";
+import { observer } from "mobx-react";
 
 export interface IComponent extends TModal {
 	submitFn: (val: number | null) => void;
 }
 
-const Index: FC<IComponent> = (props) => {
-	const { submitFn, ...propRest } = props;
+type TModal = Pick<IProp, "bgClick" | "color">;
 
-	function submit(data: TMoleculeFormSchemaInputForm) {
-		const val = Number(data.input);
-		submitFn(isNaN(val) || !data.input.length ? null : val);
-	}
-
-	const propsComponent: IProp = {
-		...propRest,
-		form: {
-			type: "INPUT_ONE",
-			options: {
-				title: { text: "ENTER_DES_PRICE" },
-				input: { type: "number", iconsLeft: "Money", valid: [(val) => ({ isValid: Number(val) > 0, error: "MUST_GREAT_ZERO" })] },
-				btn: { text: "APPLY" },
-				submit,
-			},
-		},
-	};
-
-	return <Substance {...propsComponent} />;
+const Index = (props: IComponent) => {
+	const model = Model(props);
+	return <View {...model} />;
 };
 
-export default Index;
+export default observer(Index);

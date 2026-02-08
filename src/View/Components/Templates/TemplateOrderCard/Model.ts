@@ -1,0 +1,70 @@
+import type { IComponent } from "./index";
+import type { IComponent as IProp } from "../../../Components/4.Structures/StructuresTabCard";
+import { Act } from "../../../../Logic/Core";
+import { useEffect, useState } from "react";
+import type { TMoleculeGroupBtn } from "../../2.Molecules/MoleculeGroupBtn";
+
+function Model(props: IComponent) {
+	const {} = props;
+
+	const orderList = Act.Catalogue.getGoodsIdList();
+
+	const [isSell, setIsSell] = useState(true);
+	const [isComplete, setIsComplete] = useState(true);
+
+	useEffect(() => {}, [isSell, isComplete]);
+
+	const mySell: TMoleculeGroupBtn = {
+		id: "1",
+		options: { text: "Мои Продажи", click: () => setIsSell(false) },
+		isActive: !isSell,
+	};
+
+	const myBuy: TMoleculeGroupBtn = {
+		id: "2",
+		options: { text: "Мои Покупки", click: () => setIsSell(true) },
+		isActive: isSell,
+	};
+
+	const complete: TMoleculeGroupBtn = {
+		id: "3",
+		options: { text: "Активные", click: () => setIsComplete(false) },
+		isActive: !isComplete,
+	};
+
+	const unComplete: TMoleculeGroupBtn = {
+		id: "4",
+		options: { text: "Завершенные", click: () => setIsComplete(true) },
+		isActive: isComplete,
+	};
+
+	const propsComponent: IProp = {
+		tabs: [
+			{
+				id: "1",
+				options: {
+					btnRow: [mySell, myBuy],
+				},
+			},
+			{
+				id: "2",
+				options: {
+					btnRow: [complete, unComplete],
+				},
+			},
+		],
+		children: orderList.map((el) => ({
+			id: el,
+			options: {
+				name: Act.Catalogue.getName(el),
+				image: Act.Catalogue.getImage(el),
+				btn: [],
+			},
+			type: "ITEM_CARD",
+		})),
+	};
+
+	return propsComponent;
+}
+
+export default Model;

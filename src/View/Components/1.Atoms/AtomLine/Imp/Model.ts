@@ -1,9 +1,9 @@
 import type { IComponent } from "../index";
 
 function Model(props: IComponent) {
-	const { isVert, color } = props;
+	const {} = props;
 
-	return { isVert, color };
+	return props;
 }
 
 export default Model;
