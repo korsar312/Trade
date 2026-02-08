@@ -8,7 +8,7 @@ import Util from "../../../../../../Logic/Libs/Util";
 import { Act } from "../../../../../../Logic/Core";
 
 export interface IComponent {
-	idForm?: string;
+	form?: Omit<IParent["form"], "onSubmit">;
 	title: IText;
 	labelTitle: Omit<IInput, "name">;
 	labelSubtitle: Omit<IInput, "name">;
@@ -26,7 +26,7 @@ type TMoleculeFormSchemaChoice = {
 export type TMoleculeFormSchemaTextBtnForm = { title: string; subtitle: string; radio: string };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, labelTitle, labelSubtitle, find, choiceList, submit, idForm } = props;
+	const { title, labelTitle, labelSubtitle, find, choiceList, submit, form } = props;
 
 	const [filterBtn, setFilterBtn] = useState("");
 
@@ -138,7 +138,7 @@ const Index: FC<IComponent> = (props) => {
 			extStyle: Styles.wrapper,
 			value: [titleField, inputField, subInputField, textField, findField, radioField],
 		},
-		form: { onSubmit: submit, id: idForm },
+		form: { onSubmit: submit, ...form },
 	};
 
 	return <Component {...propsComponent} />;

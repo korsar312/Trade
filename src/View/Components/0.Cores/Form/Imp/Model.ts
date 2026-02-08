@@ -2,7 +2,7 @@ import type { IComponent } from "../index";
 import type { FormEvent } from "react";
 
 function Model(props: IComponent) {
-	const { onSubmit, children, id } = props;
+	const { onSubmit, children, id, ref } = props;
 
 	function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();
@@ -18,7 +18,7 @@ function Model(props: IComponent) {
 		onSubmit(data);
 	}
 
-	return { handleSubmit, children, id };
+	return { handleSubmit, children, id, ref };
 }
 
 export default Model;

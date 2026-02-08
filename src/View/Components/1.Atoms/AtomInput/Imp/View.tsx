@@ -6,7 +6,7 @@ import type { TAtomInputGeneralGroup } from "../index.tsx";
 import Image from "../../../0.Cores/Image";
 
 const View: NFC<typeof Model> = (props) => {
-	const { color, textObj, onClick, text, name, type, imageLeft, imageRight, disabled, placeObj, isValid, onValid, value } = props;
+	const { color, textObj, onClick, text, imageLeft, imageRight, placeObj, isValid, onValid, rest } = props;
 
 	function images(icons?: TAtomInputGeneralGroup) {
 		return (
@@ -28,15 +28,12 @@ const View: NFC<typeof Model> = (props) => {
 				<Text extStyle={Style.place()} color={placeObj.color} font={placeObj.font} text={placeObj.text} />
 
 				<input
-					type={type}
-					name={name}
 					css={[Style.input, Style.text(textObj)]}
-					onClick={onClick}
-					disabled={disabled}
 					onChange={onValid}
 					placeholder={""}
-					value={value}
-					defaultValue={value === undefined ? String(text) : undefined}
+					defaultValue={rest.value === undefined ? String(text) : undefined}
+					onClick={onClick}
+					{...rest}
 				/>
 			</div>
 

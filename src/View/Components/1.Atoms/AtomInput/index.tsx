@@ -5,7 +5,7 @@ import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMe
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { IComponent as IImage, TImageComponent } from "../../0.Cores/Image";
 
-export interface IComponent extends TTagPartial<HTMLInputElement, "name" | "onClick" | "type" | "disabled"> {
+export interface IComponent extends TTagPartial<HTMLInputElement, "name" | "onClick" | "type" | "disabled" | "required"> {
 	initText?: TAtomInputTextPick | MessageInterface.EWordAll;
 	placeholder?: TAtomInputTextPick | MessageInterface.EWordAll;
 	onChange?: (val: string) => void;

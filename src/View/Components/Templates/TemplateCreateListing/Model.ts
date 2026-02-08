@@ -1,6 +1,6 @@
 import type { IComponent } from "./index";
 import { Act } from "../../../../Logic/Core";
-import { useId, useRef } from "react";
+import { useRef } from "react";
 import {
 	CatalogueBankArr,
 	type CatalogueInterface,
@@ -26,9 +26,9 @@ function Model(props: IComponent) {
 
 	const forms = useRef<TSubmitForms>(null);
 
-	const formMain = useId();
-	const formCard = useId();
-	const formFree = useId();
+	const formMainRef = useRef<HTMLFormElement | null>(null);
+	const formCardRef = useRef<HTMLFormElement | null>(null);
+	const formFreeRef = useRef<HTMLFormElement | null>(null);
 
 	const constForm: TSubstanceFormConstructCompType[] = [
 		{
@@ -43,7 +43,7 @@ function Model(props: IComponent) {
 							text: "CREATE_LISTING",
 							isFullWidth: true,
 							color: "BLUE_2",
-							click: openConfirm,
+							click: handleCreate,
 						},
 					},
 				],
@@ -53,15 +53,16 @@ function Model(props: IComponent) {
 			id: genId(),
 			type: "FORM_TEXT_TRIPLE",
 			options: {
-				idForm: formMain,
+				form: { ref: formMainRef },
 				title: { text: "LISTING_MAIN_DATA" },
-				labelTitle: { placeholder: "LISTING_NAME" },
+				labelTitle: { placeholder: "LISTING_NAME", required: true },
 				labelSubtitle: {
 					placeholder: "LISTING_PRICE",
 					type: "number",
 					valid: [(val) => ({ isValid: Number(val) > 0, error: "MUST_GREAT_ZERO" })],
+					required: true,
 				},
-				labelDesc: { placeholder: "LISTING_DESC" },
+				labelDesc: { placeholder: "LISTING_DESC", required: true },
 				submit: handleMain,
 			},
 		},
@@ -85,22 +86,21 @@ function Model(props: IComponent) {
 					id: genId(),
 					type: "FORM_TEXT_BTN",
 					options: {
-						idForm: formCard,
+						form: { ref: formCardRef },
 						title: { text: "FILL_FIELD" },
-						labelTitle: { placeholder: "CARD_HOLDER_FULL_NAME" },
-						labelSubtitle: { placeholder: "CARD_HOLDER_AGE", type: "number" },
+						labelTitle: { placeholder: "CARD_HOLDER_FULL_NAME", required: true },
+						labelSubtitle: { placeholder: "CARD_HOLDER_AGE", type: "number", required: true },
 						find: { placeholder: "SEARCH_BANK" },
 						choiceList: CatalogueBankArr.map((el) => ({ name: el, title: { text: el } })),
 						submit: handleCard,
 					},
 				};
-
 			case "FREE":
 				return {
 					id: genId(),
 					type: "FORM_TEXTAREA",
 					options: {
-						idForm: formFree,
+						form: { ref: formFreeRef },
 						title: { text: "FILL_FIELD" },
 						labelTitle: { placeholder: "TEXT_AFTER_PAYMENT" },
 						submit: handleFree,
@@ -127,23 +127,28 @@ function Model(props: IComponent) {
 		forms.current[key] = value;
 	}
 
+	function handleCreate() {
+		checkForm() && openConfirm();
+	}
+
 	function openConfirm() {
 		Act.App.addModals("CONFIRM", (val) => setTimeout(() => createListing(val)));
 	}
 
+	function checkForm() {
+		return getFormList().every((f) => f.reportValidity());
+	}
+
+	function getFormList() {
+		return [formMainRef.current, formCardRef.current, formFreeRef.current].filter(Boolean) as HTMLFormElement[];
+	}
+
 	function createListing(val: boolean) {
-		if (!val) return;
+		if (!val || !checkForm()) return;
 
-		const formList = [
-			document.getElementById(formMain) as HTMLFormElement | null,
-			document.getElementById(formCard) as HTMLFormElement | null,
-			document.getElementById(formFree) as HTMLFormElement | null,
-		].filter(Boolean) as HTMLFormElement[];
+		getFormList().forEach((f) => f.requestSubmit());
 
-		const ok = formList.every((f) => f.reportValidity());
-		ok && formList.forEach((f) => f.requestSubmit());
-
-		if (ok && forms.current) {
+		if (forms.current) {
 			const { free, card, main } = forms.current;
 
 			function field(): CatalogueInterface.TItemAll {
@@ -156,7 +161,7 @@ function Model(props: IComponent) {
 				}
 			}
 
-			Act.Catalogue.createListing({ ...main, ...field() }).then(() => Act.Router.goTo("GOODS"));
+			Act.Catalogue.createListing({ ...main, ...field() }).then((res) => Act.Router.goTo("ITEM", { id: res }));
 		}
 	}
 

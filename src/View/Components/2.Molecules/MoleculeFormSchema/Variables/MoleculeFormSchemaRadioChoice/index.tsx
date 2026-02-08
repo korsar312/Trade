@@ -6,7 +6,7 @@ import type { IComponent as IImg } from "../../../../0.Cores/Image";
 import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 export interface IComponent {
-	idForm?: string;
+	form?: Omit<IParent["form"], "onSubmit">;
 	title: IText;
 	choiceList: TMoleculeFormSchemaChoice[];
 	btn: Omit<IBtn, "type">;
@@ -22,7 +22,7 @@ type TMoleculeFormSchemaChoice = {
 };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, choiceList, btn, submit, idForm } = props;
+	const { title, choiceList, btn, submit, form } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
@@ -89,7 +89,7 @@ const Index: FC<IComponent> = (props) => {
 			extStyle: Styles.wrapper,
 			value: [titleField, ...radioField, btnField],
 		},
-		form: { onSubmit: submit, id: idForm },
+		form: { onSubmit: submit, ...form },
 	};
 
 	return <Component {...propsComponent} />;

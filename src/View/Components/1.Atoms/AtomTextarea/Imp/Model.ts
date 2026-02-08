@@ -5,7 +5,7 @@ import type { MessageInterface } from "../../../../../Logic/Core/Services/Servic
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
 function Model(props: IComponent) {
-	const { color, initText, placeholder, onClick, onChange, name, disabled, valid, value } = props;
+	const { color, initText, placeholder, onChange, valid, value, ...rest } = props;
 
 	const [isValid, setIsValid] = useState<boolean | undefined>();
 
@@ -38,7 +38,7 @@ function Model(props: IComponent) {
 		setIsValid(undefined);
 	}
 
-	return { color, textObj, onClick, text, name, disabled, placeObj, isValid, onValid, value };
+	return { color, textObj, text, placeObj, isValid, onValid, value, rest };
 }
 
 export default Model;

@@ -7,7 +7,7 @@ export namespace LinksInterface {
 		LOGIN(login: string, token: string): Promise<UserInterface.TUser>;
 		GET_ITEMS(params: CatalogueInterface.TReqCatalog): Promise<CatalogueInterface.TItemElPublic[]>;
 		GET_ITEM(id: string, type: CatalogueInterface.ETypeItem): Promise<CatalogueInterface.TItemElPublic>;
-		CREATE_LISTING(params: CatalogueInterface.TReqCreate): Promise<TResDefault>;
+		CREATE_LISTING(params: CatalogueInterface.TReqCreate): Promise<string>;
 	}
 
 	type TLinksParam = {

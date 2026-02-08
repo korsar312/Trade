@@ -5,7 +5,7 @@ import Styles from "./Style.ts";
 import type { FC } from "react";
 
 export interface IComponent {
-	idForm?: string;
+	form?: Omit<IParent["form"], "onSubmit">;
 	title: Pick<IText, "text" | "addStyle">;
 	labelTitle: Omit<ITextarea, "name">;
 	submit?: (val: TMoleculeFormSchemaTextareaForm) => void;
@@ -14,7 +14,7 @@ export interface IComponent {
 export type TMoleculeFormSchemaTextareaForm = { input: string };
 
 const Index: FC<IComponent> = (props) => {
-	const { title, labelTitle, submit, idForm } = props;
+	const { title, labelTitle, submit, form } = props;
 
 	const titleField: TMoleculeFormSchemaRow = {
 		extStyle: Styles.content,
@@ -44,7 +44,7 @@ const Index: FC<IComponent> = (props) => {
 			extStyle: Styles.wrapper,
 			value: [titleField, textareaField],
 		},
-		form: { onSubmit: submit, id: idForm },
+		form: { onSubmit: submit, ...form },
 	};
 
 	return <Component {...propsComponent} />;

@@ -5,7 +5,7 @@ export namespace CatalogueInterface {
 	export interface IAdapter {
 		requestGoods(params: TReqCatalog): Promise<void>;
 		requestItem(id: string, type: ETypeItem): Promise<void>;
-		createListing(params: TReqCreate): Promise<void>;
+		createListing(params: TReqCreate): Promise<string>;
 
 		getGoodsIdList(): string[];
 

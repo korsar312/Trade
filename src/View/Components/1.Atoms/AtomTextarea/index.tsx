@@ -5,7 +5,7 @@ import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMe
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { TAtomInputTextPick } from "../AtomInput";
 
-export interface IComponent extends TTagPartial<HTMLTextAreaElement, "name" | "onClick" | "disabled"> {
+export interface IComponent extends TTagPartial<HTMLTextAreaElement, "name" | "onClick" | "disabled" | "required"> {
 	initText?: TAtomTextareaTextPick | MessageInterface.EWordAll;
 	placeholder?: TAtomInputTextPick | MessageInterface.EWordAll;
 	onChange?: (val: string) => void;
