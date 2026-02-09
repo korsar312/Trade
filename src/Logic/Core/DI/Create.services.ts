@@ -28,6 +28,8 @@ import { ServiceUser } from "../Services/ServiceUser";
 import UserImp from "../Services/ServiceUser/Imp/User.imp.ts";
 import AppImp from "../Services/ServiceApp/Imp/App.imp.ts";
 import { ServiceApp } from "../Services/ServiceApp";
+import WalletImp from "../Services/ServiceWallet/Imp/Wallet.imp.ts";
+import { ServiceWallet } from "../Services/ServiceWallet";
 
 function createServices() {
 	const inf: IServiceProps = { infrastructure: Infrastructure };
@@ -43,6 +45,9 @@ function createServices() {
 
 	const basketImp = new BasketImp(inf);
 	const basket = new ServiceBasket(basketImp);
+
+	const walletImp = new WalletImp(inf);
+	const wallet = new ServiceWallet(walletImp);
 
 	const settingImp = new SettingImp(inf);
 	const setting = new ServiceSetting(settingImp);
@@ -68,6 +73,7 @@ function createServices() {
 	service.use("Style", style);
 	service.use("Router", router);
 	service.use("Basket", basket);
+	service.use("Wallet", wallet);
 	service.use("Setting", setting);
 	service.use("Payment", payment);
 	service.use("Order", order);

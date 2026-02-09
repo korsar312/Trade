@@ -62,6 +62,12 @@ class LinksImp implements Interface.IAdapter {
 	public GET_MY_ACC = () => {
 		return this.request<UserInterface.IUser>({ link: "GET_MY_ACC" });
 	};
+	public WITHDRAWAL_BALANCE = () => {
+		return this.request<number>({ link: "WITHDRAWAL_BALANCE" });
+	};
+	public REPLENISH_BALANCE = () => {
+		return this.request<number>({ link: "REPLENISH_BALANCE" });
+	};
 }
 
 export default LinksImp;

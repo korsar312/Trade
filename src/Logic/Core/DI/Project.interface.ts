@@ -1,12 +1,13 @@
-import { InfrastructureLinks } from "../Infrastructure/InfrastructureLinks";
-import { ServiceMessage } from "../Services/ServiceMessage";
-import { ServiceStyle } from "../Services/ServiceStyle";
-import { ServiceRouter } from "../Services/ServiceRouter";
+import type { InfrastructureLinks } from "../Infrastructure/InfrastructureLinks";
+import type { ServiceMessage } from "../Services/ServiceMessage";
+import type { ServiceStyle } from "../Services/ServiceStyle";
+import type { ServiceRouter } from "../Services/ServiceRouter";
 import type { ServiceBasket } from "../Services/ServiceBasket";
+import type { ServiceWallet } from "../Services/ServiceWallet";
 import type { ServiceSetting } from "../Services/ServiceSetting";
 import type { ServicePayment } from "../Services/ServicePayment";
 import type { ServiceOrder } from "../Services/ServiceOrder";
-import { ServiceCatalogue } from "../Services/ServiceCatalogue";
+import type { ServiceCatalogue } from "../Services/ServiceCatalogue";
 import type { ServiceUser } from "../Services/ServiceUser";
 import type { ServiceApp } from "../Services/ServiceApp";
 import type { InfrastructureStorage } from "../Infrastructure/InfrastructureStorage";
@@ -24,6 +25,7 @@ export namespace ProjectInterface {
 		Payment: ServicePayment;
 		Router: ServiceRouter;
 		Basket: ServiceBasket;
+		Wallet: ServiceWallet;
 		Style: ServiceStyle;
 		Order: ServiceOrder;
 		User: ServiceUser;

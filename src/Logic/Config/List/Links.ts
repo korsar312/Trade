@@ -26,4 +26,14 @@ export const Links: LinksInterface.TLinks = {
 		http: "GET",
 		role: ["USER", "ADMIN"],
 	},
+	WITHDRAWAL_BALANCE: {
+		link: "/withdraw",
+		http: "POST",
+		role: ["USER", "ADMIN"],
+	},
+	REPLENISH_BALANCE: {
+		link: "/replenish",
+		http: "POST",
+		role: ["USER", "ADMIN"],
+	},
 } as const;
