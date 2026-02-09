@@ -35,7 +35,14 @@ function Model(props: IComponent) {
 				id: "3",
 				key: { text: "RATING" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(rating) }],
+					compRow:
+						rating == null
+							? [{ id: "1", type: "TEXT", options: textProp("NO_RATING") }]
+							: Array.from(Array(5), (_el, i) => ({
+									id: String(i),
+									type: "ICON",
+									options: { img: "Star", color: rating > i ? "BLUE_2" : "MAIN_2" },
+								})),
 				},
 			},
 			{

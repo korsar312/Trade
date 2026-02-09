@@ -5,6 +5,7 @@ import { PublicInterface } from "../../Core/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	NO_RATING: { RU: "Нет рейтинга" },
 	LINKED_WALLET_BALANCE: { RU: "Баланс привязанного кошелька" },
 	LINK: { RU: "Привязать" },
 	LINKED_WALLET_ADDRESS: { RU: "Адрес привязанного кошелька" },
