@@ -5,7 +5,7 @@ import type { TDeepCSSObject, TTagPartial } from "../../../ViewUtils.tsx";
 import type { ReactNode } from "react";
 
 export interface IComponent extends TTagPartial<HTMLDivElement, "onClick"> {
-	color: StyleInterface.TColorChoice;
+	color?: StyleInterface.TColorChoice;
 	children?: ReactNode;
 	extStyle?: TDeepCSSObject;
 	isFull?: boolean;

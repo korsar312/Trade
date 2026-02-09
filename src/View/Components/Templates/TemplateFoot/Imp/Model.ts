@@ -1,9 +1,8 @@
-import type { IComponent } from "./index";
-import { Act } from "../../../../Logic/Core";
-import type { IComponent as IProp } from "../../../Components/4.Structures/StructuresWrapPaper";
-import type { RouterInterface } from "../../../../Logic/Core/Services/ServiceRouter/Router.interface.ts";
-import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowControl";
-import type { TImageComponent } from "../../0.Cores/Image";
+import type { IComponent } from "../index";
+import type { IComponent as IControl, TMoleculeRowControlCompType } from "../../../2.Molecules/MoleculeRowControl";
+import type { RouterInterface } from "../../../../../Logic/Core/Services/ServiceRouter/Router.interface.ts";
+import type { TImageComponent } from "../../../0.Cores/Image";
+import { Act } from "../../../../../Logic/Core";
 
 const Btn = {
 	CATALOG: "CATALOG",
@@ -41,6 +40,10 @@ function Model(props: IComponent) {
 		INFO: { path: "INFO", image: "Info" },
 	};
 
+	const rowProps: IControl = {
+		compRow: adapterBtn(btnPath),
+	};
+
 	function goPage(page: RouterInterface.EPath) {
 		Act.Router.goTo(page);
 	}
@@ -66,19 +69,7 @@ function Model(props: IComponent) {
 		return includesPath[curPage] === group;
 	}
 
-	const propsComponent: IProp = {
-		innerStruct: {
-			type: "ROW_CONTROL",
-			options: {
-				compRow: adapterBtn(btnPath),
-			},
-		},
-		wrapProp: {
-			color: "MAIN_2",
-		},
-	};
-
-	return propsComponent;
+	return { rowProps };
 }
 
 export default Model;

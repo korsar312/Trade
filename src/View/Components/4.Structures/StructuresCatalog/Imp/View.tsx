@@ -6,7 +6,7 @@ import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
 import AtomGridGroup from "../../../1.Atoms/AtomGridGroup";
 
 const View: NFC<typeof Model> = (props) => {
-	const { itemList, filterList } = props;
+	const { filterList, itemList } = props;
 
 	return (
 		<div css={Style.wrapper}>

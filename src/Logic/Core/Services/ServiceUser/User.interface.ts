@@ -1,3 +1,5 @@
+import { PublicInterface } from "../Public.interface.ts";
+
 export namespace UserInterface {
 	export interface IAdapter {
 		login(login: string, token: string): Promise<void>;
@@ -6,6 +8,7 @@ export namespace UserInterface {
 		getId(): string;
 		getName(): string;
 		getLogin(): string;
+		getRating(): PublicInterface.TRating | null;
 		getCreatedTime(): number;
 	}
 
@@ -14,6 +17,7 @@ export namespace UserInterface {
 		nickname: string;
 		login: string;
 		createdAt: number;
+		rating: PublicInterface.TRating | null;
 	}
 
 	export interface Store {

@@ -1,11 +1,11 @@
 import type { IComponent } from "./index.tsx";
 import type { IComponent as IProp } from "../../../3.Substances/SubstanceModal";
-import type { TMoleculeFormSchemaInputForm } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
+import type { TSchemaInput } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 
 function Model(props: IComponent) {
 	const { submitFn, ...propRest } = props;
 
-	function submit(data: TMoleculeFormSchemaInputForm) {
+	function submit(data: TSchemaInput) {
 		const val = Number(data.input);
 		submitFn(isNaN(val) || !data.input.length ? null : val);
 	}

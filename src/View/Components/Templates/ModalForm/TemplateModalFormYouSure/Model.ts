@@ -1,13 +1,13 @@
 import type { IComponent } from "./index.tsx";
 import type { IComponent as IProp } from "../../../3.Substances/SubstanceModal";
-import type { TMoleculeFormSchemaRadioChoiceForm } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
+import type { TSchemaRadio } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
 
 function Model(props: IComponent) {
 	const { submitFn, ...propRest } = props;
 
 	const list = [0, 1] as const;
 
-	function submit(data: TMoleculeFormSchemaRadioChoiceForm) {
+	function submit(data: TSchemaRadio) {
 		submitFn(Boolean(Number(data.radio || "0")));
 	}
 

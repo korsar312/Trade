@@ -14,7 +14,7 @@ export interface IComponent {
 	labelSubtitle: Omit<IInput, "name">;
 	find: Omit<IInput, "type" | "name" | "onChange">;
 	choiceList: TMoleculeFormSchemaChoice[];
-	submit?: (val: TMoleculeFormSchemaTextBtnForm) => void;
+	submit?: (val: TSchemaTextBtn) => void;
 }
 
 type TMoleculeFormSchemaChoice = {
@@ -23,7 +23,7 @@ type TMoleculeFormSchemaChoice = {
 	img?: IImg;
 };
 
-export type TMoleculeFormSchemaTextBtnForm = { title: string; subtitle: string; radio: string };
+export type TSchemaTextBtn = { title: string; subtitle: string; radio: string };
 
 const Index: FC<IComponent> = (props) => {
 	const { title, labelTitle, labelSubtitle, find, choiceList, submit, form } = props;

@@ -8,10 +8,10 @@ export interface IComponent {
 	form?: Omit<IParent["form"], "onSubmit">;
 	title: Pick<IText, "text" | "addStyle">;
 	labelTitle: Omit<ITextarea, "name">;
-	submit?: (val: TMoleculeFormSchemaTextareaForm) => void;
+	submit?: (val: TSchemaTextarea) => void;
 }
 
-export type TMoleculeFormSchemaTextareaForm = { input: string };
+export type TSchemaTextarea = { input: string };
 
 const Index: FC<IComponent> = (props) => {
 	const { title, labelTitle, submit, form } = props;

@@ -10,10 +10,10 @@ export interface IComponent {
 	title: IText;
 	btnImageList: Omit<IBtnIcon, "click" | "type">[];
 	btn: Omit<IBtn, "type">;
-	submit: (val: TMoleculeFormSchemaImageQtyChoiceForm) => void;
+	submit: (val: TSchemaImageQty) => void;
 }
 
-export type TMoleculeFormSchemaImageQtyChoiceForm = { qtyIndex: string };
+export type TSchemaImageQty = { qtyIndex: string };
 
 const Index: FC<IComponent> = (props) => {
 	const { title, btnImageList, btn, submit, form } = props;

@@ -41,6 +41,11 @@ class UserImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 		return this.store.user.login;
 	}
 
+	public getRating() {
+		if (!this.store.user) throw new Error("no auth");
+		return this.store.user.rating;
+	}
+
 	public getCreatedTime() {
 		if (!this.store.user) throw new Error("no auth");
 		return this.store.user.createdAt;

@@ -1,20 +1,21 @@
-import type { IComponent } from "./index";
-import type { IComponent as IProp } from "../../../Components/3.Substances/SubstanceDescMap";
-import type { IComponent as IText } from "../../0.Cores/Text";
-import { Act } from "../../../../Logic/Core";
+import type { IComponent } from "../index";
+import { Act } from "../../../../../Logic/Core";
+import type { IComponent as IProp } from "../../../../Components/3.Substances/SubstanceDescMap";
+import type { IComponent as IText } from "../../../0.Cores/Text";
 
 function Model(props: IComponent) {
 	const {} = props;
 
 	const name = Act.User.getName();
 	const login = Act.User.getLogin();
+	const rating = Act.User.getRating();
 	const createdTime = Act.User.getCreatedTime();
 
-	function textProp(text: string): IText {
-		return { text, pos: "left" };
-	}
+	const textProps: IText = {
+		text: "YOUR_PROFILE",
+	};
 
-	const propsComponent: IProp = {
+	const descProps: IProp = {
 		rows: [
 			{
 				id: "1",
@@ -32,6 +33,13 @@ function Model(props: IComponent) {
 			},
 			{
 				id: "3",
+				key: { text: "RATING" },
+				value: {
+					compRow: [{ id: "1", type: "TEXT", options: textProp(rating) }],
+				},
+			},
+			{
+				id: "4",
 				key: { text: "CREATED" },
 				value: {
 					compRow: [{ id: "1", type: "TEXT", options: textProp(new Date(createdTime).toDateString()) }],
@@ -40,7 +48,11 @@ function Model(props: IComponent) {
 		],
 	};
 
-	return propsComponent;
+	function textProp(text: string): IText {
+		return { text, pos: "left" };
+	}
+
+	return { textProps, descProps };
 }
 
 export default Model;

@@ -11,10 +11,10 @@ export interface IComponent {
 	labelTitle: Omit<IInput, "name">;
 	labelSubtitle: Omit<IInput, "name">;
 	labelDesc: Omit<ITextarea, "name">;
-	submit?: (val: TMoleculeFormSchemaTextTripleForm) => void;
+	submit?: (val: TSchemaTextTriple) => void;
 }
 
-export type TMoleculeFormSchemaTextTripleForm = { title: string; subtitle: string; desc: string };
+export type TSchemaTextTriple = { title: string; subtitle: string; desc: string };
 
 const Index: FC<IComponent> = (props) => {
 	const { title, labelTitle, labelSubtitle, labelDesc, submit, form } = props;

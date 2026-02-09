@@ -1,5 +1,5 @@
-import Model from "./Model.ts";
-import View from "../../../Components/3.Substances/SubstanceFormConstruct";
+import Model from "./Imp/Model.ts";
+import View from "./Imp/View.tsx";
 import { observer } from "mobx-react";
 import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 

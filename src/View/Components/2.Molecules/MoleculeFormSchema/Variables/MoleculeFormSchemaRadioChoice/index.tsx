@@ -10,10 +10,10 @@ export interface IComponent {
 	title: IText;
 	choiceList: TMoleculeFormSchemaChoice[];
 	btn: Omit<IBtn, "type">;
-	submit: (val: TMoleculeFormSchemaRadioChoiceForm) => void;
+	submit: (val: TSchemaRadio) => void;
 }
 
-export type TMoleculeFormSchemaRadioChoiceForm = { radio: string };
+export type TSchemaRadio = { radio: string };
 
 type TMoleculeFormSchemaChoice = {
 	name: string;

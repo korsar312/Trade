@@ -9,10 +9,10 @@ export interface IComponent {
 	title: IText;
 	choiceList: TMoleculeFormSchemaChoice[];
 	btn: Omit<IBtn, "type">;
-	submit: (val: TMoleculeFormSchemaSwitchChoiceForm) => void;
+	submit: (val: TSchemaSwitch) => void;
 }
 
-export type TMoleculeFormSchemaSwitchChoiceForm = Record<string, "on">;
+export type TSchemaSwitch = Record<string, "on">;
 
 type TMoleculeFormSchemaChoice = {
 	name: string;

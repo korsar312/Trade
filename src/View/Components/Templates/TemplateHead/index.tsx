@@ -1,5 +1,5 @@
-import Model from "./Model.ts";
-import View from "../../../Components/4.Structures/StructuresWrapPaper";
+import Model from "./Imp/Model.ts";
+import View from "./Imp/View.tsx";
 import { observer } from "mobx-react";
 
 export interface IComponent {}

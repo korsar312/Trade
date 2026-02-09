@@ -3,6 +3,7 @@ import Style from "./Style.ts";
 import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
 import TemplateProfile from "../../../Components/Templates/TemplateProfile";
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
+import TemplateBalance from "../../../Components/Templates/TemplateBalance";
 
 const View: NFC<typeof Model> = (props) => {
 	const {} = props;
@@ -10,6 +11,7 @@ const View: NFC<typeof Model> = (props) => {
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
 			<TemplateProfile />
+			<TemplateBalance />
 		</AtomPaper>
 	);
 };

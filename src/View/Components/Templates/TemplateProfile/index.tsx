@@ -1,5 +1,5 @@
-import Model from "./Model.ts";
-import View from "../../../Components/3.Substances/SubstanceDescMap";
+import Model from "./Imp/Model.ts";
+import View from "./Imp/View.tsx";
 import { observer } from "mobx-react";
 
 export interface IComponent {}

@@ -10,10 +10,10 @@ export interface IComponent {
 	title: IText;
 	input?: Omit<IInput, "name">;
 	btn?: Omit<IBtn, "type">;
-	submit?: (val: TMoleculeFormSchemaInputForm) => void;
+	submit?: (val: TSchemaInput) => void;
 }
 
-export type TMoleculeFormSchemaInputForm = { input: string };
+export type TSchemaInput = { input: string };
 
 const Index: FC<IComponent> = (props) => {
 	const { title, input, btn, submit, form } = props;

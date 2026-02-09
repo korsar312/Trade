@@ -1,8 +1,8 @@
-import type { IComponent } from "./index";
-import type { IComponent as IProp } from "../../../Components/4.Structures/StructuresTabCard";
-import { Act } from "../../../../Logic/Core";
+import type { IComponent } from "../index";
+import { Act } from "../../../../../Logic/Core";
 import { useEffect, useState } from "react";
-import type { TMoleculeGroupBtn } from "../../2.Molecules/MoleculeGroupBtn";
+import type { TMoleculeGroupBtn } from "../../../2.Molecules/MoleculeGroupBtn";
+import type { IComponent as IProp } from "../../../4.Structures/StructuresTabCard";
 
 function Model(props: IComponent) {
 	const {} = props;
@@ -38,7 +38,7 @@ function Model(props: IComponent) {
 		isActive: isComplete,
 	};
 
-	const propsComponent: IProp = {
+	const rowProps: IProp = {
 		tabs: [
 			{
 				id: "1",
@@ -64,7 +64,7 @@ function Model(props: IComponent) {
 		})),
 	};
 
-	return propsComponent;
+	return { rowProps };
 }
 
 export default Model;
