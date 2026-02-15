@@ -16,6 +16,7 @@ class ComponentConstructor {
 	): FC<PROPS> {
 		return (props: PROPS) => {
 			const Model = ModelFn({ Props: props, Act: this.Act });
+
 			return <ViewFn Model={Model} Style={StyleFn} />;
 		};
 	}
