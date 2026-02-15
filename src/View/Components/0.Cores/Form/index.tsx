@@ -12,4 +12,4 @@ export type TComponent = {
 	ref?: Ref<HTMLFormElement>;
 } & Partial<Pick<HTMLFormElement, "onSubmit" | "id">>;
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "Form");

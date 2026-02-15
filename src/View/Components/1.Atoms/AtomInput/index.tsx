@@ -42,4 +42,4 @@ export type TAtomInputGeneralGroup = {
 	value: IImage[];
 };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomInput");

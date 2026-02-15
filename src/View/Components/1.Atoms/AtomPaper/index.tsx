@@ -16,4 +16,4 @@ export type TComponent = {
 	isFull?: boolean;
 } & TTagPartial<HTMLDivElement, "onClick">;
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomPaper");

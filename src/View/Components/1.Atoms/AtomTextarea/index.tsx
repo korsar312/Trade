@@ -28,4 +28,4 @@ export type TAtomTextareaText = {
 type TPick<T, F extends keyof T> = Omit<T, F> & Partial<Pick<T, F>>;
 export type TAtomTextareaTextPick = TPick<TAtomTextareaText, "font">;
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomTextarea");

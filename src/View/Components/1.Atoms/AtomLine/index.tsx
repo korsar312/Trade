@@ -12,4 +12,4 @@ export type TComponent = {
 	color?: StyleInterface.TColorChoice;
 };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomLine");

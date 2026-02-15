@@ -48,4 +48,4 @@ type TSwitch = { type: "switch"; options: ISwitch };
 type TRadio = { type: "radio"; options: IRadio };
 type TImage = { type: "img"; options: IImage };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "MoleculeFormSchema");

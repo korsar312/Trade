@@ -20,4 +20,4 @@ type TMap = {
 	ITEM_CARD: ICard;
 };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "StructuresTabCard");

@@ -11,4 +11,4 @@ export type TComponent = {
 	itemId: string;
 };
 
-export default observer(Component.Create(Model, Style, View));
+export default observer(Component.Create(Model, Style, View, "TemplateItemDetail"));

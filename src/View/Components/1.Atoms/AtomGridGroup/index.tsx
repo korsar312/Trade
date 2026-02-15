@@ -11,4 +11,4 @@ export type TComponent = {
 	children: ReactElement | ReactElement[];
 };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomGridGroup");

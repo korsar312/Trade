@@ -26,4 +26,4 @@ export type TComponent = {
 type TLabelPick = Pick<HTMLLabelElement, "htmlFor">;
 export type TTextPos = "left" | "right" | "center";
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "Text");

@@ -46,4 +46,4 @@ export const buttonColor = {
 
 export type EAtomButtonColor = keyof typeof buttonColor;
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomButton");

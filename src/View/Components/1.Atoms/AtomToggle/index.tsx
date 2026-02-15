@@ -11,4 +11,4 @@ export type TComponent = {
 	extStyles?: TDeepCSSObject;
 } & TTagPartial<HTMLInputElement, "checked" | "onClick" | "disabled" | "name" | "type" | "value" | "defaultChecked" | "id">;
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomToggle");

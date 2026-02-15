@@ -21,4 +21,4 @@ export type TSubstanceDescMapRow = {
 
 export type TSubstanceDescMapRowType = "vert" | "hor";
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "SubstanceDescMap");

@@ -14,4 +14,4 @@ export type TComponent = {
 	bgClick?: () => void;
 };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomModal");

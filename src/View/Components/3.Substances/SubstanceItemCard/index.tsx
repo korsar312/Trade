@@ -16,4 +16,4 @@ export type TComponent = {
 	btn: IBtn[];
 };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "SubstanceItemCard");

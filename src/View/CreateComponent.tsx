@@ -13,6 +13,7 @@ class ComponentConstructor {
 		ModelFn: (params: TModel<PROPS>) => R,
 		StyleFn: S,
 		ViewFn: TView<(params: TModel<PROPS>) => R, S>,
+		_Name: string,
 	): FC<PROPS> {
 		return (props: PROPS) => {
 			const Model = ModelFn({ Props: props, Act: this.Act });

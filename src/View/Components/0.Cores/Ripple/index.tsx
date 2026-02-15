@@ -8,4 +8,4 @@ export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {};
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "Ripple");

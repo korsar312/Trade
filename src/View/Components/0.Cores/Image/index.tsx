@@ -19,4 +19,4 @@ export type TComponent = {
 export type TImagesSize = 20 | 22 | 24 | 30 | 40 | 60 | "100%";
 export type TImageComponent = EImages | string | undefined;
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "Image");

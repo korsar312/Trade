@@ -17,4 +17,4 @@ type TId = {
 	id: string;
 };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "StructuresCatalog");

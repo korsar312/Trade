@@ -17,4 +17,4 @@ export type TSubstanceTabsBtn = {
 	id: string;
 	options: IBtn;
 };
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "SubstanceTabs");

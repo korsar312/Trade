@@ -13,4 +13,4 @@ export type TComponent = {
 	changeTabFn: (tab: CatalogueInterface.ETypeItem) => void;
 };
 
-export default observer(Component.Create(Model, Style, View));
+export default observer(Component.Create(Model, Style, View, "TemplateCreateListing"));

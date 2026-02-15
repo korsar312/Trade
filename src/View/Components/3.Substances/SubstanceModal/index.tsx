@@ -27,4 +27,4 @@ type TMap = {
 
 export type TSubstanceModalCompType = typesUtils.OptionsUnion<TMap>;
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "SubstanceModal");

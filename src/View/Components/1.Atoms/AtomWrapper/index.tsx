@@ -14,4 +14,4 @@ export type TComponent = {
 
 export type TAtomWrapperStyleType = "row" | "col";
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "AtomWrapper");

@@ -14,4 +14,4 @@ export type TComponent = {
 	trigger: any;
 };
 
-export default Component.Create(Model, Style, View);
+export default Component.Create(Model, Style, View, "Anim");
