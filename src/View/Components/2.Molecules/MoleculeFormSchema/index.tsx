@@ -1,22 +1,27 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import type { IComponent as IButtonIcon } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import type { IComponent as IButton } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
-import type { IComponent as IInput } from "../../1.Atoms/AtomInput/";
-import type { IComponent as ITextarea } from "../../1.Atoms/AtomTextarea/";
-import type { IComponent as IText } from "../../0.Cores/Text";
-import type { IComponent as IForm } from "../../0.Cores/Form";
+import type { TComponent as IInput } from "../../1.Atoms/AtomInput/";
+import type { TComponent as ITextarea } from "../../1.Atoms/AtomTextarea/";
+import type { TComponent as IText } from "../../0.Cores/Text";
+import type { TComponent as IForm } from "../../0.Cores/Form";
 import type { IComponent as ISwitch } from "../../1.Atoms/AtomToggle/Variables/AtomToggleSwitch";
 import type { IComponent as IRadio } from "../../1.Atoms/AtomToggle/Variables/AtomToggleRadio";
-import type { IComponent as IImage } from "../../0.Cores/Image";
+import type { TComponent as IImage } from "../../0.Cores/Image";
 import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
-export interface IComponent {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	form: Pick<IForm, "onSubmit" | "id" | "ref">;
 	schema: TMoleculeFormSchemaRow;
 	color?: StyleInterface.TColorChoice;
-}
+};
 
 export type TMoleculeFormSchemaRow = {
 	value: TMoleculeFormSchemaField | (TMoleculeFormSchemaRow | undefined)[] | undefined;
@@ -43,9 +48,4 @@ type TSwitch = { type: "switch"; options: ISwitch };
 type TRadio = { type: "radio"; options: IRadio };
 type TImage = { type: "img"; options: IImage };
 
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View);

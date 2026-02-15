@@ -1,12 +1,9 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent, TSubstanceTabsBtn } from "../index.tsx";
 import MoleculeGroupBtn from "../../../2.Molecules/MoleculeGroupBtn";
 import { Fragment } from "react";
-import type { TSubstanceTabsBtn } from "../index.tsx";
 
-const View: NFC<typeof Model> = (props) => {
-	const { btnRow, children } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { btnRow, children } = Model;
 
 	function renderRow(el: TSubstanceTabsBtn) {
 		return <MoleculeGroupBtn {...el.options} />;

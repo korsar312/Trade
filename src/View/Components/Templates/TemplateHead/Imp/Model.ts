@@ -1,8 +1,10 @@
-import type { IComponent } from "../index";
-import type { IComponent as IControl } from "../../../2.Molecules/MoleculeRowControl";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 
-function Model(props: IComponent) {
-	const {} = props;
+import type { TComponent as IControl } from "../../../2.Molecules/MoleculeRowControl";
+
+function Model({ Props }: TModel<TComponent>) {
+	const {} = Props;
 
 	const rowProps: IControl = {
 		compRow: [

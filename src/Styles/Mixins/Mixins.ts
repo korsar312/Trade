@@ -1,5 +1,5 @@
 import { css, type CSSObject } from "@emotion/react";
-import { Act } from "../../Logic/Core";
+import { Act } from "../../View/Init.ts";
 
 class MixinsVars {
 	public flexCenter: CSSObject = css`

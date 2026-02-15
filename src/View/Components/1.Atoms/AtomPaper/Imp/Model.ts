@@ -1,9 +1,10 @@
-import type { IComponent } from "../";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props }: TModel<TComponent>) {
+	const {} = Props;
 
-	return props;
+	return Props;
 }
 
 export default Model;

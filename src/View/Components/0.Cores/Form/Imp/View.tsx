@@ -1,9 +1,7 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 
-const View: NFC<typeof Model> = (props) => {
-	const { handleSubmit, children, id, ref } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { handleSubmit, children, id, ref } = Model;
 
 	return (
 		<form css={Style.wrapper} ref={ref} onSubmit={handleSubmit} id={id}>

@@ -1,9 +1,8 @@
-import type Model from "./Model.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import { AnimatePresence, motion } from "framer-motion";
 
-const View: NFC<typeof Model> = (props) => {
-	const { children, motionProps, extStyle, trigger } = props;
+const View: TPresent = ({ Model }) => {
+	const { children, motionProps, extStyle, trigger } = Model;
 
 	return (
 		<AnimatePresence mode="wait">

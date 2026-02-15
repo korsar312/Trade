@@ -1,7 +1,7 @@
-import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
+import Component, { type TComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import { type FC, useState } from "react";
-import type { IComponent as IText } from "../../../../0.Cores/Text";
+import type { TComponent as IText } from "../../../../0.Cores/Text";
 import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import type { IComponent as IBtnIcon } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 

@@ -1,19 +1,16 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
-import type { TAtomButtonIcon } from "../index.tsx";
-import Images from "../../../0.Cores/Image/";
+import type { TAtomButtonIcon, TPresent } from "../index.tsx";
 import Text from "../../../0.Cores/Text";
 import Ripple from "../../../0.Cores/Ripple";
+import Image from "../../../0.Cores/Image/";
 
-const View: NFC<typeof Model> = (props) => {
-	const { textChanged, color, extStyles, rightIcon, leftIcon, isFullWidth, isFullHeight, handleClick, type, isDisable, round } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { textChanged, color, extStyles, rightIcon, leftIcon, isFullWidth, isFullHeight, handleClick, type, isDisable, round } = Model;
 
 	function iconRender(icon: TAtomButtonIcon) {
 		return (
 			<div css={[icon.groupStyle, Style.icon]}>
 				{icon.value.map((el, i) => (
-					<Images key={i} {...el} />
+					<Image key={i} {...el} />
 				))}
 			</div>
 		);

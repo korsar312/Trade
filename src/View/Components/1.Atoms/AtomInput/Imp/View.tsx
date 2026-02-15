@@ -1,12 +1,9 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TAtomInputGeneralGroup, TPresent } from "../index.tsx";
 import Text from "../../../0.Cores/Text";
-import type { TAtomInputGeneralGroup } from "../index.tsx";
 import Image from "../../../0.Cores/Image";
 
-const View: NFC<typeof Model> = (props) => {
-	const { color, textObj, onClick, text, imageLeft, imageRight, placeObj, isValid, onValid, rest } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { color, textObj, onClick, text, imageLeft, imageRight, placeObj, isValid, onValid, rest } = Model;
 
 	function images(icons?: TAtomInputGeneralGroup) {
 		return (

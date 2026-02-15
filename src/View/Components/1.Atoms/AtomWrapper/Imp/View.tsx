@@ -1,10 +1,8 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import { type CSSObject } from "@emotion/react";
 
-const View: NFC<typeof Model> = (props) => {
-	const { children, styleType } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { children, styleType } = Model;
 
 	function css(): CSSObject {
 		switch (styleType) {

@@ -1,10 +1,15 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import type { IComponent as IBtn } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
-export interface IComponent {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	btnRow: TMoleculeGroupBtn[];
-}
+};
 
 export type TMoleculeGroupBtn = {
 	id: string;
@@ -12,9 +17,4 @@ export type TMoleculeGroupBtn = {
 	isActive?: boolean;
 };
 
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View);

@@ -1,3 +1,4 @@
+import "./Init";
 import { createRoot } from "react-dom/client";
 import LayoutInitial from "./Layout/LayoutInitial";
 import LayoutBackground from "./Layout/LayoutBackground";

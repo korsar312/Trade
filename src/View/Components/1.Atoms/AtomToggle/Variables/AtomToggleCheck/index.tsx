@@ -1,6 +1,6 @@
 import type { FC } from "react";
 import Style from "./Style.ts";
-import Component, { type IComponent as IParent } from "../../index";
+import Component, { type TComponent as IParent } from "../../index";
 
 export interface IComponent extends IParent {}
 

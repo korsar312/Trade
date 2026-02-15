@@ -1,8 +1,8 @@
-import type { IComponent } from "../index";
-import { Act } from "../../../../../Logic/Core";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 
-function Model(props: IComponent) {
-	const { text, color, caseWord, extStyle, font, opacity, addContent, pos, addStyle, label } = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const { text, color, caseWord, extStyle, font, opacity, addContent, pos, addStyle, label } = Props;
 
 	const textFind = Act.Message.getWord(text, { case: caseWord, arrReplace: addContent, arrStyle: addStyle });
 

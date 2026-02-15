@@ -1,13 +1,11 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import Image from "../../../0.Cores/Image";
 import Text from "../../../0.Cores/Text";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
-const View: NFC<typeof Model> = (props) => {
-	const { image, name, btnList, click } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { image, name, btnList, click } = Model;
 
 	return (
 		<AtomPaper onClick={click} color={"MAIN_3"} extStyle={Style.wrapper}>

@@ -1,17 +1,14 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
-import AtomModal from "../../../1.Atoms/AtomModal";
+import type { TPresent, TSubstanceModalCompType } from "../index.tsx";
 import type { ReactElement } from "react";
-import type { TSubstanceModalCompType } from "../index.tsx";
+import AtomModal from "../../../1.Atoms/AtomModal";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeFormSchemaSwitchChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 import MoleculeFormSchemaRadioChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
 import MoleculeFormSchemaInput from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import MoleculeFormSchemaImageQtyChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
 
-const View: NFC<typeof Model> = (props) => {
-	const { form, color, bgClick } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { form, color, bgClick } = Model;
 
 	function render({ type, options }: TSubstanceModalCompType): ReactElement {
 		switch (type) {

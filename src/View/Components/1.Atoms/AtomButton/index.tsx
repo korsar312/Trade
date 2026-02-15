@@ -1,12 +1,17 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
-import type { IComponent as IText } from "../../0.Cores/Text";
-import type { IComponent as IImage } from "../../0.Cores/Image";
+import type { TView } from "../../../CreateComponent.tsx";
+import type { TComponent as IText } from "../../0.Cores/Text";
+import type { TComponent as IImage } from "../../0.Cores/Image";
 import type { TDeepCSSObject, TTagPartial } from "../../../ViewUtils.tsx";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { MouseEvent } from "react";
 
-export interface IComponent extends TTagPartial<HTMLButtonElement, "type"> {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	textVars?: TAtomButtonText;
 	color?: EAtomButtonColor;
 	isDisable?: boolean;
@@ -16,7 +21,7 @@ export interface IComponent extends TTagPartial<HTMLButtonElement, "type"> {
 	isFullHeight?: boolean;
 	click?: (e: MouseEvent<HTMLButtonElement>) => void;
 	round?: EAtomButtonRound;
-}
+} & TTagPartial<HTMLButtonElement, "type">;
 
 export type EAtomButtonIcon = "left" | "right";
 export type EAtomButtonRound = "square" | "round";
@@ -41,9 +46,4 @@ export const buttonColor = {
 
 export type EAtomButtonColor = keyof typeof buttonColor;
 
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View);

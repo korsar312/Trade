@@ -1,11 +1,16 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
-import type { IComponent as IText } from "../../0.Cores/Text";
-import type { IComponent as IControl } from "../../2.Molecules/MoleculeRowControl";
+import type { TView } from "../../../CreateComponent.tsx";
+import type { TComponent as IText } from "../../0.Cores/Text";
+import type { TComponent as IControl } from "../../2.Molecules/MoleculeRowControl";
 
-export interface IComponent {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	rows: TSubstanceDescMapRow[];
-}
+};
 
 export type TSubstanceDescMapRow = {
 	id: string;
@@ -16,9 +21,4 @@ export type TSubstanceDescMapRow = {
 
 export type TSubstanceDescMapRowType = "vert" | "hor";
 
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View);

@@ -1,12 +1,10 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
 import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
 import AtomGridGroup from "../../../1.Atoms/AtomGridGroup";
 
-const View: NFC<typeof Model> = (props) => {
-	const { filterList, itemList } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { filterList, itemList } = Model;
 
 	return (
 		<div css={Style.wrapper}>

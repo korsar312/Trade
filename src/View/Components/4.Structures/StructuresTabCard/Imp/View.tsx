@@ -1,14 +1,11 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent, TStructuresTabCardCompType } from "../index.tsx";
 import SubstanceTabs from "../../../3.Substances/SubstanceTabs";
 import { Fragment, type ReactElement } from "react";
-import type { TStructuresTabCardCompType } from "../index.tsx";
 import SubstanceItemCard from "../../../3.Substances/SubstanceItemCard";
 import AtomGridGroup from "../../../1.Atoms/AtomGridGroup";
 
-const View: NFC<typeof Model> = (props) => {
-	const { tabs, children } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { tabs, children } = Model;
 
 	function render({ type, options }: TStructuresTabCardCompType): ReactElement {
 		switch (type) {

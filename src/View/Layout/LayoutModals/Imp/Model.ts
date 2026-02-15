@@ -1,8 +1,8 @@
-import type { IComponent } from "../index";
-import { Act } from "../../../../Logic/Core";
+import type { TModel } from "../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const {} = Props;
 
 	const modalList = Act.App.getModals();
 

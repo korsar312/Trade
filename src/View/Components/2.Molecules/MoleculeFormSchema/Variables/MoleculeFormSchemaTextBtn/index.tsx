@@ -1,11 +1,11 @@
-import Component, { type IComponent as IParent, type TMoleculeFormSchemaField, type TMoleculeFormSchemaRow } from "../../index";
+import Component, { type TComponent as IParent, type TMoleculeFormSchemaField, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import { type FC, useState } from "react";
-import type { IComponent as IText } from "../../../../0.Cores/Text";
-import type { IComponent as IInput } from "../../../../1.Atoms/AtomInput";
-import type { IComponent as IImg } from "../../../../0.Cores/Image";
+import type { TComponent as IText } from "../../../../0.Cores/Text";
+import type { TComponent as IInput } from "../../../../1.Atoms/AtomInput";
+import type { TComponent as IImg } from "../../../../0.Cores/Image";
 import Util from "../../../../../../Logic/Libs/Util";
-import { Act } from "../../../../../../Logic/Core";
+import { Act } from "../../../../../Init.ts";
 
 export interface IComponent {
 	form?: Omit<IParent["form"], "onSubmit">;

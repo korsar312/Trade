@@ -1,10 +1,11 @@
-import type { IComponent } from "../index";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import { useEffect, useRef, useState } from "react";
 
 type Ripple = { id: string; x: number; y: number; size: number };
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props }: TModel<TComponent>) {
+	const {} = Props;
 
 	const [ripples, setRipples] = useState<Ripple[]>([]);
 	const rippleContainer = useRef<HTMLDivElement>(null);

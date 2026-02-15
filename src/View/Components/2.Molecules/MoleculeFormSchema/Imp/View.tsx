@@ -1,8 +1,5 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TMoleculeFormSchemaField, TMoleculeFormSchemaRowNorm, TPresent } from "../index.tsx";
 import type { ReactElement } from "react";
-import type { TMoleculeFormSchemaField, TMoleculeFormSchemaRowNorm } from "../index.tsx";
 import Form from "../../../0.Cores/Form";
 import Text from "../../../0.Cores/Text";
 import type { TDeepCSSObject } from "../../../../ViewUtils.tsx";
@@ -14,8 +11,8 @@ import AtomToggleRadio from "../../../1.Atoms/AtomToggle/Variables/AtomToggleRad
 import Image from "../../../0.Cores/Image";
 import AtomTextarea from "../../../1.Atoms/AtomTextarea";
 
-const View: NFC<typeof Model> = (props) => {
-	const { schemaNorm, form } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { schemaNorm, form } = Model;
 
 	function typeChoice(field: TMoleculeFormSchemaRowNorm, id: number): ReactElement {
 		const { value: element, extStyle } = field;

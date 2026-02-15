@@ -1,14 +1,14 @@
-import type { IComponent } from "../index";
-import type { IComponent as IDesc } from "../../../3.Substances/SubstanceDescMap";
-import { Act } from "../../../../../Logic/Core";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
+import type { TComponent as IDesc } from "../../../3.Substances/SubstanceDescMap";
 import Util from "../../../../../Logic/Libs/Util";
-import type { IComponent as IText } from "../../../0.Cores/Text";
+import type { TComponent as IText } from "../../../0.Cores/Text";
 import type { TMoleculeRowControlCompType } from "../../../2.Molecules/MoleculeRowControl";
 
 const skeletonEl: TMoleculeRowControlCompType = { id: "-1", type: "LOAD", options: {} };
 
-function Model(props: IComponent) {
-	const { itemId } = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const { itemId } = Props;
 
 	const name = Act.Catalogue.getName(itemId);
 	const bank = Act.Catalogue.getBank(itemId);

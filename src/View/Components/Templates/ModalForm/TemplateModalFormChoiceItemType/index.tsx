@@ -1,5 +1,5 @@
 import Model from "./Model.ts";
-import View, { type IComponent as IProp } from "../../../3.Substances/SubstanceModal";
+import View, { type TComponent as IProp } from "../../../3.Substances/SubstanceModal";
 import { observer } from "mobx-react";
 import type { CatalogueInterface } from "../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 

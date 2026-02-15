@@ -1,18 +1,23 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import type { TTagPartial } from "../../../ViewUtils.tsx";
 import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { TAtomInputTextPick } from "../AtomInput";
 
-export interface IComponent extends TTagPartial<HTMLTextAreaElement, "name" | "onClick" | "disabled" | "required"> {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	initText?: TAtomTextareaTextPick | MessageInterface.EWordAll;
 	placeholder?: TAtomInputTextPick | MessageInterface.EWordAll;
 	onChange?: (val: string) => void;
 	valid?: Array<(val: MessageInterface.EWordAll) => boolean>;
 	value?: string;
 	color?: StyleInterface.TColorChoice;
-}
+} & TTagPartial<HTMLTextAreaElement, "name" | "onClick" | "disabled" | "required">;
 
 export type TAtomTextareaText = {
 	text: MessageInterface.EWordAll;
@@ -23,9 +28,4 @@ export type TAtomTextareaText = {
 type TPick<T, F extends keyof T> = Omit<T, F> & Partial<Pick<T, F>>;
 export type TAtomTextareaTextPick = TPick<TAtomTextareaText, "font">;
 
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View);

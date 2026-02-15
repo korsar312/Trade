@@ -1,15 +1,15 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
-export interface IComponent {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	isVert?: boolean;
 	color?: StyleInterface.TColorChoice;
-}
-
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
 };
 
-export default Index;
+export default Component.Create(Model, Style, View);

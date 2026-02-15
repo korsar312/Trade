@@ -1,5 +1,4 @@
-import type Model from "./Model.ts";
-import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import { Fragment, type ReactElement } from "react";
 import type { AppInterface } from "../../../../Logic/Core/Services/ServiceApp/App.interface.ts";
 import TemplateModalFormChoicePriceParam from "../../../Components/Templates/ModalForm/TemplateModalFormChoicePriceParam";
@@ -9,8 +8,8 @@ import TemplateModalFormChoiceRating from "../../../Components/Templates/ModalFo
 import TemplateModalFormChoiceItemType from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceItemType";
 import TemplateModalFormYouSure from "../../../Components/Templates/ModalForm/TemplateModalFormYouSure";
 
-const View: NFC<typeof Model> = (props) => {
-	const { modalList, closeModal } = props;
+const View: TPresent = ({ Model }) => {
+	const { modalList, closeModal } = Model;
 
 	function renderModal(el: AppInterface.TModals, close: () => void): ReactElement {
 		const h2CClient = (val: unknown) => {

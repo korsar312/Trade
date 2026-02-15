@@ -1,10 +1,11 @@
-import type { IComponent } from "../index";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import { type SyntheticEvent, useEffect, useState } from "react";
 import getImage from "../Images.tsx";
 import { Consts } from "../../../../../Logic/Config/Consts.ts";
 
-function Model(props: IComponent) {
-	const { img, color, extStyle, size } = props;
+function Model({ Props }: TModel<TComponent>) {
+	const { img, color, extStyle, size } = Props;
 
 	const [isShow, setIsShow] = useState(true);
 

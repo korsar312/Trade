@@ -1,8 +1,7 @@
-import type Model from "./Model.ts";
-import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 
-const View: NFC<typeof Model> = (props) => {
-	const {} = props;
+const View: TPresent = ({ Model }) => {
+	const {} = Model;
 
 	return null;
 };

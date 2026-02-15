@@ -1,12 +1,12 @@
-import Model from "./Model.ts";
-import View from "../../4.Structures/StructuresCatalog";
+import { Component } from "../../../Init.ts";
+import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
+import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import { observer } from "mobx-react";
 
-export interface IComponent {}
+export type TPresent = TView<typeof Model, typeof Style>;
 
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
+export type TComponent = {};
 
-export default observer(Index);
+export default observer(Component.Create(Model, Style, View));

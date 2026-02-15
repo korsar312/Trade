@@ -1,9 +1,8 @@
-import type Model from "./Model.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import StructuresTabCard from "../../../4.Structures/StructuresTabCard";
 
-const View: NFC<typeof Model> = (props) => {
-	const { rowProps } = props;
+const View: TPresent = ({ Model }) => {
+	const { rowProps } = Model;
 
 	return <StructuresTabCard {...rowProps} />;
 };

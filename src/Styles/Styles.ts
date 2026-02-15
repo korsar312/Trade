@@ -2,9 +2,9 @@ import Mixins from "./Mixins/Mixins";
 import Variables from "./Variables/Variables";
 import StyleP from "./StyleP/StyleP";
 import type { StyleInterface } from "../Logic/Core/Services/ServiceStyle/Style.interface.ts";
-import { Act } from "../Logic/Core";
 import "./Normalize.css";
 import "../Assets/Fonts/Fonts.css";
+import { Act } from "../View/Init.ts";
 
 export class Styles {
 	public pub = StyleP;

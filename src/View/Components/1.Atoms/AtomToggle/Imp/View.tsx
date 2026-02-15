@@ -1,9 +1,7 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 
-const View: NFC<typeof Model> = (props) => {
-	const { extStyles, ...rest } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { extStyles, ...rest } = Model;
 
 	return <input readOnly {...rest} css={[Style.wrapper, extStyles]} />;
 };

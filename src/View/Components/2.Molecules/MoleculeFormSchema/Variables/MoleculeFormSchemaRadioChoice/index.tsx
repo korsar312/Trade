@@ -1,8 +1,8 @@
-import Component, { type IComponent as IParent, type TMoleculeFormSchemaField, type TMoleculeFormSchemaRow } from "../../index";
+import Component, { type TComponent as IParent, type TMoleculeFormSchemaField, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import type { FC } from "react";
-import type { IComponent as IText } from "../../../../0.Cores/Text";
-import type { IComponent as IImg } from "../../../../0.Cores/Image";
+import type { TComponent as IText } from "../../../../0.Cores/Text";
+import type { TComponent as IImg } from "../../../../0.Cores/Image";
 import type { IComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 export interface IComponent {

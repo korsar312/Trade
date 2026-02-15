@@ -31,7 +31,7 @@ class ServiceBase<S extends object> {
 		return this._store;
 	}
 
-	public API = new Proxy({} as ProjectInterface.ActType<ProjectInterface.TModuleInf>, {
+	public API = new Proxy({} as ProjectInterface.TActInf, {
 		get: (_, prop: keyof ProjectInterface.TModuleInf) => this._infrastructure(prop).invoke,
 	});
 }

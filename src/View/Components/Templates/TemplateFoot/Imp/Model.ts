@@ -1,8 +1,8 @@
-import type { IComponent } from "../index";
-import type { IComponent as IControl, TMoleculeRowControlCompType } from "../../../2.Molecules/MoleculeRowControl";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
+import type { TComponent as IControl, TMoleculeRowControlCompType } from "../../../2.Molecules/MoleculeRowControl";
 import type { RouterInterface } from "../../../../../Logic/Core/Services/ServiceRouter/Router.interface.ts";
 import type { TImageComponent } from "../../../0.Cores/Image";
-import { Act } from "../../../../../Logic/Core";
 
 const Btn = {
 	CATALOG: "CATALOG",
@@ -28,8 +28,8 @@ const includesPath: Record<RouterInterface.EPath, EBtn> = {
 	ERROR: "INFO",
 };
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const {} = Props;
 
 	const curPage = Act.Router.getCurPage();
 

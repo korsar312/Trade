@@ -1,12 +1,12 @@
-import type { IComponent } from "../index";
+import type { TModel } from "../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import { useLayoutEffect } from "react";
-import { Act } from "../../../../Logic/Core";
 
 const loginS = "adm2";
 const tokenS = "f3a944dd-e970-4933-a14f-cc5ea2f36782";
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const {} = Props;
 
 	const currentRole = Act.Router.getRole();
 

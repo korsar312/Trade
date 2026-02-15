@@ -1,11 +1,11 @@
-import type { IComponent } from "../index";
-import { Act } from "../../../../../Logic/Core";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import { useEffect, useState } from "react";
 import type { TMoleculeGroupBtn } from "../../../2.Molecules/MoleculeGroupBtn";
-import type { IComponent as IProp } from "../../../4.Structures/StructuresTabCard";
+import type { TComponent as IProp } from "../../../4.Structures/StructuresTabCard";
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const {} = Props;
 
 	const orderList = Act.Catalogue.getGoodsIdList();
 

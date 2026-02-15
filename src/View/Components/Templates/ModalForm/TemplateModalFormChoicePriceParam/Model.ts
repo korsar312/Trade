@@ -1,5 +1,5 @@
 import type { IComponent } from "./index.tsx";
-import type { IComponent as IProp } from "../../../3.Substances/SubstanceModal";
+import type { TComponent as IProp } from "../../../3.Substances/SubstanceModal";
 import type { TSchemaInput } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 
 function Model(props: IComponent) {

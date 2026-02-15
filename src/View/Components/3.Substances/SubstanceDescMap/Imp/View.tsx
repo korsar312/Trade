@@ -1,13 +1,10 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent, TSubstanceDescMapRow } from "../index.tsx";
 import Text from "../../../0.Cores/Text";
-import type { TSubstanceDescMapRow } from "../index.tsx";
 import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
 import { Fragment, type ReactElement } from "react";
 
-const View: NFC<typeof Model> = (props) => {
-	const { rows } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { rows } = Model;
 
 	function row(props: TSubstanceDescMapRow): ReactElement {
 		switch (props.type) {

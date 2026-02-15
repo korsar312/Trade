@@ -1,14 +1,14 @@
-import type { IComponent } from "./index";
-import type { SettingInterface } from "../../../../Logic/Core/Services/ServiceSetting/Setting.interface.ts";
-import type { PublicInterface } from "../../../../Logic/Core/Services/Public.interface.ts";
-import { Act } from "../../../../Logic/Core";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
+import type { TComponent as IProp } from "../../../4.Structures/StructuresCatalog";
 import { useEffect, useState } from "react";
-import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowControl";
-import { useDidUpdate } from "../../../../Logic/Libs/Hooks/useDidUpdate/useDidUpdate.ts";
-import type { EAtomButtonColor } from "../../1.Atoms/AtomButton";
-import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
-import Util from "../../../../Logic/Libs/Util";
-import type { IComponent as IProp } from "../../4.Structures/StructuresCatalog";
+import type { TMoleculeRowControlCompType } from "../../../2.Molecules/MoleculeRowControl";
+import { useDidUpdate } from "../../../../../Logic/Libs/Hooks/useDidUpdate/useDidUpdate.ts";
+import { PublicInterface } from "../../../../../Logic/Core/Services/Public.interface.ts";
+import type { CatalogueInterface } from "../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import type { EAtomButtonColor } from "../../../1.Atoms/AtomButton";
+import Util from "../../../../../Logic/Libs/Util";
+import type { SettingInterface } from "../../../../../Logic/Core/Services/ServiceSetting/Setting.interface.ts";
 
 const keyStorageSort = "CARD_SORT_NAME" satisfies SettingInterface.ENameStorage;
 const keyStorageFilter = "CARD_FILTER_NAME" satisfies SettingInterface.ENameStorage;
@@ -16,8 +16,8 @@ const keyStorageFilter = "CARD_FILTER_NAME" satisfies SettingInterface.ENameStor
 const initSort: PublicInterface.ESort = "TO_UPPER";
 const initFilter: PublicInterface.TFilterCard = { name: null, bank: [], priseUp: null, priseDown: null, rating: null };
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const {} = Props;
 
 	const catalog = Act.Catalogue.getGoodsIdList();
 	const genId = Util.idGen();
@@ -237,7 +237,7 @@ function Model(props: IComponent) {
 		],
 	};
 
-	return propsComponent;
+	return { propsComponent };
 }
 
 export default Model;

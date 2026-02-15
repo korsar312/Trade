@@ -1,11 +1,16 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 import type { CSSObject } from "@emotion/react";
 
-export interface IComponent {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	text: MessageInterface.EWordAll;
 	caseWord?: MessageInterface.ECase;
 	font?: StyleInterface.EFont;
@@ -16,15 +21,9 @@ export interface IComponent {
 	addContent?: MessageInterface.EWordAll[];
 	addStyle?: CSSObject[];
 	label?: TLabelPick;
-}
-
-type TLabelPick = Pick<HTMLLabelElement, "htmlFor">;
-
-export type TTextPos = "left" | "right" | "center";
-
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
 };
 
-export default Index;
+type TLabelPick = Pick<HTMLLabelElement, "htmlFor">;
+export type TTextPos = "left" | "right" | "center";
+
+export default Component.Create(Model, Style, View);

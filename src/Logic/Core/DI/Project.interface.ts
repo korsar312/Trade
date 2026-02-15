@@ -39,7 +39,10 @@ export namespace ProjectInterface {
 
 	type InvokeOf<T> = T extends { invoke: infer I } ? I : never;
 
-	export type ActType<T> = {
+	type ActType<T> = {
 		[K in keyof T]: InvokeOf<T[K]>;
 	};
+
+	export type TActInf = ActType<TModuleInf>;
+	export type TActService = ActType<TModuleService>;
 }

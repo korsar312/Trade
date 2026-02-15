@@ -1,11 +1,11 @@
-import type { IComponent } from "../index";
+import type { TModel } from "../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
-import { Act } from "../../../../Logic/Core";
 import { useEffect } from "react";
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const {} = Props;
 
 	const param = useParamPage("ITEM");
 	const itemId = param.id || "";

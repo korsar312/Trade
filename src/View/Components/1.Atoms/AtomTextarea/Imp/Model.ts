@@ -1,11 +1,12 @@
-import type { IComponent, TAtomTextareaText, TAtomTextareaTextPick } from "../index";
+import type { TModel } from "../../../../CreateComponent.tsx";
+
+import type { TAtomTextareaText, TAtomTextareaTextPick, TComponent } from "../index";
 import { useState } from "react";
-import { Act } from "../../../../../Logic/Core";
 import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
-function Model(props: IComponent) {
-	const { color, initText, placeholder, onChange, valid, value, ...rest } = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const { color, initText, placeholder, onChange, valid, value, ...rest } = Props;
 
 	const [isValid, setIsValid] = useState<boolean | undefined>();
 

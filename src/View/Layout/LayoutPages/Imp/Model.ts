@@ -1,9 +1,9 @@
-import type { IComponent } from "../index";
+import type { TModel } from "../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
-import { Act } from "../../../../Logic/Core";
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const {} = Props;
 
 	const isInit = Act.App.isInit();
 

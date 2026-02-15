@@ -1,16 +1,16 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import { observer } from "mobx-react";
 import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 
-export interface IComponent {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	typeItem: CatalogueInterface.ETypeItem;
 	changeTabFn: (tab: CatalogueInterface.ETypeItem) => void;
-}
-
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
 };
 
-export default observer(Index);
+export default observer(Component.Create(Model, Style, View));

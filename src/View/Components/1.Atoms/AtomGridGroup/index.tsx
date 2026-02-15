@@ -1,14 +1,14 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import type { ReactElement } from "react";
 
-export interface IComponent {
-	children: ReactElement | ReactElement[];
-}
+export type TPresent = TView<typeof Model, typeof Style>;
 
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
+export type TComponent = {
+	children: ReactElement | ReactElement[];
 };
 
-export default Index;
+export default Component.Create(Model, Style, View);

@@ -1,9 +1,7 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 
-const View: NFC<typeof Model> = (props) => {
-	const { children, color, extStyle, isFull, ...restDiv } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { children, color, extStyle, isFull, ...restDiv } = Model;
 
 	return (
 		<div {...restDiv} css={[Style.wrapper(color), isFull && Style.full, extStyle]}>

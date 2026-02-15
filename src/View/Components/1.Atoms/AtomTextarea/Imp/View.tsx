@@ -1,10 +1,8 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import Text from "../../../0.Cores/Text";
 
-const View: NFC<typeof Model> = (props) => {
-	const { color, textObj, text, placeObj, isValid, onValid, value, rest } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { color, textObj, text, placeObj, isValid, onValid, value, rest } = Model;
 
 	return (
 		<div css={[Style.wrapper(color), Style.valid(isValid)]}>

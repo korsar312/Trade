@@ -1,11 +1,11 @@
-import type { IComponent } from "../index";
-import { Act } from "../../../../../Logic/Core";
-import type { IComponent as IProp } from "../../../../Components/3.Substances/SubstanceDescMap";
-import type { IComponent as IText } from "../../../0.Cores/Text";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
+import type { TComponent as IProp } from "../../../../Components/3.Substances/SubstanceDescMap";
+import type { TComponent as IText } from "../../../0.Cores/Text";
 import type { IComponent as IBtn } from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
-function Model(props: IComponent) {
-	const {} = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const {} = Props;
 
 	const balance = Act.Wallet.getBalance();
 

@@ -1,8 +1,9 @@
-import type { IComponent } from "../index";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import type { FormEvent } from "react";
 
-function Model(props: IComponent) {
-	const { onSubmit, children, id, ref } = props;
+function Model({ Props }: TModel<TComponent>) {
+	const { onSubmit, children, id, ref } = Props;
 
 	function handleSubmit(event: FormEvent<HTMLFormElement>) {
 		event.preventDefault();

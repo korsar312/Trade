@@ -1,6 +1,6 @@
-import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
-import { type IComponent as IText } from "../../../../0.Cores/Text";
-import { type IComponent as ITextarea } from "../../../../1.Atoms/AtomTextarea";
+import Component, { type TComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
+import { type TComponent as IText } from "../../../../0.Cores/Text";
+import { type TComponent as ITextarea } from "../../../../1.Atoms/AtomTextarea";
 import Styles from "./Style.ts";
 import type { FC } from "react";
 

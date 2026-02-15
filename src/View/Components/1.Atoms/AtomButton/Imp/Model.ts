@@ -1,11 +1,12 @@
-import type { IComponent, TAtomButtonGeneralGroup } from "../index";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TAtomButtonGeneralGroup, TComponent } from "../index";
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
-import type { IComponent as IImage } from "../../../0.Cores/Image";
-import type { IComponent as IText } from "../../../0.Cores/Text";
+import type { TComponent as IImage } from "../../../0.Cores/Image";
+import type { TComponent as IText } from "../../../0.Cores/Text";
 import type { MouseEvent } from "react";
 
-function Model(props: IComponent) {
-	const { textVars, color, extStyles, icons, isFullWidth, isFullHeight, click, type = "button", isDisable, round } = props;
+function Model({ Props }: TModel<TComponent>) {
+	const { textVars, color, extStyles, icons, isFullWidth, isFullHeight, click, type = "button", isDisable, round } = Props;
 
 	const leftIcon = spread(icons?.["left"], changeImage);
 	const rightIcon = spread(icons?.["right"], changeImage);

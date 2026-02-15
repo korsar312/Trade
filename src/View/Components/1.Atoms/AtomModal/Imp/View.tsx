@@ -1,10 +1,8 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import type { MouseEvent } from "react";
 
-const View: NFC<typeof Model> = (props) => {
-	const { children, extStyle, bgClick } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { children, extStyle, bgClick } = Model;
 
 	function onClick(e: MouseEvent<HTMLDivElement>) {
 		if (e.target !== e.currentTarget) return;

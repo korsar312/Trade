@@ -1,12 +1,12 @@
-import type { IComponent, TAtomInputGeneralGroup, TAtomInputIcon, TAtomInputText, TAtomInputTextPick } from "../index";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TAtomInputGeneralGroup, TAtomInputIcon, TAtomInputText, TAtomInputTextPick, TComponent } from "../index";
 import React, { useState } from "react";
-import { Act } from "../../../../../Logic/Core";
 import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
-import type { IComponent as IImage } from "../../../0.Cores/Image";
+import type { TComponent as IImage } from "../../../0.Cores/Image";
 import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 
-function Model(props: IComponent) {
-	const { color, initText, onClick, onChange, iconsLeft, iconsRight, placeholder, valid, ...rest } = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const { color, initText, onClick, onChange, iconsLeft, iconsRight, placeholder, valid, ...rest } = Props;
 
 	const [isValid, setIsValid] = useState<boolean | undefined>();
 

@@ -1,6 +1,4 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import { type TMoleculeRowControlCompType } from "../index.tsx";
 import { Fragment, type ReactElement } from "react";
 import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
@@ -10,8 +8,8 @@ import Text from "../../../0.Cores/Text";
 import Image from "../../../0.Cores/Image";
 import AtomLoadRow from "../../../1.Atoms/AtomLoadRow";
 
-const View: NFC<typeof Model> = (props) => {
-	const { compRow } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { compRow } = Model;
 
 	function render({ type, options }: TMoleculeRowControlCompType): ReactElement {
 		switch (type) {

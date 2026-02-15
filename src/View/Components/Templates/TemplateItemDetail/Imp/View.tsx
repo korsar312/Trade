@@ -1,9 +1,8 @@
-import type Model from "./Model.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import SubstanceDescMap from "../../../3.Substances/SubstanceDescMap";
 
-const View: NFC<typeof Model> = (props) => {
-	const { rowProps } = props;
+const View: TPresent = ({ Model }) => {
+	const { rowProps } = Model;
 
 	return <SubstanceDescMap {...rowProps} />;
 };

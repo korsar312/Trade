@@ -1,5 +1,5 @@
 import type { IComponent } from "./index.tsx";
-import type { IComponent as IProp } from "../../../3.Substances/SubstanceModal";
+import type { TComponent as IProp } from "../../../3.Substances/SubstanceModal";
 import { CatalogueBankArr, type CatalogueInterface } from "../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { TSchemaSwitch } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 

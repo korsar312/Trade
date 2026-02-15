@@ -1,7 +1,8 @@
-import type { IComponent, TMoleculeFormSchemaRow, TMoleculeFormSchemaRowNorm } from "../";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent, TMoleculeFormSchemaRow, TMoleculeFormSchemaRowNorm } from "../";
 
-function Model(props: IComponent) {
-	const { schema, form } = props;
+function Model({ Props }: TModel<TComponent>) {
+	const { schema, form } = Props;
 
 	const schemaNorm = normalizeRow(schema) ?? ({ ...schema, value: [] } satisfies TMoleculeFormSchemaRowNorm);
 

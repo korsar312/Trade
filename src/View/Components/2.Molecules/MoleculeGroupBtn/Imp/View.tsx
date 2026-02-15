@@ -1,12 +1,9 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../../Logic/Libs/Util/TypesUtils";
+import type { TMoleculeGroupBtn, TPresent } from "../index.tsx";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
-import type { TMoleculeGroupBtn } from "../index.tsx";
 import { Fragment } from "react";
 
-const View: NFC<typeof Model> = (props) => {
-	const { btnRow } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { btnRow } = Model;
 
 	function element(btn: TMoleculeGroupBtn) {
 		const { isActive, options } = btn;

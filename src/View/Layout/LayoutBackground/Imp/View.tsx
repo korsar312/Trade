@@ -1,9 +1,8 @@
-import type Model from "./Model.ts";
+import type { TPresent } from "../";
 import Style from "./Style.ts";
-import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
 
-const View: NFC<typeof Model> = (props) => {
-	const {} = props;
+const View: TPresent = ({ Model }) => {
+	const {} = Model;
 
 	document.body.setAttribute("style", Style.wrapper);
 

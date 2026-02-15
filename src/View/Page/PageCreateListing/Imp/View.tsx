@@ -1,10 +1,8 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import TemplateCreateListing from "../../../Components/Templates/TemplateCreateListing";
 
-const View: NFC<typeof Model> = (props) => {
-	const { typeFormat, changeTab } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { typeFormat, changeTab } = Model;
 
 	return (
 		<div css={Style.wrapper}>

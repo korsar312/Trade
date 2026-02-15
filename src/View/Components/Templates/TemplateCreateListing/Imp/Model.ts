@@ -1,6 +1,6 @@
-import type { IComponent } from "../index";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import type { IComponent as IBtn } from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
-import { Act } from "../../../../../Logic/Core";
 import {
 	CatalogueBankArr,
 	type CatalogueInterface,
@@ -16,7 +16,7 @@ import type {
 	IComponent as ITextarea,
 	TSchemaTextarea,
 } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextarea";
-import type { IComponent as ITabs } from "../../../2.Molecules/MoleculeGroupBtn";
+import type { TComponent as ITabs } from "../../../2.Molecules/MoleculeGroupBtn";
 
 type TSubmitForms = {
 	main: CatalogueInterface.TMain;
@@ -24,8 +24,8 @@ type TSubmitForms = {
 	free: CatalogueInterface.IFreeInfoAll;
 };
 
-function Model(props: IComponent) {
-	const { typeItem, changeTabFn } = props;
+function Model({ Props, Act }: TModel<TComponent>) {
+	const { typeItem, changeTabFn } = Props;
 
 	const forms = useRef<TSubmitForms>(null);
 

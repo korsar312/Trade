@@ -1,8 +1,9 @@
-import type { IComponent } from "../index";
+import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TComponent } from "../";
 import type { MouseEvent } from "react";
 
-function Model(props: IComponent) {
-	const { image, name, btn, click } = props;
+function Model({ Props }: TModel<TComponent>) {
+	const { image, name, btn, click } = Props;
 
 	const btnList = btn.map((el) => ({ ...el, click: handleClick(el.click) }));
 

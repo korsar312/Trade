@@ -1,17 +1,15 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import { type ReactNode, type Ref } from "react";
 
-export interface IComponent extends TFormPick {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	children?: ReactNode;
 	ref?: Ref<HTMLFormElement>;
-}
+} & Partial<Pick<HTMLFormElement, "onSubmit" | "id">>;
 
-type TFormPick = Partial<Pick<HTMLFormElement, "onSubmit" | "id">>;
-
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View);

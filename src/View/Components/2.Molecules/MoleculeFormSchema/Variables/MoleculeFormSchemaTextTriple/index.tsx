@@ -1,9 +1,9 @@
-import Component, { type IComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
+import Component, { type TComponent as IParent, type TMoleculeFormSchemaRow } from "../../index";
 import Styles from "./Style.ts";
 import type { FC } from "react";
-import type { IComponent as IText } from "../../../../0.Cores/Text";
-import type { IComponent as IInput } from "../../../../1.Atoms/AtomInput";
-import type { IComponent as ITextarea } from "../../../../1.Atoms/AtomTextarea";
+import type { TComponent as IText } from "../../../../0.Cores/Text";
+import type { TComponent as IInput } from "../../../../1.Atoms/AtomInput";
+import type { TComponent as ITextarea } from "../../../../1.Atoms/AtomTextarea";
 
 export interface IComponent {
 	form?: Omit<IParent["form"], "onSubmit">;

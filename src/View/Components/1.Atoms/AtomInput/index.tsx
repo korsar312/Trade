@@ -1,11 +1,16 @@
+import { Component } from "../../../Init.ts";
 import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
 import type { TDeepCSSObject, TTagPartial } from "../../../ViewUtils.tsx";
 import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
-import type { IComponent as IImage, TImageComponent } from "../../0.Cores/Image";
+import type { TComponent as IImage, TImageComponent } from "../../0.Cores/Image";
 
-export interface IComponent extends TTagPartial<HTMLInputElement, "name" | "onClick" | "type" | "disabled" | "required"> {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	initText?: TAtomInputTextPick | MessageInterface.EWordAll;
 	placeholder?: TAtomInputTextPick | MessageInterface.EWordAll;
 	onChange?: (val: string) => void;
@@ -14,7 +19,7 @@ export interface IComponent extends TTagPartial<HTMLInputElement, "name" | "onCl
 	valid?: Array<(val: MessageInterface.EWordAll) => TValid>;
 	value?: string;
 	color?: StyleInterface.TColorChoice;
-}
+} & TTagPartial<HTMLInputElement, "name" | "onClick" | "type" | "disabled" | "required">;
 
 type TValid = {
 	isValid: boolean;
@@ -37,9 +42,4 @@ export type TAtomInputGeneralGroup = {
 	value: IImage[];
 };
 
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View);

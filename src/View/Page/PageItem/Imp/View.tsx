@@ -1,13 +1,11 @@
-import type Model from "./Model.ts";
-import Style from "./Style.ts";
-import type { NFC } from "./../../../../Logic/Libs/Util/TypesUtils";
+import type { TPresent } from "../";
 import TemplateItemDetail from "../../../Components/Templates/TemplateItemDetail";
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
 import AtomButtonMain from "../../../Components/1.Atoms/AtomButton/Variables/AtomButtonMain";
 import Image from "../../../Components/0.Cores/Image";
 
-const View: NFC<typeof Model> = (props) => {
-	const { image, itemId, goBack } = props;
+const View: TPresent = ({ Model, Style }) => {
+	const { image, itemId, goBack } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
