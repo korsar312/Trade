@@ -2,7 +2,7 @@ import type { TModel } from "../../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import type { TComponent as IProp } from "../../../../Components/3.Substances/SubstanceDescMap";
 import type { TComponent as IText } from "../../../0.Cores/Text";
-import type { IComponent as IBtn } from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
+import type { TComponent as IBtn } from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;

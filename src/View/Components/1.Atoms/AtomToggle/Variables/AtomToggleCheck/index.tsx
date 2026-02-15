@@ -1,19 +1,12 @@
-import type { FC } from "react";
-import Style from "./Style.ts";
-import Component, { type TComponent as IParent } from "../../index";
+import { Component } from "../../../../../Init.ts";
+import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
+import View from "./Imp/View.tsx";
+import type { TView } from "../../../../../CreateComponent.tsx";
+import { type TComponent as IParent } from "../../index";
 
-export interface IComponent extends IParent {}
+export type TPresent = TView<typeof Model, typeof Style>;
 
-const Index: FC<IComponent> = (props) => {
-	const {} = props;
+export type TComponent = IParent;
 
-	const propsComponent: IParent = {
-		...props,
-		type: "radio",
-		extStyles: Style.wrapper,
-	};
-
-	return <Component {...propsComponent} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View, "AtomToggleCheck");

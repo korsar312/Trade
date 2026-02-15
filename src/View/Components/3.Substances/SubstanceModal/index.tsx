@@ -3,10 +3,10 @@ import Model from "./Imp/Model.ts";
 import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
-import type { IComponent as IFormChoiceMany } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
-import type { IComponent as IFormChoiceOne } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
-import type { IComponent as IFormInput } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
-import type { IComponent as IFormImageQty } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
+import type { TComponent as IFormChoiceMany } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
+import type { TComponent as IFormChoiceOne } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
+import type { TComponent as IFormInput } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
+import type { TComponent as IFormImageQty } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
 import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
 import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
 

@@ -1,17 +1,16 @@
-import Model from "./Model.ts";
-import View, { type TComponent as IProp } from "../../../3.Substances/SubstanceModal";
+import { Component } from "../../../../Init.ts";
+import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
+import View from "./Imp/View.tsx";
+import type { TView } from "../../../../CreateComponent.tsx";
 import { observer } from "mobx-react";
+import type { TComponent as IProp } from "../../../3.Substances/SubstanceModal";
 import type { PublicInterface } from "../../../../../Logic/Core/Services/Public.interface.ts";
 
-export interface IComponent extends TModal {
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
 	submitFn: (val: PublicInterface.ESort) => void;
-}
+} & Pick<IProp, "bgClick" | "color">;
 
-type TModal = Pick<IProp, "bgClick" | "color">;
-
-const Index = (props: IComponent) => {
-	const model = Model(props);
-	return <View {...model} />;
-};
-
-export default observer(Index);
+export default observer(Component.Create(Model, Style, View, "TemplateModalFormChoiceSort"));

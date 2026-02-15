@@ -1,6 +1,6 @@
 import type { TModel } from "../../../../CreateComponent.tsx";
 import type { TComponent } from "../";
-import type { IComponent as IBtn } from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
+import type { TComponent as IBtn } from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import {
 	CatalogueBankArr,
 	type CatalogueInterface,
@@ -8,12 +8,12 @@ import {
 } from "../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { useRef } from "react";
 import type {
-	IComponent as ITextTriple,
+	TComponent as ITextTriple,
 	TSchemaTextTriple,
 } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextTriple";
-import type { IComponent as ITextBtn, TSchemaTextBtn } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextBtn";
+import type { TComponent as ITextBtn, TSchemaTextBtn } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextBtn";
 import type {
-	IComponent as ITextarea,
+	TComponent as ITextarea,
 	TSchemaTextarea,
 } from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextarea";
 import type { TComponent as ITabs } from "../../../2.Molecules/MoleculeGroupBtn";

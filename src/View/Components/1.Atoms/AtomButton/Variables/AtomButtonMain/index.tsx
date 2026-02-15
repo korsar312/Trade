@@ -1,30 +1,18 @@
-import type { FC } from "react";
-import Style from "./Style.ts";
-import Component, { type TComponent as IParent } from "../../index";
+import { Component } from "../../../../../Init.ts";
+import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
+import View from "./Imp/View.tsx";
+import type { TView } from "../../../../../CreateComponent.tsx";
+import type { TComponent as IParent } from "../../index";
 import type { TImageComponent } from "../../../../0.Cores/Image";
 import type { MessageInterface } from "../../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
 
-export interface IComponent extends Pick<IParent, "isDisable" | "click" | "color" | "isFullWidth" | "round" | "type"> {
-	text: MessageInterface.EWordAll;
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
+	text?: MessageInterface.EWordAll;
 	leftImage?: TImageComponent;
 	rightImage?: TImageComponent;
-}
+} & Pick<IParent, "isDisable" | "click" | "color" | "isFullWidth" | "round" | "type">;
 
-const Index: FC<IComponent> = (props) => {
-	const { text, leftImage, rightImage, color, ...other } = props;
-
-	const propsComponent: IParent = {
-		...other,
-		color: color,
-		textVars: { value: [{ text }] },
-		icons: {
-			left: leftImage ? { value: [{ img: leftImage, size: 20 }] } : undefined,
-			right: rightImage ? { value: [{ img: rightImage, size: 20 }] } : undefined,
-		},
-		extStyles: Style.wrapper,
-	};
-
-	return <Component {...propsComponent} />;
-};
-
-export default Index;
+export default Component.Create(Model, Style, View, "AtomButtonMain");
