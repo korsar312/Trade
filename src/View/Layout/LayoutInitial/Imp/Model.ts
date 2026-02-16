@@ -3,7 +3,7 @@ import type { TComponent } from "../";
 import { useLayoutEffect } from "react";
 
 const loginS = "adm2";
-const tokenS = "f3a944dd-e970-4933-a14f-cc5ea2f36782";
+const tokenS = "157a7cf9-0250-40c1-95a5-681e5b76962a";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;

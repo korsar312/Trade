@@ -123,14 +123,12 @@ export const CatalogueTypeItem = {
 export const CatalogueTypeItemArr = Object.keys(CatalogueTypeItem) as CatalogueInterface.ETypeItem[];
 
 const CatalogueStatus = {
-	DRAFT: "DRAFT",
 	ACTIVE: "ACTIVE",
-	RESERVED: "RESERVED",
-	SOLD: "SOLD",
+	FREEZE: "FREEZE",
 	ARCHIVED: "ARCHIVED",
 } as const;
 
 const CatalogueSaleKind = {
-	GOODS: "GOODS",
-	SERVICE: "SERVICE",
+	ONE: "ONE",
+	INFINITY: "INFINITY",
 } as const;

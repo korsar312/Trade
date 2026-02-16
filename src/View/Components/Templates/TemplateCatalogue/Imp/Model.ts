@@ -97,7 +97,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 			limit: 10,
 			sort,
 			type: "CARD",
-			saleKind: "GOODS",
+			saleKind: "ONE",
 			findStr: filters.name || undefined,
 			priceUp: filters.priseUp || undefined,
 			priceDown: filters.priseDown || undefined,

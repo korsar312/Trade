@@ -80,7 +80,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	};
 
 	function handleMain(val: TSchemaTextTriple): void {
-		setForm("main", { name: val.title, desc: val.desc, price: Number(val.subtitle), saleKind: "GOODS" });
+		setForm("main", { name: val.title, desc: val.desc, price: Number(val.subtitle), saleKind: "ONE" });
 	}
 
 	function handleCard(val: TSchemaTextBtn): void {
