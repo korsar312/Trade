@@ -1,16 +1,23 @@
-import type { WalletInterface as Interface } from "../Wallet.interface.ts";
+import { type WalletInterface as Interface } from "../Wallet.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
 class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private SetBalance(store: Interface.Store, balance: number): Interface.Store {
-		return { ...store, balance };
+	private SetBalance(store: Interface.Store, wallet: Interface.TWallet): Interface.Store {
+		return { ...store, wallet };
+	}
+
+	public async RequestBalance(): Promise<Interface.TWallet> {
+		return new Promise((resolve) => resolve({ balance: 0, hold: 0 }));
 	}
 
 	//==============================================================================================
 
 	constructor(props: IServiceProps) {
 		const store: Interface.Store = {
-			balance: 0,
+			wallet: {
+				balance: 0,
+				hold: 0,
+			},
 		};
 
 		super(props, store);
@@ -18,16 +25,32 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 
 	//==============================================================================================
 
-	public getBalance() {
-		return this.store.balance;
+	public async checkDeposit(): Promise<Interface.TCheckDeposit> {
+		return await this.API.Links.IS_EXIST_DEPOSIT();
 	}
 
-	public async withdrawal(value: number) {
-		this.API.Links.WITHDRAWAL_BALANCE(value).then((res) => this.SetBalance(this.store, res));
+	public async createDeposit(amount: number): Promise<Interface.TDeposit> {
+		return await this.API.Links.CREATE_DEPOSIT(amount);
 	}
 
-	public async replenish(value: number) {
-		this.API.Links.REPLENISH_BALANCE(value).then((res) => this.SetBalance(this.store, res));
+	public async awaitPayDeposit(signal?: AbortSignal): Promise<boolean> {
+		const isSuccess = await this.API.Links.AWAIT_PAY_DEPOSIT(signal);
+		await this.refreshBalance();
+
+		return isSuccess;
+	}
+
+	public async removeDeposit(): Promise<void> {
+		return await this.API.Links.REMOVE_DEPOSIT();
+	}
+
+	public async refreshBalance(): Promise<void> {
+		const balance = await this.RequestBalance();
+		this.store = this.SetBalance(this.store, balance);
+	}
+
+	public getBalance(): Interface.TWallet {
+		return this.store.wallet;
 	}
 }
 

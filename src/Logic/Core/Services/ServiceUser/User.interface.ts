@@ -6,6 +6,7 @@ export namespace UserInterface {
 		refreshMyInfo(): Promise<void>;
 
 		getId(): string;
+		getTgId(): string | null;
 		getName(): string;
 		getLogin(): string;
 		getRating(): PublicInterface.TRating | null;
@@ -15,7 +16,9 @@ export namespace UserInterface {
 	export interface IUser {
 		id: string;
 		nickname: string;
+		role: PublicInterface.ERole;
 		login: string;
+		telegramId: string | null;
 		createdAt: number;
 		rating: PublicInterface.TRating | null;
 	}

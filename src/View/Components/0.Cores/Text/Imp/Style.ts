@@ -10,11 +10,18 @@ class Style extends Styles {
 		white-space: pre-line;
 	`;
 
-	public param(pos?: TTextPos, font?: StyleInterface.EFont, color?: StyleInterface.TColorChoice, opacity?: number): CSSObject {
+	public param(
+		pos?: TTextPos,
+		font?: StyleInterface.EFont,
+		color?: StyleInterface.TColorChoice,
+		opacity?: number,
+		isBreakLine?: Boolean,
+	): CSSObject {
 		return css`
 			${this.getFont(font || "BodyMain")};
 			color: ${this.getColor(color || "SECOND_1", opacity)};
 			text-align: ${pos};
+			overflow-wrap: ${isBreakLine ? "anywhere" : "initial"};
 		`;
 	}
 }

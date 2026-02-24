@@ -1,11 +1,28 @@
 export namespace WalletInterface {
 	export interface IAdapter {
-		getBalance(): number;
-		withdrawal(value: number): Promise<void>;
-		replenish(value: number): Promise<void>;
+		checkDeposit(): Promise<TCheckDeposit>;
+		createDeposit(amount: number): Promise<TDeposit>;
+		awaitPayDeposit(signal?: AbortSignal): Promise<boolean>;
+		removeDeposit(): Promise<void>;
+		refreshBalance(): Promise<void>;
+		getBalance(): TWallet;
 	}
 
-	export interface Store {
+	export type TWallet = {
 		balance: number;
+		hold: number;
+	};
+
+	export type TCheckDeposit = TDeposit | null;
+
+	export type TDeposit = {
+		address: string;
+		amount: string;
+		serverTime: number;
+		timeEnd: number;
+	};
+
+	export interface Store {
+		wallet: TWallet;
 	}
 }

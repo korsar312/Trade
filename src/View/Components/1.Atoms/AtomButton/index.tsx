@@ -14,7 +14,8 @@ export type TPresent = TView<typeof Model, typeof Style>;
 export type TComponent = {
 	textVars?: TAtomButtonText;
 	color?: EAtomButtonColor;
-	isDisable?: boolean;
+	isDisable?: unknown;
+	isLoading?: unknown;
 	extStyles?: TDeepCSSObject;
 	icons?: Partial<Record<EAtomButtonIcon, TAtomButtonIcon>>;
 	isFullWidth?: boolean;

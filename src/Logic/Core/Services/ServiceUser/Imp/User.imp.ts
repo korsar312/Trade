@@ -31,6 +31,11 @@ class UserImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 		return this.store.user.id;
 	}
 
+	public getTgId() {
+		if (!this.store.user) throw new Error("no auth");
+		return this.store.user.telegramId;
+	}
+
 	public getName() {
 		if (!this.store.user) throw new Error("no auth");
 		return this.store.user.nickname;

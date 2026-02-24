@@ -6,7 +6,7 @@ import type { TComponent as IText } from "../../../0.Cores/Text";
 import type { MouseEvent } from "react";
 
 function Model({ Props }: TModel<TComponent>) {
-	const { textVars, color, extStyles, icons, isFullWidth, isFullHeight, click, type = "button", isDisable, round } = Props;
+	const { textVars, color, icons, click, isLoading, ...rest } = Props;
 
 	const leftIcon = spread(icons?.["left"], changeImage);
 	const rightIcon = spread(icons?.["right"], changeImage);
@@ -47,7 +47,7 @@ function Model({ Props }: TModel<TComponent>) {
 		click?.(e);
 	}
 
-	return { textChanged, color, extStyles, leftIcon, rightIcon, isFullWidth, isFullHeight, handleClick, type, isDisable, round };
+	return { textChanged, color, leftIcon, rightIcon, handleClick, isLoading, ...rest };
 }
 
 export default Model;

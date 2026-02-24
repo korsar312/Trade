@@ -5,6 +5,7 @@ class Style extends Styles {
 	public wrapper = css`
 		${this.mixins.fixed};
 		background: ${this.getColor("MAIN_2", 0.7)};
+		backdrop-filter: blur(4px);
 	`;
 
 	public content = css`

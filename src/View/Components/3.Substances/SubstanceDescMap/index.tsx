@@ -14,7 +14,7 @@ export type TComponent = {
 
 export type TSubstanceDescMapRow = {
 	id: string;
-	key: IText;
+	key?: IText;
 	type?: TSubstanceDescMapRowType;
 	value: IControl;
 };

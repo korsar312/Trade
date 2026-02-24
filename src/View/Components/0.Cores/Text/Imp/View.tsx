@@ -4,9 +4,9 @@ import type { CSSObject } from "@emotion/react";
 import type { JSX } from "react";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { textFind, color, extStyle, font, opacity, pos, label } = Model;
+	const { textFind, color, extStyle, font, opacity, pos, label, isBreakLine } = Model;
 
-	const styles: CSSObject[] = [Style.wrapper, Style.param(pos, font, color, opacity), ...Util.getArray(extStyle)];
+	const styles: CSSObject[] = [Style.wrapper, Style.param(pos, font, color, opacity, isBreakLine), ...Util.getArray(extStyle)];
 	const Tag: keyof JSX.IntrinsicElements = label ? "label" : "span";
 
 	function text() {

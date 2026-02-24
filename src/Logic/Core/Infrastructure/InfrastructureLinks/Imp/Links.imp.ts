@@ -1,11 +1,12 @@
 import type { LinksInterface as Interface } from "../Links.interface";
 import type { CatalogueInterface } from "../../../Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { UserInterface } from "../../../Services/ServiceUser/User.interface.ts";
+import type { WalletInterface } from "../../../Services/ServiceWallet/Wallet.interface.ts";
 
 class LinksImp implements Interface.IAdapter {
 	private authData: { login: string; token: string } | undefined;
 
-	private async request<T>({ link, param }: Interface.ERequestParam): Promise<T> {
+	private async request<T = void>({ link, param, options }: Interface.TRequestParam): Promise<T> {
 		const curLink = this.links[link];
 		const method = curLink.http;
 		const url = new URL(curLink.link, "http://" + this.address);
@@ -15,16 +16,18 @@ class LinksImp implements Interface.IAdapter {
 			...this.authData,
 		};
 
-		const init: RequestInit = { method, headers };
+		const init: RequestInit = { method, headers, signal: options?.signal };
 
-		switch (method) {
-			case "GET":
-				url.search = new URLSearchParams(param).toString();
-				break;
-			default:
-				headers["Content-Type"] = "application/json";
-				init.body = JSON.stringify(param);
-				break;
+		if (param !== undefined) {
+			switch (method) {
+				case "GET":
+					url.search = new URLSearchParams(param).toString();
+					break;
+				default:
+					headers["Content-Type"] = "application/json";
+					init.body = JSON.stringify(param);
+					break;
+			}
 		}
 
 		const res = await fetch(url.toString(), init);
@@ -32,7 +35,6 @@ class LinksImp implements Interface.IAdapter {
 
 		return await res.json();
 	}
-
 	//==============================================================================================
 
 	constructor(
@@ -65,8 +67,17 @@ class LinksImp implements Interface.IAdapter {
 	public WITHDRAWAL_BALANCE = () => {
 		return this.request<number>({ link: "WITHDRAWAL_BALANCE" });
 	};
-	public REPLENISH_BALANCE = () => {
-		return this.request<number>({ link: "REPLENISH_BALANCE" });
+	public AWAIT_PAY_DEPOSIT = (signal?: AbortSignal) => {
+		return this.request<boolean>({ link: "AWAIT_PAY_DEPOSIT", options: { signal } });
+	};
+	public IS_EXIST_DEPOSIT = () => {
+		return this.request<WalletInterface.TCheckDeposit>({ link: "IS_EXIST_DEPOSIT" });
+	};
+	public CREATE_DEPOSIT = (amount: number) => {
+		return this.request<WalletInterface.TDeposit>({ link: "CREATE_DEPOSIT", param: { amount } });
+	};
+	public REMOVE_DEPOSIT = () => {
+		return this.request({ link: "REMOVE_DEPOSIT" });
 	};
 }
 

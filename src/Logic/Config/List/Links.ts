@@ -31,8 +31,23 @@ export const Links: LinksInterface.TLinks = {
 		http: "POST",
 		role: ["USER", "ADMIN"],
 	},
-	REPLENISH_BALANCE: {
-		link: "/replenish",
+	AWAIT_PAY_DEPOSIT: {
+		link: "/awaitPayDeposit",
+		http: "GET",
+		role: ["USER", "ADMIN"],
+	},
+	IS_EXIST_DEPOSIT: {
+		link: "/isExistDeposit",
+		http: "GET",
+		role: ["USER", "ADMIN"],
+	},
+	CREATE_DEPOSIT: {
+		link: "/createDeposit",
+		http: "POST",
+		role: ["USER", "ADMIN"],
+	},
+	REMOVE_DEPOSIT: {
+		link: "/removeDeposit",
 		http: "POST",
 		role: ["USER", "ADMIN"],
 	},

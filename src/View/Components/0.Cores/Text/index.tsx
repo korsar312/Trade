@@ -21,6 +21,7 @@ export type TComponent = {
 	addContent?: MessageInterface.EWordAll[];
 	addStyle?: CSSObject[];
 	label?: TLabelPick;
+	isBreakLine?: boolean;
 };
 
 type TLabelPick = Pick<HTMLLabelElement, "htmlFor">;

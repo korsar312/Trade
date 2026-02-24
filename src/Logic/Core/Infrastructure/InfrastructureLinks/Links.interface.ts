@@ -1,6 +1,7 @@
 import type { CatalogueInterface } from "../../Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { UserInterface } from "../../Services/ServiceUser/User.interface.ts";
 import type { PublicInterface } from "../../Services/Public.interface.ts";
+import type { WalletInterface } from "../../Services/ServiceWallet/Wallet.interface.ts";
 
 export namespace LinksInterface {
 	export interface IAdapter {
@@ -10,7 +11,10 @@ export namespace LinksInterface {
 		CREATE_LISTING(params: CatalogueInterface.TReqCreate): Promise<string>;
 		GET_MY_ACC(): Promise<UserInterface.IUser>;
 		WITHDRAWAL_BALANCE(value: number): Promise<number>;
-		REPLENISH_BALANCE(value: number): Promise<number>;
+		AWAIT_PAY_DEPOSIT(signal?: AbortSignal): Promise<boolean>;
+		IS_EXIST_DEPOSIT(): Promise<WalletInterface.TCheckDeposit>;
+		CREATE_DEPOSIT(amount: number): Promise<WalletInterface.TDeposit>;
+		REMOVE_DEPOSIT(): Promise<void>;
 	}
 
 	type TLinksParam = {
@@ -19,14 +23,20 @@ export namespace LinksInterface {
 		role: PublicInterface.ERole[];
 	};
 
-	export type EMethod = keyof typeof Method;
-	export type EName = keyof typeof Names;
-	export type TLinks = Record<EName, TLinksParam>;
-
-	export type ERequestParam = {
+	export type TRequestParam = {
 		link: EName;
 		param?: Record<string, any>;
+		options?: TRequestOptions;
 	};
+
+	export type TRequestOptions = {
+		signal?: AbortSignal;
+	};
+
+	export type TLinks = Record<EName, TLinksParam>;
+
+	export type EMethod = keyof typeof Method;
+	export type EName = keyof typeof Names;
 }
 
 const Method = {
@@ -43,5 +53,8 @@ const Names = {
 	CREATE_LISTING: "CREATE_LISTING",
 	GET_MY_ACC: "GET_MY_ACC",
 	WITHDRAWAL_BALANCE: "WITHDRAWAL_BALANCE",
-	REPLENISH_BALANCE: "REPLENISH_BALANCE",
+	AWAIT_PAY_DEPOSIT: "AWAIT_PAY_DEPOSIT",
+	IS_EXIST_DEPOSIT: "IS_EXIST_DEPOSIT",
+	CREATE_DEPOSIT: "CREATE_DEPOSIT",
+	REMOVE_DEPOSIT: "REMOVE_DEPOSIT",
 } as const;

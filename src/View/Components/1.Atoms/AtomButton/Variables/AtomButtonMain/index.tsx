@@ -13,6 +13,6 @@ export type TComponent = {
 	text?: MessageInterface.EWordAll;
 	leftImage?: TImageComponent;
 	rightImage?: TImageComponent;
-} & Pick<IParent, "isDisable" | "click" | "color" | "isFullWidth" | "round" | "type">;
+} & Pick<IParent, "isDisable" | "click" | "color" | "isFullWidth" | "round" | "type" | "isLoading">;
 
 export default Component.Create(Model, Style, View, "AtomButtonMain");

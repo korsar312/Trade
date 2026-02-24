@@ -5,7 +5,7 @@ import AtomWrapper from "../../../1.Atoms/AtomWrapper";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 const View: TPresent = ({ Model }) => {
-	const { textProps, descProps, btnPlusProps, btnMinusProps } = Model;
+	const { textProps, descProps, depositProps, btnPlusProps, btnMinusProps } = Model;
 
 	return (
 		<AtomWrapper styleType={"col"}>
@@ -13,9 +13,11 @@ const View: TPresent = ({ Model }) => {
 			<SubstanceDescMap {...descProps} />
 
 			<AtomWrapper styleType={"row"}>
-				<AtomButtonMain {...btnPlusProps} />
 				<AtomButtonMain {...btnMinusProps} />
+				<AtomButtonMain {...btnPlusProps} />
 			</AtomWrapper>
+
+			{depositProps && <SubstanceDescMap {...depositProps} />}
 		</AtomWrapper>
 	);
 };

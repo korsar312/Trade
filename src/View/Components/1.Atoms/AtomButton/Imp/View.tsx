@@ -4,7 +4,20 @@ import Ripple from "../../../0.Cores/Ripple";
 import Image from "../../../0.Cores/Image/";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { textChanged, color, extStyles, rightIcon, leftIcon, isFullWidth, isFullHeight, handleClick, type, isDisable, round } = Model;
+	const {
+		textChanged,
+		color,
+		extStyles,
+		rightIcon,
+		leftIcon,
+		isFullWidth,
+		isFullHeight,
+		handleClick,
+		type,
+		isDisable,
+		round,
+		isLoading,
+	} = Model;
 
 	function iconRender(icon: TAtomButtonIcon) {
 		return (
@@ -18,8 +31,8 @@ const View: TPresent = ({ Model, Style }) => {
 
 	return (
 		<button
-			disabled={isDisable}
-			type={type}
+			disabled={Boolean(isDisable || isLoading)}
+			type={type || "button"}
 			onClick={handleClick}
 			css={[Style.wrapper(isFullWidth, isFullHeight, round), Style.color(color), extStyles]}>
 			{leftIcon && iconRender(leftIcon)}
