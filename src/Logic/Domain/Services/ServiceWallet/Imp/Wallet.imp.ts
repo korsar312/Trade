@@ -6,9 +6,16 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return { ...store, wallet };
 	}
 
+	private IsEnoughFunds(amount: number): boolean {
+		return this.store.wallet.balance < amount;
+	}
+
 	//==============================================================================================
 
-	constructor(props: IServiceProps) {
+	constructor(
+		props: IServiceProps,
+		private readonly cashoutFee: number,
+	) {
 		const store: Interface.Store = {
 			wallet: {
 				balance: 0,
@@ -40,9 +47,22 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return isSuccess;
 	}
 
+	public async withdrawBalance(tranche: Interface.TTranche): Promise<void> {
+		await this.API.Links.WITHDRAW_BALANCE(tranche);
+		await this.refreshBalance();
+	}
+
 	public async refreshBalance(): Promise<void> {
 		const balance = await this.API.Links.GET_BALANCE();
 		this.store = this.SetBalance(this.store, balance);
+	}
+
+	public isWithdrawEnoughFunds(amount: number): boolean {
+		return this.IsEnoughFunds(amount + this.getWithdrawFee());
+	}
+
+	public getWithdrawFee(): number {
+		return this.cashoutFee;
 	}
 
 	public getBalance(): Interface.TWallet {

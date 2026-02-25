@@ -7,6 +7,7 @@ import TemplateModalFormChoiceSort from "../../../Components/Templates/ModalForm
 import TemplateModalFormChoiceRating from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceRating";
 import TemplateModalFormChoiceItemType from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceItemType";
 import TemplateModalFormYouSure from "../../../Components/Templates/ModalForm/TemplateModalFormYouSure";
+import TemplateModalFormWithdraw from "../../../Components/Templates/ModalForm/TemplateModalFormWithdraw";
 
 const View: TPresent = ({ Model }) => {
 	const { modalList, closeModal } = Model;
@@ -30,6 +31,8 @@ const View: TPresent = ({ Model }) => {
 				return <TemplateModalFormChoiceItemType color={"MAIN_3"} submitFn={h2CClient} bgClick={close} />;
 			case "CONFIRM":
 				return <TemplateModalFormYouSure color={"MAIN_3"} submitFn={h2CClient} bgClick={close} />;
+			case "WITHDRAW":
+				return <TemplateModalFormWithdraw color={"MAIN_3"} submitFn={h2CClient} bgClick={close} />;
 		}
 	}
 

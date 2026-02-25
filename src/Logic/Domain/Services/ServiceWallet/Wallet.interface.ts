@@ -6,11 +6,19 @@ export namespace WalletInterface {
 		removeDeposit(): Promise<void>;
 		refreshBalance(): Promise<void>;
 		getBalance(): TWallet;
+		isWithdrawEnoughFunds(amount: number): boolean;
+		getWithdrawFee(): number;
+		withdrawBalance(tranche: TTranche): Promise<void>;
 	}
 
 	export type TWallet = {
 		balance: number;
 		hold: number;
+	};
+
+	export type TTranche = {
+		address: string;
+		amount: number;
 	};
 
 	export type TCheckDeposit = TDeposit | null;

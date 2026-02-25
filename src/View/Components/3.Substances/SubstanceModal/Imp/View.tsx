@@ -6,6 +6,7 @@ import MoleculeFormSchemaSwitchChoice from "../../../2.Molecules/MoleculeFormSch
 import MoleculeFormSchemaRadioChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
 import MoleculeFormSchemaInput from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import MoleculeFormSchemaImageQtyChoice from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
+import MoleculeFormSchemaTextDuble from "../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextDuble";
 
 const View: TPresent = ({ Model, Style }) => {
 	const { form, color, bgClick } = Model;
@@ -20,6 +21,8 @@ const View: TPresent = ({ Model, Style }) => {
 				return <MoleculeFormSchemaInput {...options} />;
 			case "IMAGE_QTY":
 				return <MoleculeFormSchemaImageQtyChoice {...options} />;
+			case "TEXT_DUBLE":
+				return <MoleculeFormSchemaTextDuble {...options} />;
 		}
 	}
 

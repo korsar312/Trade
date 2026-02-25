@@ -17,6 +17,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	async function init() {
 		await login();
 		Act.Router.setRole("USER");
+		await Act.Wallet.refreshBalance();
 
 		initDone();
 	}

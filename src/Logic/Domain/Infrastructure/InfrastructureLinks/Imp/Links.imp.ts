@@ -64,9 +64,6 @@ class LinksImp implements Interface.IAdapter {
 	public GET_MY_ACC = () => {
 		return this.request<UserInterface.IUser>({ link: "GET_MY_ACC" });
 	};
-	public WITHDRAWAL_BALANCE = () => {
-		return this.request<number>({ link: "WITHDRAWAL_BALANCE" });
-	};
 	public AWAIT_PAY_DEPOSIT = (signal?: AbortSignal) => {
 		return this.request<boolean>({ link: "AWAIT_PAY_DEPOSIT", options: { signal } });
 	};
@@ -81,6 +78,10 @@ class LinksImp implements Interface.IAdapter {
 	};
 	public GET_BALANCE = () => {
 		return this.request<WalletInterface.TWallet>({ link: "GET_BALANCE" });
+	};
+	public WITHDRAW_BALANCE = (param: WalletInterface.TTranche) => {
+		console.log(param);
+		return this.request({ link: "WITHDRAW_BALANCE", param });
 	};
 }
 

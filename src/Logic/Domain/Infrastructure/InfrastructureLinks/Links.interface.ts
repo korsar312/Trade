@@ -10,12 +10,12 @@ export namespace LinksInterface {
 		GET_ITEM(id: string, type: CatalogueInterface.ETypeItem): Promise<CatalogueInterface.TItemElPublic>;
 		CREATE_LISTING(params: CatalogueInterface.TReqCreate): Promise<string>;
 		GET_MY_ACC(): Promise<UserInterface.IUser>;
-		WITHDRAWAL_BALANCE(value: number): Promise<number>;
 		AWAIT_PAY_DEPOSIT(signal?: AbortSignal): Promise<boolean>;
 		IS_EXIST_DEPOSIT(): Promise<WalletInterface.TCheckDeposit>;
 		CREATE_DEPOSIT(amount: number): Promise<WalletInterface.TDeposit>;
 		REMOVE_DEPOSIT(): Promise<void>;
 		GET_BALANCE(): Promise<WalletInterface.TWallet>;
+		WITHDRAW_BALANCE(tranche: WalletInterface.TTranche): Promise<void>;
 	}
 
 	type TLinksParam = {
@@ -53,10 +53,10 @@ const Names = {
 	GET_ITEM: "GET_ITEM",
 	CREATE_LISTING: "CREATE_LISTING",
 	GET_MY_ACC: "GET_MY_ACC",
-	WITHDRAWAL_BALANCE: "WITHDRAWAL_BALANCE",
 	AWAIT_PAY_DEPOSIT: "AWAIT_PAY_DEPOSIT",
 	IS_EXIST_DEPOSIT: "IS_EXIST_DEPOSIT",
 	CREATE_DEPOSIT: "CREATE_DEPOSIT",
 	REMOVE_DEPOSIT: "REMOVE_DEPOSIT",
 	GET_BALANCE: "GET_BALANCE",
+	WITHDRAW_BALANCE: "WITHDRAW_BALANCE",
 } as const;

@@ -7,6 +7,7 @@ import type { TComponent as IFormChoiceMany } from "../../2.Molecules/MoleculeFo
 import type { TComponent as IFormChoiceOne } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
 import type { TComponent as IFormInput } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import type { TComponent as IFormImageQty } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
+import type { TComponent as IFormTextDuble } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextDuble";
 import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
 import type { StyleInterface } from "../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
@@ -23,6 +24,7 @@ type TMap = {
 	CHOICE_ONE: IFormChoiceOne;
 	INPUT_ONE: IFormInput;
 	IMAGE_QTY: IFormImageQty;
+	TEXT_DUBLE: IFormTextDuble;
 };
 
 export type TSubstanceModalCompType = typesUtils.OptionsUnion<TMap>;

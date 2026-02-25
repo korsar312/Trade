@@ -5,6 +5,9 @@ import { PublicInterface } from "../../Domain/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	WITHDRAWAL_OF_FUNDS: { RU: "Вывод средств" },
+	WITHDRAWAL_AMOUNT: { RU: "Сумма вывода" },
+	ADDRESS_WALLET: { RU: "Адрес кошелька" },
 	CANCEL_PAYMENT: { RU: "Отменить платеж" },
 	TIME_LEFT: { RU: "Времени осталось" },
 	SUM: { RU: "Сумма" },
@@ -47,11 +50,11 @@ const Dictionary: MessageInterface.TDictionary<TOther> = {
 	LISTING_CREATE: { RU: "Создание лота" },
 	CARD: { RU: "Б. Карта" },
 	FREE: { RU: "Свободный лот" },
-	SELECT_RATING_QTY: { RU: "Выберети желаемый рейтинг" },
-	SELECT_LISTING_TYPE: { RU: "Выберети тип лота" },
-	SELECT_SORT_TYPE: { RU: "Выберети тип сортировки" },
-	ENTER_DES_PRICE: { RU: "Введите желаемое значение цены" },
-	BANK_SELECTOR: { RU: "Выберети желаемые банки" },
+	SELECT_RATING_QTY: { RU: "Выберете желаемый рейтинг" },
+	SELECT_LISTING_TYPE: { RU: "Выберете тип лота" },
+	SELECT_SORT_TYPE: { RU: "Выберете тип сортировки" },
+	ENTER_DES_PRICE: { RU: "Введите желаемое значение" },
+	BANK_SELECTOR: { RU: "Выберете желаемые банки" },
 	TO_UPPER: { RU: "В порядке возрастания" },
 	TO_LOWER: { RU: "В порядке убывания" },
 	APPLY: { RU: "Применить" },

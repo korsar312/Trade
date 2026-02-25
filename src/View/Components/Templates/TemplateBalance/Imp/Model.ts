@@ -55,6 +55,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 
 	const btnMinusProps: IBtn = {
 		text: "WITHDRAW",
+		click: insertWithdraw,
 		...btnPubProps,
 	};
 
@@ -136,6 +137,10 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		Act.App.addModals("PRICE", (val) => val && createDeposit(val));
 	}
 
+	function insertWithdraw() {
+		Act.App.addModals("WITHDRAW", (val) => createWithdraw(val));
+	}
+
 	function checkDeposit() {
 		enabledUpdatingBtn();
 		Act.Wallet.checkDeposit().then(startAwait).finally(disabledUpdatingBtn);
@@ -144,6 +149,12 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	function createDeposit(amount: number) {
 		enabledUpdatingBtn();
 		Act.Wallet.createDeposit(amount).then(startAwait).finally(disabledUpdatingBtn);
+	}
+
+	function createWithdraw(tranche: WalletInterface.TTranche) {
+		enabledUpdatingBtn();
+		console.log(tranche);
+		Act.Wallet.withdrawBalance(tranche).finally(disabledUpdatingBtn);
 	}
 
 	function startAwait(dep: WalletInterface.TCheckDeposit) {

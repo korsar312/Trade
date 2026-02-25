@@ -1,6 +1,7 @@
-import { type CatalogueInterface } from "./ServiceCatalogue/Catalogue.interface.ts";
+import type { CatalogueInterface } from "./ServiceCatalogue/Catalogue.interface.ts";
 import type { SettingInterface } from "./ServiceSetting/Setting.interface.ts";
 import type { AppInterface } from "./ServiceApp/App.interface.ts";
+import type { WalletInterface } from "./ServiceWallet/Wallet.interface.ts";
 
 export namespace PublicInterface {
 	const nameValue = {
@@ -25,6 +26,7 @@ export namespace PublicInterface {
 		RATING: {} as TRating | null,
 		TYPE_ITEM: {} as CatalogueInterface.ETypeItem,
 		CONFIRM: {} as boolean,
+		WITHDRAW: {} as WalletInterface.TTranche,
 	} as const satisfies Record<AppInterface.EModalName, unknown>;
 
 	export type TModalVal<T extends AppInterface.EModalName> = { [K in keyof typeof ModalValue]: (typeof ModalValue)[K] }[T];
