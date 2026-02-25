@@ -1,6 +1,6 @@
 import type { TModel } from "../../../../CreateComponent.tsx";
 import type { TAtomButtonGeneralGroup, TComponent } from "../index";
-import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
+import type { StyleInterface } from "../../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 import type { TComponent as IImage } from "../../../0.Cores/Image";
 import type { TComponent as IText } from "../../../0.Cores/Text";
 import type { MouseEvent } from "react";

@@ -1,7 +1,7 @@
 import Mixins from "./Mixins/Mixins";
 import Variables from "./Variables/Variables";
 import StyleP from "./StyleP/StyleP";
-import type { StyleInterface } from "../Logic/Core/Services/ServiceStyle/Style.interface.ts";
+import type { StyleInterface } from "../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 import "./Normalize.css";
 import "../Assets/Fonts/Fonts.css";
 import { Act } from "../View/Init.ts";

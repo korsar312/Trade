@@ -79,6 +79,9 @@ class LinksImp implements Interface.IAdapter {
 	public REMOVE_DEPOSIT = () => {
 		return this.request({ link: "REMOVE_DEPOSIT" });
 	};
+	public GET_BALANCE = () => {
+		return this.request<WalletInterface.TWallet>({ link: "GET_BALANCE" });
+	};
 }
 
 export default LinksImp;

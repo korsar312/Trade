@@ -6,7 +6,7 @@ import type { TView } from "../../../CreateComponent.tsx";
 import type { TComponent as IText } from "../../0.Cores/Text";
 import type { TComponent as IImage } from "../../0.Cores/Image";
 import type { TDeepCSSObject, TTagPartial } from "../../../ViewUtils.tsx";
-import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
+import type { StyleInterface } from "../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 import type { MouseEvent } from "react";
 
 export type TPresent = TView<typeof Model, typeof Style>;

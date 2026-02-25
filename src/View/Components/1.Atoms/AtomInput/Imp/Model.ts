@@ -1,9 +1,9 @@
 import type { TModel } from "../../../../CreateComponent.tsx";
 import type { TAtomInputGeneralGroup, TAtomInputIcon, TAtomInputText, TAtomInputTextPick, TComponent } from "../index";
 import React, { useState } from "react";
-import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
+import type { MessageInterface } from "../../../../../Logic/Domain/Services/ServiceMessage/Message.interface.ts";
 import type { TComponent as IImage } from "../../../0.Cores/Image";
-import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
+import type { StyleInterface } from "../../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const { color, initText, onClick, onChange, iconsLeft, iconsRight, placeholder, valid, ...rest } = Props;

@@ -3,8 +3,8 @@ import Model from "./Imp/Model.ts";
 import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
-import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
-import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
+import type { MessageInterface } from "../../../../Logic/Domain/Services/ServiceMessage/Message.interface.ts";
+import type { StyleInterface } from "../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 import type { CSSObject } from "@emotion/react";
 

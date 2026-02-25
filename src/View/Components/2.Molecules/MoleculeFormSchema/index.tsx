@@ -13,7 +13,7 @@ import type { TComponent as ISwitch } from "../../1.Atoms/AtomToggle/Variables/A
 import type { TComponent as IRadio } from "../../1.Atoms/AtomToggle/Variables/AtomToggleRadio";
 import type { TComponent as IImage } from "../../0.Cores/Image";
 import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
-import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
+import type { StyleInterface } from "../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 

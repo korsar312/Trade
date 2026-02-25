@@ -1,6 +1,6 @@
 import type { TModel } from "../../../../../CreateComponent.tsx";
 import type { TComponent } from "../";
-import { PublicInterface } from "../../../../../../Logic/Core/Services/Public.interface.ts";
+import { PublicInterface } from "../../../../../../Logic/Domain/Services/Public.interface.ts";
 import type { TSchemaImageQty } from "../../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
 import type { TComponent as IProp } from "../../../../3.Substances/SubstanceModal";
 

@@ -1,6 +1,6 @@
 import type { TPresent } from "../";
 import { Fragment, type ReactElement } from "react";
-import type { AppInterface } from "../../../../Logic/Core/Services/ServiceApp/App.interface.ts";
+import type { AppInterface } from "../../../../Logic/Domain/Services/ServiceApp/App.interface.ts";
 import TemplateModalFormChoicePriceParam from "../../../Components/Templates/ModalForm/TemplateModalFormChoicePriceParam";
 import TemplateModalFormChoiceBank from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceBank";
 import TemplateModalFormChoiceSort from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceSort";

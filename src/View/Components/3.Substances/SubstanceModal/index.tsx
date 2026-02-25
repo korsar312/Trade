@@ -8,7 +8,7 @@ import type { TComponent as IFormChoiceOne } from "../../2.Molecules/MoleculeFor
 import type { TComponent as IFormInput } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaInput";
 import type { TComponent as IFormImageQty } from "../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaImageQtyChoice";
 import type { typesUtils } from "../../../../Logic/Libs/Util/TypesUtils.ts";
-import type { StyleInterface } from "../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
+import type { StyleInterface } from "../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 

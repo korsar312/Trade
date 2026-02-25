@@ -6,10 +6,6 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return { ...store, wallet };
 	}
 
-	public async RequestBalance(): Promise<Interface.TWallet> {
-		return new Promise((resolve) => resolve({ balance: 0, hold: 0 }));
-	}
-
 	//==============================================================================================
 
 	constructor(props: IServiceProps) {
@@ -33,6 +29,10 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return await this.API.Links.CREATE_DEPOSIT(amount);
 	}
 
+	public async removeDeposit(): Promise<void> {
+		return await this.API.Links.REMOVE_DEPOSIT();
+	}
+
 	public async awaitPayDeposit(signal?: AbortSignal): Promise<boolean> {
 		const isSuccess = await this.API.Links.AWAIT_PAY_DEPOSIT(signal);
 		await this.refreshBalance();
@@ -40,12 +40,8 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return isSuccess;
 	}
 
-	public async removeDeposit(): Promise<void> {
-		return await this.API.Links.REMOVE_DEPOSIT();
-	}
-
 	public async refreshBalance(): Promise<void> {
-		const balance = await this.RequestBalance();
+		const balance = await this.API.Links.GET_BALANCE();
 		this.store = this.SetBalance(this.store, balance);
 	}
 

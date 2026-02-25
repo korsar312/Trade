@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import type { PageParam } from "../../../Config/List/Routes.ts";
-import type { RouterInterface } from "../../../Core/Services/ServiceRouter/Router.interface.ts";
+import type { RouterInterface } from "../../../Domain/Services/ServiceRouter/Router.interface.ts";
 
 /**
  * Хук параметров страницы

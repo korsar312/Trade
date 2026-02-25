@@ -1,4 +1,4 @@
-import type { StyleInterface } from "../../Core/Services/ServiceStyle/Style.interface.ts";
+import type { StyleInterface } from "../../Domain/Services/ServiceStyle/Style.interface.ts";
 
 export const Colors: StyleInterface.TColor = {
 	DARK: {

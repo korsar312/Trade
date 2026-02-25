@@ -1,16 +1,16 @@
-import type { InfrastructureLinks } from "../Infrastructure/InfrastructureLinks";
-import type { ServiceMessage } from "../Services/ServiceMessage";
-import type { ServiceStyle } from "../Services/ServiceStyle";
-import type { ServiceRouter } from "../Services/ServiceRouter";
-import type { ServiceBasket } from "../Services/ServiceBasket";
-import type { ServiceWallet } from "../Services/ServiceWallet";
-import type { ServiceSetting } from "../Services/ServiceSetting";
-import type { ServicePayment } from "../Services/ServicePayment";
-import type { ServiceOrder } from "../Services/ServiceOrder";
-import type { ServiceCatalogue } from "../Services/ServiceCatalogue";
-import type { ServiceUser } from "../Services/ServiceUser";
-import type { ServiceApp } from "../Services/ServiceApp";
-import type { InfrastructureStorage } from "../Infrastructure/InfrastructureStorage";
+import type { InfrastructureLinks } from "../../Domain/Infrastructure/InfrastructureLinks";
+import type { ServiceMessage } from "../../Domain/Services/ServiceMessage";
+import type { ServiceStyle } from "../../Domain/Services/ServiceStyle";
+import type { ServiceRouter } from "../../Domain/Services/ServiceRouter";
+import type { ServiceBasket } from "../../Domain/Services/ServiceBasket";
+import type { ServiceWallet } from "../../Domain/Services/ServiceWallet";
+import type { ServiceSetting } from "../../Domain/Services/ServiceSetting";
+import type { ServicePayment } from "../../Domain/Services/ServicePayment";
+import type { ServiceOrder } from "../../Domain/Services/ServiceOrder";
+import type { ServiceCatalogue } from "../../Domain/Services/ServiceCatalogue";
+import type { ServiceUser } from "../../Domain/Services/ServiceUser";
+import type { ServiceApp } from "../../Domain/Services/ServiceApp";
+import type { InfrastructureStorage } from "../../Domain/Infrastructure/InfrastructureStorage";
 
 export namespace ProjectInterface {
 	export type TModuleInf = {

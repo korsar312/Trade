@@ -3,7 +3,7 @@ import type { TComponent } from "../";
 import type { TComponent as IProp } from "../../../../Components/3.Substances/SubstanceDescMap";
 import type { TComponent as IText } from "../../../0.Cores/Text";
 import type { TComponent as IBtn } from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
-import type { WalletInterface } from "../../../../../Logic/Core/Services/ServiceWallet/Wallet.interface.ts";
+import type { WalletInterface } from "../../../../../Logic/Domain/Services/ServiceWallet/Wallet.interface.ts";
 import { useEffect, useRef, useState } from "react";
 import { useUpdate } from "../../../../../Logic/Libs/Hooks/useUpdate/useUpdate.ts";
 

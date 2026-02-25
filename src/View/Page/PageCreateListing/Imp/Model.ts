@@ -1,7 +1,7 @@
 import type { TModel } from "../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
-import { type CatalogueInterface, CatalogueTypeItemArr } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import { type CatalogueInterface, CatalogueTypeItemArr } from "../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;

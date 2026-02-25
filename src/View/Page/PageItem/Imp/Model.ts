@@ -1,6 +1,6 @@
 import type { TModel } from "../../../CreateComponent.tsx";
 import type { TComponent } from "../";
-import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import type { CatalogueInterface } from "../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
 import { useEffect } from "react";
 

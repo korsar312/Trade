@@ -1,6 +1,6 @@
-import type { MessageInterface } from "../../Core/Services/ServiceMessage/Message.interface.ts";
-import type { CatalogueInterface } from "../../Core/Services/ServiceCatalogue/Catalogue.interface.ts";
-import { PublicInterface } from "../../Core/Services/Public.interface.ts";
+import type { MessageInterface } from "../../Domain/Services/ServiceMessage/Message.interface.ts";
+import type { CatalogueInterface } from "../../Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
+import { PublicInterface } from "../../Domain/Services/Public.interface.ts";
 
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 

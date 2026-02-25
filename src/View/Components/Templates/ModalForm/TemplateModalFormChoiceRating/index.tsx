@@ -5,7 +5,7 @@ import View from "./Imp/View.tsx";
 import type { TView } from "../../../../CreateComponent.tsx";
 import { observer } from "mobx-react";
 import type { TComponent as IProp } from "../../../3.Substances/SubstanceModal";
-import type { PublicInterface } from "../../../../../Logic/Core/Services/Public.interface.ts";
+import type { PublicInterface } from "../../../../../Logic/Domain/Services/Public.interface.ts";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 

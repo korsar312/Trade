@@ -1,7 +1,7 @@
 import type { TModel } from "../../../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import type { TSchemaRadio } from "../../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
-import { PublicInterface, PublicSortArr } from "../../../../../../Logic/Core/Services/Public.interface.ts";
+import { PublicInterface, PublicSortArr } from "../../../../../../Logic/Domain/Services/Public.interface.ts";
 import type { TComponent as IProp } from "../../../../3.Substances/SubstanceModal";
 
 function Model({ Props }: TModel<TComponent>) {

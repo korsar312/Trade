@@ -15,6 +15,7 @@ export namespace LinksInterface {
 		IS_EXIST_DEPOSIT(): Promise<WalletInterface.TCheckDeposit>;
 		CREATE_DEPOSIT(amount: number): Promise<WalletInterface.TDeposit>;
 		REMOVE_DEPOSIT(): Promise<void>;
+		GET_BALANCE(): Promise<WalletInterface.TWallet>;
 	}
 
 	type TLinksParam = {
@@ -57,4 +58,5 @@ const Names = {
 	IS_EXIST_DEPOSIT: "IS_EXIST_DEPOSIT",
 	CREATE_DEPOSIT: "CREATE_DEPOSIT",
 	REMOVE_DEPOSIT: "REMOVE_DEPOSIT",
+	GET_BALANCE: "GET_BALANCE",
 } as const;

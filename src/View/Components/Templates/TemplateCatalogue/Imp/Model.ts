@@ -4,11 +4,11 @@ import type { TComponent as IProp } from "../../../4.Structures/StructuresCatalo
 import { useEffect, useState } from "react";
 import type { TMoleculeRowControlCompType } from "../../../2.Molecules/MoleculeRowControl";
 import { useDidUpdate } from "../../../../../Logic/Libs/Hooks/useDidUpdate/useDidUpdate.ts";
-import { PublicInterface } from "../../../../../Logic/Core/Services/Public.interface.ts";
-import type { CatalogueInterface } from "../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import { PublicInterface } from "../../../../../Logic/Domain/Services/Public.interface.ts";
+import type { CatalogueInterface } from "../../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { EAtomButtonColor } from "../../../1.Atoms/AtomButton";
 import Util from "../../../../../Logic/Libs/Util";
-import type { SettingInterface } from "../../../../../Logic/Core/Services/ServiceSetting/Setting.interface.ts";
+import type { SettingInterface } from "../../../../../Logic/Domain/Services/ServiceSetting/Setting.interface.ts";
 
 const keyStorageSort = "CARD_SORT_NAME" satisfies SettingInterface.ENameStorage;
 const keyStorageFilter = "CARD_FILTER_NAME" satisfies SettingInterface.ENameStorage;

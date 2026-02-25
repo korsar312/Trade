@@ -4,7 +4,7 @@ import type { TSchemaRadio } from "../../../../2.Molecules/MoleculeFormSchema/Va
 import {
 	type CatalogueInterface,
 	CatalogueTypeItemArr,
-} from "../../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+} from "../../../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { TComponent as IProp } from "../../../../3.Substances/SubstanceModal";
 
 function Model({ Props }: TModel<TComponent>) {

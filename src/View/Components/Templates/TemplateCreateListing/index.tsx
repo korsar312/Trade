@@ -4,7 +4,7 @@ import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
 import { observer } from "mobx-react";
-import type { CatalogueInterface } from "../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+import type { CatalogueInterface } from "../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 

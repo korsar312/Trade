@@ -2,8 +2,8 @@ import type { TModel } from "../../../../CreateComponent.tsx";
 
 import type { TAtomTextareaText, TAtomTextareaTextPick, TComponent } from "../index";
 import { useState } from "react";
-import type { MessageInterface } from "../../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
-import type { StyleInterface } from "../../../../../Logic/Core/Services/ServiceStyle/Style.interface.ts";
+import type { MessageInterface } from "../../../../../Logic/Domain/Services/ServiceMessage/Message.interface.ts";
+import type { StyleInterface } from "../../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const { color, initText, placeholder, onChange, valid, value, ...rest } = Props;

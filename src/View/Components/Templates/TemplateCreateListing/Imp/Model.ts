@@ -5,7 +5,7 @@ import {
 	CatalogueBankArr,
 	type CatalogueInterface,
 	CatalogueTypeItemArr,
-} from "../../../../../Logic/Core/Services/ServiceCatalogue/Catalogue.interface.ts";
+} from "../../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 import { useRef } from "react";
 import type {
 	TComponent as ITextTriple,

@@ -1,6 +1,6 @@
 import type { TModel } from "../../../CreateComponent.tsx";
 import type { TComponent } from "../";
-import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
+import type { MessageInterface } from "../../../../Logic/Domain/Services/ServiceMessage/Message.interface.ts";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;

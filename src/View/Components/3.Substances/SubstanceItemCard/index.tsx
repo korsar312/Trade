@@ -4,7 +4,7 @@ import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
 import type { TImageComponent } from "../../0.Cores/Image";
-import type { MessageInterface } from "../../../../Logic/Core/Services/ServiceMessage/Message.interface.ts";
+import type { MessageInterface } from "../../../../Logic/Domain/Services/ServiceMessage/Message.interface.ts";
 import type { TComponent as IBtn } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 
 export type TPresent = TView<typeof Model, typeof Style>;

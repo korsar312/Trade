@@ -1,7 +1,7 @@
 import type { TModel } from "../../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import type { TComponent as IControl, TMoleculeRowControlCompType } from "../../../2.Molecules/MoleculeRowControl";
-import type { RouterInterface } from "../../../../../Logic/Core/Services/ServiceRouter/Router.interface.ts";
+import type { RouterInterface } from "../../../../../Logic/Domain/Services/ServiceRouter/Router.interface.ts";
 import type { TImageComponent } from "../../../0.Cores/Image";
 
 const Btn = {
