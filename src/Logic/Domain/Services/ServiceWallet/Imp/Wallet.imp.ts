@@ -10,17 +10,28 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return this.store.wallet.balance < amount;
 	}
 
+	private GetCashoutFee(): number {
+		return this.store.cashoutFee;
+	}
+
+	private GetServiceFee(): number {
+		return this.store.serviceFee;
+	}
+
+	private GetBalance(): number {
+		return this.store.wallet.balance;
+	}
+
 	//==============================================================================================
 
-	constructor(
-		props: IServiceProps,
-		private readonly cashoutFee: number,
-	) {
+	constructor(props: IServiceProps) {
 		const store: Interface.Store = {
 			wallet: {
 				balance: 0,
 				hold: 0,
 			},
+			cashoutFee: 0,
+			serviceFee: 0,
 		};
 
 		super(props, store);
@@ -58,15 +69,29 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 	}
 
 	public isWithdrawEnoughFunds(amount: number): boolean {
-		return this.IsEnoughFunds(amount + this.getWithdrawFee());
+		return this.IsEnoughFunds(amount + this.GetCashoutFee());
 	}
 
-	public getWithdrawFee(): number {
-		return this.cashoutFee;
+	public getBalance(): number {
+		return this.GetBalance();
 	}
 
-	public getBalance(): Interface.TWallet {
-		return this.store.wallet;
+	public getCashoutFee(): number {
+		return this.GetCashoutFee();
+	}
+
+	public getServiceFee(): number {
+		return this.GetServiceFee();
+	}
+
+	public isAvailableBuy(amount: number): boolean {
+		const fullPrice = (amount * this.getServiceFee()) / 100;
+
+		return this.GetBalance() >= fullPrice;
+	}
+
+	public isAvailableWithdraw(amount: number): boolean {
+		return this.GetBalance() >= amount + this.GetCashoutFee();
 	}
 }
 

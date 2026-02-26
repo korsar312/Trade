@@ -17,11 +17,15 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		Act.Catalogue.requestItem(itemId, itemType);
 	}, [itemId]);
 
+	function buyHandler() {
+		Act.Payment.buyLot("");
+	}
+
 	function goBack() {
 		Act.Router.goBack();
 	}
 
-	return { image, itemId, goBack };
+	return { image, itemId, buyHandler, goBack };
 }
 
 export default Model;

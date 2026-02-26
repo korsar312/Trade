@@ -11,6 +11,10 @@ class PaymentImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 	}
 
 	//==============================================================================================
+
+	public async buyLot(lotId: string) {
+		return lotId;
+	}
 }
 
 export default PaymentImp;

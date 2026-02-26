@@ -46,7 +46,7 @@ function createServices() {
 	const basketImp = new BasketImp(inf);
 	const basket = new ServiceBasket(basketImp);
 
-	const walletImp = new WalletImp(inf, Consts.cashoutFee);
+	const walletImp = new WalletImp(inf);
 	const wallet = new ServiceWallet(walletImp);
 
 	const settingImp = new SettingImp(inf);

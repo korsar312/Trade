@@ -5,10 +5,13 @@ export namespace WalletInterface {
 		awaitPayDeposit(signal?: AbortSignal): Promise<boolean>;
 		removeDeposit(): Promise<void>;
 		refreshBalance(): Promise<void>;
-		getBalance(): TWallet;
+		getBalance(): number;
 		isWithdrawEnoughFunds(amount: number): boolean;
-		getWithdrawFee(): number;
 		withdrawBalance(tranche: TTranche): Promise<void>;
+		getCashoutFee(): number;
+		getServiceFee(): number;
+		isAvailableBuy(amount: number): boolean;
+		isAvailableWithdraw(amount: number): boolean;
 	}
 
 	export type TWallet = {
@@ -32,5 +35,7 @@ export namespace WalletInterface {
 
 	export interface Store {
 		wallet: TWallet;
+		cashoutFee: number;
+		serviceFee: number;
 	}
 }

@@ -71,7 +71,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				id: "1",
 				key: { text: "BALANCE" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(balance.balance) }],
+					compRow: [{ id: "1", type: "TEXT", options: textProp(balance) }],
 				},
 			},
 			{
