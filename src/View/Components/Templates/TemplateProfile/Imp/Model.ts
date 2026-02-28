@@ -11,28 +11,28 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const rating = Act.User.getRating();
 	const createdTime = Act.User.getCreatedTime();
 
-	const textProps: IText = {
-		text: "YOUR_PROFILE",
-	};
-
 	const descProps: IProp = {
 		rows: [
 			{
 				id: "1",
+				key: { text: "YOUR_PROFILE" },
+			},
+			{
+				id: "2",
 				key: { text: "NAME" },
 				value: {
 					compRow: [{ id: "1", type: "TEXT", options: textProp(name) }],
 				},
 			},
 			{
-				id: "2",
+				id: "3",
 				key: { text: "LOGIN" },
 				value: {
 					compRow: [{ id: "1", type: "TEXT", options: textProp(login) }],
 				},
 			},
 			{
-				id: "3",
+				id: "4",
 				key: { text: "RATING" },
 				value: {
 					compRow:
@@ -46,7 +46,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				},
 			},
 			{
-				id: "4",
+				id: "5",
 				key: { text: "CREATED" },
 				value: {
 					compRow: [{ id: "1", type: "TEXT", options: textProp(new Date(createdTime).toDateString()) }],
@@ -59,7 +59,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		return { text, pos: "left" };
 	}
 
-	return { textProps, descProps };
+	return { descProps };
 }
 
 export default Model;

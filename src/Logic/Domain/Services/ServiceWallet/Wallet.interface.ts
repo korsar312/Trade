@@ -6,6 +6,7 @@ export namespace WalletInterface {
 		removeDeposit(): Promise<void>;
 		refreshBalance(): Promise<void>;
 		getBalance(): number;
+		getHold(): number;
 		isWithdrawEnoughFunds(amount: number): boolean;
 		withdrawBalance(tranche: TTranche): Promise<void>;
 		getCashoutFee(): number;

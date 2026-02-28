@@ -34,6 +34,11 @@ class Style extends Styles {
 		${this.key};
 		background: ${this.getColor("MAIN_4")};
 		border-right: ${this.border};
+
+		&:not(:has(+ td)) {
+			text-align: center;
+			border-right: none;
+		}
 	`;
 
 	public keyV: CSSObject = css`

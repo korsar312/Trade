@@ -5,6 +5,7 @@ import { PublicInterface } from "../../Domain/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	HOLD: { RU: "Холд" },
 	WITHDRAWAL_OF_FUNDS: { RU: "Вывод средств" },
 	WITHDRAWAL_AMOUNT: { RU: "Сумма вывода" },
 	ADDRESS_WALLET: { RU: "Адрес кошелька" },
@@ -17,7 +18,7 @@ const Dictionary: MessageInterface.TDictionary<TOther> = {
 	LINK: { RU: "Привязать" },
 	LINKED_WALLET_ADDRESS: { RU: "Адрес привязанного кошелька" },
 	BALANCE: { RU: "Баланс" },
-	YOUR_BALANCE: { RU: "Ваш баланс" },
+	BALANCE_INFO: { RU: "Информация о балансе" },
 	YOUR_PROFILE: { RU: "Ваш профиль" },
 	WITHDRAW: { RU: "Вывести" },
 	DEPOSIT: { RU: "Пополнить" },

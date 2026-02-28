@@ -16,7 +16,7 @@ export type TSubstanceDescMapRow = {
 	id: string;
 	key?: IText;
 	type?: TSubstanceDescMapRowType;
-	value: IControl;
+	value?: IControl;
 };
 
 export type TSubstanceDescMapRowType = "vert" | "hor";

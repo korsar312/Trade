@@ -22,6 +22,10 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 		return this.store.wallet.balance;
 	}
 
+	private GetHold(): number {
+		return this.store.wallet.hold;
+	}
+
 	//==============================================================================================
 
 	constructor(props: IServiceProps) {
@@ -74,6 +78,10 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 
 	public getBalance(): number {
 		return this.GetBalance();
+	}
+
+	public getHold(): number {
+		return this.GetHold();
 	}
 
 	public getCashoutFee(): number {

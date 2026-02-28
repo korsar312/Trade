@@ -1,6 +1,5 @@
 import type { TPresent, TSubstanceDescMapRow } from "../index.tsx";
-import type { TComponent as IText } from "../../../0.Cores/Text";
-import Text from "../../../0.Cores/Text";
+import Text, { type TComponent as IText } from "../../../0.Cores/Text";
 import type { TComponent as IControl } from "../../../2.Molecules/MoleculeRowControl";
 import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
 import { Fragment, type ReactElement } from "react";
@@ -21,8 +20,16 @@ const View: TPresent = ({ Model, Style }) => {
 	function rowHorizontal(props: TSubstanceDescMapRow) {
 		return (
 			<tr>
-				{props.key && <td css={Style.keyG}>{renderKey(props.key)}</td>}
-				<td css={Style.valueG}>{renderValue(props.value)}</td>
+				{props.key && (
+					<td colSpan={props.value ? 1 : 2} css={Style.keyG}>
+						{renderKey(props.key)}
+					</td>
+				)}
+				{props.value && (
+					<td colSpan={props.key ? 1 : 2} css={Style.valueG}>
+						{renderValue(props.value)}
+					</td>
+				)}
 			</tr>
 		);
 	}
@@ -37,11 +44,13 @@ const View: TPresent = ({ Model, Style }) => {
 						</td>
 					</tr>
 				)}
-				<tr>
-					<td css={[Style.valueV]} colSpan={2}>
-						{renderValue(props.value)}
-					</td>
-				</tr>
+				{props.value && (
+					<tr>
+						<td css={[Style.valueV]} colSpan={2}>
+							{renderValue(props.value)}
+						</td>
+					</tr>
+				)}
 			</Fragment>
 		);
 	}

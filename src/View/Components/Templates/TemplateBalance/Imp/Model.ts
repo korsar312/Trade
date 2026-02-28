@@ -11,6 +11,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;
 
 	const balance = Act.Wallet.getBalance();
+	const hold = Act.Wallet.getHold();
 
 	const [isUpdateBtn, enabledUpdatingBtn, disabledUpdatingBtn] = useUpdate(true);
 	const [isUpdateCancel, enabledUpdatingCancel, disabledUpdatingCancel] = useUpdate();
@@ -42,10 +43,6 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		};
 	}, [deposit]);
 
-	const textProps: IText = {
-		text: "YOUR_BALANCE",
-	};
-
 	const btnPubProps: IBtn = {
 		isFullWidth: true,
 		color: "BLUE_2",
@@ -69,13 +66,24 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		rows: [
 			{
 				id: "1",
+				key: { text: "BALANCE_INFO" },
+			},
+			{
+				id: "2",
 				key: { text: "BALANCE" },
 				value: {
 					compRow: [{ id: "1", type: "TEXT", options: textProp(balance) }],
 				},
 			},
 			{
-				id: "2",
+				id: "3",
+				key: { text: "HOLD" },
+				value: {
+					compRow: [{ id: "1", type: "TEXT", options: textProp(hold) }],
+				},
+			},
+			{
+				id: "4",
 				key: { text: "LINKED_WALLET_ADDRESS" },
 				value: {
 					compRow: [{ id: "1", type: "BTN_MAIN", options: { text: "LINK", color: "MAIN_3", isFullWidth: true } }],
@@ -204,7 +212,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		return { text, pos: "left" };
 	}
 
-	return { textProps, descProps, depositProps, btnPlusProps, btnMinusProps };
+	return { descProps, depositProps, btnPlusProps, btnMinusProps };
 }
 
 export default Model;
