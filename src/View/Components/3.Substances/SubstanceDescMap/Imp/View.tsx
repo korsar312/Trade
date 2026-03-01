@@ -5,7 +5,7 @@ import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
 import { Fragment, type ReactElement } from "react";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { rows } = Model;
+	const { rows, noCompact } = Model;
 
 	function row(props: TSubstanceDescMapRow): ReactElement {
 		switch (props.type) {
@@ -64,7 +64,7 @@ const View: TPresent = ({ Model, Style }) => {
 	}
 
 	return (
-		<div css={Style.wrapper}>
+		<div css={Style.wrapper(noCompact)}>
 			<table css={Style.table}>
 				<tbody>
 					{rows.map((el) => (

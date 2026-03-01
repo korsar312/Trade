@@ -97,20 +97,33 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		rows: [
 			{
 				id: "1",
+				key: {
+					text: "DEP_INSTRUCTION",
+					addContent: [deposit.amount],
+					color: "SECOND_1",
+					addStyle: [
+						{ color: Act.Style.getColor("RED_3") },
+						{ color: Act.Style.getColor("RED_3") },
+						{ color: Act.Style.getColor("RED_3") },
+					],
+				},
+			},
+			{
+				id: "2",
 				key: { text: "ADDRESS" },
 				value: {
 					compRow: [{ id: "1", type: "TEXT", options: { ...textProp(deposit.address), isBreakLine: true } }],
 				},
 			},
 			{
-				id: "2",
+				id: "3",
 				key: { text: "SUM" },
 				value: {
 					compRow: [{ id: "1", type: "TEXT", options: textProp(deposit.amount) }],
 				},
 			},
 			{
-				id: "3",
+				id: "4",
 				key: { text: "TIME_LEFT" },
 				value: {
 					compRow:
@@ -120,7 +133,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				},
 			},
 			{
-				id: "4",
+				id: "5",
 				value: {
 					compRow: [
 						{
@@ -161,7 +174,6 @@ function Model({ Props, Act }: TModel<TComponent>) {
 
 	function createWithdraw(tranche: WalletInterface.TTranche) {
 		enabledUpdatingBtn();
-		console.log(tranche);
 		Act.Wallet.withdrawBalance(tranche).finally(disabledUpdatingBtn);
 	}
 

@@ -10,6 +10,7 @@ export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
 	rows: TSubstanceDescMapRow[];
+	noCompact?: boolean;
 };
 
 export type TSubstanceDescMapRow = {

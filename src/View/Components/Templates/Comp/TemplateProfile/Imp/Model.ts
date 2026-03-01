@@ -53,6 +53,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				},
 			},
 		],
+		noCompact: true,
 	};
 
 	function textProp(text: string): IText {

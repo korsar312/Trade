@@ -9,8 +9,10 @@ type TComponent = {
 function Template(Act: ProjectInterface.TActService, props: TComponent): TProps {
 	const { id, ...rest } = props;
 
-	const price = Act.Catalogue.getPrice(id);
+	const price = Act.Catalogue.getPrice(id) || Infinity;
+	const userBalance = Act.Wallet.getBalance();
 	const priceFormat = Util.toMoney(price);
+	const isDisable = price > userBalance;
 
 	function click() {
 		Act.App.addModals("CONFIRM", buyItem);
@@ -24,7 +26,7 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TProps 
 		Act.Router.goTo("ITEM");
 	}
 
-	return { text: priceFormat, isFullWidth: true, color: "BLUE_2", click, ...rest };
+	return { text: priceFormat, isFullWidth: true, color: "BLUE_2", click, isDisable, ...rest };
 }
 
 export default Template;

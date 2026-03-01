@@ -5,12 +5,15 @@ import { PublicInterface } from "../../Domain/Services/Public.interface.ts";
 type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	DEP_INSTRUCTION: {
+		RU: "Для пополнения баланса выполните перевод [[1]]РОВНО[[2]] на сумму [[2]]{{1}}[[3]] USDT по сети [[3]]TRC20[[4]]",
+	},
 	HOLD: { RU: "Холд" },
 	WITHDRAWAL_OF_FUNDS: { RU: "Вывод средств" },
 	WITHDRAWAL_AMOUNT: { RU: "Сумма вывода" },
 	ADDRESS_WALLET: { RU: "Адрес кошелька" },
 	CANCEL_PAYMENT: { RU: "Отменить платеж" },
-	TIME_LEFT: { RU: "Времени осталось" },
+	TIME_LEFT: { RU: "Осталось" },
 	SUM: { RU: "Сумма" },
 	ADDRESS: { RU: "Адрес" },
 	NO_RATING: { RU: "Нет рейтинга" },

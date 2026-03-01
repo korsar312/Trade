@@ -8,14 +8,12 @@ const View: TPresent = ({ Model }) => {
 
 	return (
 		<AtomWrapper styleType={"col"}>
-			<SubstanceDescMap {...descProps} />
+			{depositProps ? <SubstanceDescMap {...depositProps} /> : <SubstanceDescMap {...descProps} />}
 
 			<AtomWrapper styleType={"row"}>
 				<AtomButtonMain {...btnMinusProps} />
 				<AtomButtonMain {...btnPlusProps} />
 			</AtomWrapper>
-
-			{depositProps && <SubstanceDescMap {...depositProps} />}
 		</AtomWrapper>
 	);
 };

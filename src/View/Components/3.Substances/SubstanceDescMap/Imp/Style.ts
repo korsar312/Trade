@@ -15,12 +15,15 @@ class Style extends Styles {
 		width: 100%;
 	`;
 
-	public wrapper: CSSObject = css`
-		${this.mixins.noScrollBar};
-		border-radius: ${this.variables.radiusStandard}px;
-		border-collapse: collapse;
-		max-height: 100%;
-	`;
+	public wrapper(noCompact?: boolean): CSSObject {
+		return css`
+			${noCompact ? "overflow: clip" : this.mixins.noScrollBar};
+
+			border-radius: ${this.variables.radiusStandard}px;
+			border-collapse: collapse;
+			max-height: 100%;
+		`;
+	}
 
 	public table: CSSObject = css`
 		border-collapse: collapse;
