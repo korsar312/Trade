@@ -16,6 +16,7 @@ export namespace LinksInterface {
 		REMOVE_DEPOSIT(): Promise<void>;
 		GET_BALANCE(): Promise<WalletInterface.TWallet>;
 		WITHDRAW_BALANCE(tranche: WalletInterface.TTranche): Promise<void>;
+		START_BUY_ITEM(id: string): Promise<void>;
 	}
 
 	type TLinksParam = {
@@ -59,4 +60,5 @@ const Names = {
 	REMOVE_DEPOSIT: "REMOVE_DEPOSIT",
 	GET_BALANCE: "GET_BALANCE",
 	WITHDRAW_BALANCE: "WITHDRAW_BALANCE",
+	START_BUY_ITEM: "START_BUY_ITEM",
 } as const;

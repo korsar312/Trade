@@ -19,11 +19,11 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TProps 
 	}
 
 	function buyItem() {
-		Act.Payment.buyLot(id).then(goItem);
+		Act.Payment.buyLot(id).then(goItem).finally(Act.Wallet.refreshBalance);
 	}
 
 	function goItem() {
-		Act.Router.goTo("ITEM");
+		Act.Router.goTo("INFO");
 	}
 
 	return { text: priceFormat, isFullWidth: true, color: "BLUE_2", click, isDisable, ...rest };

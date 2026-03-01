@@ -80,8 +80,10 @@ class LinksImp implements Interface.IAdapter {
 		return this.request<WalletInterface.TWallet>({ link: "GET_BALANCE" });
 	};
 	public WITHDRAW_BALANCE = (param: WalletInterface.TTranche) => {
-		console.log(param);
 		return this.request({ link: "WITHDRAW_BALANCE", param });
+	};
+	public START_BUY_ITEM = (listingId: string) => {
+		return this.request({ link: "START_BUY_ITEM", param: { listingId } });
 	};
 }
 

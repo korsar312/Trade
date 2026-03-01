@@ -12,4 +12,5 @@ export const Links: LinksInterface.TLinks = {
 	REMOVE_DEPOSIT: { link: "/removeDeposit", http: "POST", role: ["USER", "ADMIN"] },
 	GET_BALANCE: { link: "/getBalance", http: "GET", role: ["USER", "ADMIN"] },
 	WITHDRAW_BALANCE: { link: "/withdrawBalance", http: "POST", role: ["USER", "ADMIN"] },
+	START_BUY_ITEM: { link: "/startBuyImes", http: "GET", role: ["USER", "ADMIN"] },
 } as const;
