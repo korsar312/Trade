@@ -23,7 +23,7 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TProps 
 	}
 
 	function goItem() {
-		Act.Router.goTo("INFO");
+		Act.Router.goTo("ORDER", { id });
 	}
 
 	return { text: priceFormat, isFullWidth: true, color: "BLUE_2", click, isDisable, ...rest };
