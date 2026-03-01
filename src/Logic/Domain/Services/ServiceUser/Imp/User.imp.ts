@@ -2,14 +2,31 @@ import type { UserInterface as Interface } from "../User.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
 class UserImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private setUser(store: Interface.Store, user: Interface.IUser): Interface.Store {
-		return { ...store, user };
+	private SetUser(user: Interface.IUser): Interface.Store {
+		return { ...this.store, user };
+	}
+
+	private SetUserList(userList: Interface.TUserMap): Interface.Store {
+		return { ...this.store, userList };
+	}
+
+	private ArrToMap(goods: Interface.TUserMin[]): Interface.TUserMap {
+		return goods.reduce((prev, cur) => {
+			prev[cur.id] = cur as Interface.IUser;
+			return prev;
+		}, {} as Interface.TUserMap);
+	}
+
+	private GetUser(id?: string): Interface.IUser | undefined {
+		return id == null ? this.store.user : this.store.userList[id];
 	}
 
 	//==============================================================================================
 
 	constructor(props: IServiceProps) {
-		const store: Interface.Store = {};
+		const store: Interface.Store = {
+			userList: {},
+		};
 
 		super(props, store);
 	}
@@ -18,42 +35,46 @@ class UserImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 
 	public async login(login: string, token: string) {
 		const res = await this.API.Links.LOGIN(login, token);
-		this.store = this.setUser(this.store, res);
+		this.store = this.SetUser(res);
 	}
 
 	public async refreshMyInfo() {
 		const res = await this.API.Links.GET_MY_ACC();
-		this.store = this.setUser(this.store, res);
+		this.store = this.SetUser(res);
 	}
 
-	public getId() {
-		if (!this.store.user) throw new Error("no auth");
-		return this.store.user.id;
+	public setUserList(users: Interface.TUserMin[]): void {
+		const normUsers = this.ArrToMap(users);
+		this.store = this.SetUserList(normUsers);
 	}
 
-	public getTgId() {
-		if (!this.store.user) throw new Error("no auth");
-		return this.store.user.telegramId;
+	public getId(id?: string) {
+		return this.GetUser(id)?.id;
 	}
 
-	public getName() {
-		if (!this.store.user) throw new Error("no auth");
-		return this.store.user.nickname;
+	public getTgId(id?: string) {
+		return this.GetUser(id)?.telegramId;
 	}
 
-	public getLogin() {
-		if (!this.store.user) throw new Error("no auth");
-		return this.store.user.login;
+	public getName(id?: string) {
+		return this.GetUser(id)?.nickname;
 	}
 
-	public getRating() {
-		if (!this.store.user) throw new Error("no auth");
-		return this.store.user.rating;
+	public getLogin(id?: string) {
+		return this.GetUser(id)?.login;
 	}
 
-	public getCreatedTime() {
-		if (!this.store.user) throw new Error("no auth");
-		return this.store.user.createdAt;
+	public getRating(id?: string) {
+		const item = this.GetUser(id);
+		if (!item) return null;
+
+		const total = item.like + item.dislike;
+
+		return Math.round((item.like / total) * 5) as Interface.TRating;
+	}
+
+	public getCreatedTime(id?: string) {
+		return this.GetUser(id)?.createdAt;
 	}
 }
 

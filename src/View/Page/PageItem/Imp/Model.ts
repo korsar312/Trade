@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import type { ItemInterface } from "../../../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
 import PropsBuyItemBtn from "../../../Components/Templates/Props/PropsBuyItemBtn.ts";
 
-function Model({ Props, Act }: TModel<TComponent>) {
+function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const {} = Props;
 
 	const param = useParamPage("ITEM");
@@ -16,7 +16,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const image = Act.Listing.getImage(itemId);
 
 	useEffect(() => {
-		Act.Public.requestLot({ id: itemId, type: itemType });
+		Pub.requestLot({ id: itemId, type: itemType });
 	}, [itemId]);
 
 	function goBack() {

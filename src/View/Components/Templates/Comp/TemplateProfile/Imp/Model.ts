@@ -49,14 +49,18 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				id: "5",
 				key: { text: "CREATED" },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(new Date(createdTime).toDateString()) }],
+					compRow: [
+						createdTime
+							? { id: "1", type: "TEXT", options: textProp(new Date(createdTime).toDateString()) }
+							: { id: "1", type: "LOAD", options: {} },
+					],
 				},
 			},
 		],
 		noCompact: true,
 	};
 
-	function textProp(text: string): IText {
+	function textProp(text?: string): IText {
 		return { text, pos: "left" };
 	}
 

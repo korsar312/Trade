@@ -24,7 +24,7 @@ type TSubmitForms = {
 	free: ItemInterface.IFreeInfoAll;
 };
 
-function Model({ Props, Act }: TModel<TComponent>) {
+function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const { typeItem, changeTabFn } = Props;
 
 	const forms = useRef<TSubmitForms>(null);
@@ -131,7 +131,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				}
 			}
 
-			Act.Public.createLot({ ...main, ...field() }).then((res) => Act.Router.goTo("ITEM", { id: res }));
+			Pub.createLot({ ...main, ...field() }).then((res) => Act.Router.goTo("ITEM", { id: res }));
 		}
 	}
 

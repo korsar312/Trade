@@ -2,6 +2,7 @@ import type { SettingInterface } from "./ServiceSetting/Setting.interface.ts";
 import type { AppInterface } from "./ServiceApp/App.interface.ts";
 import type { WalletInterface } from "./ServiceWallet/Wallet.interface.ts";
 import type { ItemInterface } from "./ServiceItem/Item.interface.ts";
+import type { UserInterface } from "./ServiceUser/User.interface.ts";
 
 export namespace PublicInterface {
 	const nameValue = {
@@ -14,7 +15,7 @@ export namespace PublicInterface {
 		bank: ItemInterface.EBank[];
 		priseUp: number | null;
 		priseDown: number | null;
-		rating: TRating | null;
+		rating: UserInterface.TRating | null;
 	};
 
 	export type TStorageVal<T extends SettingInterface.ENameStorage> = { [K in keyof typeof nameValue]: (typeof nameValue)[K] }[T];
@@ -23,7 +24,7 @@ export namespace PublicInterface {
 		BANK_MANY: {} as ItemInterface.EBank[],
 		SORT: {} as ESort,
 		PRICE: {} as number | null,
-		RATING: {} as TRating | null,
+		RATING: {} as UserInterface.TRating | null,
 		TYPE_ITEM: {} as ItemInterface.ETypeItem,
 		CONFIRM: {} as boolean,
 		WITHDRAW: {} as WalletInterface.TTranche,
@@ -31,7 +32,6 @@ export namespace PublicInterface {
 
 	export type TModalVal<T extends AppInterface.EModalName> = { [K in keyof typeof ModalValue]: (typeof ModalValue)[K] }[T];
 
-	export type TRating = 0 | 1 | 2 | 3 | 4 | 5;
 	export type ERole = keyof typeof PublicRole;
 	export type ESort = keyof typeof PublicSort;
 }

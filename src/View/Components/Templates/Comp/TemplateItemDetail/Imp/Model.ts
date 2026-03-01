@@ -11,11 +11,14 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const { itemId } = Props;
 
 	const name = Act.Listing.getName(itemId);
-	const bank = Act.Item.getBank(itemId);
 	const price = Act.Listing.getPrice(itemId);
-	const rating = Act.Listing.getSellerRating(itemId);
-	const seller = Act.Listing.getSellerName(itemId);
 	const desc = Act.Listing.getDesc(itemId);
+	const sellerId = Act.Listing.getSellerId(itemId);
+
+	const seller = Act.User.getName(sellerId);
+	const rating = Act.User.getRating(sellerId);
+
+	const bank = Act.Item.getBank(itemId);
 
 	const priceForm = price && Util.toMoney(price);
 
@@ -24,45 +27,33 @@ function Model({ Props, Act }: TModel<TComponent>) {
 			{
 				id: "1",
 				key: { text: "TITLE" },
-				value: {
-					compRow: [name ? { id: "1", type: "TEXT", options: textProp(name) } : skeletonEl],
-				},
+				value: { compRow: [name ? { id: "1", type: "TEXT", options: textProp(name) } : skeletonEl] },
 			},
 			{
 				id: "2",
 				key: { text: "BANK" },
-				value: {
-					compRow: [bank ? { id: "1", type: "TEXT", options: textProp(bank) } : skeletonEl],
-				},
+				value: { compRow: [bank ? { id: "1", type: "TEXT", options: textProp(bank) } : skeletonEl] },
 			},
 			{
 				id: "3",
 				key: { text: "PRICE" },
-				value: {
-					compRow: [priceForm ? { id: "1", type: "TEXT", options: textProp(priceForm) } : skeletonEl],
-				},
+				value: { compRow: [priceForm ? { id: "1", type: "TEXT", options: textProp(priceForm) } : skeletonEl] },
 			},
 			{
 				id: "4",
 				key: { text: "RATING" },
-				value: {
-					compRow: rating ? starProp(rating) : [skeletonEl],
-				},
+				value: { compRow: rating ? starProp(rating) : [skeletonEl] },
 			},
 			{
 				id: "5",
 				key: { text: "SELLER" },
-				value: {
-					compRow: [seller ? { id: "1", type: "TEXT", options: textProp(seller) } : skeletonEl],
-				},
+				value: { compRow: [seller ? { id: "1", type: "TEXT", options: textProp(seller) } : skeletonEl] },
 			},
 			{
 				id: "6",
 				type: "vert",
 				key: { text: "DESCRIPTION" },
-				value: {
-					compRow: [desc ? { id: "1", type: "TEXT", options: textProp(desc) } : skeletonEl],
-				},
+				value: { compRow: [desc ? { id: "1", type: "TEXT", options: textProp(desc) } : skeletonEl] },
 			},
 		],
 	};

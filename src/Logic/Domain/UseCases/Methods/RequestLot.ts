@@ -2,6 +2,7 @@ import type { UseCasesInterface as Interface } from "../UseCases.interface";
 import UseCasesBase from "../UseCases.base";
 import type { ListingInterface } from "../../Services/ServiceListing/Listing.interface.ts";
 import type { ItemInterface } from "../../Services/ServiceItem/Item.interface.ts";
+import type { UserInterface } from "../../Services/ServiceUser/User.interface.ts";
 
 class RequestLot extends UseCasesBase {
 	async invoke(params: Interface.TRequestLotReq): Interface.TRequestLotRes {
@@ -13,11 +14,8 @@ class RequestLot extends UseCasesBase {
 			desc: res.desc,
 			price: res.price,
 			status: res.status,
-			saleKind: res.saleKind,
-			sellerName: res.sellerName,
 			sellerId: res.sellerId,
-			sellerLike: res.sellerLike,
-			sellerDislike: res.sellerDislike,
+			saleKind: res.saleKind,
 		};
 
 		const item: ItemInterface.TItemLink = {
@@ -25,8 +23,16 @@ class RequestLot extends UseCasesBase {
 			item: { type: res.type, info: res.info } as any,
 		};
 
+		const user: UserInterface.TUserMin = {
+			id: res.sellerId,
+			nickname: res.sellerName,
+			like: res.sellerLike,
+			dislike: res.sellerDislike,
+		};
+
 		this.service.Listing.setListing([listing]);
 		this.service.Item.setItems([item]);
+		this.service.User.setUserList([user]);
 	}
 }
 

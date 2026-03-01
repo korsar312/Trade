@@ -27,7 +27,12 @@ export namespace UseCasesInterface {
 		findStr?: string;
 	}
 
-	export type TLotInfoPublic = ListingInterface.IListing & ItemInterface.TItemPublic;
+	export type TLotInfoPublic = ListingInterface.IListing &
+		ItemInterface.TItemPublic & {
+			sellerName: string;
+			sellerLike: number;
+			sellerDislike: number;
+		};
 	export type TReqCreate = ListingInterface.TMain & ItemInterface.TItemAll;
 
 	//========================= IN ==============================

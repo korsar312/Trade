@@ -10,6 +10,7 @@ import Util from "../../../../../../Logic/Libs/Util";
 import type { SettingInterface } from "../../../../../../Logic/Domain/Services/ServiceSetting/Setting.interface.ts";
 import PropsBuyItemBtn from "../../../Props/PropsBuyItemBtn.ts";
 import type { ItemInterface } from "../../../../../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
+import type { UserInterface } from "../../../../../../Logic/Domain/Services/ServiceUser/User.interface.ts";
 
 const keyStorageSort = "CARD_SORT_NAME" satisfies SettingInterface.ENameStorage;
 const keyStorageFilter = "CARD_FILTER_NAME" satisfies SettingInterface.ENameStorage;
@@ -17,7 +18,7 @@ const keyStorageFilter = "CARD_FILTER_NAME" satisfies SettingInterface.ENameStor
 const initSort: PublicInterface.ESort = "TO_UPPER";
 const initFilter: PublicInterface.TFilterCard = { name: null, bank: [], priseUp: null, priseDown: null, rating: null };
 
-function Model({ Props, Act }: TModel<TComponent>) {
+function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const {} = Props;
 
 	const catalog = Act.Listing.getListingIdList();
@@ -94,7 +95,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	}, [sort, filters]);
 
 	function requestGoods() {
-		Act.Public.requestCatalog({
+		Pub.requestCatalog({
 			limit: 10,
 			sort,
 			type: "CARD",
@@ -162,7 +163,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		setFilterHandle("bank", bank);
 	}
 
-	function setFilterRating(rating: PublicInterface.TRating | null) {
+	function setFilterRating(rating: UserInterface.TRating | null) {
 		setFilterHandle("rating", rating);
 	}
 

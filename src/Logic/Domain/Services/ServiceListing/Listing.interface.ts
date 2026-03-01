@@ -1,17 +1,13 @@
-import type { PublicInterface } from "../Public.interface.ts";
-
 export namespace ListingInterface {
 	export interface IAdapter {
 		setListing(listing: IListing[]): void;
 		getListingIdList(): string[];
 
-		getName(itemId?: string): string | undefined;
-		getDesc(itemId?: string): string | undefined;
-		getPrice(itemId?: string): number | undefined;
-		getSellerName(itemId?: string): string | undefined;
-		getSellerId(itemId?: string): string | undefined;
-		getSellerRating(itemId?: string): TRating | undefined | null;
-		getImage(itemId?: string): string;
+		getName(id?: string): string | undefined;
+		getDesc(id?: string): string | undefined;
+		getPrice(id?: string): number | undefined;
+		getSellerId(id?: string): string | undefined;
+		getImage(id?: string): string;
 	}
 
 	export interface IListing {
@@ -20,16 +16,11 @@ export namespace ListingInterface {
 		desc: string;
 		price: number;
 		status: EStatus;
-		saleKind: ESaleKind;
-
-		sellerName: string;
 		sellerId: string;
-		sellerLike: number;
-		sellerDislike: number;
+		saleKind: ESaleKind;
 	}
 
 	export type TMain = Pick<IListing, "name" | "price" | "desc" | "saleKind">;
-	export type TRating = PublicInterface.TRating;
 	export type TListingMap = Record<string, IListing>;
 
 	export type EStatus = keyof typeof ListingStatus;

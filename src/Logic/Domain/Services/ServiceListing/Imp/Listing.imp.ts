@@ -13,15 +13,8 @@ class ListingImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 		}, {} as Interface.TListingMap);
 	}
 
-	private GetItem(itemId?: string): Interface.IListing | undefined {
-		return itemId == null ? undefined : this.store.listing[itemId];
-	}
-
-	private GetRating(like: number, dislike: number): Interface.TRating | null {
-		const total = like + dislike;
-		if (!total) return null;
-
-		return Math.round((like / total) * 5) as Interface.TRating;
+	private GetListing(id?: string): Interface.IListing | undefined {
+		return id == null ? undefined : this.store.listing[id];
 	}
 
 	//==============================================================================================
@@ -46,16 +39,11 @@ class ListingImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 		return Object.keys(this.store.listing);
 	}
 
-	public getName = (id?: string) => this.GetItem(id)?.name;
-	public getPrice = (id?: string) => this.GetItem(id)?.price;
-	public getDesc = (id?: string) => this.GetItem(id)?.desc;
+	public getName = (id?: string) => this.GetListing(id)?.name;
+	public getPrice = (id?: string) => this.GetListing(id)?.price;
+	public getDesc = (id?: string) => this.GetListing(id)?.desc;
+	public getSellerId = (id?: string) => this.GetListing(id)?.sellerId;
 
-	public getSellerName = (id?: string) => this.GetItem(id)?.sellerName;
-	public getSellerId = (id?: string) => this.GetItem(id)?.sellerId;
-	public getSellerRating(id?: string) {
-		const item = this.GetItem(id);
-		return item && this.GetRating(item.sellerLike, item.sellerDislike);
-	}
 	public getImage(_id?: string) {
 		return "SBER";
 	}
