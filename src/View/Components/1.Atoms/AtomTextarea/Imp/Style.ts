@@ -17,6 +17,10 @@ class Style extends Styles {
 			transition: ${this.variables.fastTransition};
 			overflow: hidden;
 
+			&:has(> span) textarea {
+				transform: translateY(6px);
+			}
+
 			&:has(input[disabled]) {
 				background: ${this.getColor("SECOND_1")};
 			}
@@ -56,22 +60,17 @@ class Style extends Styles {
 		}
 	`;
 
-	public place(): CSSObject {
-		const topSide = "translate(0, -66%) scale(0.65)";
+	public place: CSSObject = css`
+		transform-origin: left;
+		text-wrap: nowrap;
+		position: absolute;
+		pointer-events: none;
 
-		return css`
-			transform: ${!1 ? topSide : "none"};
-			transform-origin: left;
-			text-wrap: nowrap;
-			position: absolute;
-			pointer-events: none;
-
-			&:has(+ textarea:focus),
-			&:has(+ textarea:not(:placeholder-shown)) {
-				transform: ${topSide};
-			}
-		`;
-	}
+		&:has(+ textarea:focus),
+		&:has(+ textarea:not(:placeholder-shown)) {
+			transform: translate(0, -60%) scale(0.65);
+		}
+	`;
 
 	public text(textProp: TAtomTextareaText): CSSObject {
 		return css`

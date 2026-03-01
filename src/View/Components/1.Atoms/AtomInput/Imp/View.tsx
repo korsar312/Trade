@@ -22,7 +22,7 @@ const View: TPresent = ({ Model, Style }) => {
 			{images(imageLeft)}
 
 			<div css={Style.inputWrap}>
-				<Text extStyle={Style.place()} color={placeObj.color} font={placeObj.font} text={placeObj.text} />
+				{placeObj && <Text extStyle={Style.place} color={placeObj.color} font={placeObj.font} text={placeObj.text} />}
 
 				<input
 					css={[Style.input, Style.text(textObj)]}

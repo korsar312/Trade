@@ -6,7 +6,7 @@ const View: TPresent = ({ Model, Style }) => {
 
 	return (
 		<div css={[Style.wrapper(color), Style.valid(isValid)]}>
-			<Text extStyle={Style.place()} color={placeObj.color} font={placeObj.font} text={placeObj.text} />
+			{placeObj && <Text extStyle={Style.place} color={placeObj.color} font={placeObj.font} text={placeObj.text} />}
 
 			<textarea
 				css={[Style.input, Style.text(textObj)]}

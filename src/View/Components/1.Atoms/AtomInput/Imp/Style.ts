@@ -47,6 +47,10 @@ class Style extends Styles {
 		position: relative;
 		width: 100%;
 		height: 100%;
+
+		&:has(> span) input {
+			transform: translateY(20%);
+		}
 	`;
 
 	public input: CSSObject = css`
@@ -64,22 +68,17 @@ class Style extends Styles {
 		}
 	`;
 
-	public place(): CSSObject {
-		const topSide = "translate(0, -66%) scale(0.65)";
+	public place: CSSObject = css`
+		transform-origin: left;
+		text-wrap: nowrap;
+		position: absolute;
+		pointer-events: none;
 
-		return css`
-			transform: ${!1 ? topSide : "none"};
-			transform-origin: left;
-			text-wrap: nowrap;
-			position: absolute;
-			pointer-events: none;
-
-			&:has(+ input:focus),
-			&:has(+ input:not(:placeholder-shown)) {
-				transform: ${topSide};
-			}
-		`;
-	}
+		&:has(+ input:focus),
+		&:has(+ input:not(:placeholder-shown)) {
+			transform: translate(0, -60%) scale(0.65);
+		}
+	`;
 
 	public imageWrap: CSSObject = css`
 		display: flex;

@@ -11,7 +11,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const [isValid, setIsValid] = useState<boolean | undefined>();
 
 	const textObj = changePlace(initText, "SECOND_1", "BLUE_3", "RED_3");
-	const placeObj = changePlace(placeholder, "SECOND_2", "BLUE_2", "RED_3");
+	const placeObj = placeholder && changePlace(placeholder, "SECOND_2", "BLUE_2", "RED_3");
 
 	const text = Act.Message.getWord(textObj?.text);
 

@@ -8,7 +8,6 @@ class Style extends Styles {
 		text-align: center;
 		transition: ${this.variables.fastTransition};
 		white-space: pre-line;
-		width: 100%;
 	`;
 
 	public param(

@@ -1,13 +1,13 @@
 import type { TPresent } from "../";
 import { Fragment, type ReactElement } from "react";
 import type { AppInterface } from "../../../../Logic/Domain/Services/ServiceApp/App.interface.ts";
-import TemplateModalFormChoicePriceParam from "../../../Components/Templates/ModalForm/TemplateModalFormChoicePriceParam";
-import TemplateModalFormChoiceBank from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceBank";
-import TemplateModalFormChoiceSort from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceSort";
-import TemplateModalFormChoiceRating from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceRating";
-import TemplateModalFormChoiceItemType from "../../../Components/Templates/ModalForm/TemplateModalFormChoiceItemType";
-import TemplateModalFormYouSure from "../../../Components/Templates/ModalForm/TemplateModalFormYouSure";
-import TemplateModalFormWithdraw from "../../../Components/Templates/ModalForm/TemplateModalFormWithdraw";
+import TemplateModalFormChoicePriceParam from "../../../Components/Templates/Comp/ModalForm/TemplateModalFormChoicePriceParam";
+import TemplateModalFormChoiceBank from "../../../Components/Templates/Comp/ModalForm/TemplateModalFormChoiceBank";
+import TemplateModalFormChoiceSort from "../../../Components/Templates/Comp/ModalForm/TemplateModalFormChoiceSort";
+import TemplateModalFormChoiceRating from "../../../Components/Templates/Comp/ModalForm/TemplateModalFormChoiceRating";
+import TemplateModalFormChoiceItemType from "../../../Components/Templates/Comp/ModalForm/TemplateModalFormChoiceItemType";
+import TemplateModalFormYouSure from "../../../Components/Templates/Comp/ModalForm/TemplateModalFormYouSure";
+import TemplateModalFormWithdraw from "../../../Components/Templates/Comp/ModalForm/TemplateModalFormWithdraw";
 
 const View: TPresent = ({ Model }) => {
 	const { modalList, closeModal } = Model;

@@ -1,7 +1,7 @@
 import type { TPresent } from "../";
-import TemplateProfile from "../../../Components/Templates/TemplateProfile";
+import TemplateProfile from "../../../Components/Templates/Comp/TemplateProfile";
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
-import TemplateBalance from "../../../Components/Templates/TemplateBalance";
+import TemplateBalance from "../../../Components/Templates/Comp/TemplateBalance";
 
 const View: TPresent = ({ Model, Style }) => {
 	const {} = Model;

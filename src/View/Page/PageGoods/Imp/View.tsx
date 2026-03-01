@@ -1,5 +1,5 @@
 import type { TPresent } from "../";
-import TemplateCatalogue from "../../../Components/Templates/TemplateCatalogue";
+import TemplateCatalogue from "../../../Components/Templates/Comp/TemplateCatalogue";
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
 
 const View: TPresent = ({ Model, Style }) => {

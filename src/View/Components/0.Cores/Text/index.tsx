@@ -22,7 +22,7 @@ export type TComponent = {
 	addStyle?: CSSObject[];
 	label?: TLabelPick;
 	isBreakLine?: boolean;
-};
+} & Partial<Pick<HTMLSpanElement | HTMLLabelElement, "className">>;
 
 type TLabelPick = Pick<HTMLLabelElement, "htmlFor">;
 export type TTextPos = "left" | "right" | "center";

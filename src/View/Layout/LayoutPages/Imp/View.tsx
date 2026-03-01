@@ -1,7 +1,7 @@
 import type { TPresent } from "../";
 import { RouterProvider } from "react-router/dom";
-import TemplateHead from "../../../Components/Templates/TemplateHead";
-import TemplateFoot from "../../../Components/Templates/TemplateFoot";
+import TemplateHead from "../../../Components/Templates/Comp/TemplateHead";
+import TemplateFoot from "../../../Components/Templates/Comp/TemplateFoot";
 
 const View: TPresent = ({ Model, Style }) => {
 	const { router, isInit } = Model;
