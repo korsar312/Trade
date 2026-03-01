@@ -9,7 +9,7 @@ type TComponent = {
 function Template(Act: ProjectInterface.TActService, props: TComponent): TProps {
 	const { id, ...rest } = props;
 
-	const price = Act.Catalogue.getPrice(id) || Infinity;
+	const price = Act.Listing.getPrice(id) || Infinity;
 	const userBalance = Act.Wallet.getBalance();
 	const priceFormat = Util.toMoney(price);
 	const isDisable = price > userBalance;

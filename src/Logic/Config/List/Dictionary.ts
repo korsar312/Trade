@@ -1,8 +1,8 @@
 import type { MessageInterface } from "../../Domain/Services/ServiceMessage/Message.interface.ts";
-import type { CatalogueInterface } from "../../Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
-import { PublicInterface } from "../../Domain/Services/Public.interface.ts";
+import type { ItemInterface } from "../../Domain/Services/ServiceItem/Item.interface.ts";
+import type { PublicInterface } from "../../Domain/Services/Public.interface.ts";
 
-type TOther = CatalogueInterface.EBank | CatalogueInterface.ETypeItem | PublicInterface.ESort;
+type TOther = ItemInterface.EBank | ItemInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
 	DEP_INSTRUCTION: {

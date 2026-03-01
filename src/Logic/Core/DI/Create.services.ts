@@ -16,12 +16,10 @@ import { ServiceBasket } from "../../Domain/Services/ServiceBasket";
 import SettingImp from "../../Domain/Services/ServiceSetting/Imp/Setting.imp.ts";
 import PaymentImp from "../../Domain/Services/ServicePayment/Imp/Payment.imp.ts";
 import { ServicePayment } from "../../Domain/Services/ServicePayment";
-import { ServiceOrder } from "../../Domain/Services/ServiceOrder";
-import OrderImp from "../../Domain/Services/ServiceOrder/Imp/Order.imp.ts";
+import { ServiceDeal } from "../../Domain/Services/ServiceDeal";
+import DealImp from "../../Domain/Services/ServiceDeal/Imp/Deal.imp.ts";
 import type { IServiceProps } from "../../Domain/Services/Service.base.ts";
 import { ServiceSetting } from "../../Domain/Services/ServiceSetting";
-import CatalogueImp from "../../Domain/Services/ServiceCatalogue/Imp/Catalogue.imp.ts";
-import { ServiceCatalogue } from "../../Domain/Services/ServiceCatalogue";
 import { createHmrSingleton } from "./CreateHmrSingleton.ts";
 import { Consts } from "../../Config/Consts.ts";
 import { ServiceUser } from "../../Domain/Services/ServiceUser";
@@ -30,6 +28,10 @@ import AppImp from "../../Domain/Services/ServiceApp/Imp/App.imp.ts";
 import { ServiceApp } from "../../Domain/Services/ServiceApp";
 import WalletImp from "../../Domain/Services/ServiceWallet/Imp/Wallet.imp.ts";
 import { ServiceWallet } from "../../Domain/Services/ServiceWallet";
+import ListingImp from "../../Domain/Services/ServiceListing/Imp/Listing.imp.ts";
+import { ServiceListing } from "../../Domain/Services/ServiceListing";
+import ItemImp from "../../Domain/Services/ServiceItem/Imp/Item.imp.ts";
+import { ServiceItem } from "../../Domain/Services/ServiceItem";
 
 function createServices() {
 	const inf: IServiceProps = { infrastructure: Infrastructure };
@@ -55,17 +57,20 @@ function createServices() {
 	const paymentImp = new PaymentImp(inf);
 	const payment = new ServicePayment(paymentImp);
 
-	const orderImp = new OrderImp(inf);
-	const order = new ServiceOrder(orderImp);
+	const dealImp = new DealImp(inf);
+	const deal = new ServiceDeal(dealImp);
 
-	const catalogueImp = new CatalogueImp(inf);
-	const catalogue = new ServiceCatalogue(catalogueImp);
+	const listingImp = new ListingImp(inf);
+	const listing = new ServiceListing(listingImp);
 
 	const userImp = new UserImp(inf);
 	const user = new ServiceUser(userImp);
 
 	const appImp = new AppImp(inf);
 	const app = new ServiceApp(appImp);
+
+	const itemImp = new ItemImp(inf);
+	const item = new ServiceItem(itemImp);
 
 	const service = new DI<ProjectInterface.TModuleService>();
 
@@ -76,9 +81,10 @@ function createServices() {
 	service.use("Wallet", wallet);
 	service.use("Setting", setting);
 	service.use("Payment", payment);
-	service.use("Order", order);
-	service.use("Catalogue", catalogue);
+	service.use("Deal", deal);
+	service.use("Listing", listing);
 	service.use("User", user);
+	service.use("Item", item);
 	service.use("App", app);
 
 	return service.get;

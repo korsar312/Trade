@@ -10,12 +10,12 @@ const skeletonEl: TMoleculeRowControlCompType = { id: "-1", type: "LOAD", option
 function Model({ Props, Act }: TModel<TComponent>) {
 	const { itemId } = Props;
 
-	const name = Act.Catalogue.getName(itemId);
-	const bank = Act.Catalogue.getBank(itemId);
-	const price = Act.Catalogue.getPrice(itemId);
-	const rating = Act.Catalogue.getSellerRating(itemId);
-	const seller = Act.Catalogue.getSellerName(itemId);
-	const desc = Act.Catalogue.getDesc(itemId);
+	const name = Act.Listing.getName(itemId);
+	const bank = Act.Item.getBank(itemId);
+	const price = Act.Listing.getPrice(itemId);
+	const rating = Act.Listing.getSellerRating(itemId);
+	const seller = Act.Listing.getSellerName(itemId);
+	const desc = Act.Listing.getDesc(itemId);
 
 	const priceForm = price && Util.toMoney(price);
 

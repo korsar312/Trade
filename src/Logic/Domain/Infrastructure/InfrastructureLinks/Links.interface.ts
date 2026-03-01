@@ -1,14 +1,14 @@
-import type { CatalogueInterface } from "../../Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { UserInterface } from "../../Services/ServiceUser/User.interface.ts";
 import type { PublicInterface } from "../../Services/Public.interface.ts";
 import type { WalletInterface } from "../../Services/ServiceWallet/Wallet.interface.ts";
+import type { UseCasesInterface } from "../../UseCases/UseCases.interface.ts";
 
 export namespace LinksInterface {
 	export interface IAdapter {
 		LOGIN(login: string, token: string): Promise<UserInterface.IUser>;
-		GET_ITEMS(params: CatalogueInterface.TReqCatalog): Promise<CatalogueInterface.TItemElPublic[]>;
-		GET_ITEM(id: string, type: CatalogueInterface.ETypeItem): Promise<CatalogueInterface.TItemElPublic>;
-		CREATE_LISTING(params: CatalogueInterface.TReqCreate): Promise<string>;
+		GET_ITEMS(params: UseCasesInterface.TRequestCatalogReq): Promise<UseCasesInterface.TLotInfoPublic[]>;
+		GET_ITEM(params: UseCasesInterface.TRequestLotReq): Promise<UseCasesInterface.TLotInfoPublic>;
+		CREATE_LISTING(params: UseCasesInterface.TReqCreate): Promise<string>;
 		GET_MY_ACC(): Promise<UserInterface.IUser>;
 		AWAIT_PAY_DEPOSIT(signal?: AbortSignal): Promise<boolean>;
 		IS_EXIST_DEPOSIT(): Promise<WalletInterface.TCheckDeposit>;

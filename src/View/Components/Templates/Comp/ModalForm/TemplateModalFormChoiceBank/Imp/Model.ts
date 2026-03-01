@@ -1,19 +1,16 @@
 import type { TModel } from "../../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
-import {
-	CatalogueBankArr,
-	type CatalogueInterface,
-} from "../../../../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { TSchemaSwitch } from "../../../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaSwitchChoice";
 import type { TComponent as IProp } from "../../../../../3.Substances/SubstanceModal";
+import { ItemBankArr, type ItemInterface } from "../../../../../../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
 
 function Model({ Props }: TModel<TComponent>) {
 	const { submitFn, ...propRest } = Props;
 
-	const list = CatalogueBankArr;
+	const list = ItemBankArr;
 
 	function submit(data: TSchemaSwitch) {
-		const arr = Object.keys(data) as CatalogueInterface.EBank[];
+		const arr = Object.keys(data) as ItemInterface.EBank[];
 		submitFn(list.length === arr.length ? [] : arr);
 	}
 

@@ -1,7 +1,7 @@
-import type { OrderInterface as Interface } from "../Order.interface.ts";
+import type { DealInterface as Interface } from "../Deal.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
-class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
+class DealImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
 	//==============================================================================================
 
 	constructor(props: IServiceProps) {
@@ -15,4 +15,4 @@ class OrderImp extends ServiceBase<Interface.Store> implements Interface.IAdapte
 	//==============================================================================================
 }
 
-export default OrderImp;
+export default DealImp;

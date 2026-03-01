@@ -6,11 +6,14 @@ import type { ServiceBasket } from "../../Domain/Services/ServiceBasket";
 import type { ServiceWallet } from "../../Domain/Services/ServiceWallet";
 import type { ServiceSetting } from "../../Domain/Services/ServiceSetting";
 import type { ServicePayment } from "../../Domain/Services/ServicePayment";
-import type { ServiceOrder } from "../../Domain/Services/ServiceOrder";
-import type { ServiceCatalogue } from "../../Domain/Services/ServiceCatalogue";
 import type { ServiceUser } from "../../Domain/Services/ServiceUser";
 import type { ServiceApp } from "../../Domain/Services/ServiceApp";
 import type { InfrastructureStorage } from "../../Domain/Infrastructure/InfrastructureStorage";
+import type { ServiceDeal } from "../../Domain/Services/ServiceDeal";
+import type { ServiceListing } from "../../Domain/Services/ServiceListing";
+import type UseCases from "../../Domain/UseCases/UseCases.ts";
+import type { ServiceItem } from "../../Domain/Services/ServiceItem";
+import type { UseCasesInterface } from "../../Domain/UseCases/UseCases.interface.ts";
 
 export namespace ProjectInterface {
 	export type TModuleInf = {
@@ -19,7 +22,7 @@ export namespace ProjectInterface {
 	};
 
 	export type TModuleService = {
-		Catalogue: ServiceCatalogue;
+		Listing: ServiceListing;
 		Message: ServiceMessage;
 		Setting: ServiceSetting;
 		Payment: ServicePayment;
@@ -27,15 +30,21 @@ export namespace ProjectInterface {
 		Basket: ServiceBasket;
 		Wallet: ServiceWallet;
 		Style: ServiceStyle;
-		Order: ServiceOrder;
+		Item: ServiceItem;
+		Deal: ServiceDeal;
 		User: ServiceUser;
 		App: ServiceApp;
 	};
 
+	export type TModuleUseCases = {
+		Public: UseCases;
+	};
+
 	type TDI<M> = <T extends keyof M>(key: T) => M[T];
 
-	export type TServices = TDI<TModuleService>;
 	export type TInfrastructure = TDI<TModuleInf>;
+	export type TServices = TDI<TModuleService>;
+	export type TUseCases = TDI<TModuleUseCases>;
 
 	type InvokeOf<T> = T extends { invoke: infer I } ? I : never;
 
@@ -45,4 +54,5 @@ export namespace ProjectInterface {
 
 	export type TActInf = ActType<TModuleInf>;
 	export type TActService = ActType<TModuleService>;
+	export type TActUseCases = ActType<UseCasesInterface.TScenarioList>;
 }

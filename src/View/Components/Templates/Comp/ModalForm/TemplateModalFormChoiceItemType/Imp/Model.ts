@@ -1,17 +1,14 @@
 import type { TModel } from "../../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
 import type { TSchemaRadio } from "../../../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaRadioChoice";
-import {
-	type CatalogueInterface,
-	CatalogueTypeItemArr,
-} from "../../../../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { TComponent as IProp } from "../../../../../3.Substances/SubstanceModal";
+import { type ItemInterface, ItemTypeItemArr } from "../../../../../../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
 
 function Model({ Props }: TModel<TComponent>) {
 	const { submitFn, ...propRest } = Props;
 
 	function submit(data: TSchemaRadio) {
-		const val = (data.radio || "CARD") as CatalogueInterface.ETypeItem;
+		const val = (data.radio || "CARD") as ItemInterface.ETypeItem;
 		submitFn(val);
 	}
 
@@ -22,7 +19,7 @@ function Model({ Props }: TModel<TComponent>) {
 			options: {
 				title: { text: "SELECT_LISTING_TYPE" },
 				submit,
-				choiceList: CatalogueTypeItemArr.map((el) => ({ name: el, title: { text: el } })),
+				choiceList: ItemTypeItemArr.map((el) => ({ name: el, title: { text: el } })),
 				btn: { text: "APPLY" },
 			},
 		},

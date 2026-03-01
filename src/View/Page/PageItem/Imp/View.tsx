@@ -3,11 +3,9 @@ import TemplateItemDetail from "../../../Components/Templates/Comp/TemplateItemD
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
 import AtomButtonMain from "../../../Components/1.Atoms/AtomButton/Variables/AtomButtonMain";
 import Image from "../../../Components/0.Cores/Image";
-import PropsBuyItemBtn from "../../../Components/Templates/Props/PropsBuyItemBtn.ts";
-import { Act } from "../../../Init.ts";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { image, itemId, goBack } = Model;
+	const { image, btnProps, itemId, goBack } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
@@ -22,7 +20,7 @@ const View: TPresent = ({ Model, Style }) => {
 			</main>
 
 			<div css={Style.btnWrap}>
-				<AtomButtonMain {...PropsBuyItemBtn(Act, { id: itemId })} isFullWidth />
+				<AtomButtonMain {...btnProps} isFullWidth />
 				<AtomButtonMain text={"BACK"} color={"MAIN_3"} click={goBack} />
 			</div>
 		</AtomPaper>

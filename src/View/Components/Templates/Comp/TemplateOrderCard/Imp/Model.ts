@@ -7,7 +7,7 @@ import type { TComponent as IProp } from "../../../../4.Structures/StructuresTab
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;
 
-	const orderList = Act.Catalogue.getGoodsIdList();
+	const orderList = Act.Listing.getListingIdList();
 
 	const [isSell, setIsSell] = useState(true);
 	const [isComplete, setIsComplete] = useState(true);
@@ -56,8 +56,8 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		children: orderList.map((el) => ({
 			id: el,
 			options: {
-				name: Act.Catalogue.getName(el),
-				image: Act.Catalogue.getImage(el),
+				name: Act.Listing.getName(el),
+				image: Act.Listing.getImage(el),
 				btn: [],
 			},
 			type: "ITEM_CARD",

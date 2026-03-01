@@ -1,7 +1,7 @@
-import type { CatalogueInterface } from "./ServiceCatalogue/Catalogue.interface.ts";
 import type { SettingInterface } from "./ServiceSetting/Setting.interface.ts";
 import type { AppInterface } from "./ServiceApp/App.interface.ts";
 import type { WalletInterface } from "./ServiceWallet/Wallet.interface.ts";
+import type { ItemInterface } from "./ServiceItem/Item.interface.ts";
 
 export namespace PublicInterface {
 	const nameValue = {
@@ -11,7 +11,7 @@ export namespace PublicInterface {
 
 	export type TFilterCard = {
 		name: string | null;
-		bank: CatalogueInterface.EBank[];
+		bank: ItemInterface.EBank[];
 		priseUp: number | null;
 		priseDown: number | null;
 		rating: TRating | null;
@@ -20,11 +20,11 @@ export namespace PublicInterface {
 	export type TStorageVal<T extends SettingInterface.ENameStorage> = { [K in keyof typeof nameValue]: (typeof nameValue)[K] }[T];
 
 	const ModalValue = {
-		BANK_MANY: {} as CatalogueInterface.EBank[],
+		BANK_MANY: {} as ItemInterface.EBank[],
 		SORT: {} as ESort,
 		PRICE: {} as number | null,
 		RATING: {} as TRating | null,
-		TYPE_ITEM: {} as CatalogueInterface.ETypeItem,
+		TYPE_ITEM: {} as ItemInterface.ETypeItem,
 		CONFIRM: {} as boolean,
 		WITHDRAW: {} as WalletInterface.TTranche,
 	} as const satisfies Record<AppInterface.EModalName, unknown>;

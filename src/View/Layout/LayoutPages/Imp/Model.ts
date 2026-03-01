@@ -18,7 +18,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				return "PRODUCTS";
 			case "ITEM":
 				const param = Act.Router.getCurParam<"ITEM">();
-				const name = Act.Catalogue.getName(param?.id);
+				const name = Act.Listing.getName(param?.id);
 
 				return name || "PRODUCT";
 			case "PROFILE":

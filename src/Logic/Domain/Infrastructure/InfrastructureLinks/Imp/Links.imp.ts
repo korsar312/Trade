@@ -1,7 +1,7 @@
 import type { LinksInterface as Interface } from "../Links.interface";
-import type { CatalogueInterface } from "../../../Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { UserInterface } from "../../../Services/ServiceUser/User.interface.ts";
 import type { WalletInterface } from "../../../Services/ServiceWallet/Wallet.interface.ts";
+import type { UseCasesInterface } from "../../../UseCases/UseCases.interface.ts";
 
 class LinksImp implements Interface.IAdapter {
 	private authData: { login: string; token: string } | undefined;
@@ -52,13 +52,13 @@ class LinksImp implements Interface.IAdapter {
 
 		return res;
 	};
-	public GET_ITEMS = (param: CatalogueInterface.TReqCatalog) => {
-		return this.request<CatalogueInterface.TItemElPublic[]>({ link: "GET_ITEMS", param });
+	public GET_ITEMS = (param: UseCasesInterface.TRequestCatalogReq) => {
+		return this.request<UseCasesInterface.TLotInfoPublic[]>({ link: "GET_ITEMS", param });
 	};
-	public GET_ITEM = (id: string, type: CatalogueInterface.ETypeItem) => {
-		return this.request<CatalogueInterface.TItemElPublic>({ link: "GET_ITEM", param: { id, type } });
+	public GET_ITEM = (param: UseCasesInterface.TRequestLotReq) => {
+		return this.request<UseCasesInterface.TLotInfoPublic>({ link: "GET_ITEM", param });
 	};
-	public CREATE_LISTING = (param: CatalogueInterface.TReqCreate) => {
+	public CREATE_LISTING = (param: UseCasesInterface.TReqCreate) => {
 		return this.request<string>({ link: "CREATE_LISTING", param });
 	};
 	public GET_MY_ACC = () => {

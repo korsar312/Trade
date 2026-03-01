@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import type { TMoleculeRowControlCompType } from "../../../../2.Molecules/MoleculeRowControl";
 import { useDidUpdate } from "../../../../../../Logic/Libs/Hooks/useDidUpdate/useDidUpdate.ts";
 import { PublicInterface } from "../../../../../../Logic/Domain/Services/Public.interface.ts";
-import type { CatalogueInterface } from "../../../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
 import type { EAtomButtonColor } from "../../../../1.Atoms/AtomButton";
 import Util from "../../../../../../Logic/Libs/Util";
 import type { SettingInterface } from "../../../../../../Logic/Domain/Services/ServiceSetting/Setting.interface.ts";
 import PropsBuyItemBtn from "../../../Props/PropsBuyItemBtn.ts";
+import type { ItemInterface } from "../../../../../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
 
 const keyStorageSort = "CARD_SORT_NAME" satisfies SettingInterface.ENameStorage;
 const keyStorageFilter = "CARD_FILTER_NAME" satisfies SettingInterface.ENameStorage;
@@ -20,7 +20,7 @@ const initFilter: PublicInterface.TFilterCard = { name: null, bank: [], priseUp:
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;
 
-	const catalog = Act.Catalogue.getGoodsIdList();
+	const catalog = Act.Listing.getListingIdList();
 	const genId = Util.idGen();
 
 	const [sort, setSort] = useState<PublicInterface.ESort>(getSortData());
@@ -94,7 +94,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	}, [sort, filters]);
 
 	function requestGoods() {
-		Act.Catalogue.requestGoods({
+		Act.Public.requestCatalog({
 			limit: 10,
 			sort,
 			type: "CARD",
@@ -158,7 +158,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		setFilterHandle("name", value);
 	}
 
-	function setFilterBank(bank: CatalogueInterface.EBank[]) {
+	function setFilterBank(bank: ItemInterface.EBank[]) {
 		setFilterHandle("bank", bank);
 	}
 
@@ -187,11 +187,11 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	// ======================= GETTER ITEM =======================
 
 	function getName(id: string) {
-		return Act.Catalogue.getName(id);
+		return Act.Listing.getName(id);
 	}
 
 	function getType(id: string) {
-		return Act.Catalogue.getType(id);
+		return Act.Item.getType(id);
 	}
 
 	//function getBank(id: string) {
@@ -199,12 +199,12 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	//}
 
 	function getImage(id: string) {
-		return Act.Catalogue.getImage(id);
+		return Act.Listing.getImage(id);
 	}
 
 	// ======================= OTHERS =======================
 
-	function goCreateListing(type: CatalogueInterface.ETypeItem) {
+	function goCreateListing(type: ItemInterface.ETypeItem) {
 		Act.Router.goTo("CREATE_LISTING", { type });
 	}
 

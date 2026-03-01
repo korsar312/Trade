@@ -5,12 +5,12 @@ import View from "./Imp/View.tsx";
 import type { TView } from "../../../../../CreateComponent.tsx";
 import { observer } from "mobx-react";
 import type { TComponent as IProp } from "../../../../3.Substances/SubstanceModal";
-import type { CatalogueInterface } from "../../../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
+import type { ItemInterface } from "../../../../../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
-	submitFn: (val: CatalogueInterface.EBank[]) => void;
+	submitFn: (val: ItemInterface.EBank[]) => void;
 } & Pick<IProp, "bgClick" | "color">;
 
 export default observer(Component.Create(Model, Style, View, "TemplateModalFormChoiceBank"));

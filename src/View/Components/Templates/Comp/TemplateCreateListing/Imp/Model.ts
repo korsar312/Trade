@@ -1,11 +1,7 @@
 import type { TModel } from "../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
 import type { TComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
-import {
-	CatalogueBankArr,
-	type CatalogueInterface,
-	CatalogueTypeItemArr,
-} from "../../../../../../Logic/Domain/Services/ServiceCatalogue/Catalogue.interface.ts";
+import { type ListingInterface } from "../../../../../../Logic/Domain/Services/ServiceListing/Listing.interface.ts";
 import { useRef } from "react";
 import type {
 	TComponent as ITextTriple,
@@ -20,11 +16,12 @@ import type {
 	TSchemaTextarea,
 } from "../../../../2.Molecules/MoleculeFormSchema/Variables/MoleculeFormSchemaTextarea";
 import type { TComponent as ITabs } from "../../../../2.Molecules/MoleculeGroupBtn";
+import { ItemBankArr, type ItemInterface, ItemTypeItemArr } from "../../../../../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
 
 type TSubmitForms = {
-	main: CatalogueInterface.TMain;
-	card: CatalogueInterface.ICardInfoAll;
-	free: CatalogueInterface.IFreeInfoAll;
+	main: ListingInterface.TMain;
+	card: ItemInterface.ICardInfoAll;
+	free: ItemInterface.IFreeInfoAll;
 };
 
 function Model({ Props, Act }: TModel<TComponent>) {
@@ -56,7 +53,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		labelTitle: { placeholder: "CARD_HOLDER_FULL_NAME", required: true },
 		labelSubtitle: { placeholder: "CARD_HOLDER_AGE", type: "number", required: true },
 		find: { placeholder: "SEARCH_BANK" },
-		choiceList: CatalogueBankArr.map((el) => ({ name: el, title: { text: el } })),
+		choiceList: ItemBankArr.map((el) => ({ name: el, title: { text: el } })),
 		submit: handleCard,
 	};
 
@@ -68,7 +65,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	};
 
 	const tabProps: ITabs = {
-		btnRow: CatalogueTypeItemArr.map((el) => ({
+		btnRow: ItemTypeItemArr.map((el) => ({
 			id: el,
 			options: { click: () => changeTabFn(el), text: el },
 			isActive: isChoiceTab(el),
@@ -87,7 +84,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	}
 
 	function handleCard(val: TSchemaTextBtn): void {
-		setForm("card", { name: val.title, age: val.subtitle, bank: val.radio as CatalogueInterface.EBank });
+		setForm("card", { name: val.title, age: val.subtitle, bank: val.radio as ItemInterface.EBank });
 	}
 
 	function handleFree(val: TSchemaTextarea): void {
@@ -124,7 +121,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		if (forms.current) {
 			const { free, card, main } = forms.current;
 
-			function field(): CatalogueInterface.TItemAll {
+			function field(): ItemInterface.TItemAll {
 				switch (typeItem) {
 					case "CARD":
 						return { type: typeItem, info: card };
@@ -134,11 +131,11 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				}
 			}
 
-			Act.Catalogue.createListing({ ...main, ...field() }).then((res) => Act.Router.goTo("ITEM", { id: res }));
+			Act.Public.createLot({ ...main, ...field() }).then((res) => Act.Router.goTo("ITEM", { id: res }));
 		}
 	}
 
-	function isChoiceTab(type: CatalogueInterface.ETypeItem) {
+	function isChoiceTab(type: ItemInterface.ETypeItem) {
 		return typeItem === type;
 	}
 
