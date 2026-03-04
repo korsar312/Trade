@@ -8,7 +8,7 @@ class ItemImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 
 	private ArrToMap(goods: Interface.TItemLink[]): Interface.TItemMap {
 		return goods.reduce((prev, cur) => {
-			prev[cur.id] = cur;
+			prev[cur.listingId] = cur;
 			return prev;
 		}, {} as Interface.TItemMap);
 	}

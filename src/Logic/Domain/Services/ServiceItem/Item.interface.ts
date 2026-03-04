@@ -9,7 +9,7 @@ export namespace ItemInterface {
 	}
 
 	export type TItem = TItemAll | TItemPublic;
-	export type TItemLink = { id: string; item: TItem };
+	export type TItemLink = { listingId: string; item: TItem };
 	export type TItemMap = Record<string, TItemLink>;
 
 	export type TItemAll = TItemCard | TItemFree;

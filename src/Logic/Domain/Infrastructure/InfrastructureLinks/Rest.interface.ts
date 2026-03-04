@@ -25,7 +25,7 @@ export namespace RestInterface {
 		sellerDislike: number;
 	}
 
-	interface IOrderRes {
+	export interface IOrderRes {
 		listing: ListingInterface.IListing;
 		deal: DealInterface.IDeal;
 		seller: UserInterface.TUserInfoMin;

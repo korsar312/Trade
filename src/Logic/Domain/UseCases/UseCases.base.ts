@@ -43,7 +43,7 @@ abstract class UseCasesBase implements Interface.TScenarioBase<unknown, unknown>
 		}));
 
 		const item: ItemInterface.TItemLink[] = res.map((el) => ({
-			id: el.id,
+			listingId: el.id,
 			item: { type: el.type, info: el.info } as any,
 		}));
 
