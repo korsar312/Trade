@@ -29,6 +29,7 @@ export namespace UserInterface {
 	export type TRating = 0 | 1 | 2 | 3 | 4 | 5;
 	export type TUserNeed = Pick<IUser, "id" | "nickname" | "like" | "dislike">;
 	export type TUserMin = Partial<Omit<IUser, keyof TUserNeed>> & Pick<IUser, keyof TUserNeed>;
+	export type TUserInfoMin = Pick<IUser, "id" | "nickname">;
 	export type TUserMap = Record<string, IUser>;
 
 	export interface Store {

@@ -48,7 +48,7 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 	}
 
 	public async createDeposit(amount: number): Promise<Interface.TDeposit> {
-		return await this.API.Links.CREATE_DEPOSIT(amount);
+		return await this.API.Links.CREATE_DEPOSIT({ amount });
 	}
 
 	public async removeDeposit(): Promise<void> {
@@ -56,7 +56,7 @@ class WalletImp extends ServiceBase<Interface.Store> implements Interface.IAdapt
 	}
 
 	public async awaitPayDeposit(signal?: AbortSignal): Promise<boolean> {
-		const isSuccess = await this.API.Links.AWAIT_PAY_DEPOSIT(signal);
+		const isSuccess = await this.API.Links.AWAIT_PAY_DEPOSIT({ signal });
 		await this.refreshBalance();
 
 		return isSuccess;

@@ -1,8 +1,8 @@
-import type { UseCasesInterface as Interface } from "../UseCases.interface";
 import UseCasesBase from "../UseCases.base";
+import type { RestInterface } from "../../Infrastructure/InfrastructureLinks/Rest.interface.ts";
 
 class CreateLot extends UseCasesBase {
-	async invoke(params: Interface.TCreateLotReq): Interface.TCreateLotRes {
+	async invoke(params: RestInterface.TCreateListingReq): Promise<string> {
 		return this.inf.Links.CREATE_LISTING(params);
 	}
 }

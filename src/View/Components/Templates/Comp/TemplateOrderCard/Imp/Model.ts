@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { TMoleculeGroupBtn } from "../../../../2.Molecules/MoleculeGroupBtn";
 import type { TComponent as IProp } from "../../../../4.Structures/StructuresTabCard";
 
-function Model({ Props, Act }: TModel<TComponent>) {
+function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const {} = Props;
 
 	const orderList = Act.Listing.getListingIdList();
@@ -12,7 +12,9 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const [isSell, setIsSell] = useState(true);
 	const [isComplete, setIsComplete] = useState(true);
 
-	useEffect(() => {}, [isSell, isComplete]);
+	useEffect(() => {
+		Pub.requestOrderList({ limit: 10, isActive: !isComplete, isSell });
+	}, [isSell, isComplete]);
 
 	const mySell: TMoleculeGroupBtn = {
 		id: "1",

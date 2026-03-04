@@ -1,23 +1,24 @@
-import type { UserInterface } from "../../Services/ServiceUser/User.interface.ts";
 import type { PublicInterface } from "../../Services/Public.interface.ts";
-import type { WalletInterface } from "../../Services/ServiceWallet/Wallet.interface.ts";
-import type { UseCasesInterface } from "../../UseCases/UseCases.interface.ts";
+import type { RestInterface } from "./Rest.interface.ts";
 
 export namespace LinksInterface {
 	export interface IAdapter {
-		LOGIN(login: string, token: string): Promise<UserInterface.IUser>;
-		GET_ITEMS(params: UseCasesInterface.TRequestCatalogReq): Promise<UseCasesInterface.TLotInfoPublic[]>;
-		GET_ITEM(params: UseCasesInterface.TRequestLotReq): Promise<UseCasesInterface.TLotInfoPublic>;
-		CREATE_LISTING(params: UseCasesInterface.TReqCreate): Promise<string>;
-		GET_MY_ACC(): Promise<UserInterface.IUser>;
-		AWAIT_PAY_DEPOSIT(signal?: AbortSignal): Promise<boolean>;
-		IS_EXIST_DEPOSIT(): Promise<WalletInterface.TCheckDeposit>;
-		CREATE_DEPOSIT(amount: number): Promise<WalletInterface.TDeposit>;
-		REMOVE_DEPOSIT(): Promise<void>;
-		GET_BALANCE(): Promise<WalletInterface.TWallet>;
-		WITHDRAW_BALANCE(tranche: WalletInterface.TTranche): Promise<void>;
-		START_BUY_ITEM(id: string): Promise<void>;
+		LOGIN: TRest<RestInterface.TLoginReq, RestInterface.TLoginRes>;
+		GET_ITEMS: TRest<RestInterface.TGetItemsReq, RestInterface.TGetItemsRes>;
+		GET_ITEM: TRest<RestInterface.TGetItemReq, RestInterface.TGetItemRes>;
+		CREATE_LISTING: TRest<RestInterface.TCreateListingReq, RestInterface.TCreateListingRes>;
+		GET_MY_ACC: TRest<RestInterface.TGetMyAccReq, RestInterface.TGetMyAccRes>;
+		AWAIT_PAY_DEPOSIT: TRest<RestInterface.TAwaitPayDepositReq, RestInterface.TAwaitPayDepositRes>;
+		IS_EXIST_DEPOSIT: TRest<RestInterface.TIsExistDepositReq, RestInterface.TIsExistDepositRes>;
+		CREATE_DEPOSIT: TRest<RestInterface.TCreateDepositReq, RestInterface.TCreateDepositRes>;
+		REMOVE_DEPOSIT: TRest<RestInterface.TRemoveDepositReq, RestInterface.TRemoveDepositRes>;
+		GET_BALANCE: TRest<RestInterface.TGetBalanceReq, RestInterface.TGetBalanceRes>;
+		WITHDRAW_BALANCE: TRest<RestInterface.TWithdrawBalanceReq, RestInterface.TwWithdrawBalanceRes>;
+		START_BUY_ITEM: TRest<RestInterface.TStartBuyItemReq, RestInterface.TStartBuyItemRes>;
+		GET_ORDER_LIST: TRest<RestInterface.TGetOrderListReq, RestInterface.TGetOrderListRes>;
 	}
+
+	type TRest<P, R> = (param: P) => Promise<R>;
 
 	type TLinksParam = {
 		link: string;
@@ -42,10 +43,10 @@ export namespace LinksInterface {
 }
 
 const Method = {
-	GET: "GET",
-	PUT: "PUT",
-	POST: "POST",
-	DELETE: "DELETE",
+	get: "get",
+	put: "put",
+	post: "post",
+	delete: "delete",
 } as const;
 
 const Names = {
@@ -61,4 +62,5 @@ const Names = {
 	GET_BALANCE: "GET_BALANCE",
 	WITHDRAW_BALANCE: "WITHDRAW_BALANCE",
 	START_BUY_ITEM: "START_BUY_ITEM",
+	GET_ORDER_LIST: "GET_ORDER_LIST",
 } as const;

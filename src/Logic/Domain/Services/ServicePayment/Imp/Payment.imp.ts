@@ -12,8 +12,8 @@ class PaymentImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 
 	//==============================================================================================
 
-	public async buyLot(lotId: string) {
-		return this.API.Links.START_BUY_ITEM(lotId);
+	public async buyLot(listingId: string) {
+		return this.API.Links.START_BUY_ITEM({ listingId });
 	}
 }
 

@@ -1,7 +1,5 @@
 import type { LinksInterface as Interface } from "../Links.interface";
-import type { UserInterface } from "../../../Services/ServiceUser/User.interface.ts";
-import type { WalletInterface } from "../../../Services/ServiceWallet/Wallet.interface.ts";
-import type { UseCasesInterface } from "../../../UseCases/UseCases.interface.ts";
+import type { RestInterface } from "../Rest.interface.ts";
 
 class LinksImp implements Interface.IAdapter {
 	private authData: { login: string; token: string } | undefined;
@@ -20,7 +18,7 @@ class LinksImp implements Interface.IAdapter {
 
 		if (param !== undefined) {
 			switch (method) {
-				case "GET":
+				case "get":
 					url.search = new URLSearchParams(param).toString();
 					break;
 				default:
@@ -44,46 +42,47 @@ class LinksImp implements Interface.IAdapter {
 
 	//==============================================================================================
 
-	public LOGIN = (login: string, token: string) => {
-		const param = { login, token };
-		const res = this.request<UserInterface.IUser>({ link: "LOGIN", param });
-
+	public LOGIN = (param: RestInterface.TLoginReq) => {
+		const res = this.request<RestInterface.TLoginRes>({ link: "LOGIN", param });
 		res.then(() => (this.authData = param));
 
 		return res;
 	};
-	public GET_ITEMS = (param: UseCasesInterface.TRequestCatalogReq) => {
-		return this.request<UseCasesInterface.TLotInfoPublic[]>({ link: "GET_ITEMS", param });
+	public GET_ITEMS = (param: RestInterface.TGetItemsReq) => {
+		return this.request<RestInterface.TGetItemsRes>({ link: "GET_ITEMS", param });
 	};
-	public GET_ITEM = (param: UseCasesInterface.TRequestLotReq) => {
-		return this.request<UseCasesInterface.TLotInfoPublic>({ link: "GET_ITEM", param });
+	public GET_ITEM = (param: RestInterface.TGetItemReq) => {
+		return this.request<RestInterface.TGetItemRes>({ link: "GET_ITEM", param });
 	};
-	public CREATE_LISTING = (param: UseCasesInterface.TReqCreate) => {
-		return this.request<string>({ link: "CREATE_LISTING", param });
+	public CREATE_LISTING = (param: RestInterface.TCreateListingReq) => {
+		return this.request<RestInterface.TCreateListingRes>({ link: "CREATE_LISTING", param });
 	};
-	public GET_MY_ACC = () => {
-		return this.request<UserInterface.IUser>({ link: "GET_MY_ACC" });
+	public GET_MY_ACC = (_param: RestInterface.TGetMyAccReq) => {
+		return this.request<RestInterface.TGetMyAccRes>({ link: "GET_MY_ACC" });
 	};
-	public AWAIT_PAY_DEPOSIT = (signal?: AbortSignal) => {
-		return this.request<boolean>({ link: "AWAIT_PAY_DEPOSIT", options: { signal } });
+	public AWAIT_PAY_DEPOSIT = (param: RestInterface.TAwaitPayDepositReq) => {
+		return this.request<RestInterface.TAwaitPayDepositRes>({ link: "AWAIT_PAY_DEPOSIT", options: { signal: param.signal } });
 	};
-	public IS_EXIST_DEPOSIT = () => {
-		return this.request<WalletInterface.TCheckDeposit>({ link: "IS_EXIST_DEPOSIT" });
+	public IS_EXIST_DEPOSIT = (_param: RestInterface.TIsExistDepositReq) => {
+		return this.request<RestInterface.TIsExistDepositRes>({ link: "IS_EXIST_DEPOSIT" });
 	};
-	public CREATE_DEPOSIT = (amount: number) => {
-		return this.request<WalletInterface.TDeposit>({ link: "CREATE_DEPOSIT", param: { amount } });
+	public CREATE_DEPOSIT = (param: RestInterface.TCreateDepositReq) => {
+		return this.request<RestInterface.TCreateDepositRes>({ link: "CREATE_DEPOSIT", param });
 	};
-	public REMOVE_DEPOSIT = () => {
-		return this.request({ link: "REMOVE_DEPOSIT" });
+	public REMOVE_DEPOSIT = (_param: RestInterface.TRemoveDepositReq) => {
+		return this.request<RestInterface.TRemoveDepositRes>({ link: "REMOVE_DEPOSIT" });
 	};
-	public GET_BALANCE = () => {
-		return this.request<WalletInterface.TWallet>({ link: "GET_BALANCE" });
+	public GET_BALANCE = (_param: RestInterface.TGetBalanceReq) => {
+		return this.request<RestInterface.TGetBalanceRes>({ link: "GET_BALANCE" });
 	};
-	public WITHDRAW_BALANCE = (param: WalletInterface.TTranche) => {
-		return this.request({ link: "WITHDRAW_BALANCE", param });
+	public WITHDRAW_BALANCE = (param: RestInterface.TWithdrawBalanceReq) => {
+		return this.request<RestInterface.TwWithdrawBalanceRes>({ link: "WITHDRAW_BALANCE", param });
 	};
-	public START_BUY_ITEM = (listingId: string) => {
-		return this.request({ link: "START_BUY_ITEM", param: { listingId } });
+	public START_BUY_ITEM = (param: RestInterface.TStartBuyItemReq) => {
+		return this.request<RestInterface.TStartBuyItemRes>({ link: "START_BUY_ITEM", param });
+	};
+	public GET_ORDER_LIST = (param: RestInterface.TGetOrderListReq) => {
+		return this.request<RestInterface.TGetOrderListRes>({ link: "GET_ORDER_LIST", param });
 	};
 }
 

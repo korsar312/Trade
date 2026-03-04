@@ -12,12 +12,14 @@ export namespace ListingInterface {
 
 	export interface IListing {
 		id: string;
+		sellerId: string;
+		saleKind: ESaleKind;
+		status: EStatus;
 		name: string;
 		desc: string;
 		price: number;
-		status: EStatus;
-		sellerId: string;
-		saleKind: ESaleKind;
+		createdAt: number;
+		updatedAt: number;
 	}
 
 	export type TMain = Pick<IListing, "name" | "price" | "desc" | "saleKind">;
