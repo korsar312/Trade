@@ -4,7 +4,7 @@ import type { TComponent } from "../";
 function Model({ Props }: TModel<TComponent>) {
 	const {} = Props;
 
-	return {};
+	return Props;
 }
 
 export default Model;

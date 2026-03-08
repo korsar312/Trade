@@ -4,6 +4,7 @@ import RequestCatalog from "./Methods/RequestCatalog.ts";
 import RequestLot from "./Methods/RequestLot.ts";
 import CreateLot from "./Methods/CreateLot.ts";
 import RequestOrderList from "./Methods/RequestOrderList.ts";
+import RequestOrder from "./Methods/RequestOrder.ts";
 
 class UseCases implements Interface.IAdapter {
 	public scenarioList: Interface.TScenarioList;
@@ -14,6 +15,7 @@ class UseCases implements Interface.IAdapter {
 			requestLot: new RequestLot({ service, inf }),
 			createLot: new CreateLot({ service, inf }),
 			requestOrderList: new RequestOrderList({ service, inf }),
+			requestOrder: new RequestOrder({ service, inf }),
 		};
 	}
 }

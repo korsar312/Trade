@@ -16,6 +16,7 @@ export namespace LinksInterface {
 		WITHDRAW_BALANCE: TRest<RestInterface.TWithdrawBalanceReq, RestInterface.TwWithdrawBalanceRes>;
 		START_BUY_ITEM: TRest<RestInterface.TStartBuyItemReq, RestInterface.TStartBuyItemRes>;
 		GET_ORDER_LIST: TRest<RestInterface.TGetOrderListReq, RestInterface.TGetOrderListRes>;
+		GET_ORDER: TRest<RestInterface.TGetOrderReq, RestInterface.TGetOrderRes>;
 	}
 
 	type TRest<P, R> = (param: P) => Promise<R>;
@@ -63,4 +64,5 @@ const Names = {
 	WITHDRAW_BALANCE: "WITHDRAW_BALANCE",
 	START_BUY_ITEM: "START_BUY_ITEM",
 	GET_ORDER_LIST: "GET_ORDER_LIST",
+	GET_ORDER: "GET_ORDER",
 } as const;

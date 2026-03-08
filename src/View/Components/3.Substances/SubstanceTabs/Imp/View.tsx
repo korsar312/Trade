@@ -15,7 +15,7 @@ const View: TPresent = ({ Model, Style }) => {
 				<Fragment key={el.id}>{renderRow(el)}</Fragment>
 			))}
 
-			{children}
+			<div css={Style.child}>{children}</div>
 		</div>
 	);
 };

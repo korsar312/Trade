@@ -8,6 +8,7 @@ export namespace UseCasesInterface {
 		requestLot: TScenarioBase<RestInterface.TGetItemReq, Promise<void>>;
 		createLot: TScenarioBase<RestInterface.TCreateListingReq, Promise<string>>;
 		requestOrderList: TScenarioBase<RestInterface.TGetOrderListReq, Promise<void>>;
+		requestOrder: TScenarioBase<RestInterface.TGetOrderReq, Promise<void>>;
 	};
 
 	export type TScenarioBase<T, R> = {

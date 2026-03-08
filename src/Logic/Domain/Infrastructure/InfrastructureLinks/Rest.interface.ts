@@ -52,6 +52,7 @@ export namespace RestInterface {
 	export type TWithdrawBalanceReq = WalletInterface.TTranche;
 	export type TStartBuyItemReq = { listingId: string };
 	export type TGetOrderListReq = { isActive: boolean; isSell: boolean; limit: number; cursorId?: string };
+	export type TGetOrderReq = { dealId?: string };
 
 	/** =========== RESPONSE =========== */
 
@@ -68,4 +69,5 @@ export namespace RestInterface {
 	export type TwWithdrawBalanceRes = void;
 	export type TStartBuyItemRes = void;
 	export type TGetOrderListRes = IOrderRes[];
+	export type TGetOrderRes = IOrderRes;
 }

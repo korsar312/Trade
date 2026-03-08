@@ -8,6 +8,12 @@ class Style extends Styles {
 		width: 100%;
 		height: 100%;
 	`;
+
+	public child: CSSObject = css`
+		border-radius: ${this.variables.radiusStandard}px;
+		${this.mixins.noScrollBar};
+		height: 100%;
+	`;
 }
 
 export default new Style();
