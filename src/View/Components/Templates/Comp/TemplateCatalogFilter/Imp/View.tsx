@@ -10,11 +10,7 @@ const View: TPresent = ({ Model }) => {
 			{propsFilter.map((el) => {
 				const { id, ...propsControl } = el;
 
-				return (
-					<div key={id}>
-						<MoleculeRowControl {...propsControl} />
-					</div>
-				);
+				return <MoleculeRowControl {...propsControl} />;
 			})}
 		</AtomWrapper>
 	);
