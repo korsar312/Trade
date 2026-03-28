@@ -14,13 +14,22 @@ function Model({ Props, Act }: TModel<TComponent>) {
 
 	function getNamePage(): string | MessageInterface.EWord {
 		switch (name) {
-			case "GOODS":
+			case "LISTING_LIST":
+				return "LISTING";
+			case "LISTING": {
+				const param = Act.Router.getCurParam<"ITEM">();
+				const name = Act.Listing.getName(param?.id);
+
+				return name || "LISTING";
+			}
+			case "ITEM_LIST":
 				return "PRODUCTS";
-			case "ITEM":
+			case "ITEM": {
 				const param = Act.Router.getCurParam<"ITEM">();
 				const name = Act.Listing.getName(param?.id);
 
 				return name || "PRODUCT";
+			}
 			case "PROFILE":
 				return "PROFILE";
 			case "USER":

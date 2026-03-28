@@ -1,4 +1,4 @@
-import type { TModel } from "../../../../CreateComponent.tsx";
+import type { TModel } from "../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 
 function Model({ Props }: TModel<TComponent>) {

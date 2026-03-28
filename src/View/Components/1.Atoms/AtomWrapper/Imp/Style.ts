@@ -4,7 +4,7 @@ import { css, type CSSObject } from "@emotion/react";
 class Style extends Styles {
 	public colControl: CSSObject = css`
 		${this.mixins.flexCol};
-		gap: 12px;
+		gap: ${this.size(4)};
 	`;
 
 	public rowControl: CSSObject = css`

@@ -125,7 +125,7 @@ function createRoleSink(): { get: () => PublicInterface.ERole } {
 function redirectRole(role: PublicInterface.ERole): Interface.EPath {
 	switch (role) {
 		default:
-			return "GOODS";
+			return "ITEM_LIST";
 	}
 }
 

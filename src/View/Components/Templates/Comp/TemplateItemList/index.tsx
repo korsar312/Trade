@@ -7,6 +7,10 @@ import { observer } from "mobx-react";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 
-export type TComponent = {};
+export type TComponent = {
+	type: TTemplateItemListType;
+};
 
-export default observer(Component.Create(Model, Style, View, "TemplateOrderCard"));
+export type TTemplateItemListType = "order" | "item";
+
+export default observer(Component.Create(Model, Style, View, "TemplateItemList"));

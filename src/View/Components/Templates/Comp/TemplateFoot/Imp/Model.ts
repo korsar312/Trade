@@ -5,6 +5,7 @@ import type { RouterInterface } from "../../../../../../Logic/Domain/Services/Se
 import type { TImageComponent } from "../../../../0.Cores/Image";
 
 const Btn = {
+	LOT: "LOT",
 	CATALOG: "CATALOG",
 	INFO: "CATALOG",
 	ORDER: "CATALOG",
@@ -17,7 +18,9 @@ type TBtn = { path: RouterInterface.EPath; image: TImageComponent };
 type TBtnMap = Record<EBtn, TBtn>;
 
 const includesPath: Record<RouterInterface.EPath, EBtn> = {
-	GOODS: "CATALOG",
+	LISTING_LIST: "LOT",
+	LISTING: "LOT",
+	ITEM_LIST: "CATALOG",
 	ITEM: "CATALOG",
 	CREATE_LISTING: "CATALOG",
 	PROFILE: "PROFILE",
@@ -34,9 +37,10 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const curPage = Act.Router.getCurPage();
 
 	const btnPath: TBtnMap = {
-		CATALOG: { path: "GOODS", image: "Store" },
+		CATALOG: { path: "ITEM_LIST", image: "Store" },
 		PROFILE: { path: "PROFILE", image: "Person" },
 		ORDER: { path: "ORDER", image: "CheckList" },
+		LOT: { path: "LISTING_LIST", image: "AddCard" },
 		INFO: { path: "INFO", image: "Info" },
 	};
 

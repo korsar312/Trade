@@ -1,14 +1,12 @@
 import type { TModel } from "../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
-import type { TComponent as IProp } from "../../../../4.Structures/StructuresCatalog";
+import type { TComponent as IProp, TMoleculeRowControlCompType } from "../../../../2.Molecules/MoleculeRowControl";
 import { useEffect, useState } from "react";
-import type { TMoleculeRowControlCompType } from "../../../../2.Molecules/MoleculeRowControl";
 import { useDidUpdate } from "../../../../../../Logic/Libs/Hooks/useDidUpdate/useDidUpdate.ts";
 import { PublicInterface } from "../../../../../../Logic/Domain/Services/Public.interface.ts";
 import type { EAtomButtonColor } from "../../../../1.Atoms/AtomButton";
 import Util from "../../../../../../Logic/Libs/Util";
 import type { SettingInterface } from "../../../../../../Logic/Domain/Services/ServiceSetting/Setting.interface.ts";
-import PropsBuyItemBtn from "../../../Props/PropsBuyItemBtn.ts";
 import type { ItemInterface } from "../../../../../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
 import type { UserInterface } from "../../../../../../Logic/Domain/Services/ServiceUser/User.interface.ts";
 
@@ -21,7 +19,6 @@ const initFilter: PublicInterface.TFilterCard = { name: null, bank: [], priseUp:
 function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const {} = Props;
 
-	const catalog = Act.Listing.getListingIdList();
 	const genId = Util.idGen();
 
 	const [sort, setSort] = useState<PublicInterface.ESort>(getSortData());
@@ -185,24 +182,6 @@ function Model({ Props, Act, Pub }: TModel<TComponent>) {
 		return Act.Setting.getStorage(keyStorageFilter) || initFilter;
 	}
 
-	// ======================= GETTER ITEM =======================
-
-	function getName(id: string) {
-		return Act.Listing.getName(id);
-	}
-
-	function getType(id: string) {
-		return Act.Item.getType(id);
-	}
-
-	//function getBank(id: string) {
-	//	return Act.Catalogue.getBank(id);
-	//}
-
-	function getImage(id: string) {
-		return Act.Listing.getImage(id);
-	}
-
 	// ======================= OTHERS =======================
 
 	function goCreateListing(type: ItemInterface.ETypeItem) {
@@ -213,25 +192,18 @@ function Model({ Props, Act, Pub }: TModel<TComponent>) {
 		setFilters(initFilter);
 	}
 
-	function goItemDetail(id: string) {
-		Act.Router.goTo("ITEM", { id, type: getType(id) || "CARD" });
-	}
+	const propsFilter: Array<IProp & { id: string }> = [
+		{
+			id: "1",
+			compRow: topRow,
+		},
+		{
+			id: "2",
+			compRow: botRow,
+		},
+	];
 
-	const propsComponent: IProp = {
-		itemList: catalog.map((el) => ({
-			btn: [PropsBuyItemBtn(Act, { id: el })],
-			click: () => goItemDetail(el),
-			image: getImage(el),
-			name: getName(el),
-			id: el,
-		})),
-		filterList: [
-			{ compRow: topRow, id: genId() },
-			{ compRow: botRow, id: genId() },
-		],
-	};
-
-	return { propsComponent };
+	return { propsFilter };
 }
 
 export default Model;

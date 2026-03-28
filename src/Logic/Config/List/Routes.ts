@@ -9,6 +9,7 @@ const BasePage = {
 	PROFILE: "profile",
 	TRADE: "trade",
 	ORDER: "order",
+	LISTING: "listing",
 	INFO: "info",
 } as const;
 
@@ -17,11 +18,15 @@ const TYPE = "/:type?" as const;
 const ID_TYPE = `${ID}${TYPE}` as const;
 
 export const RouteSpec = {
+	LISTING: {
+		LISTING_LIST: "",
+		LISTING: ID,
+	},
 	CREATE: {
 		CREATE_LISTING: TYPE,
 	},
 	TRADE: {
-		GOODS: "",
+		ITEM_LIST: "",
 		ITEM: ID_TYPE,
 	},
 	ORDER: {
@@ -43,7 +48,9 @@ export const Path = {
 } satisfies RouterInterface.TPath;
 
 export const RoutesRole: RouterInterface.TRouterListRole = {
-	GOODS: ["USER", "ADMIN"],
+	LISTING_LIST: ["USER", "ADMIN"],
+	LISTING: ["USER", "ADMIN"],
+	ITEM_LIST: ["USER", "ADMIN"],
 	ITEM: ["USER", "ADMIN"],
 	ORDER_LIST: ["USER", "ADMIN"],
 	ORDER: ["USER", "ADMIN"],
@@ -55,7 +62,9 @@ export const RoutesRole: RouterInterface.TRouterListRole = {
 };
 
 export const Routes: RouterInterface.TRouterMapList = [
-	{ Component: lazy(() => import("./../../../View/Page/PageGoods")), path: "GOODS" },
+	{ Component: lazy(() => import("./../../../View/Page/PageListingList")), path: "LISTING_LIST" },
+	{ Component: lazy(() => import("./../../../View/Page/PageListing")), path: "LISTING" },
+	{ Component: lazy(() => import("./../../../View/Page/PageItemList")), path: "ITEM_LIST" },
 	{ Component: lazy(() => import("./../../../View/Page/PageItem")), path: "ITEM" },
 	{ Component: lazy(() => import("./../../../View/Page/PageProfile")), path: "PROFILE" },
 	{ Component: lazy(() => import("./../../../View/Page/PageUser")), path: "USER" },
@@ -63,7 +72,7 @@ export const Routes: RouterInterface.TRouterMapList = [
 	{ Component: lazy(() => import("./../../../View/Page/PageOrder")), path: "ORDER" },
 	{ Component: lazy(() => import("./../../../View/Page/PageInfo")), path: "INFO" },
 	{ Component: lazy(() => import("./../../../View/Page/PageCreateListing")), path: "CREATE_LISTING" },
-	{ loader: () => redirect(Path.GOODS), path: "ERROR" },
+	{ loader: () => redirect(Path.ITEM_LIST), path: "ERROR" },
 ];
 
 //=================================================
