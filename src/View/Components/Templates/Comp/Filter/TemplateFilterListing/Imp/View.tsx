@@ -1,6 +1,6 @@
 import type { TPresent } from "../index.tsx";
-import MoleculeGroupBtn from "../../../../2.Molecules/MoleculeGroupBtn";
-import AtomWrapper from "../../../../1.Atoms/AtomWrapper";
+import AtomWrapper from "../../../../../1.Atoms/AtomWrapper";
+import MoleculeGroupBtn from "../../../../../2.Molecules/MoleculeGroupBtn";
 
 const View: TPresent = ({ Model }) => {
 	const { tabProps } = Model;

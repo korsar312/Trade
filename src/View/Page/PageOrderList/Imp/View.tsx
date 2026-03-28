@@ -1,8 +1,8 @@
 import type { TPresent } from "../";
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
-import TemplateOrderFilter from "../../../Components/Templates/Comp/TemplateOrderFilter";
 import AtomWrapper from "../../../Components/1.Atoms/AtomWrapper";
 import TemplateItemList from "../../../Components/Templates/Comp/TemplateItemList";
+import TemplateFilterOrder from "../../../Components/Templates/Comp/Filter/TemplateFilterOrder";
 
 const View: TPresent = ({ Model, Style }) => {
 	const {} = Model;
@@ -10,7 +10,7 @@ const View: TPresent = ({ Model, Style }) => {
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
 			<AtomWrapper styleType={"col"}>
-				<TemplateOrderFilter />
+				<TemplateFilterOrder />
 				<TemplateItemList type={"order"} />
 			</AtomWrapper>
 		</AtomPaper>

@@ -1,7 +1,7 @@
-import type { TModel } from "../../../../../CreateComponent.tsx";
+import type { TModel } from "../../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
 import { useEffect, useState } from "react";
-import type { TComponent as TGroup, TMoleculeGroupBtn } from "../../../../2.Molecules/MoleculeGroupBtn";
+import type { TComponent as TGroup, TMoleculeGroupBtn } from "../../../../../2.Molecules/MoleculeGroupBtn";
 
 function Model({ Props, Pub }: TModel<TComponent>) {
 	const {} = Props;
