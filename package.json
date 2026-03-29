@@ -12,9 +12,8 @@
 	"dependencies": {
 		"@emotion/react": "^11.14.0",
 		"@emotion/styled": "^11.14.1",
-		"@material-icons/svg": "^1.0.33",
+		"@material-design-icons/svg": "^0.14.15",
 		"framer-motion": "^12.38.0",
-		"material-icons": "^1.13.14",
 		"mobx": "^6.15.0",
 		"mobx-react": "^9.2.1",
 		"qr-code-styling": "^1.9.2",
