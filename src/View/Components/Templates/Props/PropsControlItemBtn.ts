@@ -45,7 +45,7 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 	function btnFreeze(): TBtn {
 		const isDisable = price > userBalance;
 
-		return { id: "freeze", color: "MAIN_4", click: freezeItem, isDisable, leftImage: "Pause", ...mainBtn };
+		return { id: "run", color: "MAIN_4", click: freezeItem, isDisable, leftImage: "Pause", ...mainBtn };
 	}
 
 	function btnRun(): TBtn {
@@ -57,7 +57,13 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 	function btnCancel(): TBtn {
 		const isDisable = price > userBalance;
 
-		return { id: "cancel", text: priceFormat, color: "RED_1", click: cancelModal, isDisable, ...mainBtn };
+		return { id: "cancel",  color: "RED_1", click: cancelModal, isDisable, leftImage: "Stop",...mainBtn };
+	}
+
+	function btnFreezeToggle(): TBtn {
+		const isDisable = !!true;
+
+		return isDisable ? btnFreeze(): btnRun()
 	}
 
 	function btnBuy(): TBtn {
@@ -66,7 +72,7 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 		return { id: "buy", text: priceFormat, color: "BLUE_2", click: buyModal, isDisable, ...mainBtn };
 	}
 
-	return sellerIsUser ? [btnFreeze(), btnRun(), btnCancel()] : [btnBuy()];
+	return sellerIsUser ? [btnFreezeToggle(), btnCancel()] : [btnBuy()];
 }
 
 export default Template;

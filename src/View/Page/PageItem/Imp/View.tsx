@@ -20,9 +20,11 @@ const View: TPresent = ({ Model, Style }) => {
 			</main>
 
 			<div css={Style.btnWrap}>
-				{btnProps.map((el) => (
-					<AtomButtonMain {...el} />
-				))}
+				{btnProps.map((el) => {
+					const {id, ...rest} = el
+
+					return <AtomButtonMain key={id} {...rest} />;
+				})}
 				<AtomButtonMain text={"BACK"} color={"MAIN_3"} click={goBack} />
 			</div>
 		</AtomPaper>

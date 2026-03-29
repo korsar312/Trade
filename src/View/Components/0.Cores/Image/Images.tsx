@@ -20,7 +20,8 @@ import Info from "@material-icons/svg/svg/info/outline.svg?react";
 import CheckList from "@material-icons/svg/svg/checklist/outline.svg?react";
 import Star from "@material-icons/svg/svg/star/outline.svg?react";
 import Pause from "@material-icons/svg/svg/pause/outline.svg?react";
-import Play from "@material-icons/svg/svg/play_circle/outline.svg?react";
+import Play from "@material-icons/svg/svg/play_arrow/outline.svg?react";
+import Stop from "@material-icons/svg/svg/stop/outline.svg?react";
 
 type TIcons = Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>;
 
@@ -46,6 +47,7 @@ const icons = {
 	Star,
 	Pause,
 	Play,
+	Stop,
 } satisfies TIcons;
 
 const Images = {
