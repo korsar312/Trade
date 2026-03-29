@@ -8,7 +8,7 @@ function Model({ Props }: TModel<TComponent>) {
 	const propsComponent: IParent = {
 		...other,
 		color: color,
-		textVars: { value: [{ text }] },
+		textVars: text ? { value: [{ text }] } : undefined,
 		icons: {
 			left: leftImage ? { value: [{ img: leftImage, size: 20 }] } : undefined,
 			right: rightImage ? { value: [{ img: rightImage, size: 20 }] } : undefined,

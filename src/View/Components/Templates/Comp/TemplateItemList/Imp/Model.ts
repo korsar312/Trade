@@ -1,7 +1,7 @@
 import type { TModel } from "../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
 import type { TComponent as IComp } from "../../../../3.Substances/SubstanceItemCard";
-import PropsBuyItemBtn from "../../../Props/PropsBuyItemBtn.ts";
+import PropsControlItemBtn from "../../../Props/PropsControlItemBtn.ts";
 
 type TRowProps = IComp & { id: string };
 
@@ -25,7 +25,13 @@ function Model({ Props, Act }: TModel<TComponent>) {
 
 			case "item":
 				return {
-					btn: [PropsBuyItemBtn(Act, { id })],
+					btn: PropsControlItemBtn(Act, { id }),
+					click: () => goItemDetail(id),
+				};
+
+			case "listing":
+				return {
+					btn: PropsControlItemBtn(Act, { id }),
 					click: () => goItemDetail(id),
 				};
 		}

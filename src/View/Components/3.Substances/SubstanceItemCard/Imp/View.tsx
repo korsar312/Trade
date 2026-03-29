@@ -3,6 +3,7 @@ import Image from "../../../0.Cores/Image";
 import Text from "../../../0.Cores/Text";
 import AtomPaper from "../../../1.Atoms/AtomPaper";
 import AtomButtonMain from "../../../1.Atoms/AtomButton/Variables/AtomButtonMain";
+import AtomWrapper from "../../../1.Atoms/AtomWrapper";
 
 const View: TPresent = ({ Model, Style }) => {
 	const { image, name, btnList, click } = Model;
@@ -19,9 +20,11 @@ const View: TPresent = ({ Model, Style }) => {
 				</div>
 
 				<div css={Style.btnWrap}>
-					{btnList.map((el) => (
-						<AtomButtonMain key={el.text} {...el} />
-					))}
+					<AtomWrapper styleType={"row"}>
+						{btnList.map((el) => (
+							<AtomButtonMain key={el.id} {...el} />
+						))}
+					</AtomWrapper>
 				</div>
 			</div>
 		</AtomPaper>

@@ -3,50 +3,38 @@ import type { TComponent } from "../index.tsx";
 import { useEffect, useState } from "react";
 import type { TComponent as TGroup, TMoleculeGroupBtn } from "../../../../../2.Molecules/MoleculeGroupBtn";
 
-function Model({ Props, Pub }: TModel<TComponent>) {
+function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const {} = Props;
 
-	const [isSell, setIsSell] = useState(true);
-	const [isComplete, setIsComplete] = useState(true);
+	const userId = Act.User.getId();
+
+	const [isActive, setIsActive] = useState(true);
 
 	useEffect(() => {
-		Pub.requestOrderList({ limit: 10, isActive: !isComplete, isSell });
-	}, [isSell, isComplete]);
+		Pub.requestCatalog({
+			limit: 10,
+			saleKind: "ONE",
+			type: "CARD",
+			sellerId: userId,
+			info: {},
+		});
+	}, [isActive]);
 
 	const mySell: TMoleculeGroupBtn = {
 		id: "1",
-		options: { text: "MY_SALES", click: () => setIsSell(false) },
-		isActive: !isSell,
+		options: { text: "ACTIVE", click: () => setIsActive(false) },
+		isActive: !isActive,
 	};
 
 	const myBuy: TMoleculeGroupBtn = {
 		id: "2",
-		options: { text: "MY_PURCHASES", click: () => setIsSell(true) },
-		isActive: isSell,
+		options: { text: "COMPLETED", click: () => setIsActive(true) },
+		isActive: isActive,
 	};
 
-	const complete: TMoleculeGroupBtn = {
-		id: "3",
-		options: { text: "ACTIVE", click: () => setIsComplete(false) },
-		isActive: !isComplete,
+	const tabProps: TGroup = {
+		btnRow: [mySell, myBuy],
 	};
-
-	const unComplete: TMoleculeGroupBtn = {
-		id: "4",
-		options: { text: "COMPLETED", click: () => setIsComplete(true) },
-		isActive: isComplete,
-	};
-
-	const tabProps: Array<TGroup & { id: string }> = [
-		{
-			id: "1",
-			btnRow: [mySell, myBuy],
-		},
-		{
-			id: "2",
-			btnRow: [complete, unComplete],
-		},
-	];
 
 	return { tabProps };
 }

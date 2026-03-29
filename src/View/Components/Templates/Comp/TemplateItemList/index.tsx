@@ -11,6 +11,6 @@ export type TComponent = {
 	type: TTemplateItemListType;
 };
 
-export type TTemplateItemListType = "order" | "item";
+export type TTemplateItemListType = "order" | "item" | "listing";
 
 export default observer(Component.Create(Model, Style, View, "TemplateItemList"));

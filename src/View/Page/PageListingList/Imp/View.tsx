@@ -11,7 +11,7 @@ const View: TPresent = ({ Model, Style }) => {
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
 			<AtomWrapper styleType={"col"}>
 				<TemplateFilterListing />
-				<TemplateItemList type={"order"} />
+				<TemplateItemList type={"listing"} />
 			</AtomWrapper>
 		</AtomPaper>
 	);

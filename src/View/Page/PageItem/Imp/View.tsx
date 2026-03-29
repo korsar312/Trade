@@ -20,7 +20,9 @@ const View: TPresent = ({ Model, Style }) => {
 			</main>
 
 			<div css={Style.btnWrap}>
-				<AtomButtonMain {...btnProps} isFullWidth />
+				{btnProps.map((el) => (
+					<AtomButtonMain {...el} />
+				))}
 				<AtomButtonMain text={"BACK"} color={"MAIN_3"} click={goBack} />
 			</div>
 		</AtomPaper>

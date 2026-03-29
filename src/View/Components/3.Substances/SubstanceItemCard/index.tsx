@@ -13,7 +13,7 @@ export type TComponent = {
 	click?: () => void;
 	image: TImageComponent;
 	name: MessageInterface.EWordAll;
-	btn: IBtn[];
+	btn: Array<IBtn & { id: string }>;
 };
 
 export default Component.Create(Model, Style, View, "SubstanceItemCard");
