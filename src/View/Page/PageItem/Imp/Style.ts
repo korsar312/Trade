@@ -27,11 +27,6 @@ class Style extends Styles {
 	public detailWrap: CSSObject = css`
 		overflow: hidden;
 	`;
-
-	public btnWrap: CSSObject = css`
-		${this.mixins.flexCenter};
-		gap: ${this.gap}px;
-	`;
 }
 
 export default new Style();

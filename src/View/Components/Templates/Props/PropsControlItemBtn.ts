@@ -57,11 +57,11 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 	function btnCancel(): TBtn {
 		const isDisable = price > userBalance;
 
-		return { id: "cancel",  color: "RED_1", click: cancelModal, isDisable, leftImage: "Stop",...mainBtn };
+		return { id: "cancel",  color: "RED_1", click: cancelModal, isDisable, leftImage: "Remove",...mainBtn };
 	}
 
 	function btnFreezeToggle(): TBtn {
-		const isDisable = !!true;
+		const isDisable = !true;
 
 		return isDisable ? btnFreeze(): btnRun()
 	}

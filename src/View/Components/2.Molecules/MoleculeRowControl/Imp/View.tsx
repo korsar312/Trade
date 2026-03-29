@@ -7,6 +7,7 @@ import AtomInput from "../../../1.Atoms/AtomInput";
 import Text from "../../../0.Cores/Text";
 import Image from "../../../0.Cores/Image";
 import AtomLoadRow from "../../../1.Atoms/AtomLoadRow";
+import AtomWrapper from "../../../1.Atoms/AtomWrapper";
 
 const View: TPresent = ({ Model, Style }) => {
 	const { compRow } = Model;
@@ -32,9 +33,11 @@ const View: TPresent = ({ Model, Style }) => {
 
 	return (
 		<div css={Style.wrapper}>
-			{compRow.map((el) => (
-				<Fragment key={el.id}>{render(el)}</Fragment>
-			))}
+			<AtomWrapper styleType={"row"}>
+				{compRow.map((el) => (
+					<Fragment key={el.id}>{render(el)}</Fragment>
+				))}
+			</AtomWrapper>
 		</div>
 	);
 };

@@ -3,6 +3,7 @@ import TemplateItemDetail from "../../../Components/Templates/Comp/TemplateItemD
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
 import AtomButtonMain from "../../../Components/1.Atoms/AtomButton/Variables/AtomButtonMain";
 import Image from "../../../Components/0.Cores/Image";
+import AtomWrapper from "../../../Components/1.Atoms/AtomWrapper";
 
 const View: TPresent = ({ Model, Style }) => {
 	const { image, btnProps, itemId, goBack } = Model;
@@ -19,14 +20,14 @@ const View: TPresent = ({ Model, Style }) => {
 				</div>
 			</main>
 
-			<div css={Style.btnWrap}>
+			<AtomWrapper styleType={"row"}>
 				{btnProps.map((el) => {
 					const {id, ...rest} = el
 
 					return <AtomButtonMain key={id} {...rest} />;
 				})}
 				<AtomButtonMain text={"BACK"} color={"MAIN_3"} click={goBack} />
-			</div>
+			</AtomWrapper>
 		</AtomPaper>
 	);
 };
