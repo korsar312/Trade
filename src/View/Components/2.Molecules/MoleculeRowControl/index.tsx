@@ -3,6 +3,7 @@ import Model from "./Imp/Model.ts";
 import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
+import type { TComponent as IWrapper } from "../../1.Atoms/AtomWrapper/";
 import type { TComponent as IBtnImage } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import type { TComponent as IBtnMain } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
 import type { TComponent as IInput } from "../../1.Atoms/AtomInput";
@@ -15,6 +16,7 @@ export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
 	compRow: TMoleculeRowControlCompType[];
+	wrapper?: Pick<IWrapper, "pos" | "styleType">;
 };
 
 type TMap = {

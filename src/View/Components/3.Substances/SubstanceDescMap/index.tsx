@@ -3,7 +3,6 @@ import Model from "./Imp/Model.ts";
 import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
-import type { TComponent as IText } from "../../0.Cores/Text";
 import type { TComponent as IControl } from "../../2.Molecules/MoleculeRowControl";
 
 export type TPresent = TView<typeof Model, typeof Style>;
@@ -15,7 +14,7 @@ export type TComponent = {
 
 export type TSubstanceDescMapRow = {
 	id: string;
-	key?: IText;
+	key?: IControl;
 	type?: TSubstanceDescMapRowType;
 	value?: IControl;
 };

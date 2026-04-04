@@ -2,12 +2,13 @@ import type { TPresent } from "../";
 import { type CSSObject } from "@emotion/react";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { children, styleType } = Model;
+	const { children, styleType, pos } = Model;
 
 	function css(): CSSObject {
 		switch (styleType) {
+			case undefined:
 			case "row":
-				return Style.rowControl;
+				return Style.rowControl(pos);
 			case "col":
 				return Style.colControl;
 		}

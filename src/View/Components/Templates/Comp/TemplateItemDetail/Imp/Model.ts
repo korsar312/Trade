@@ -26,37 +26,44 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		rows: [
 			{
 				id: "1",
-				key: { text: "TITLE" },
+				key: { compRow: [keyPublic({ text: "TITLE" })] },
 				value: { compRow: [name ? { id: "1", type: "TEXT", options: textProp(name) } : skeletonEl] },
 			},
 			{
 				id: "2",
-				key: { text: "BANK" },
+				key: { compRow: [keyPublic({ text: "BANK" })] },
 				value: { compRow: [bank ? { id: "1", type: "TEXT", options: textProp(bank) } : skeletonEl] },
 			},
 			{
 				id: "3",
-				key: { text: "PRICE" },
+				key: { compRow: [keyPublic({ text: "PRICE" })] },
 				value: { compRow: [priceForm ? { id: "1", type: "TEXT", options: textProp(priceForm) } : skeletonEl] },
 			},
 			{
 				id: "4",
-				key: { text: "RATING" },
+				key: { compRow: [keyPublic({ text: "RATING" })] },
 				value: { compRow: rating ? starProp(rating) : [skeletonEl] },
 			},
 			{
 				id: "5",
-				key: { text: "SELLER" },
+				key: { compRow: [keyPublic({ text: "SELLER" })] },
 				value: { compRow: [seller ? { id: "1", type: "TEXT", options: textProp(seller) } : skeletonEl] },
 			},
 			{
 				id: "6",
 				type: "vert",
-				key: { text: "DESCRIPTION" },
+				key: {
+					wrapper: { pos: "center" },
+					compRow: [keyPublic({ text: "DESCRIPTION" })],
+				},
 				value: { compRow: [desc ? { id: "1", type: "TEXT", options: textProp(desc) } : skeletonEl] },
 			},
 		],
 	};
+
+	function keyPublic(edit: IText): TMoleculeRowControlCompType {
+		return { id: "0", type: "TEXT", options: { color: "SECOND_2", ...edit } };
+	}
 
 	function textProp(text: string): IText {
 		return { text, pos: "left" };

@@ -9,9 +9,11 @@ export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
 	children: ReactNode;
-	styleType: TAtomWrapperStyleType;
+	styleType?: TAtomWrapperStyleType;
+	pos?: TAtomWrapperPot;
 };
 
 export type TAtomWrapperStyleType = "row" | "col";
+export type TAtomWrapperPot = "left" | "center" | "right";
 
 export default Component.Create(Model, Style, View, "AtomWrapper");

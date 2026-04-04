@@ -15,25 +15,25 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		rows: [
 			{
 				id: "1",
-				key: { text: "YOUR_PROFILE" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "YOUR_PROFILE" } }] },
 			},
 			{
 				id: "2",
-				key: { text: "NAME" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "NAME" } }] },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(name) }],
+					compRow: [{ id: "0", type: "TEXT", options: textProp(name) }],
 				},
 			},
 			{
 				id: "3",
-				key: { text: "LOGIN" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "LOGIN" } }] },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(login) }],
+					compRow: [{ id: "0", type: "TEXT", options: textProp(login) }],
 				},
 			},
 			{
 				id: "4",
-				key: { text: "RATING" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "RATING" } }] },
 				value: {
 					compRow:
 						rating == null
@@ -47,12 +47,12 @@ function Model({ Props, Act }: TModel<TComponent>) {
 			},
 			{
 				id: "5",
-				key: { text: "CREATED" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "CREATED" } }] },
 				value: {
 					compRow: [
 						createdTime
-							? { id: "1", type: "TEXT", options: textProp(new Date(createdTime).toDateString()) }
-							: { id: "1", type: "LOAD", options: {} },
+							? { id: "0", type: "TEXT", options: textProp(new Date(createdTime).toDateString()) }
+							: { id: "0", type: "LOAD", options: {} },
 					],
 				},
 			},

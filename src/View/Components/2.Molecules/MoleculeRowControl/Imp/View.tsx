@@ -10,7 +10,7 @@ import AtomLoadRow from "../../../1.Atoms/AtomLoadRow";
 import AtomWrapper from "../../../1.Atoms/AtomWrapper";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { compRow } = Model;
+	const { compRow, wrapper } = Model;
 
 	function render({ type, options }: TMoleculeRowControlCompType): ReactElement {
 		switch (type) {
@@ -33,7 +33,7 @@ const View: TPresent = ({ Model, Style }) => {
 
 	return (
 		<div css={Style.wrapper}>
-			<AtomWrapper styleType={"row"}>
+			<AtomWrapper {...wrapper}>
 				{compRow.map((el) => (
 					<Fragment key={el.id}>{render(el)}</Fragment>
 				))}

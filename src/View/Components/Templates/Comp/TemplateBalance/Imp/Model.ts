@@ -66,27 +66,27 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		rows: [
 			{
 				id: "1",
-				key: { text: "BALANCE_INFO" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "BALANCE_INFO" } }] },
 			},
 			{
 				id: "2",
-				key: { text: "BALANCE" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "BALANCE" } }] },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(balance) }],
+					compRow: [{ id: "0", type: "TEXT", options: textProp(balance) }],
 				},
 			},
 			{
 				id: "3",
-				key: { text: "HOLD" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "HOLD" } }] },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(hold) }],
+					compRow: [{ id: "0", type: "TEXT", options: textProp(hold) }],
 				},
 			},
 			{
 				id: "4",
-				key: { text: "LINKED_WALLET_ADDRESS" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "LINKED_WALLET_ADDRESS" } }] },
 				value: {
-					compRow: [{ id: "1", type: "BTN_MAIN", options: { text: "LINK", color: "MAIN_3", isFullWidth: true } }],
+					compRow: [{ id: "0", type: "BTN_MAIN", options: { text: "LINK", color: "MAIN_3", isFullWidth: true } }],
 				},
 				type: "vert",
 			},
@@ -98,33 +98,41 @@ function Model({ Props, Act }: TModel<TComponent>) {
 			{
 				id: "1",
 				key: {
-					text: "DEP_INSTRUCTION",
-					addContent: [deposit.amount],
-					color: "SECOND_1",
-					addStyle: [
-						{ color: Act.Style.getColor("RED_3") },
-						{ color: Act.Style.getColor("RED_3") },
-						{ color: Act.Style.getColor("RED_3") },
+					compRow: [
+						{
+							id: "0",
+							type: "TEXT",
+							options: {
+								text: "DEP_INSTRUCTION",
+								addContent: [deposit.amount],
+								color: "SECOND_1",
+								addStyle: [
+									{ color: Act.Style.getColor("RED_3") },
+									{ color: Act.Style.getColor("RED_3") },
+									{ color: Act.Style.getColor("RED_3") },
+								],
+							},
+						},
 					],
 				},
 			},
 			{
 				id: "2",
-				key: { text: "ADDRESS" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "ADDRESS" } }] },
 				value: {
-					compRow: [{ id: "1", type: "TEXT", options: { ...textProp(deposit.address), isBreakLine: true } }],
+					compRow: [{ id: "0", type: "TEXT", options: { ...textProp(deposit.address), isBreakLine: true } }],
 				},
 			},
 			{
 				id: "3",
-				key: { text: "SUM" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "SUM" } }] },
 				value: {
 					compRow: [{ id: "1", type: "TEXT", options: textProp(deposit.amount) }],
 				},
 			},
 			{
 				id: "4",
-				key: { text: "TIME_LEFT" },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "TIME_LEFT" } }] },
 				value: {
 					compRow:
 						depTimeLeft == null

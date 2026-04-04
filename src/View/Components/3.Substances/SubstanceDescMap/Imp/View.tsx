@@ -1,7 +1,5 @@
 import type { TPresent, TSubstanceDescMapRow } from "../index.tsx";
-import Text, { type TComponent as IText } from "../../../0.Cores/Text";
-import type { TComponent as IControl } from "../../../2.Molecules/MoleculeRowControl";
-import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
+import MoleculeRowControl, { type TComponent as IControl } from "../../../2.Molecules/MoleculeRowControl";
 import { Fragment, type ReactElement } from "react";
 
 const View: TPresent = ({ Model, Style }) => {
@@ -22,12 +20,12 @@ const View: TPresent = ({ Model, Style }) => {
 			<tr>
 				{props.key && (
 					<td colSpan={props.value ? 1 : 2} css={Style.keyG}>
-						{renderKey(props.key)}
+						{renderRow(props.key)}
 					</td>
 				)}
 				{props.value && (
 					<td colSpan={props.key ? 1 : 2} css={Style.valueG}>
-						{renderValue(props.value)}
+						{renderRow(props.value)}
 					</td>
 				)}
 			</tr>
@@ -40,14 +38,14 @@ const View: TPresent = ({ Model, Style }) => {
 				{props.key && (
 					<tr>
 						<td css={Style.keyV} colSpan={2}>
-							{renderKey(props.key)}
+							{renderRow(props.key)}
 						</td>
 					</tr>
 				)}
 				{props.value && (
 					<tr>
 						<td css={[Style.valueV]} colSpan={2}>
-							{renderValue(props.value)}
+							{renderRow(props.value)}
 						</td>
 					</tr>
 				)}
@@ -55,11 +53,7 @@ const View: TPresent = ({ Model, Style }) => {
 		);
 	}
 
-	function renderKey(text: IText) {
-		return <Text {...text} color={text.color ?? "SECOND_2"} />;
-	}
-
-	function renderValue(value: IControl) {
+	function renderRow(value: IControl) {
 		return <MoleculeRowControl {...value} />;
 	}
 
