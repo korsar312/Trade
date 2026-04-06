@@ -15,7 +15,12 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		rows: [
 			{
 				id: "1",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "YOUR_PROFILE" } }] },
+				key: {
+					compRow: [
+						{ id: "0", type: "ICON", options: { img: "Person", color: "BLUE_3" } },
+						{ id: "1", type: "TEXT", options: { text: "YOUR_PROFILE" } },
+					],
+				},
 			},
 			{
 				id: "2",

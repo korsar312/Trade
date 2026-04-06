@@ -8,7 +8,7 @@ const Btn = {
 	LOT: "LOT",
 	CATALOG: "CATALOG",
 	INFO: "CATALOG",
-	ORDER: "CATALOG",
+	DEAL: "CATALOG",
 	PROFILE: "CATALOG",
 } as const;
 
@@ -25,8 +25,8 @@ const includesPath: Record<RouterInterface.EPath, EBtn> = {
 	CREATE_LISTING: "CATALOG",
 	PROFILE: "PROFILE",
 	USER: "PROFILE",
-	ORDER_LIST: "ORDER",
-	ORDER: "ORDER",
+	DEAL_LIST: "DEAL",
+	DEAL: "DEAL",
 	INFO: "INFO",
 	ERROR: "INFO",
 };
@@ -39,8 +39,8 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const btnPath: TBtnMap = {
 		CATALOG: { path: "ITEM_LIST", image: "Store" },
 		PROFILE: { path: "PROFILE", image: "Person" },
-		ORDER: { path: "ORDER", image: "CheckList" },
-		LOT: { path: "LISTING_LIST", image: "AddCard" },
+		DEAL: { path: "DEAL", image: "CheckList" },
+		LOT: { path: "LISTING_LIST", image: "Edit" },
 		INFO: { path: "INFO", image: "Info" },
 	};
 

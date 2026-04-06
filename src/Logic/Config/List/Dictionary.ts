@@ -5,6 +5,10 @@ import type { PublicInterface } from "../../Domain/Services/Public.interface.ts"
 type TOther = ItemInterface.EBank | ItemInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	MY_DEALS: { RU: "Мои сделки" },
+	DEALS: { RU: "Сделки" },
+	MY_LISTING: { RU: "Мои лоты" },
+	ADD: { RU: "Добавить" },
 	DEP_INSTRUCTION: {
 		RU: "Для пополнения баланса выполните перевод [[1]]РОВНО[[2]] на сумму [[2]]{{1}}[[3]] USDT по сети [[3]]TRC20[[4]]",
 	},
@@ -19,7 +23,7 @@ const Dictionary: MessageInterface.TDictionary<TOther> = {
 	NO_RATING: { RU: "Нет рейтинга" },
 	LINKED_WALLET_BALANCE: { RU: "Баланс привязанного кошелька" },
 	LINK: { RU: "Привязать" },
-	LINKED_WALLET_ADDRESS: { RU: "Адрес привязанного кошелька" },
+	LINKED_WALLETS: { RU: "Привязанные кошельки" },
 	BALANCE: { RU: "Баланс" },
 	BALANCE_INFO: { RU: "Информация о балансе" },
 	YOUR_PROFILE: { RU: "Ваш профиль" },

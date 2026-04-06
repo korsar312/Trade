@@ -20,6 +20,11 @@ function Model({ Props, Act, Pub }: TModel<TComponent>) {
 		});
 	}, [isActive]);
 
+	const title: TMoleculeGroupBtn = {
+		id: "0",
+		options: { text: "MY_LISTING" },
+	};
+
 	const mySell: TMoleculeGroupBtn = {
 		id: "1",
 		options: { text: "ACTIVE", click: () => setIsActive(false) },
@@ -32,9 +37,16 @@ function Model({ Props, Act, Pub }: TModel<TComponent>) {
 		isActive: isActive,
 	};
 
-	const tabProps: TGroup = {
-		btnRow: [mySell, myBuy],
-	};
+	const tabProps: Array<TGroup & { id: string }> = [
+		{
+			id: "0",
+			btnRow: [title],
+		},
+		{
+			id: "1",
+			btnRow: [mySell, myBuy],
+		},
+	];
 
 	return { tabProps };
 }

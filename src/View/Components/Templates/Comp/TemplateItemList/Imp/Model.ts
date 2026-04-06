@@ -9,36 +9,47 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const { type } = Props;
 
 	const listingIdList = Act.Listing.getListingIdList();
+	const dealIdList = Act.Deal.getDealIdList();
 
-	const rowProps: TRowProps[] = listingIdList.map((listingId) => ({
-		id: listingId,
-		name: Act.Listing.getName(listingId),
-		image: Act.Listing.getImage(listingId),
-		btn: [],
-		...typeChoice(listingId),
-	}));
+	const rowProps: TRowProps[] = typeChoice();
 
-	function typeChoice(id: string): Partial<TRowProps> {
+	function typeChoice(): TRowProps[] {
 		switch (type) {
 			case "order":
-				return { click: () => goOrder(id) };
+				return dealIdList.map((dealId) => {
+					const listing = Act.Deal.getListingId(dealId);
+
+					return {
+						id: dealId,
+						name: Act.Listing.getName(listing),
+						image: Act.Listing.getImage(listing),
+						btn: [],
+						click: () => goOrder(dealId),
+					};
+				});
 
 			case "item":
-				return {
-					btn: PropsControlItemBtn(Act, { id }),
-					click: () => goItemDetail(id),
-				};
+				return listingIdList.map((listingId) => ({
+					id: listingId,
+					name: Act.Listing.getName(listingId),
+					image: Act.Listing.getImage(listingId),
+					btn: PropsControlItemBtn(Act, { id: listingId }),
+					click: () => goItemDetail(listingId),
+				}));
 
 			case "listing":
-				return {
-					btn: PropsControlItemBtn(Act, { id }),
-					click: () => goItemDetail(id),
-				};
+				return listingIdList.map((listingId) => ({
+					id: listingId,
+					name: Act.Listing.getName(listingId),
+					image: Act.Listing.getImage(listingId),
+					btn: PropsControlItemBtn(Act, { id: listingId }),
+					click: () => goItemDetail(listingId),
+				}));
 		}
 	}
 
 	function goOrder(id: string) {
-		Act.Router.goTo("ORDER", { id });
+		Act.Router.goTo("DEAL", { id });
 	}
 
 	function goItemDetail(id: string) {

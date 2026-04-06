@@ -9,4 +9,4 @@ export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {};
 
-export default observer(Component.Create(Model, Style, View, "TemplateCatalogFilter"));
+export default observer(Component.Create(Model, Style, View, "TemplateFilterCatalog"));

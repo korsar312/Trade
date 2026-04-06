@@ -1,5 +1,10 @@
 export namespace DealInterface {
-	export interface IAdapter {}
+	export interface IAdapter {
+		setDeal(listing: IDeal[]): void;
+		getDealIdList(): string[];
+
+		getListingId(id?: string): string | undefined;
+	}
 
 	export interface IDeal {
 		id: string;
@@ -12,9 +17,13 @@ export namespace DealInterface {
 		createdAt: number;
 	}
 
+	export type TDealMap = Record<string, IDeal>;
+
 	export type EDealStatus = keyof typeof DealStatus;
 
-	export interface Store {}
+	export interface Store {
+		deal: TDealMap;
+	}
 }
 
 export const DealStatus = {

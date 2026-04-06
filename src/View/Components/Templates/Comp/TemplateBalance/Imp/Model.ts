@@ -66,7 +66,12 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		rows: [
 			{
 				id: "1",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "BALANCE_INFO" } }] },
+				key: {
+					compRow: [
+						{ id: "0", type: "ICON", options: { img: "Money", color: "BLUE_3" } },
+						{ id: "1", type: "TEXT", options: { text: "BALANCE_INFO" } },
+					],
+				},
 			},
 			{
 				id: "2",
@@ -84,9 +89,9 @@ function Model({ Props, Act }: TModel<TComponent>) {
 			},
 			{
 				id: "4",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "LINKED_WALLET_ADDRESS" } }] },
+				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "LINKED_WALLETS" } }] },
 				value: {
-					compRow: [{ id: "0", type: "BTN_MAIN", options: { text: "LINK", color: "MAIN_3", isFullWidth: true } }],
+					compRow: [{ id: "0", type: "BTN_MAIN", options: { text: "ADD", color: "MAIN_3", isFullWidth: true } }],
 				},
 				type: "vert",
 			},

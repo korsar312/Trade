@@ -15,7 +15,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	function getNamePage(): string | MessageInterface.EWord {
 		switch (name) {
 			case "LISTING_LIST":
-				return "LISTING";
+				return "MY_LISTING";
 			case "LISTING": {
 				const param = Act.Router.getCurParam<"ITEM">();
 				const name = Act.Listing.getName(param?.id);
@@ -34,10 +34,10 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				return "PROFILE";
 			case "USER":
 				return "USER";
-			case "ORDER_LIST":
-				return "ORDERS";
-			case "ORDER":
-				return "ORDER";
+			case "DEAL_LIST":
+				return "MY_DEALS";
+			case "DEAL":
+				return "DEAL";
 			case "INFO":
 				return "INFO";
 			case "CREATE_LISTING":

@@ -2,7 +2,7 @@ import type { ListingInterface as Interface } from "../Listing.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
 class ListingImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private SetGoods(store: Interface.Store, listing: Interface.TListingMap): Interface.Store {
+	private SetListing(store: Interface.Store, listing: Interface.TListingMap): Interface.Store {
 		return { ...store, listing };
 	}
 
@@ -32,7 +32,7 @@ class ListingImp extends ServiceBase<Interface.Store> implements Interface.IAdap
 	public setListing(listing: Interface.IListing[]) {
 		const normGoods = this.ArrToMap(listing);
 
-		this.store = this.SetGoods(this.store, normGoods);
+		this.store = this.SetListing(this.store, normGoods);
 	}
 
 	public getListingIdList() {

@@ -8,7 +8,7 @@ const BasePage = {
 	CREATE: "create",
 	PROFILE: "profile",
 	TRADE: "trade",
-	ORDER: "order",
+	DEAL: "deal",
 	LISTING: "listing",
 	INFO: "info",
 } as const;
@@ -29,9 +29,9 @@ export const RouteSpec = {
 		ITEM_LIST: "",
 		ITEM: ID_TYPE,
 	},
-	ORDER: {
-		ORDER_LIST: "",
-		ORDER: ID,
+	DEAL: {
+		DEAL_LIST: "",
+		DEAL: ID,
 	},
 	PROFILE: {
 		PROFILE: "",
@@ -52,8 +52,8 @@ export const RoutesRole: RouterInterface.TRouterListRole = {
 	LISTING: ["USER", "ADMIN"],
 	ITEM_LIST: ["USER", "ADMIN"],
 	ITEM: ["USER", "ADMIN"],
-	ORDER_LIST: ["USER", "ADMIN"],
-	ORDER: ["USER", "ADMIN"],
+	DEAL_LIST: ["USER", "ADMIN"],
+	DEAL: ["USER", "ADMIN"],
 	PROFILE: ["USER", "ADMIN"],
 	USER: ["USER", "ADMIN"],
 	INFO: ["USER", "ADMIN"],
@@ -68,8 +68,8 @@ export const Routes: RouterInterface.TRouterMapList = [
 	{ Component: lazy(() => import("./../../../View/Page/PageItem")), path: "ITEM" },
 	{ Component: lazy(() => import("./../../../View/Page/PageProfile")), path: "PROFILE" },
 	{ Component: lazy(() => import("./../../../View/Page/PageUser")), path: "USER" },
-	{ Component: lazy(() => import("./../../../View/Page/PageOrderList")), path: "ORDER_LIST" },
-	{ Component: lazy(() => import("./../../../View/Page/PageOrder")), path: "ORDER" },
+	{ Component: lazy(() => import("./../../../View/Page/PageDealList")), path: "DEAL_LIST" },
+	{ Component: lazy(() => import("./../../../View/Page/PageDeal")), path: "DEAL" },
 	{ Component: lazy(() => import("./../../../View/Page/PageInfo")), path: "INFO" },
 	{ Component: lazy(() => import("./../../../View/Page/PageCreateListing")), path: "CREATE_LISTING" },
 	{ loader: () => redirect(Path.ITEM_LIST), path: "ERROR" },

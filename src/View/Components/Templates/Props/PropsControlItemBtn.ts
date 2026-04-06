@@ -19,7 +19,7 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 	const mainBtn: TProps = { isFullWidth: true, ...rest };
 
 	function goItem() {
-		Act.Router.goTo("ORDER", { id });
+		Act.Router.goTo("DEAL", { id });
 	}
 
 	function buyItem() {
@@ -57,13 +57,13 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 	function btnCancel(): TBtn {
 		const isDisable = price > userBalance;
 
-		return { id: "cancel",  color: "RED_1", click: cancelModal, isDisable, leftImage: "Remove",...mainBtn };
+		return { id: "cancel", color: "RED_1", click: cancelModal, isDisable, leftImage: "Remove", ...mainBtn };
 	}
 
 	function btnFreezeToggle(): TBtn {
 		const isDisable = !true;
 
-		return isDisable ? btnFreeze(): btnRun()
+		return isDisable ? btnFreeze() : btnRun();
 	}
 
 	function btnBuy(): TBtn {
