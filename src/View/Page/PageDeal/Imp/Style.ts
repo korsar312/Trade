@@ -2,30 +2,29 @@ import Styles from "../../../../Styles/Styles.ts";
 import { css, type CSSObject } from "@emotion/react";
 
 class Style extends Styles {
-	private gap = 12;
-
 	public wrapper: CSSObject = css`
 		${this.mixins.flexCol};
-		gap: ${this.gap}px;
+		gap: ${this.variables.padStandard}px;
 		height: 100%;
 	`;
 
 	public content: CSSObject = css`
 		${this.mixins.flexCol};
-		gap: ${this.gap}px;
+		gap: ${this.variables.padStandard}px;
 		overflow: hidden;
 		flex: 1;
 	`;
 
 	public imageWrap: CSSObject = css`
-		min-height: 150px;
+		min-height: 100px;
 		border-radius: ${this.variables.radiusStandard}px;
 		overflow: hidden;
 		flex: 1;
 	`;
 
 	public detailWrap: CSSObject = css`
-		overflow: hidden;
+		${this.mixins.noScrollBar};
+		border-radius: ${this.variables.radiusStandard}px;
 	`;
 }
 

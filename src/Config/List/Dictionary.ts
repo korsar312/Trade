@@ -1,10 +1,17 @@
-import type { MessageInterface } from "../../Domain/Services/ServiceMessage/Message.interface.ts";
-import type { ItemInterface } from "../../Domain/Services/ServiceItem/Item.interface.ts";
-import type { PublicInterface } from "../../Domain/Services/Public.interface.ts";
+import type { MessageInterface } from "../../Logic/Domain/Services/ServiceMessage/Message.interface.ts";
+import type { ItemInterface } from "../../Logic/Domain/Services/ServiceItem/Item.interface.ts";
+import type { PublicInterface } from "../../Logic/Domain/Services/Public.interface.ts";
 
 type TOther = ItemInterface.EBank | ItemInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	AGE: { RU: "Возраст" },
+	NAME: { RU: "Имя" },
+	TYPE: { RU: "Тип" },
+	DISPUTE: { RU: "Оспорить" },
+	CONFIRM_RECEIPT: { RU: "Подтвердить получение" },
+	ITEM_DEAL: { RU: "Предмет сделки" },
+	MAIN_DATA: { RU: "Основная информация" },
 	MY_DEALS: { RU: "Мои сделки" },
 	DEALS: { RU: "Сделки" },
 	MY_LISTING: { RU: "Мои лоты" },
@@ -31,7 +38,6 @@ const Dictionary: MessageInterface.TDictionary<TOther> = {
 	DEPOSIT: { RU: "Пополнить" },
 	CREATED: { RU: "Создан" },
 	ID: { RU: "Id" },
-	NAME: { RU: "Имя" },
 	MY_SALES: { RU: "Мои Продажи" },
 	MY_PURCHASES: { RU: "Мои Покупки" },
 	ACTIVE: { RU: "Активные" },
@@ -68,6 +74,7 @@ const Dictionary: MessageInterface.TDictionary<TOther> = {
 	APPLY: { RU: "Применить" },
 	PRODUCTS: { RU: "Товары" },
 	PRODUCT: { RU: "Товар" },
+	DEAL: { RU: "Сделка" },
 	PROFILE: { RU: "Профиль" },
 	USER: { RU: "Юзер" },
 	ORDERS: { RU: "Заказы" },

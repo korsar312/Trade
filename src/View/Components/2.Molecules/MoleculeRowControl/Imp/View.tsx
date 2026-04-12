@@ -13,6 +13,8 @@ const View: TPresent = ({ Model, Style }) => {
 	const { compRow, wrapper } = Model;
 
 	function render({ type, options }: TMoleculeRowControlCompType): ReactElement {
+		if (!options) return <AtomLoadRow />;
+
 		switch (type) {
 			case "BTN_IMAGE":
 				return <AtomButtonIcon {...options} />;

@@ -1,6 +1,6 @@
 import { createBrowserRouter, type LoaderFunction, type NonIndexRouteObject, type RouteObject } from "react-router";
 import type { PublicInterface } from "../Public.interface.ts";
-import type { PageParam } from "../../../Config/List/Routes.ts";
+import type { PageParam } from "../../../../Config/List/Routes.ts";
 
 export namespace RouterInterface {
 	export interface IAdapter {

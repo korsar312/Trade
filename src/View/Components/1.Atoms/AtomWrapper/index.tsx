@@ -4,6 +4,7 @@ import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
 import type { ReactNode } from "react";
+import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 
@@ -11,6 +12,7 @@ export type TComponent = {
 	children: ReactNode;
 	styleType?: TAtomWrapperStyleType;
 	pos?: TAtomWrapperPot;
+	extStyle?: TDeepCSSObject;
 };
 
 export type TAtomWrapperStyleType = "row" | "col";

@@ -2,7 +2,7 @@ import type { RouterInterface as Interface } from "../Router.interface.ts";
 import type { PublicInterface } from "../../Public.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 import { createBrowserRouter, generatePath, type LoaderFunction, redirect } from "react-router";
-import type { PageParam } from "../../../../Config/List/Routes.ts";
+import type { PageParam } from "../../../../../Config/List/Routes.ts";
 
 class RouterImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
 	private Go(

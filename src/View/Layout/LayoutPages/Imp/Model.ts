@@ -37,7 +37,11 @@ function Model({ Props, Act }: TModel<TComponent>) {
 			case "DEAL_LIST":
 				return "MY_DEALS";
 			case "DEAL":
-				return "DEAL";
+				const param = Act.Router.getCurParam<"DEAL">();
+				const dealId = Act.Deal.getListingId(param?.id);
+				const name = Act.Listing.getName(dealId);
+
+				return name || "DEAL";
 			case "INFO":
 				return "INFO";
 			case "CREATE_LISTING":

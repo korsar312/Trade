@@ -1,4 +1,4 @@
-import type { StyleInterface } from "../../Domain/Services/ServiceStyle/Style.interface.ts";
+import type { StyleInterface } from "../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
 export const Colors: StyleInterface.TColor = {
 	DARK: {
@@ -17,5 +17,9 @@ export const Colors: StyleInterface.TColor = {
 		RED_1: "#5e1311",
 		RED_2: "#a2241c",
 		RED_3: "#FF3B30",
+
+		YELLOW_1: "#5b5e11",
+		YELLOW_2: "#a2a01c",
+		YELLOW_3: "#ffc124",
 	},
 };

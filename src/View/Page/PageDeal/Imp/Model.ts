@@ -2,27 +2,30 @@ import type { TModel } from "../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
 import { useEffect } from "react";
-import { Act, Pub } from "../../../Init.ts";
-import PropsControlItemBtn from "../../../Components/Templates/Props/PropsControlItemBtn.ts";
+import { Pub } from "../../../Init.ts";
 
-function Model({ Props }: TModel<TComponent>) {
+function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;
 
 	const param = useParamPage("ITEM");
-	const itemId = param.id || "";
-	const btnProps = PropsControlItemBtn(Act, { id: itemId });
+	const dealId = param.id || "";
+	const listingId = Act.Deal.getListingId(dealId) || "";
 
-	const image = Act.Listing.getImage(itemId);
+	const image = Act.Listing.getImage(listingId);
 
 	useEffect(() => {
 		Pub.requestOrder({ dealId: param?.id });
-	}, [itemId]);
+	}, [listingId]);
 
-	function goBack() {
+	function success() {
 		Act.Router.goBack();
 	}
 
-	return { image, itemId, btnProps, goBack };
+	function cancel() {
+		Act.Router.goBack();
+	}
+
+	return { image, listingId, success, cancel };
 }
 
 export default Model;

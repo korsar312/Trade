@@ -1,12 +1,13 @@
 import type { TPresent } from "../";
-import TemplateItemDetail from "../../../Components/Templates/Comp/TemplateItemDetail";
 import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
 import AtomButtonMain from "../../../Components/1.Atoms/AtomButton/Variables/AtomButtonMain";
 import Image from "../../../Components/0.Cores/Image";
 import AtomWrapper from "../../../Components/1.Atoms/AtomWrapper";
+import TemplateListingDetail from "../../../Components/Templates/Comp/TemplateListingDetail";
+import TemplateBtnBack from "../../../Components/Templates/Comp/TemplateBtnBack";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { image, btnProps, itemId, goBack } = Model;
+	const { image, btnProps, listingId } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
@@ -16,17 +17,17 @@ const View: TPresent = ({ Model, Style }) => {
 				</figure>
 
 				<div css={Style.detailWrap}>
-					<TemplateItemDetail itemId={itemId} />
+					<TemplateListingDetail listingId={listingId} />
 				</div>
 			</main>
 
 			<AtomWrapper styleType={"row"}>
 				{btnProps.map((el) => {
-					const {id, ...rest} = el
+					const { id, ...rest } = el;
 
 					return <AtomButtonMain key={id} {...rest} />;
 				})}
-				<AtomButtonMain text={"BACK"} color={"MAIN_3"} click={goBack} />
+				<TemplateBtnBack />
 			</AtomWrapper>
 		</AtomPaper>
 	);

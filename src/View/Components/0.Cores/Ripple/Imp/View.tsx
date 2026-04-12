@@ -4,7 +4,7 @@ const View: TPresent = ({ Model, Style }) => {
 	const { rippleContainer, ripples, setRipples } = Model;
 
 	return (
-		<div ref={rippleContainer} css={Style.wrapper}>
+		<span ref={rippleContainer} css={Style.wrapper}>
 			{ripples.map((r) => (
 				<span
 					key={r.id}
@@ -13,7 +13,7 @@ const View: TPresent = ({ Model, Style }) => {
 					onAnimationEnd={() => setRipples((p) => p.filter((i) => i.id !== r.id))}
 				/>
 			))}
-		</div>
+		</span>
 	);
 };
 

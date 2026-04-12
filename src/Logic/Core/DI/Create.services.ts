@@ -5,12 +5,8 @@ import MessageImp from "../../Domain/Services/ServiceMessage/Imp/Message.imp.ts"
 import type { ProjectInterface } from "./Project.interface.ts";
 import { ServiceStyle } from "../../Domain/Services/ServiceStyle";
 import StyleImp from "../../Domain/Services/ServiceStyle/Imp/Style.imp.ts";
-import Dictionary from "../../Config/List/Dictionary.ts";
-import { Colors } from "../../Config/List/Colors.ts";
-import { Fonts, Weights } from "../../Config/List/Fonts.ts";
 import RouterImp from "../../Domain/Services/ServiceRouter/Imp/Router.imp.ts";
 import { ServiceRouter } from "../../Domain/Services/ServiceRouter";
-import { Path, Routes, RoutesRole } from "../../Config/List/Routes.ts";
 import BasketImp from "../../Domain/Services/ServiceBasket/Imp/Basket.imp.ts";
 import { ServiceBasket } from "../../Domain/Services/ServiceBasket";
 import SettingImp from "../../Domain/Services/ServiceSetting/Imp/Setting.imp.ts";
@@ -21,7 +17,6 @@ import DealImp from "../../Domain/Services/ServiceDeal/Imp/Deal.imp.ts";
 import type { IServiceProps } from "../../Domain/Services/Service.base.ts";
 import { ServiceSetting } from "../../Domain/Services/ServiceSetting";
 import { createHmrSingleton } from "./CreateHmrSingleton.ts";
-import { Consts } from "../../Config/Consts.ts";
 import { ServiceUser } from "../../Domain/Services/ServiceUser";
 import UserImp from "../../Domain/Services/ServiceUser/Imp/User.imp.ts";
 import AppImp from "../../Domain/Services/ServiceApp/Imp/App.imp.ts";
@@ -32,6 +27,11 @@ import ListingImp from "../../Domain/Services/ServiceListing/Imp/Listing.imp.ts"
 import { ServiceListing } from "../../Domain/Services/ServiceListing";
 import ItemImp from "../../Domain/Services/ServiceItem/Imp/Item.imp.ts";
 import { ServiceItem } from "../../Domain/Services/ServiceItem";
+import Dictionary from "../../../Config/List/Dictionary.ts";
+import { Fonts, Weights } from "../../../Config/List/Fonts.ts";
+import { Colors } from "../../../Config/List/Colors.ts";
+import { Path, Routes, RoutesRole } from "../../../Config/List/Routes.ts";
+import { Consts } from "../../../Config/Consts.ts";
 
 function createServices() {
 	const inf: IServiceProps = { infrastructure: Infrastructure };

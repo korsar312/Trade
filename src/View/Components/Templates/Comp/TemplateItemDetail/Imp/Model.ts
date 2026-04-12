@@ -1,80 +1,68 @@
 import type { TModel } from "../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
-import type { TComponent as IDesc } from "../../../../3.Substances/SubstanceDescMap";
-import Util from "../../../../../../Logic/Libs/Util";
+import type { TComponent as IDesc, TSubstanceDescMapRow } from "../../../../3.Substances/SubstanceDescMap";
+import type { TComponent as IControl, TMoleculeRowControlCompType } from "../../../../2.Molecules/MoleculeRowControl";
 import type { TComponent as IText } from "../../../../0.Cores/Text";
-import type { TMoleculeRowControlCompType } from "../../../../2.Molecules/MoleculeRowControl";
-
-const skeletonEl: TMoleculeRowControlCompType = { id: "-1", type: "LOAD", options: {} };
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const { itemId } = Props;
 
-	const name = Act.Listing.getName(itemId);
-	const price = Act.Listing.getPrice(itemId);
-	const desc = Act.Listing.getDesc(itemId);
-	const sellerId = Act.Listing.getSellerId(itemId);
-
-	const seller = Act.User.getName(sellerId);
-	const rating = Act.User.getRating(sellerId);
-
-	const bank = Act.Item.getBank(itemId);
-
-	const priceForm = price && Util.toMoney(price);
+	const entries = Act.Item.getEntries(itemId);
+	const type = Act.Item.getType(itemId);
 
 	const rowProps: IDesc = {
 		rows: [
 			{
-				id: "1",
-				key: { compRow: [keyPublic({ text: "TITLE" })] },
-				value: { compRow: [name ? { id: "1", type: "TEXT", options: textProp(name) } : skeletonEl] },
-			},
-			{
-				id: "2",
-				key: { compRow: [keyPublic({ text: "BANK" })] },
-				value: { compRow: [bank ? { id: "1", type: "TEXT", options: textProp(bank) } : skeletonEl] },
-			},
-			{
-				id: "3",
-				key: { compRow: [keyPublic({ text: "PRICE" })] },
-				value: { compRow: [priceForm ? { id: "1", type: "TEXT", options: textProp(priceForm) } : skeletonEl] },
-			},
-			{
-				id: "4",
-				key: { compRow: [keyPublic({ text: "RATING" })] },
-				value: { compRow: rating ? starProp(rating) : [skeletonEl] },
-			},
-			{
-				id: "5",
-				key: { compRow: [keyPublic({ text: "SELLER" })] },
-				value: { compRow: [seller ? { id: "1", type: "TEXT", options: textProp(seller) } : skeletonEl] },
-			},
-			{
-				id: "6",
-				type: "vert",
+				id: "0",
 				key: {
-					wrapper: { pos: "center" },
-					compRow: [keyPublic({ text: "DESCRIPTION" })],
+					compRow: [
+						{ id: "icon", type: "ICON", options: { color: "BLUE_3", img: "LockOpen" } },
+						keyPublic({ text: "ITEM_DEAL" }),
+					],
 				},
-				value: { compRow: [desc ? { id: "1", type: "TEXT", options: textProp(desc) } : skeletonEl] },
 			},
+			{
+				id: "type",
+				key: { compRow: [keyPublic({ text: "TYPE" })] },
+				value: { compRow: [textProp({ text: type })] },
+			},
+			...row(),
 		],
 	};
+
+	function row(): TSubstanceDescMapRow[] {
+		return entries.flatMap(([key, value]) => {
+			const keyProp: IControl = { compRow: [keyPublic({ text: key })] };
+			const valProp: IControl = { compRow: [textProp({ text: value })] };
+
+			const main: TSubstanceDescMapRow = { id: key, key: keyProp, value: valProp };
+
+			switch (key) {
+				case "listingId":
+				case "id":
+					return [];
+
+				case "desc":
+					return { ...main, key: { wrapper: { pos: "center" }, ...keyProp }, type: "vert" };
+
+				case "age":
+					return { ...main, key: { compRow: [keyPublic({ text: "AGE" })] } };
+
+				case "bank":
+					return { ...main, key: { compRow: [keyPublic({ text: "BANK" })] } };
+
+				case "name":
+					return { ...main, key: { compRow: [keyPublic({ text: "NAME" })] } };
+			}
+		});
+	}
 
 	function keyPublic(edit: IText): TMoleculeRowControlCompType {
 		return { id: "0", type: "TEXT", options: { color: "SECOND_2", ...edit } };
 	}
 
-	function textProp(text: string): IText {
-		return { text, pos: "left" };
-	}
-
-	function starProp(rating: number): TMoleculeRowControlCompType[] {
-		return Array.from(Array(5), (_el, i) => ({
-			id: String(i),
-			type: "ICON",
-			options: { img: "Star", color: rating > i ? "BLUE_2" : "MAIN_4" },
-		}));
+	function textProp(edit: IText): TMoleculeRowControlCompType {
+		return { id: "0", type: "TEXT", options: { pos: "left", ...edit } };
 	}
 
 	return { rowProps };

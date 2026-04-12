@@ -1,19 +1,3 @@
-import type { FC } from "react";
-
-/**
- * NFC (Named Function Component).
- * Упрощённая обёртка над React.FC, где пропсы
- * берутся из возвращаемого типа переданной функции.
- *
- * Пример:
- * const makeProps = () => ({ foo: string });
- *
- * const View: NFC<typeof Model> = (props) => {
- *   return <div>{props.foo}</div>;
- * };
- */
-export type NFC<T extends (...args: any[]) => any> = FC<ReturnType<T>>;
-
 export namespace typesUtils {
 	/**
 	 * Рекурсивный тип: значение T или массив произвольной глубины
@@ -114,7 +98,7 @@ export namespace typesUtils {
 	 * // | { type: "INPUT"; options: InputOptions; id: string }
 	 */
 	export type OptionsUnion<Map extends Record<string, any>, Extra extends object = {}> = {
-		[K in keyof Map]: { type: K; options: Map[K] } & Extra;
+		[K in keyof Map]: { type: K; options?: Map[K] } & Extra;
 	}[keyof Map];
 
 	/**
@@ -267,4 +251,41 @@ export namespace typesUtils {
 	export type ReplaceKeyStrict<T extends object, K extends keyof T, V> = {
 		[P in keyof T]: P extends K ? V : T[P];
 	};
+
+	/**
+	 * Entries<T> формирует массив кортежей [ключ, значение]
+	 * из объектного типа T, аналогично Object.entries().
+	 *
+	 * Работает дистрибутивно по union-типам:
+	 * - T extends unknown раскрывает каждый вариант union отдельно
+	 * - для каждого варианта строится union кортежей [K, T[K]]
+	 * - кортежи строго связаны: ключ и значение соответствуют друг другу
+	 *
+	 * На выходе получается структура вида:
+	 * (["key1", Value1] | ["key2", Value2] | ...)[]
+	 *
+	 * Параметры:
+	 * - T — исходный тип (в том числе может быть union)
+	 *
+	 * Пример:
+	 * type A = { id: string; count: number };
+	 * type B = { name: string };
+	 *
+	 * type R = Entries<A>;
+	 * // Результат:
+	 * // (["id", string] | ["count", number])[]
+	 *
+	 * type RUnion = Entries<A | B>;
+	 * // Результат:
+	 * // (["id", string] | ["count", number])[]
+	 * // | (["name", string])[]
+	 *
+	 * Особенности:
+	 * - В отличие от [keyof T, T[keyof T]][], пары ключ–значение строго связаны.
+	 *   Тип не допустит комбинацию ["id", number] или ["count", string].
+	 * - При union-типах каждый вариант раскрывается независимо,
+	 *   что точно отражает реальный результат Object.entries().
+	 * - Если T — примитив или never, результат never.
+	 */
+	export type Entries<T> = T extends unknown ? { [K in keyof T]-?: [K, T[K]] }[keyof T][] : never;
 }

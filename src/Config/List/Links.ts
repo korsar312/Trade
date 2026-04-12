@@ -1,4 +1,4 @@
-import type { LinksInterface } from "../../Domain/Infrastructure/InfrastructureLinks/Links.interface.ts";
+import type { LinksInterface } from "../../Logic/Domain/Infrastructure/InfrastructureLinks/Links.interface.ts";
 
 export const Links: LinksInterface.TLinks = {
 	LOGIN: { link: "/login", http: "post", role: ["USER", "ADMIN"] },

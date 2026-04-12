@@ -9,21 +9,17 @@ function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const {} = Props;
 
 	const param = useParamPage("ITEM");
-	const itemId = param.id || "";
+	const listingId = param.id || "";
 	const itemType = (param.type || "CARD") as ItemInterface.ETypeItem;
-	const btnProps = PropsControlItemBtn(Act, { id: itemId });
+	const btnProps = PropsControlItemBtn(Act, { id: listingId });
 
-	const image = Act.Listing.getImage(itemId);
+	const image = Act.Listing.getImage(listingId);
 
 	useEffect(() => {
-		Pub.requestLot({ id: itemId, type: itemType });
-	}, [itemId]);
+		Pub.requestLot({ id: listingId, type: itemType });
+	}, [listingId]);
 
-	function goBack() {
-		Act.Router.goBack();
-	}
-
-	return { image, itemId, btnProps, goBack };
+	return { image, listingId, btnProps };
 }
 
 export default Model;

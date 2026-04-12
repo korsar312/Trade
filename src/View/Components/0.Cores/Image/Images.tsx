@@ -1,6 +1,7 @@
 import type { FunctionComponent, SVGProps } from "react";
 
 import ArrowDown from "@material-design-icons/svg/outlined/keyboard_arrow_down.svg?react";
+import desc from "@material-design-icons/svg/outlined/description.svg?react";
 import Gear from "@material-design-icons/svg/outlined/settings.svg?react";
 import Money from "@material-design-icons/svg/outlined/attach_money.svg?react";
 import Plus from "@material-design-icons/svg/outlined/add.svg?react";
@@ -24,6 +25,7 @@ import Play from "@material-design-icons/svg/outlined/play_arrow.svg?react";
 import Stop from "@material-design-icons/svg/outlined/stop.svg?react";
 import Remove from "@material-design-icons/svg/outlined/delete.svg?react";
 import Edit from "@material-design-icons/svg/outlined/edit_note.svg?react";
+import LockOpen from "@material-design-icons/svg/outlined/lock_open.svg?react";
 
 type TIcons = Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>;
 export type EImages = keyof typeof icons;
@@ -32,6 +34,7 @@ const icons = {
 	ArrowDown,
 	Gear,
 	Money,
+	desc,
 	Plus,
 	Minus,
 	AddCard,
@@ -53,6 +56,7 @@ const icons = {
 	Stop,
 	Remove,
 	Edit,
+	LockOpen,
 } satisfies TIcons;
 
 function getImage(image: EImages | string) {

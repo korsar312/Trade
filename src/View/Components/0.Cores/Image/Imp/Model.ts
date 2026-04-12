@@ -2,7 +2,7 @@ import type { TModel } from "../../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import { type SyntheticEvent, useEffect, useState } from "react";
 import getImage from "../Images.tsx";
-import { Consts } from "../../../../../Logic/Config/Consts.ts";
+import { Consts } from "../../../../../Config/Consts.ts";
 
 function Model({ Props }: TModel<TComponent>) {
 	const { img, color, extStyle, size } = Props;

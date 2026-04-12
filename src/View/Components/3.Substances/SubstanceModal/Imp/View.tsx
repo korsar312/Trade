@@ -12,6 +12,8 @@ const View: TPresent = ({ Model, Style }) => {
 	const { form, color, bgClick } = Model;
 
 	function render({ type, options }: TSubstanceModalCompType): ReactElement {
+		if (!options) return <></>;
+
 		switch (type) {
 			case "CHOICE_MANY":
 				return <MoleculeFormSchemaSwitchChoice {...options} />;

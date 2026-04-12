@@ -1,4 +1,4 @@
-import type { RouterInterface } from "../../Domain/Services/ServiceRouter/Router.interface.ts";
+import type { RouterInterface } from "../../Logic/Domain/Services/ServiceRouter/Router.interface.ts";
 import { lazy } from "react";
 import { redirect } from "react-router";
 
@@ -62,16 +62,16 @@ export const RoutesRole: RouterInterface.TRouterListRole = {
 };
 
 export const Routes: RouterInterface.TRouterMapList = [
-	{ Component: lazy(() => import("./../../../View/Page/PageListingList")), path: "LISTING_LIST" },
-	{ Component: lazy(() => import("./../../../View/Page/PageListing")), path: "LISTING" },
-	{ Component: lazy(() => import("./../../../View/Page/PageItemList")), path: "ITEM_LIST" },
-	{ Component: lazy(() => import("./../../../View/Page/PageItem")), path: "ITEM" },
-	{ Component: lazy(() => import("./../../../View/Page/PageProfile")), path: "PROFILE" },
-	{ Component: lazy(() => import("./../../../View/Page/PageUser")), path: "USER" },
-	{ Component: lazy(() => import("./../../../View/Page/PageDealList")), path: "DEAL_LIST" },
-	{ Component: lazy(() => import("./../../../View/Page/PageDeal")), path: "DEAL" },
-	{ Component: lazy(() => import("./../../../View/Page/PageInfo")), path: "INFO" },
-	{ Component: lazy(() => import("./../../../View/Page/PageCreateListing")), path: "CREATE_LISTING" },
+	{ Component: lazy(() => import("./../../View/Page/PageListingList")), path: "LISTING_LIST" },
+	{ Component: lazy(() => import("./../../View/Page/PageListing")), path: "LISTING" },
+	{ Component: lazy(() => import("./../../View/Page/PageItemList")), path: "ITEM_LIST" },
+	{ Component: lazy(() => import("./../../View/Page/PageItem")), path: "ITEM" },
+	{ Component: lazy(() => import("./../../View/Page/PageProfile")), path: "PROFILE" },
+	{ Component: lazy(() => import("./../../View/Page/PageUser")), path: "USER" },
+	{ Component: lazy(() => import("./../../View/Page/PageDealList")), path: "DEAL_LIST" },
+	{ Component: lazy(() => import("./../../View/Page/PageDeal")), path: "DEAL" },
+	{ Component: lazy(() => import("./../../View/Page/PageInfo")), path: "INFO" },
+	{ Component: lazy(() => import("./../../View/Page/PageCreateListing")), path: "CREATE_LISTING" },
 	{ loader: () => redirect(Path.ITEM_LIST), path: "ERROR" },
 ];
 

@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import checker from "vite-plugin-checker";
 import vitePluginSvgr from "vite-plugin-svgr";
-import { Consts } from "./src/Logic/Config/Consts";
+import { Consts } from "./src/Config/Consts.ts";
 
 // https://vite.dev/config/
 export default defineConfig({

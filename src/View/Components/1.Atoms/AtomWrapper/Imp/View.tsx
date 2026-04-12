@@ -2,7 +2,7 @@ import type { TPresent } from "../";
 import { type CSSObject } from "@emotion/react";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { children, styleType, pos } = Model;
+	const { children, styleType, pos, extStyle } = Model;
 
 	function css(): CSSObject {
 		switch (styleType) {
@@ -14,7 +14,7 @@ const View: TPresent = ({ Model, Style }) => {
 		}
 	}
 
-	return <div css={css()}>{children}</div>;
+	return <div css={[css(), extStyle]}>{children}</div>;
 };
 
 export default View;
