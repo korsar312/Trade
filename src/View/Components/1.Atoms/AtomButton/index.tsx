@@ -13,7 +13,7 @@ export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
 	textVars?: TAtomButtonText;
-	color?: EAtomButtonColor;
+	color?: StyleInterface.EColor;
 	isDisable?: unknown;
 	isLoading?: unknown;
 	extStyles?: TDeepCSSObject;
@@ -34,17 +34,5 @@ export type TAtomButtonGeneralGroup<T> = {
 
 export type TAtomButtonText = TAtomButtonGeneralGroup<IText>;
 export type TAtomButtonIcon = TAtomButtonGeneralGroup<IImage>;
-
-export const buttonColor = {
-	SECOND_1: "SECOND_1",
-	MAIN_2: "MAIN_2",
-	MAIN_3: "MAIN_3",
-	MAIN_4: "MAIN_4",
-	BLUE_1: "BLUE_1",
-	BLUE_2: "BLUE_2",
-	RED_1: "RED_1",
-} satisfies { [K in StyleInterface.EColor]?: K };
-
-export type EAtomButtonColor = keyof typeof buttonColor;
 
 export default Component.Create(Model, Style, View, "AtomButton");

@@ -1,5 +1,6 @@
 import type { ItemInterface as Interface } from "../Item.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
+import type { typesUtils } from "../../../../Libs/Util/TypesUtils.ts";
 
 class ItemImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
 	private SetItems(store: Interface.Store, items: Interface.TItemMap): Interface.Store {
@@ -49,6 +50,12 @@ class ItemImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 		if (this.IsPickItem(item?.item, "CARD")) return item?.item.info.bank;
 
 		return null;
+	}
+
+	public getEntries(itemId?: string) {
+		const item = this.GetItem(this.store.items, itemId);
+
+		return Object.entries(item?.item.info || {}) as typesUtils.Entries<Interface.TItem["info"]>;
 	}
 }
 

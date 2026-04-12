@@ -26,6 +26,7 @@ class Style extends Styles {
 	}
 
 	public table: CSSObject = css`
+		width: 100%;
 		border-collapse: collapse;
 
 		& tr:last-child td {

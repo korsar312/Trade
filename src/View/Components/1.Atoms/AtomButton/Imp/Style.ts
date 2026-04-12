@@ -1,6 +1,7 @@
 import Styles from "../../../../../Styles/Styles.ts";
 import { css, type CSSObject } from "@emotion/react";
-import type { EAtomButtonColor, EAtomButtonRound } from "../index.tsx";
+import type { EAtomButtonRound } from "../index.tsx";
+import type { StyleInterface } from "../../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
 class Style extends Styles {
 	public wrapper(isFullWidth?: boolean, isFullHeight?: boolean, EAtomButtonRound?: EAtomButtonRound): CSSObject {
@@ -47,7 +48,7 @@ class Style extends Styles {
 		flex: 1;
 	`;
 
-	public color(color?: EAtomButtonColor): CSSObject {
+	public color(color?: StyleInterface.EColor): CSSObject {
 		const isOpacity = color === "SECOND_1";
 
 		return css`

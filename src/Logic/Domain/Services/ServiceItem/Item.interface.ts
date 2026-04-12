@@ -6,6 +6,8 @@ export namespace ItemInterface {
 
 		getType(itemId?: string): ETypeItem | undefined;
 		getBank(itemId?: string): EBank | undefined | null;
+
+		getEntries(itemId?: string): typesUtils.Entries<TItem["info"]>;
 	}
 
 	export type TItem = TItemAll | TItemPublic;
@@ -16,8 +18,13 @@ export namespace ItemInterface {
 	export type TItemPublic = TItemCardPublic | TItemFreePublic;
 	export type TItemFilter = TItemCardFilter | TItemFreeFiler;
 
-	type TItemVar<T extends ETypeItem, B> = { type: T; info: B };
+	type TItemVar<T extends ETypeItem, B> = { type: T; info: B & IPublic };
 	export type TPickItem<T extends ETypeItem> = Extract<TItem, { type: T }>;
+
+	interface IPublic {
+		id?: string;
+		listingId?: string;
+	}
 
 	/** Карта */
 	export interface ICardInfoAll {

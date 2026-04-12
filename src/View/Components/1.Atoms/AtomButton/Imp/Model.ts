@@ -37,6 +37,7 @@ function Model({ Props }: TModel<TComponent>) {
 	function getColorText(): StyleInterface.EColor {
 		switch (color) {
 			case "SECOND_1":
+			case "SECOND_2":
 				return "MAIN_2";
 			default:
 				return "SECOND_1";

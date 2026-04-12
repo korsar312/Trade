@@ -69,6 +69,10 @@ const Color = {
 	RED_1: "RED_1",
 	RED_2: "RED_2",
 	RED_3: "RED_3",
+
+	YELLOW_1: "YELLOW_1",
+	YELLOW_2: "YELLOW_2",
+	YELLOW_3: "YELLOW_3",
 } as const;
 
 const Theme = {
