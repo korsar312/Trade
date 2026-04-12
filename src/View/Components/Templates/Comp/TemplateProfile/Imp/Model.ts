@@ -2,6 +2,7 @@ import type { TModel } from "../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
 import type { TComponent as IProp } from "../../../../3.Substances/SubstanceDescMap";
 import type { TComponent as IText } from "../../../../0.Cores/Text";
+import type { TMoleculeRowControlCompType } from "../../../../2.Molecules/MoleculeRowControl";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;
@@ -17,32 +18,28 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				id: "1",
 				key: {
 					compRow: [
-						{ id: "0", type: "ICON", options: { img: "Person", color: "BLUE_3" } },
-						{ id: "1", type: "TEXT", options: { text: "YOUR_PROFILE" } },
+						{ id: "icon", type: "ICON", options: { img: "Person", color: "BLUE_3" } },
+						keyPublic({ text: "YOUR_PROFILE" }),
 					],
 				},
 			},
 			{
 				id: "2",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "NAME" } }] },
-				value: {
-					compRow: [{ id: "0", type: "TEXT", options: textProp(name) }],
-				},
+				key: { compRow: [keyPublic({ text: "NAME" })] },
+				value: { compRow: [textProp({ text: name })] },
 			},
 			{
 				id: "3",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "LOGIN" } }] },
-				value: {
-					compRow: [{ id: "0", type: "TEXT", options: textProp(login) }],
-				},
+				key: { compRow: [keyPublic({ text: "LOGIN" })] },
+				value: { compRow: [textProp({ text: login })] },
 			},
 			{
 				id: "4",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "RATING" } }] },
+				key: { compRow: [keyPublic({ text: "RATING" })] },
 				value: {
 					compRow:
 						rating == null
-							? [{ id: "1", type: "TEXT", options: textProp("NO_RATING") }]
+							? [textProp({ text: "NO_RATING" })]
 							: Array.from(Array(5), (_el, i) => ({
 									id: String(i),
 									type: "ICON",
@@ -52,12 +49,10 @@ function Model({ Props, Act }: TModel<TComponent>) {
 			},
 			{
 				id: "5",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "CREATED" } }] },
+				key: { compRow: [keyPublic({ text: "CREATED" })] },
 				value: {
 					compRow: [
-						createdTime
-							? { id: "0", type: "TEXT", options: textProp(new Date(createdTime).toDateString()) }
-							: { id: "0", type: "LOAD", options: {} },
+						createdTime ? textProp({ text: new Date(createdTime).toDateString() }) : { id: "0", type: "LOAD", options: {} },
 					],
 				},
 			},
@@ -65,8 +60,12 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		noCompact: true,
 	};
 
-	function textProp(text?: string): IText {
-		return { text, pos: "left" };
+	function keyPublic(edit: IText): TMoleculeRowControlCompType {
+		return { id: "0", type: "TEXT", options: { color: "SECOND_2", ...edit } };
+	}
+
+	function textProp(edit: IText): TMoleculeRowControlCompType {
+		return { id: "0", type: "TEXT", options: { pos: "left", ...edit } };
 	}
 
 	return { descProps };

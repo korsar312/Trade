@@ -6,6 +6,7 @@ import type { TComponent as IBtn } from "../../../../1.Atoms/AtomButton/Variable
 import type { WalletInterface } from "../../../../../../Logic/Domain/Services/ServiceWallet/Wallet.interface.ts";
 import { useEffect, useRef, useState } from "react";
 import { useUpdate } from "../../../../../../Logic/Libs/Hooks/useUpdate/useUpdate.ts";
+import type { TMoleculeRowControlCompType } from "../../../../2.Molecules/MoleculeRowControl";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;
@@ -68,28 +69,24 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				id: "1",
 				key: {
 					compRow: [
-						{ id: "0", type: "ICON", options: { img: "Money", color: "BLUE_3" } },
-						{ id: "1", type: "TEXT", options: { text: "BALANCE_INFO" } },
+						{ id: "icon", type: "ICON", options: { img: "Money", color: "BLUE_3" } },
+						keyPublic({ text: "BALANCE_INFO" }),
 					],
 				},
 			},
 			{
 				id: "2",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "BALANCE" } }] },
-				value: {
-					compRow: [{ id: "0", type: "TEXT", options: textProp(balance) }],
-				},
+				key: { compRow: [keyPublic({ text: "BALANCE" })] },
+				value: { compRow: [textProp({ text: balance })] },
 			},
 			{
 				id: "3",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "HOLD" } }] },
-				value: {
-					compRow: [{ id: "0", type: "TEXT", options: textProp(hold) }],
-				},
+				key: { compRow: [keyPublic({ text: "HOLD" })] },
+				value: { compRow: [textProp({ text: hold })] },
 			},
 			{
 				id: "4",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "LINKED_WALLETS" } }] },
+				key: { wrapper: { pos: "center" }, compRow: [keyPublic({ text: "LINKED_WALLETS" })] },
 				value: {
 					compRow: [{ id: "0", type: "BTN_MAIN", options: { text: "ADD", color: "MAIN_3", isFullWidth: true } }],
 				},
@@ -104,46 +101,32 @@ function Model({ Props, Act }: TModel<TComponent>) {
 				id: "1",
 				key: {
 					compRow: [
-						{
-							id: "0",
-							type: "TEXT",
-							options: {
-								text: "DEP_INSTRUCTION",
-								addContent: [deposit.amount],
-								color: "SECOND_1",
-								addStyle: [
-									{ color: Act.Style.getColor("RED_3") },
-									{ color: Act.Style.getColor("RED_3") },
-									{ color: Act.Style.getColor("RED_3") },
-								],
-							},
-						},
+						keyPublic({
+							text: "DEP_INSTRUCTION",
+							addContent: [deposit.amount],
+							addStyle: [
+								{ color: Act.Style.getColor("RED_3") },
+								{ color: Act.Style.getColor("RED_3") },
+								{ color: Act.Style.getColor("RED_3") },
+							],
+						}),
 					],
 				},
 			},
 			{
 				id: "2",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "ADDRESS" } }] },
-				value: {
-					compRow: [{ id: "0", type: "TEXT", options: { ...textProp(deposit.address), isBreakLine: true } }],
-				},
+				key: { compRow: [keyPublic({ text: "ADDRESS" })] },
+				value: { compRow: [textProp({ text: deposit.address, isBreakLine: true })] },
 			},
 			{
 				id: "3",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "SUM" } }] },
-				value: {
-					compRow: [{ id: "1", type: "TEXT", options: textProp(deposit.amount) }],
-				},
+				key: { compRow: [keyPublic({ text: "SUM" })] },
+				value: { compRow: [textProp({ text: deposit.amount })] },
 			},
 			{
 				id: "4",
-				key: { compRow: [{ id: "0", type: "TEXT", options: { text: "TIME_LEFT" } }] },
-				value: {
-					compRow:
-						depTimeLeft == null
-							? [{ id: "1", type: "LOAD", options: {} }]
-							: [{ id: "1", type: "TEXT", options: textProp(Math.floor(depTimeLeft / 1000)) }],
-				},
+				key: { compRow: [keyPublic({ text: "TIME_LEFT" })] },
+				value: { compRow: [textProp({ text: Math.floor(depTimeLeft || 0 / 1000) })] },
 			},
 			{
 				id: "5",
@@ -233,8 +216,12 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		Act.Wallet.removeDeposit().finally(disabledUpdatingCancel);
 	}
 
-	function textProp(text: string | number): IText {
-		return { text, pos: "left" };
+	function keyPublic(edit: IText): TMoleculeRowControlCompType {
+		return { id: "0", type: "TEXT", options: { color: "SECOND_2", ...edit } };
+	}
+
+	function textProp(edit: IText): TMoleculeRowControlCompType {
+		return { id: "0", type: "TEXT", options: { pos: "left", ...edit } };
 	}
 
 	return { descProps, depositProps, btnPlusProps, btnMinusProps };
