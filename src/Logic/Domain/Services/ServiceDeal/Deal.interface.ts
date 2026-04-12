@@ -1,7 +1,10 @@
+import type { RestInterface } from "../../Infrastructure/InfrastructureLinks/Rest.interface.ts";
+
 export namespace DealInterface {
 	export interface IAdapter {
 		setDeal(listing: IDeal[]): void;
 		getDealIdList(): string[];
+		dealComplete(dealId: string): Promise<RestInterface.TDealCompleteRes>;
 
 		getListingId(id?: string): string | undefined;
 	}

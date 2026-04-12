@@ -15,4 +15,5 @@ export const Links: LinksInterface.TLinks = {
 	START_BUY_ITEM: { link: "/startBuyImes", http: "get", role: ["USER", "ADMIN"] },
 	GET_ORDER_LIST: { link: "/getOrderList", http: "post", role: ["USER", "ADMIN"] },
 	GET_ORDER: { link: "/getOrder", http: "post", role: ["USER", "ADMIN"] },
+	DEAL_COMPLETE: { link: "/dealComplete", http: "post", role: ["USER", "ADMIN"] },
 } as const;

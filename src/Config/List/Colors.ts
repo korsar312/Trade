@@ -5,7 +5,7 @@ export const Colors: StyleInterface.TColor = {
 		MAIN_1: "#060606",
 		MAIN_2: "#101010",
 		MAIN_3: "#1E1E1E",
-		MAIN_4: "#353535",
+		MAIN_4: "#292929",
 
 		SECOND_1: "#FFFFFF",
 		SECOND_2: "#858585",

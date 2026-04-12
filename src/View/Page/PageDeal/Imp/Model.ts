@@ -25,7 +25,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		Act.Router.goBack();
 	}
 
-	return { image, listingId, success, cancel };
+	return { image, listingId, dealId, success, cancel };
 }
 
 export default Model;

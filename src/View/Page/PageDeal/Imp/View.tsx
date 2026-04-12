@@ -6,9 +6,10 @@ import AtomPaper from "../../../Components/1.Atoms/AtomPaper";
 import TemplateListingDetail from "../../../Components/Templates/Comp/TemplateListingDetail";
 import TemplateItemDetail from "../../../Components/Templates/Comp/TemplateItemDetail";
 import TemplateBtnBack from "../../../Components/Templates/Comp/TemplateBtnBack";
+import TemplateDealChat from "../../../Components/Templates/Comp/TemplateDealChat";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { image, listingId, success, cancel } = Model;
+	const { image, listingId, dealId, success, cancel } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
@@ -21,6 +22,7 @@ const View: TPresent = ({ Model, Style }) => {
 					<AtomWrapper styleType={"col"}>
 						<TemplateListingDetail listingId={listingId} />
 						<TemplateItemDetail itemId={listingId} />
+						<TemplateDealChat dealId={dealId} />
 					</AtomWrapper>
 				</div>
 			</main>

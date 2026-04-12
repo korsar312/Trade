@@ -40,6 +40,10 @@ class DealImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 	}
 
 	public getListingId = (id?: string) => this.GetDeal(id)?.listingId;
+
+	public dealComplete(dealId: string) {
+		return this.API.Links.DEAL_COMPLETE({ dealId });
+	}
 }
 
 export default DealImp;

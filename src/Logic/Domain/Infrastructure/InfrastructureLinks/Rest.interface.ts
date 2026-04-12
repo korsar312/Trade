@@ -53,6 +53,7 @@ export namespace RestInterface {
 	export type TStartBuyItemReq = { listingId: string };
 	export type TGetOrderListReq = { isActive: boolean; isSell: boolean; limit: number; cursorId?: string };
 	export type TGetOrderReq = { dealId?: string };
+	export type TDealCompleteReq = { dealId?: string };
 
 	/** =========== RESPONSE =========== */
 
@@ -70,4 +71,5 @@ export namespace RestInterface {
 	export type TStartBuyItemRes = void;
 	export type TGetOrderListRes = IOrderRes[];
 	export type TGetOrderRes = IOrderRes;
+	export type TDealCompleteRes = void;
 }

@@ -17,6 +17,7 @@ export namespace LinksInterface {
 		START_BUY_ITEM: TRest<RestInterface.TStartBuyItemReq, RestInterface.TStartBuyItemRes>;
 		GET_ORDER_LIST: TRest<RestInterface.TGetOrderListReq, RestInterface.TGetOrderListRes>;
 		GET_ORDER: TRest<RestInterface.TGetOrderReq, RestInterface.TGetOrderRes>;
+		DEAL_COMPLETE: TRest<RestInterface.TDealCompleteReq, RestInterface.TDealCompleteRes>;
 	}
 
 	type TRest<P, R> = (param: P) => Promise<R>;
@@ -65,4 +66,5 @@ const Names = {
 	START_BUY_ITEM: "START_BUY_ITEM",
 	GET_ORDER_LIST: "GET_ORDER_LIST",
 	GET_ORDER: "GET_ORDER",
+	DEAL_COMPLETE: "DEAL_COMPLETE",
 } as const;
