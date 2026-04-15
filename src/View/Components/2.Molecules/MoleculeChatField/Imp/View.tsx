@@ -7,8 +7,8 @@ const View: TPresent = ({ Model }) => {
 
 	return (
 		<AtomWrapper styleType={"col"}>
-			{[1, 2, 3].map((el) => (
-				<AtomMessageBubble type={el === 1 ? "send" : "receive"} />
+			{[1, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3].map((el) => (
+				<AtomMessageBubble type={el % 2 ? "send" : "receive"} />
 			))}
 		</AtomWrapper>
 	);

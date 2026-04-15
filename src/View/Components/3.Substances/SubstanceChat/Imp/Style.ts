@@ -9,8 +9,7 @@ class Style extends Styles {
 
 	public chat: CSSObject = css`
 		${this.mixins.noScrollBar};
-		padding: ${this.variables.radiusStandard}px 0;
-		border-radius: ${this.variables.radiusStandard}px;
+		padding: ${this.variables.padStandard}px 0;
 		flex: 1;
 	`;
 }

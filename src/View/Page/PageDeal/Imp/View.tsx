@@ -24,8 +24,8 @@ const View: TPresent = ({ Model, Style }) => {
 
 				<div css={Style.detailWrap}>
 					<AtomWrapper styleType={"col"}>
-						<TemplateListingDetail listingId={listingId} />
 						<TemplateItemDetail itemId={listingId} />
+						<TemplateListingDetail listingId={listingId} />
 					</AtomWrapper>
 				</div>
 			</>
