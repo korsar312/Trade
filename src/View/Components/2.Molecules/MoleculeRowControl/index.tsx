@@ -6,6 +6,7 @@ import type { TView } from "../../../CreateComponent.tsx";
 import type { TComponent as IWrapper } from "../../1.Atoms/AtomWrapper/";
 import type { TComponent as IBtnImage } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import type { TComponent as IBtnMain } from "../../1.Atoms/AtomButton/Variables/AtomButtonMain";
+import type { TComponent as IBtnString } from "../../1.Atoms/AtomButton/Variables/AtomButtonString";
 import type { TComponent as IInput } from "../../1.Atoms/AtomInput";
 import type { TComponent as ILoad } from "../../1.Atoms/AtomLoadRow";
 import type { TComponent as IText } from "../../0.Cores/Text";
@@ -22,6 +23,7 @@ export type TComponent = {
 type TMap = {
 	BTN_IMAGE: IBtnImage;
 	BTN_MAIN: IBtnMain;
+	BTN_STRING: IBtnString;
 	SPACING: {};
 	INPUT: IInput;
 	TEXT: IText;

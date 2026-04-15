@@ -26,6 +26,10 @@ import Stop from "@material-design-icons/svg/outlined/stop.svg?react";
 import Remove from "@material-design-icons/svg/outlined/delete.svg?react";
 import Edit from "@material-design-icons/svg/outlined/edit_note.svg?react";
 import LockOpen from "@material-design-icons/svg/outlined/lock_open.svg?react";
+import Send from "@material-design-icons/svg/outlined/send.svg?react";
+import Chat from "@material-design-icons/svg/outlined/chat.svg?react";
+import ArrUp from "@material-design-icons/svg/outlined/arrow_drop_up.svg?react";
+import ArrDown from "@material-design-icons/svg/outlined/arrow_drop_down.svg?react";
 
 type TIcons = Record<string, FunctionComponent<SVGProps<SVGSVGElement>>>;
 export type EImages = keyof typeof icons;
@@ -57,6 +61,10 @@ const icons = {
 	Remove,
 	Edit,
 	LockOpen,
+	Send,
+	Chat,
+	ArrUp,
+	ArrDown,
 } satisfies TIcons;
 
 function getImage(image: EImages | string) {

@@ -27,6 +27,9 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	OPEN_CHAT: "OPEN_CHAT",
+	DEAL_CHAT: "DEAL_CHAT",
+	ENTER_MESSAGE: "ENTER_MESSAGE",
 	AGE: "AGE",
 	NAME: "NAME",
 	TYPE: "TYPE",

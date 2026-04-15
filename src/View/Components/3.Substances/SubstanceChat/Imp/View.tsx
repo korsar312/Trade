@@ -1,9 +1,36 @@
 import type { TPresent } from "../index.tsx";
+import AtomPaper from "../../../1.Atoms/AtomPaper";
+import MoleculeChatField from "../../../2.Molecules/MoleculeChatField";
+import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
+import AtomWrapper from "../../../1.Atoms/AtomWrapper";
+import AtomInput from "../../../1.Atoms/AtomInput";
+import AtomLine from "../../../1.Atoms/AtomLine";
+import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 
 const View: TPresent = ({ Model, Style }) => {
-	const {} = Model;
+	const { sendText, setTextSend, input, titleRow, btn } = Model;
 
-	return <div css={Style.wrapper}></div>;
+	return (
+		<AtomPaper extStyle={Style.wrapper} color={"MAIN_4"}>
+			<AtomWrapper styleType={"col"}>
+				<MoleculeRowControl compRow={titleRow} />
+				<AtomLine color={"SECOND_2"} />
+			</AtomWrapper>
+
+			<div css={Style.chat}>
+				<MoleculeChatField />
+			</div>
+
+			<AtomWrapper styleType={"col"}>
+				<AtomLine color={"SECOND_2"} />
+
+				<AtomWrapper styleType={"row"}>
+					<AtomInput onChange={setTextSend} placeholder={"ENTER_MESSAGE"} color={"MAIN_3"} {...input} />
+					<AtomButtonIcon color={"BLUE_2"} click={sendText} icon={"Send"} {...btn} />
+				</AtomWrapper>
+			</AtomWrapper>
+		</AtomPaper>
+	);
 };
 
 export default View;

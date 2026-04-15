@@ -1,10 +1,17 @@
 import type { TModel } from "../../../../CreateComponent.tsx";
 import type { TComponent } from "../";
+import { useState } from "react";
 
 function Model({ Props }: TModel<TComponent>) {
-	const {} = Props;
+	const { ...rest } = Props;
 
-	return Props;
+	const [textSend, setTextSend] = useState("");
+
+	function sendText() {
+		console.log(textSend);
+	}
+
+	return { sendText, setTextSend, ...rest };
 }
 
 export default Model;

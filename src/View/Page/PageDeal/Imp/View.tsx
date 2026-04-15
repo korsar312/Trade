@@ -22,10 +22,13 @@ const View: TPresent = ({ Model, Style }) => {
 					<AtomWrapper styleType={"col"}>
 						<TemplateListingDetail listingId={listingId} />
 						<TemplateItemDetail itemId={listingId} />
-						<TemplateDealChat dealId={dealId} />
 					</AtomWrapper>
 				</div>
 			</main>
+
+			<div css={Style.chat}>
+				<TemplateDealChat dealId={dealId} />
+			</div>
 
 			<AtomWrapper styleType={"col"}>
 				<AtomButtonMain isFullWidth text={"CONFIRM_RECEIPT"} color={"BLUE_2"} click={success} />

@@ -11,7 +11,7 @@ import type { CSSObject } from "@emotion/react";
 export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
-	text: MessageInterface.EWordAll;
+	text?: MessageInterface.EWordAll;
 	caseWord?: MessageInterface.ECase;
 	font?: StyleInterface.EFont;
 	color?: StyleInterface.TColorChoice;

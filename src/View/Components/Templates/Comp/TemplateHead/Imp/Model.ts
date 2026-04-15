@@ -1,6 +1,5 @@
 import type { TModel } from "../../../../../CreateComponent.tsx";
 import type { TComponent } from "../index.tsx";
-
 import type { TComponent as IControl } from "../../../../2.Molecules/MoleculeRowControl";
 
 function Model({ Props }: TModel<TComponent>) {

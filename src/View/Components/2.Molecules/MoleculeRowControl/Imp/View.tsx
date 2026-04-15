@@ -8,6 +8,7 @@ import Text from "../../../0.Cores/Text";
 import Image from "../../../0.Cores/Image";
 import AtomLoadRow from "../../../1.Atoms/AtomLoadRow";
 import AtomWrapper from "../../../1.Atoms/AtomWrapper";
+import AtomButtonString from "../../../1.Atoms/AtomButton/Variables/AtomButtonString";
 
 const View: TPresent = ({ Model, Style }) => {
 	const { compRow, wrapper } = Model;
@@ -20,6 +21,8 @@ const View: TPresent = ({ Model, Style }) => {
 				return <AtomButtonIcon {...options} />;
 			case "BTN_MAIN":
 				return <AtomButtonMain {...options} />;
+			case "BTN_STRING":
+				return <AtomButtonString {...options} />;
 			case "SPACING":
 				return <div css={Style.pub.f1} />;
 			case "INPUT":

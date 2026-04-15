@@ -26,6 +26,10 @@ class Style extends Styles {
 		${this.mixins.noScrollBar};
 		border-radius: ${this.variables.radiusStandard}px;
 	`;
+
+	public chat: CSSObject = css`
+		height: 190px;
+	`;
 }
 
 export default new Style();

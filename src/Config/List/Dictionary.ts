@@ -5,6 +5,9 @@ import type { PublicInterface } from "../../Logic/Domain/Services/Public.interfa
 type TOther = ItemInterface.EBank | ItemInterface.ETypeItem | PublicInterface.ESort;
 
 const Dictionary: MessageInterface.TDictionary<TOther> = {
+	OPEN_CHAT: { RU: "Открыть чат" },
+	DEAL_CHAT: { RU: "Чат сделки" },
+	ENTER_MESSAGE: { RU: "Введите сообщение..." },
 	AGE: { RU: "Возраст" },
 	NAME: { RU: "Имя" },
 	TYPE: { RU: "Тип" },
