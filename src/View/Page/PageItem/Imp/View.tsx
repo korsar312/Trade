@@ -11,7 +11,7 @@ const View: TPresent = ({ Model, Style }) => {
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
-			<main css={Style.content}>
+			<AtomWrapper styleType={"col"} extStyle={Style.content}>
 				<figure css={Style.imageWrap}>
 					<Image size={"100%"} img={image} />
 				</figure>
@@ -19,7 +19,7 @@ const View: TPresent = ({ Model, Style }) => {
 				<div css={Style.detailWrap}>
 					<TemplateListingDetail listingId={listingId} />
 				</div>
-			</main>
+			</AtomWrapper>
 
 			<AtomWrapper styleType={"row"}>
 				{btnProps.map((el) => {

@@ -1,7 +1,7 @@
 import type { TModel } from "../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Pub } from "../../../Init.ts";
 
 function Model({ Props, Act }: TModel<TComponent>) {
@@ -12,6 +12,8 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const listingId = Act.Deal.getListingId(dealId) || "";
 
 	const image = Act.Listing.getImage(listingId);
+
+	const [isShowChat, setIsShowChat] = useState(false);
 
 	useEffect(() => {
 		Pub.requestOrder({ dealId: param?.id });
@@ -25,7 +27,11 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		Act.Router.goBack();
 	}
 
-	return { image, listingId, dealId, success, cancel };
+	function toggleChat() {
+		setIsShowChat((old) => !old);
+	}
+
+	return { image, listingId, dealId, success, cancel, isShowChat, toggleChat };
 }
 
 export default Model;

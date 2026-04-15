@@ -8,8 +8,6 @@ function Model({ Props }: TModel<TComponent>) {
 	const titleProps: TMoleculeRowControlCompType[] = [
 		{ id: "0", type: "ICON", options: { img: "Chat", color: "BLUE_2" } },
 		{ id: "1", type: "TEXT", options: { text: "DEAL_CHAT" } },
-		{ id: "2", type: "SPACING", options: {} },
-		{ id: "3", type: "BTN_STRING", options: { text: "OPEN_CHAT", icon: "ArrUp" } },
 	];
 
 	return { titleProps };

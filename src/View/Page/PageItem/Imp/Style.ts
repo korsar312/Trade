@@ -11,10 +11,7 @@ class Style extends Styles {
 	`;
 
 	public content: CSSObject = css`
-		${this.mixins.flexCol};
-		gap: ${this.gap}px;
 		overflow: hidden;
-		flex: 1;
 	`;
 
 	public imageWrap: CSSObject = css`

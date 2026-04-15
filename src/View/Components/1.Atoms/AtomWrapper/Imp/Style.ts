@@ -7,6 +7,7 @@ class Style extends Styles {
 	public colControl: CSSObject = css`
 		${this.mixins.flexCol};
 		gap: ${this.variables.padStandard}px;
+		min-height: 0;
 	`;
 
 	public rowControl(pos?: TAtomWrapperPot): CSSObject {

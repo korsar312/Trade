@@ -10,6 +10,7 @@ class VariablesVars {
 	}
 
 	public transition = "0.5s ease-in-out";
+	public slowTestTransition = `5s ease-in-out`;
 	public fastTransition = `${this.timeFastTransition} ease-in-out`;
 	public soTransition = `${this.timeTransition} ease-in-out`;
 

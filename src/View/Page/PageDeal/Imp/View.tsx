@@ -9,11 +9,15 @@ import TemplateBtnBack from "../../../Components/Templates/Comp/TemplateBtnBack"
 import TemplateDealChat from "../../../Components/Templates/Comp/TemplateDealChat";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { image, listingId, dealId, success, cancel } = Model;
+	const { image, listingId, dealId, success, cancel, isShowChat, toggleChat } = Model;
 
-	return (
-		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
-			<main css={Style.content}>
+	function content() {
+		if (isShowChat) {
+			return <TemplateDealChat dealId={dealId} />;
+		}
+
+		return (
+			<>
 				<figure css={Style.imageWrap}>
 					<Image size={"100%"} img={image} />
 				</figure>
@@ -24,14 +28,21 @@ const View: TPresent = ({ Model, Style }) => {
 						<TemplateItemDetail itemId={listingId} />
 					</AtomWrapper>
 				</div>
-			</main>
+			</>
+		);
+	}
 
-			<div css={Style.chat}>
-				<TemplateDealChat dealId={dealId} />
-			</div>
+	return (
+		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
+			<AtomWrapper extStyle={Style.content} styleType={"col"}>
+				{content()}
+			</AtomWrapper>
 
 			<AtomWrapper styleType={"col"}>
-				<AtomButtonMain isFullWidth text={"CONFIRM_RECEIPT"} color={"BLUE_2"} click={success} />
+				<AtomWrapper styleType={"row"}>
+					<AtomButtonMain isFullWidth text={"CONFIRM_RECEIPT"} color={"BLUE_2"} click={success} />
+					<AtomButtonMain isFullWidth text={"OPEN_CHAT"} color={"SECOND_2"} click={toggleChat} />
+				</AtomWrapper>
 
 				<AtomWrapper styleType={"row"}>
 					<AtomButtonMain isFullWidth text={"DISPUTE"} color={"RED_1"} click={cancel} />

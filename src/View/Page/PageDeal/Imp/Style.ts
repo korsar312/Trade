@@ -9,8 +9,6 @@ class Style extends Styles {
 	`;
 
 	public content: CSSObject = css`
-		${this.mixins.flexCol};
-		gap: ${this.variables.padStandard}px;
 		overflow: hidden;
 		flex: 1;
 	`;
@@ -25,10 +23,6 @@ class Style extends Styles {
 	public detailWrap: CSSObject = css`
 		${this.mixins.noScrollBar};
 		border-radius: ${this.variables.radiusStandard}px;
-	`;
-
-	public chat: CSSObject = css`
-		height: 130px;
 	`;
 }
 

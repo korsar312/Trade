@@ -8,7 +8,7 @@ import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon
 import AtomTextarea from "../../../1.Atoms/AtomTextarea";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { sendText, setTextSend, input, titleRow, btn, showInput } = Model;
+	const { sendText, setTextSend, input, titleRow, btn } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_4"}>
@@ -21,16 +21,14 @@ const View: TPresent = ({ Model, Style }) => {
 				<MoleculeChatField />
 			</div>
 
-			{showInput && (
-				<AtomWrapper styleType={"col"}>
-					<AtomLine color={"SECOND_2"} />
+			<AtomWrapper styleType={"col"}>
+				<AtomLine color={"SECOND_2"} />
 
-					<AtomWrapper styleType={"row"}>
-						<AtomTextarea onChange={setTextSend} placeholder={"ENTER_MESSAGE"} color={"MAIN_3"} {...input} />
-						<AtomButtonIcon color={"BLUE_2"} click={sendText} icon={"Send"} {...btn} />
-					</AtomWrapper>
+				<AtomWrapper styleType={"row"}>
+					<AtomTextarea onChange={setTextSend} placeholder={"ENTER_MESSAGE"} color={"MAIN_3"} {...input} />
+					<AtomButtonIcon color={"BLUE_2"} click={sendText} icon={"Send"} {...btn} />
 				</AtomWrapper>
-			)}
+			</AtomWrapper>
 		</AtomPaper>
 	);
 };
