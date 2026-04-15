@@ -16,7 +16,7 @@ class Style extends Styles {
 	`;
 
 	public imageWrap: CSSObject = css`
-		min-height: 100px;
+		min-height: 10vh;
 		border-radius: ${this.variables.radiusStandard}px;
 		overflow: hidden;
 		flex: 1;
@@ -28,7 +28,7 @@ class Style extends Styles {
 	`;
 
 	public chat: CSSObject = css`
-		height: 190px;
+		height: 130px;
 	`;
 }
 

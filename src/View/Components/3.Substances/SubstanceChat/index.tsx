@@ -13,6 +13,7 @@ export type TComponent = {
 	titleRow: TMoleculeRowControlCompType[];
 	input?: Partial<ITextarea>;
 	btn?: Partial<IBtn>;
+	showInput?: boolean;
 };
 
 export default Component.Create(Model, Style, View, "SubstanceChat");
