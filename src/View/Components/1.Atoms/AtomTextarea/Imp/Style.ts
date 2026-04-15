@@ -10,12 +10,13 @@ class Style extends Styles {
 		return css`
 			position: relative;
 			box-sizing: border-box;
-			padding: ${this.sidePad * 1.2}px ${this.sidePad}px;
+			padding: ${this.sidePad * 1.2}px ${this.sidePad}px 0;
 			border: 2px solid ${this.getColor("SECOND_1")};
 			background: ${this.getColor(color)};
 			border-radius: ${this.variables.radiusStandard / 2}px;
 			transition: ${this.variables.fastTransition};
-			overflow: hidden;
+			width: 100%;
+			height: 100%;
 
 			&:has(> span) textarea {
 				transform: translateY(6px);
@@ -43,13 +44,16 @@ class Style extends Styles {
 	}
 
 	public input: CSSObject = css`
+		position: absolute;
+		top: 10px;
+		bottom: 10px;
 		background: ${this.getColor()};
 		outline: none;
 		border: none;
 		padding: 0;
 		width: 100%;
-		height: 100px;
-		resize: vertical;
+		resize: none;
+		min-height: 24px;
 
 		&::-webkit-scrollbar-track {
 			margin-bottom: 10px;

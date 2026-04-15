@@ -3,9 +3,9 @@ import AtomPaper from "../../../1.Atoms/AtomPaper";
 import MoleculeChatField from "../../../2.Molecules/MoleculeChatField";
 import MoleculeRowControl from "../../../2.Molecules/MoleculeRowControl";
 import AtomWrapper from "../../../1.Atoms/AtomWrapper";
-import AtomInput from "../../../1.Atoms/AtomInput";
 import AtomLine from "../../../1.Atoms/AtomLine";
 import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
+import AtomTextarea from "../../../1.Atoms/AtomTextarea";
 
 const View: TPresent = ({ Model, Style }) => {
 	const { sendText, setTextSend, input, titleRow, btn } = Model;
@@ -25,7 +25,7 @@ const View: TPresent = ({ Model, Style }) => {
 				<AtomLine color={"SECOND_2"} />
 
 				<AtomWrapper styleType={"row"}>
-					<AtomInput onChange={setTextSend} placeholder={"ENTER_MESSAGE"} color={"MAIN_3"} {...input} />
+					<AtomTextarea onChange={setTextSend} placeholder={"ENTER_MESSAGE"} color={"MAIN_3"} {...input} />
 					<AtomButtonIcon color={"BLUE_2"} click={sendText} icon={"Send"} {...btn} />
 				</AtomWrapper>
 			</AtomWrapper>

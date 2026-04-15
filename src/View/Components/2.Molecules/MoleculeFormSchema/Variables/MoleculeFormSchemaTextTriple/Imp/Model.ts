@@ -41,6 +41,7 @@ function Model({ Props }: TModel<TComponent>) {
 	};
 
 	const textareaField: TMoleculeFormSchemaRow = {
+		extStyle: { height: 100 },
 		value: {
 			type: "textarea",
 			options: {

@@ -9,10 +9,10 @@ class Style extends Styles {
 	public wrapper(font: StyleInterface.EFont, color?: StyleInterface.TColorChoice): CSSObject {
 		return css`
 			${this.mixins.flexCenter};
+			gap: ${this.sidePad / 2}px;
 			position: relative;
 			box-sizing: border-box;
 			padding: ${this.sidePad / 2}px ${this.sidePad}px;
-			gap: ${this.sidePad / 2}px;
 			border: 2px solid ${this.getColor("SECOND_1")};
 			background: ${this.getColor(color)};
 			border-radius: ${this.variables.radiusStandard / 2}px;
