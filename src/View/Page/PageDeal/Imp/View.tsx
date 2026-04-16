@@ -11,13 +11,9 @@ import TemplateDealChat from "../../../Components/Templates/Comp/TemplateDealCha
 const View: TPresent = ({ Model, Style }) => {
 	const { image, listingId, dealId, success, cancel, isShowChat, toggleChat } = Model;
 
-	function content() {
-		if (isShowChat) {
-			return <TemplateDealChat dealId={dealId} />;
-		}
-
-		return (
-			<>
+	return (
+		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
+			<AtomWrapper extStyle={Style.content} styleType={"col"}>
 				<figure css={Style.imageWrap}>
 					<Image size={"100%"} img={image} />
 				</figure>
@@ -28,20 +24,16 @@ const View: TPresent = ({ Model, Style }) => {
 						<TemplateListingDetail listingId={listingId} />
 					</AtomWrapper>
 				</div>
-			</>
-		);
-	}
 
-	return (
-		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
-			<AtomWrapper extStyle={Style.content} styleType={"col"}>
-				{content()}
+				<div css={Style.chat(isShowChat)}>
+					<TemplateDealChat dealId={dealId} />
+				</div>
 			</AtomWrapper>
 
 			<AtomWrapper styleType={"col"}>
 				<AtomWrapper styleType={"row"}>
 					<AtomButtonMain isFullWidth text={"CONFIRM_RECEIPT"} color={"BLUE_2"} click={success} />
-					<AtomButtonMain isFullWidth text={"OPEN_CHAT"} color={"SECOND_2"} click={toggleChat} />
+					<AtomButtonMain isFullWidth text={isShowChat ? "CLOSE_CHAT" : "OPEN_CHAT"} color={"SECOND_2"} click={toggleChat} />
 				</AtomWrapper>
 
 				<AtomWrapper styleType={"row"}>

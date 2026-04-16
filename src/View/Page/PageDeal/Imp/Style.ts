@@ -9,6 +9,7 @@ class Style extends Styles {
 	`;
 
 	public content: CSSObject = css`
+		position: relative;
 		overflow: hidden;
 		flex: 1;
 	`;
@@ -24,6 +25,18 @@ class Style extends Styles {
 		${this.mixins.noScrollBar};
 		border-radius: ${this.variables.radiusStandard}px;
 	`;
+
+	public chat(isShowChat: boolean): CSSObject {
+		return css`
+			visibility: ${isShowChat ? "visible" : "hidden"};
+			opacity: ${+isShowChat};
+			transition: ${this.variables.fastTransition};
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			width: 100%;
+		`;
+	}
 }
 
 export default new Style();
