@@ -16,7 +16,7 @@ const View: TPresent = ({ Model, Style }) => {
 
 			<div css={Style.body}>
 				<div css={Style.textWrap}>
-					<Text text={name} font={"ElementHeading"} />
+					<Text text={name} />
 				</div>
 
 				<div css={Style.btnWrap}>

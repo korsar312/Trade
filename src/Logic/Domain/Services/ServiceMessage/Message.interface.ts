@@ -27,6 +27,7 @@ export namespace MessageInterface {
 }
 
 const Word = {
+	CONFIRM: "CONFIRM",
 	CLOSE_CHAT: "CLOSE_CHAT",
 	OPEN_CHAT: "OPEN_CHAT",
 	DEAL_CHAT: "DEAL_CHAT",

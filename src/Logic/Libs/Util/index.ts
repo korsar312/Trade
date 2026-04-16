@@ -3,6 +3,7 @@ import { ToArray } from "./ToArray/ToArray";
 import { ToMoney } from "./ToMoney/ToMoney.ts";
 import { IdGen } from "./IdGen/IdGen.ts";
 import { Trigram } from "./Trigram/Trigram.ts";
+import { ToDate } from "./ToDate/ToDate.ts";
 
 class Index {
 	/** Возвращает массив */
@@ -19,6 +20,9 @@ class Index {
 
 	/** Поиск в 3 буквы */
 	public trigram = Trigram.execute();
+
+	/** Создание даты */
+	public toDate = ToDate.execute();
 }
 
 export default new Index();

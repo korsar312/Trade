@@ -32,7 +32,7 @@ const View: TPresent = ({ Model, Style }) => {
 
 			<AtomWrapper styleType={"col"}>
 				<AtomWrapper styleType={"row"}>
-					<AtomButtonMain isFullWidth text={"CONFIRM_RECEIPT"} color={"BLUE_2"} click={success} />
+					<AtomButtonMain isFullWidth text={"CONFIRM"} color={"BLUE_2"} click={success} />
 					<AtomButtonMain isFullWidth text={isShowChat ? "CLOSE_CHAT" : "OPEN_CHAT"} color={"SECOND_2"} click={toggleChat} />
 				</AtomWrapper>
 

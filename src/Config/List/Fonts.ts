@@ -1,10 +1,8 @@
 import type { StyleInterface } from "../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
 export const Fonts: StyleInterface.TFontList = {
-	BlockHeading: "S_14", // Заголовок внутри блока/формы/модалки
-	ElementHeading: "R_14", // Мини-заголовок элемента (разведён с лейблами)
-	BodyMain: "R_17", // Основной текст
-	LabelMedium: "S_15", // Инпуты/бейджи
+	BodyMain: "R_16", // Основной текст
+	BodySub: "R_12", // Подписи текст
 };
 
 export const Weights: StyleInterface.TWeightList = {

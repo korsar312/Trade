@@ -40,10 +40,8 @@ export namespace StyleInterface {
 }
 
 const Font = {
-	BlockHeading: "BlockHeading",
-	ElementHeading: "ElementHeading",
 	BodyMain: "BodyMain",
-	LabelMedium: "LabelMedium",
+	BodySub: "BodySub",
 } as const;
 
 const Weight = {
