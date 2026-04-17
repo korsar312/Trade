@@ -29,8 +29,8 @@ class DealImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 
 	//==============================================================================================
 
-	public setDeal(listing: Interface.IDeal[]) {
-		const normGoods = this.ArrToMap(listing);
+	public setDeal(deal: Interface.IDeal[]) {
+		const normGoods = this.ArrToMap(deal);
 
 		this.store = this.SetDeal(this.store, normGoods);
 	}
