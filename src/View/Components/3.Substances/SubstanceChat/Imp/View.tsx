@@ -8,7 +8,7 @@ import AtomButtonIcon from "../../../1.Atoms/AtomButton/Variables/AtomButtonIcon
 import AtomTextarea from "../../../1.Atoms/AtomTextarea";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { sendText, setTextSend, input, titleRow, btn } = Model;
+	const { sendText, setTextSend, input, titleRow, btn, messageList } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_4"}>
@@ -18,7 +18,7 @@ const View: TPresent = ({ Model, Style }) => {
 			</AtomWrapper>
 
 			<div css={Style.chat}>
-				<MoleculeChatField />
+				<MoleculeChatField textRow={messageList} />
 			</div>
 
 			<AtomWrapper styleType={"col"}>

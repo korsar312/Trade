@@ -2,19 +2,22 @@ import type { TPresent } from "../index.tsx";
 import AtomWrapper from "../../../1.Atoms/AtomWrapper";
 import AtomMessageBubble from "../../../1.Atoms/AtomMessageBubble";
 
-const View: TPresent = ({ Model }) => {
-	const {} = Model;
+const View: TPresent = ({ Model, Style }) => {
+	const { textRow } = Model;
 
 	return (
-		<AtomWrapper styleType={"col"}>
-			{[1, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3].map((el) => (
-				<AtomMessageBubble
-					color={"MAIN_3"}
-					date={234233333342}
-					text={"Здравствуйте, получил данные."}
-					type={el % 2 ? "send" : "receive"}
-				/>
-			))}
+		<AtomWrapper extStyle={Style.wrapper} styleType={"col"}>
+			{textRow.map((el) => {
+				const isRight = el.type === "receive";
+
+				return (
+					<div css={Style.chatEl(isRight ? "right" : "left")}>
+						<div css={Style.text}>
+							<AtomMessageBubble color={isRight ? "SECOND_3" : "MAIN_3"} {...el} />
+						</div>
+					</div>
+				);
+			})}
 		</AtomWrapper>
 	);
 };

@@ -17,7 +17,7 @@ class ChatImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 	private ChatMessageLinkMap(message: Interface.IMessage[]): Interface.TChatMessageLink {
 		return message.reduce((prev, cur) => {
 			const messageList = prev[cur.chatId];
-			prev[cur.chatId] = messageList ? [...messageList] : [cur.id];
+			prev[cur.chatId] = messageList ? [...messageList, cur.id] : [cur.id];
 
 			return prev;
 		}, {} as Interface.TChatMessageLink);
@@ -31,12 +31,18 @@ class ChatImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 		return goods.reduce((prev, cur) => ((prev[cur.id] = cur), prev), {} as Interface.TMessageMap);
 	}
 
-	private GetMessage(id?: string): Interface.IMessage | undefined {
-		return id == null ? undefined : this.store.message[id];
+	private GetMessage(id: string): Interface.IMessage {
+		const message = this.store.message[id];
+		if (!message) throw new Error();
+
+		return message;
 	}
 
-	private GetMessageIdListByChatId(id?: string): string[] | undefined {
-		return id == null ? undefined : this.store.chatMessageLink[id];
+	private GetMessageIdListByChatId(id: string): string[] {
+		const chatMessageLink = this.store.chatMessageLink[id];
+		if (!chatMessageLink) throw new Error();
+
+		return chatMessageLink;
 	}
 
 	private GetChatByDealId(id?: string): Interface.IChat | undefined {
@@ -68,6 +74,9 @@ class ChatImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 		const chatMessage = this.ChatMessageLinkMap(message);
 		const middleStore = this.SetChatMessageLink(this.store, chatMessage);
 
+		console.log(message);
+		console.log(chatMessage);
+
 		this.store = this.SetMessage(middleStore, normMessage);
 	}
 
@@ -78,19 +87,11 @@ class ChatImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 		return chat.id;
 	}
 
-	public getMessageIdListByChatId(chatId: string) {
-		const messageList = this.GetMessageIdListByChatId(chatId);
-		if (!messageList) throw new Error();
+	public getMessageIdListByChatId = (chatId: string) => this.GetMessageIdListByChatId(chatId);
 
-		return messageList;
-	}
-
-	public getMessageText(messageId: string) {
-		const message = this.GetMessage(messageId);
-		if (!message) throw new Error();
-
-		return message.text;
-	}
+	public getMessageText = (messageId: string) => this.GetMessage(messageId).text;
+	public getMessageDate = (messageId: string) => this.GetMessage(messageId).createdAt;
+	public getMessageOwnerId = (messageId: string) => this.GetMessage(messageId).userId;
 }
 
 export default ChatImp;

@@ -6,13 +6,16 @@ import type { TView } from "../../../CreateComponent.tsx";
 import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowControl";
 import type { TComponent as ITextarea } from "../../1.Atoms/AtomTextarea";
 import type { TComponent as IBtn } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
+import type { TMoleculeChatFieldText } from "../../2.Molecules/MoleculeChatField";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
-	titleRow: TMoleculeRowControlCompType[];
-	input?: Partial<ITextarea>;
 	btn?: Partial<IBtn>;
+	input?: Partial<ITextarea>;
+	sendFn?: (val?: string) => void;
+	titleRow: TMoleculeRowControlCompType[];
+	messageList: TMoleculeChatFieldText[];
 };
 
 export default Component.Create(Model, Style, View, "SubstanceChat");

@@ -14,6 +14,7 @@ import type { ServiceListing } from "../../Domain/Services/ServiceListing";
 import type UseCases from "../../Domain/UseCases/UseCases.ts";
 import type { ServiceItem } from "../../Domain/Services/ServiceItem";
 import type { UseCasesInterface } from "../../Domain/UseCases/UseCases.interface.ts";
+import type { ServiceChat } from "../../Domain/Services/ServiceChat";
 
 export namespace ProjectInterface {
 	export type TModuleInf = {
@@ -34,6 +35,7 @@ export namespace ProjectInterface {
 		Deal: ServiceDeal;
 		User: ServiceUser;
 		App: ServiceApp;
+		Chat: ServiceChat;
 	};
 
 	export type TModuleUseCases = {

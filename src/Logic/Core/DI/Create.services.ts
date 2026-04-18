@@ -32,6 +32,8 @@ import { Fonts, Weights } from "../../../Config/List/Fonts.ts";
 import { Colors } from "../../../Config/List/Colors.ts";
 import { Path, Routes, RoutesRole } from "../../../Config/List/Routes.ts";
 import { Consts } from "../../../Config/Consts.ts";
+import ChatImp from "../../Domain/Services/ServiceChat/Imp/Chat.imp.ts";
+import { ServiceChat } from "../../Domain/Services/ServiceChat";
 
 function createServices() {
 	const inf: IServiceProps = { infrastructure: Infrastructure };
@@ -72,6 +74,9 @@ function createServices() {
 	const itemImp = new ItemImp(inf);
 	const item = new ServiceItem(itemImp);
 
+	const chatImp = new ChatImp(inf);
+	const chat = new ServiceChat(chatImp);
+
 	const service = new DI<ProjectInterface.TModuleService>();
 
 	service.use("Message", message);
@@ -86,6 +91,7 @@ function createServices() {
 	service.use("User", user);
 	service.use("Item", item);
 	service.use("App", app);
+	service.use("Chat", chat);
 
 	return service.get;
 }

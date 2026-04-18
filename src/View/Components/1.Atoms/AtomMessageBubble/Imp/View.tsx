@@ -7,7 +7,7 @@ const View: TPresent = ({ Model, Style }) => {
 	return (
 		<div css={Style.wrapper(type, color)}>
 			<div>
-				<Text text={text} />
+				<Text isBreakLine text={text} />
 			</div>
 
 			<div css={Style.time}>

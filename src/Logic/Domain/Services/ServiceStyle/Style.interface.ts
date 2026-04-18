@@ -59,6 +59,7 @@ const Color = {
 
 	SECOND_1: "SECOND_1",
 	SECOND_2: "SECOND_2",
+	SECOND_3: "SECOND_3",
 
 	BLUE_1: "BLUE_1",
 	BLUE_2: "BLUE_2",

@@ -4,9 +4,11 @@ export namespace ChatInterface {
 		setMessage(message: IMessage[]): void;
 
 		getChatIdByDealId(dealId: string): string;
-
 		getMessageIdListByChatId(chatId: string): string[];
+
 		getMessageText(messageId: string): string;
+		getMessageDate(messageId: string): number;
+		getMessageOwnerId(messageId: string): string;
 	}
 
 	export interface IChat {

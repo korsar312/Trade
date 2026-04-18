@@ -9,8 +9,9 @@ export const Colors: StyleInterface.TColor = {
 
 		SECOND_1: "#FFFFFF",
 		SECOND_2: "#858585",
+		SECOND_3: "#3c3c3c",
 
-		BLUE_1: "#0D2540",
+		BLUE_1: "#0f2f51",
 		BLUE_2: "#007aff",
 		BLUE_3: "#44a6ff",
 

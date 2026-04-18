@@ -3,12 +3,12 @@ import type { TComponent } from "../";
 import { useState } from "react";
 
 function Model({ Props }: TModel<TComponent>) {
-	const { ...rest } = Props;
+	const { sendFn, ...rest } = Props;
 
 	const [textSend, setTextSend] = useState("");
 
 	function sendText() {
-		console.log(textSend);
+		sendFn?.(textSend);
 	}
 
 	return { sendText, setTextSend, ...rest };
