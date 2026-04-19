@@ -24,8 +24,8 @@ export namespace ChatInterface {
 		chatId: string;
 		userId: string;
 		createdAt: number;
-		readId: string[];
 		text: string;
+		readId: string[];
 	}
 
 	export type TChatMap = Record<string, IChat>;

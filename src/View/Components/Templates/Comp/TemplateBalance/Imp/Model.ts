@@ -126,7 +126,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 			{
 				id: "4",
 				key: { compRow: [keyPublic({ text: "TIME_LEFT" })] },
-				value: { compRow: [textProp({ text: Math.floor(depTimeLeft || 0 / 1000) })] },
+				value: { compRow: [textProp({ text: Math.floor((depTimeLeft || 0) / 1000) })] },
 			},
 			{
 				id: "5",

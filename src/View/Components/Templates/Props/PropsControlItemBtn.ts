@@ -35,11 +35,11 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 	function runItem() {}
 
 	function cancelModal() {
-		Act.App.addModals("CONFIRM", cancelItem);
+		cancelItem();
 	}
 
 	function buyModal() {
-		Act.App.addModals("CONFIRM", buyItem);
+		Act.App.addModals("CONFIRM", (val) => val && buyItem());
 	}
 
 	function btnFreeze(): TBtn {
