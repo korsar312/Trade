@@ -31,22 +31,18 @@ class ChatImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 		return goods.reduce((prev, cur) => ((prev[cur.id] = cur), prev), {} as Interface.TMessageMap);
 	}
 
-	private GetMessage(id: string): Interface.IMessage {
-		const message = this.store.message[id];
-		if (!message) throw new Error();
-
-		return message;
+	private GetMessage(id?: string): Interface.IMessage | undefined {
+		return id == null ? undefined : this.store.message[id];
 	}
 
-	private GetMessageIdListByChatId(id: string): string[] {
-		const chatMessageLink = this.store.chatMessageLink[id];
-		if (!chatMessageLink) throw new Error();
+	private GetMessageIdListByChatId(id?: string): string[] {
+		if (id == null) return [];
 
-		return chatMessageLink;
+		return this.store.chatMessageLink[id] || [];
 	}
 
-	private GetChatByDealId(id?: string): Interface.IChat | undefined {
-		return id == null ? undefined : Object.entries(this.store.chat).find(([, value]) => value.dealId === id)?.[1];
+	private GetChatByDealId(id: string): Interface.IChat | undefined {
+		return Object.entries(this.store.chat).find(([, value]) => value.dealId === id)?.[1];
 	}
 
 	//==============================================================================================
@@ -74,24 +70,18 @@ class ChatImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 		const chatMessage = this.ChatMessageLinkMap(message);
 		const middleStore = this.SetChatMessageLink(this.store, chatMessage);
 
-		console.log(message);
-		console.log(chatMessage);
-
 		this.store = this.SetMessage(middleStore, normMessage);
 	}
 
-	public getChatIdByDealId(dealId: string) {
-		const chat = this.GetChatByDealId(dealId);
-		if (!chat) throw new Error();
-
-		return chat.id;
+	public sendMessage(dealId: string, text: string) {
+		return this.API.Links.DEAL_SEND_MESSAGE({ dealId, text });
 	}
 
-	public getMessageIdListByChatId = (chatId: string) => this.GetMessageIdListByChatId(chatId);
-
-	public getMessageText = (messageId: string) => this.GetMessage(messageId).text;
-	public getMessageDate = (messageId: string) => this.GetMessage(messageId).createdAt;
-	public getMessageOwnerId = (messageId: string) => this.GetMessage(messageId).userId;
+	public getChatIdByDealId = (dealId: string) => this.GetChatByDealId(dealId)?.id;
+	public getMessageIdListByChatId = (chatId?: string) => this.GetMessageIdListByChatId(chatId);
+	public getMessageText = (messageId: string) => this.GetMessage(messageId)?.text;
+	public getMessageDate = (messageId: string) => this.GetMessage(messageId)?.createdAt;
+	public getMessageOwnerId = (messageId: string) => this.GetMessage(messageId)?.userId;
 }
 
 export default ChatImp;

@@ -18,8 +18,8 @@ function Model({ Props, Act }: TModel<TComponent>) {
 
 	const textProps: TMoleculeChatFieldText[] = messageIdList.map((el) => {
 		return {
-			date: getMessageDate(el),
-			text: getMessageText(el),
+			date: getMessageDate(el) || 0,
+			text: getMessageText(el) || "",
 			type: userId === getMessageOwner(el) ? "send" : "receive",
 		};
 	});

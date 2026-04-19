@@ -6,6 +6,7 @@ import type { WalletInterface } from "../../Services/ServiceWallet/Wallet.interf
 import type { UserInterface } from "../../Services/ServiceUser/User.interface.ts";
 import type { DealInterface } from "../../Services/ServiceDeal/Deal.interface.ts";
 import type { PaymentInterface } from "../../Services/ServicePayment/Payment.interface.ts";
+import type { ChatInterface } from "../../Services/ServiceChat/Chat.interface.ts";
 
 export namespace RestInterface {
 	interface IListingReq {
@@ -32,6 +33,8 @@ export namespace RestInterface {
 		payment: PaymentInterface.IPayment;
 		buyer: UserInterface.TUserInfoMin;
 		item: ItemInterface.TItemAll;
+		chat: ChatInterface.IChat[];
+		message: ChatInterface.IMessage[];
 	}
 
 	type TCatalogInfo = IListingReq & typesUtils.DeepPartial<ItemInterface.TItemFilter> & Pick<ItemInterface.TItemFilter, "type">;
@@ -52,8 +55,10 @@ export namespace RestInterface {
 	export type TWithdrawBalanceReq = WalletInterface.TTranche;
 	export type TStartBuyItemReq = { listingId: string };
 	export type TGetOrderListReq = { isActive: boolean; isSell: boolean; limit: number; cursorId?: string };
-	export type TGetOrderReq = { dealId?: string };
-	export type TDealCompleteReq = { dealId?: string };
+	export type TGetOrderReq = { dealId: string };
+	export type TDealCompleteReq = { dealId: string };
+	export type TDealCancelReq = { dealId: string };
+	export type TDealSendMessageReq = { dealId: string; text: string };
 
 	/** =========== RESPONSE =========== */
 
@@ -72,4 +77,6 @@ export namespace RestInterface {
 	export type TGetOrderListRes = IOrderRes[];
 	export type TGetOrderRes = IOrderRes;
 	export type TDealCompleteRes = void;
+	export type TDealCancelRes = void;
+	export type TDealSendMessageRes = void;
 }

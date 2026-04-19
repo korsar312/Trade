@@ -90,6 +90,12 @@ class LinksImp implements Interface.IAdapter {
 	public DEAL_COMPLETE = (param: RestInterface.TGetOrderReq) => {
 		return this.request<RestInterface.TDealCompleteRes>({ link: "DEAL_COMPLETE", param });
 	};
+	public DEAL_CANCEL = (param: RestInterface.TGetOrderReq) => {
+		return this.request<RestInterface.TDealCancelRes>({ link: "DEAL_CANCEL", param });
+	};
+	public DEAL_SEND_MESSAGE = (param: RestInterface.TGetOrderReq) => {
+		return this.request<RestInterface.TDealSendMessageRes>({ link: "DEAL_SEND_MESSAGE", param });
+	};
 }
 
 export default LinksImp;

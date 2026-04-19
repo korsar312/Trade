@@ -16,4 +16,6 @@ export const Links: LinksInterface.TLinks = {
 	GET_ORDER_LIST: { link: "/getOrderList", http: "post", role: ["USER", "ADMIN"] },
 	GET_ORDER: { link: "/getOrder", http: "post", role: ["USER", "ADMIN"] },
 	DEAL_COMPLETE: { link: "/dealComplete", http: "post", role: ["USER", "ADMIN"] },
+	DEAL_CANCEL: { link: "/dealCancel", http: "post", role: ["USER", "ADMIN"] },
+	DEAL_SEND_MESSAGE: { link: "/dealSendMessage", http: "post", role: ["USER", "ADMIN"] },
 } as const;

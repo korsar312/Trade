@@ -18,6 +18,8 @@ export namespace LinksInterface {
 		GET_ORDER_LIST: TRest<RestInterface.TGetOrderListReq, RestInterface.TGetOrderListRes>;
 		GET_ORDER: TRest<RestInterface.TGetOrderReq, RestInterface.TGetOrderRes>;
 		DEAL_COMPLETE: TRest<RestInterface.TDealCompleteReq, RestInterface.TDealCompleteRes>;
+		DEAL_CANCEL: TRest<RestInterface.TDealCancelReq, RestInterface.TDealCancelRes>;
+		DEAL_SEND_MESSAGE: TRest<RestInterface.TDealSendMessageReq, RestInterface.TDealSendMessageRes>;
 	}
 
 	type TRest<P, R> = (param: P) => Promise<R>;
@@ -67,4 +69,6 @@ const Names = {
 	GET_ORDER_LIST: "GET_ORDER_LIST",
 	GET_ORDER: "GET_ORDER",
 	DEAL_COMPLETE: "DEAL_COMPLETE",
+	DEAL_CANCEL: "DEAL_CANCEL",
+	DEAL_SEND_MESSAGE: "DEAL_SEND_MESSAGE",
 } as const;

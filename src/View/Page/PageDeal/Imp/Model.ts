@@ -16,7 +16,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const [isShowChat, setIsShowChat] = useState(false);
 
 	useEffect(() => {
-		Pub.requestOrder({ dealId: param?.id });
+		Pub.requestOrder({ dealId });
 	}, [listingId]);
 
 	function success() {

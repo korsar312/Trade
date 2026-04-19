@@ -8,6 +8,8 @@ class RequestOrder extends UseCasesBase {
 		this.service.Item.setItems([{ item: res.item, listingId: res.listing.id }]);
 		this.service.Listing.setListing([res.listing]);
 		this.service.Deal.setDeal([res.deal]);
+		this.service.Chat.setChat(res.chat);
+		this.service.Chat.setMessage(res.message);
 	}
 }
 
