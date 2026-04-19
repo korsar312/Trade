@@ -7,13 +7,13 @@ const View: TPresent = ({ Model, Style }) => {
 
 	return (
 		<AtomWrapper extStyle={Style.wrapper} styleType={"col"}>
-			{textRow.map((el) => {
-				const isRight = el.type === "receive";
+			{textRow.map(({ id, ...el }) => {
+				const isSend = el.type === "send";
 
 				return (
-					<div css={Style.chatEl(isRight ? "right" : "left")}>
+					<div key={id} css={Style.chatEl(isSend ? "right" : "left")}>
 						<div css={Style.text}>
-							<AtomMessageBubble color={isRight ? "SECOND_3" : "MAIN_3"} {...el} />
+							<AtomMessageBubble color={isSend ? "SECOND_3" : "MAIN_3"} {...el} />
 						</div>
 					</div>
 				);

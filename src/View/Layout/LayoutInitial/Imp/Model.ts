@@ -2,11 +2,11 @@ import type { TModel } from "../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import { useLayoutEffect } from "react";
 
-const loginA = "adm2";
-const tokenA = "2aeb7e9b-9bed-484d-bb7e-b6d369d66207";
+//const loginA = "adm2";
+//const tokenA = "2aeb7e9b-9bed-484d-bb7e-b6d369d66207";
 
-//const loginS = "adm1";
-//const tokenS = "2f47b58a-b530-4b10-acb5-9d6b413ab66e";
+const loginA = "adm1";
+const tokenA = "2f47b58a-b530-4b10-acb5-9d6b413ab66e";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;

@@ -3,7 +3,7 @@ export namespace ChatInterface {
 		setChat(listing: IChat[]): void;
 		setMessage(message: IMessage[]): void;
 
-		sendMessage(dealId: string, text: string): void;
+		sendMessage(chatId: string, text: string): void;
 
 		getChatIdByDealId(dealId: string): string | undefined;
 		getMessageIdListByChatId(chatId?: string): string[];

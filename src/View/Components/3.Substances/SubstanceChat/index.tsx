@@ -13,7 +13,7 @@ export type TPresent = TView<typeof Model, typeof Style>;
 export type TComponent = {
 	btn?: Partial<IBtn>;
 	input?: Partial<ITextarea>;
-	sendFn?: (val?: string) => void;
+	sendFn?: (val: string) => void;
 	titleRow: TMoleculeRowControlCompType[];
 	messageList: TMoleculeChatFieldText[];
 };

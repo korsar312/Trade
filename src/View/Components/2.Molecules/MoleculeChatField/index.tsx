@@ -11,6 +11,6 @@ export type TComponent = {
 	textRow: TMoleculeChatFieldText[];
 };
 
-export type TMoleculeChatFieldText = Pick<IMessage, "text" | "type" | "date">;
+export type TMoleculeChatFieldText = Pick<IMessage, "text" | "type" | "date"> & { id: string };
 
 export default Component.Create(Model, Style, View, "MoleculeChatField");

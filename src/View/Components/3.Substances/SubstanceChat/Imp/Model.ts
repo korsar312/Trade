@@ -7,11 +7,13 @@ function Model({ Props }: TModel<TComponent>) {
 
 	const [textSend, setTextSend] = useState("");
 
+	const isEmptyText = !textSend;
+
 	function sendText() {
 		sendFn?.(textSend);
 	}
 
-	return { sendText, setTextSend, ...rest };
+	return { sendText, setTextSend, isEmptyText, ...rest };
 }
 
 export default Model;

@@ -8,7 +8,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 
 	const userId = Act.User.getId();
 
-	const chatId = Act.Chat.getChatIdByDealId(dealId);
+	const chatId = Act.Chat.getChatIdByDealId(dealId) || "";
 	const messageIdList = Act.Chat.getMessageIdListByChatId(chatId);
 
 	const titleProps: TMoleculeRowControlCompType[] = [
@@ -18,6 +18,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 
 	const textProps: TMoleculeChatFieldText[] = messageIdList.map((el) => {
 		return {
+			id: el,
 			date: getMessageDate(el) || 0,
 			text: getMessageText(el) || "",
 			type: userId === getMessageOwner(el) ? "send" : "receive",
@@ -36,7 +37,11 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		return Act.Chat.getMessageOwnerId(id);
 	}
 
-	return { titleProps, textProps };
+	function sendMessage(text: string) {
+		return Act.Chat.sendMessage(chatId, text);
+	}
+
+	return { titleProps, textProps, sendMessage };
 }
 
 export default Model;

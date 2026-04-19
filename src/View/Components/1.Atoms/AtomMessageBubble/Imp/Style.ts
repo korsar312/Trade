@@ -26,9 +26,9 @@ class Style extends Styles {
 		const side = (() => {
 			switch (type) {
 				case "send":
-					return `left`;
-				default:
 					return `right`;
+				default:
+					return `left`;
 			}
 		})();
 

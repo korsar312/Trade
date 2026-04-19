@@ -33,7 +33,7 @@ export namespace RestInterface {
 		payment: PaymentInterface.IPayment;
 		buyer: UserInterface.TUserInfoMin;
 		item: ItemInterface.TItemAll;
-		chat: ChatInterface.IChat[];
+		chat: ChatInterface.IChat;
 		message: ChatInterface.IMessage[];
 	}
 
@@ -58,7 +58,7 @@ export namespace RestInterface {
 	export type TGetOrderReq = { dealId: string };
 	export type TDealCompleteReq = { dealId: string };
 	export type TDealCancelReq = { dealId: string };
-	export type TDealSendMessageReq = { dealId: string; text: string };
+	export type TDealSendMessageReq = { chatId: string; text: string };
 
 	/** =========== RESPONSE =========== */
 
