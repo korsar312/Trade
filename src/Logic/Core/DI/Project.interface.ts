@@ -1,3 +1,4 @@
+import type UseCases from "../../Domain/UseCases/UseCases.ts";
 import type { InfrastructureLinks } from "../../Domain/Infrastructure/InfrastructureLinks";
 import type { ServiceMessage } from "../../Domain/Services/ServiceMessage";
 import type { ServiceStyle } from "../../Domain/Services/ServiceStyle";
@@ -11,15 +12,16 @@ import type { ServiceApp } from "../../Domain/Services/ServiceApp";
 import type { InfrastructureStorage } from "../../Domain/Infrastructure/InfrastructureStorage";
 import type { ServiceDeal } from "../../Domain/Services/ServiceDeal";
 import type { ServiceListing } from "../../Domain/Services/ServiceListing";
-import type UseCases from "../../Domain/UseCases/UseCases.ts";
 import type { ServiceItem } from "../../Domain/Services/ServiceItem";
 import type { UseCasesInterface } from "../../Domain/UseCases/UseCases.interface.ts";
 import type { ServiceChat } from "../../Domain/Services/ServiceChat";
+import type { InfrastructureWs } from "../../Domain/Infrastructure/InfrastructureWs";
 
 export namespace ProjectInterface {
 	export type TModuleInf = {
 		Storage: InfrastructureStorage;
 		Links: InfrastructureLinks;
+		Ws: InfrastructureWs;
 	};
 
 	export type TModuleService = {

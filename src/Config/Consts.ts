@@ -1,4 +1,6 @@
 export const Consts = {
 	basePath: "/Trade/",
-	baseUrl: "localhost:4000",
+	baseUrl: "localhost",
+	portRest: 4000,
+	portWs: 4001,
 } as const;

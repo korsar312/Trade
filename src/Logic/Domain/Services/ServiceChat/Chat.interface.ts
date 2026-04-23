@@ -2,6 +2,7 @@ export namespace ChatInterface {
 	export interface IAdapter {
 		setChat(listing: IChat[]): void;
 		setMessage(message: IMessage[]): void;
+		addMessage(message: IMessage): void;
 
 		sendMessage(chatId: string, text: string): void;
 

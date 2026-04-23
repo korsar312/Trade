@@ -2,12 +2,16 @@ import type { UserInterface as Interface } from "../User.interface.ts";
 import ServiceBase, { type IServiceProps } from "../../Service.base.ts";
 
 class UserImp extends ServiceBase<Interface.Store> implements Interface.IAdapter {
-	private SetUser(user: Interface.IUser): Interface.Store {
-		return { ...this.store, user };
+	private SetUser(store: Interface.Store, user: Interface.IUser): Interface.Store {
+		return { ...store, user };
 	}
 
-	private SetUserList(userList: Interface.TUserMap): Interface.Store {
-		return { ...this.store, userList };
+	private SetAuthData(store: Interface.Store, authData: Interface.IAuthData): Interface.Store {
+		return { ...store, authData };
+	}
+
+	private SetUserList(store: Interface.Store, userList: Interface.TUserMap): Interface.Store {
+		return { ...store, userList };
 	}
 
 	private ArrToMap(goods: Interface.TUserMin[]): Interface.TUserMap {
@@ -33,19 +37,25 @@ class UserImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 
 	//==============================================================================================
 
-	public async login(login: string, token: string) {
-		const res = await this.API.Links.LOGIN({ login, token });
-		this.store = this.SetUser(res);
+	public async login(data: Interface.IAuthData) {
+		const res = await this.API.Links.LOGIN(data);
+		const authStore = this.SetAuthData(this.store, data);
+
+		this.store = this.SetUser(authStore, res);
 	}
 
 	public async refreshMyInfo() {
 		const res = await this.API.Links.GET_MY_ACC();
-		this.store = this.SetUser(res);
+		this.store = this.SetUser(this.store, res);
 	}
 
 	public setUserList(users: Interface.TUserMin[]): void {
 		const normUsers = this.ArrToMap(users);
-		this.store = this.SetUserList(normUsers);
+		this.store = this.SetUserList(this.store, normUsers);
+	}
+
+	public getAuthData() {
+		return this.store.authData;
 	}
 
 	public getId(id?: string) {

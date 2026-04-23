@@ -42,7 +42,7 @@ export namespace RestInterface {
 
 	/** =========== REQUEST =========== */
 
-	export type TLoginReq = { login: string; token: string };
+	export type TLoginReq = UserInterface.IAuthData;
 	export type TGetItemsReq = TCatalogInfo;
 	export type TGetItemReq = { id: string; type: ItemInterface.ETypeItem };
 	export type TCreateListingReq = ListingInterface.TMain & ItemInterface.TItemAll;

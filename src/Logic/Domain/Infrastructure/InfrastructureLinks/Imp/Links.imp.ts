@@ -7,7 +7,7 @@ class LinksImp implements Interface.IAdapter {
 	private async request<T = void>({ link, param, options }: Interface.TRequestParam): Promise<T> {
 		const curLink = this.links[link];
 		const method = curLink.http;
-		const url = new URL(curLink.link, "http://" + this.address);
+		const url = new URL(curLink.link, `http://${this.address}:${this.port}`);
 
 		const headers: Record<string, string> = {
 			Accept: "application/json",
@@ -37,6 +37,7 @@ class LinksImp implements Interface.IAdapter {
 
 	constructor(
 		private readonly links: Interface.TLinks,
+		private readonly port: number,
 		private readonly address: string,
 	) {}
 

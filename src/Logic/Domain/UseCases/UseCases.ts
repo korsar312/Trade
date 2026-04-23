@@ -6,6 +6,7 @@ import CreateLot from "./Methods/CreateLot.ts";
 import RequestOrderList from "./Methods/RequestOrderList.ts";
 import RequestOrder from "./Methods/RequestOrder.ts";
 import GetNamePage from "./Methods/GetNamePage.ts";
+import ConnectWs from "./Methods/ConnectWs.ts";
 
 class UseCases implements Interface.IAdapter {
 	public scenarioList: Interface.TScenarioList;
@@ -19,6 +20,7 @@ class UseCases implements Interface.IAdapter {
 			requestOrder: new RequestOrder({ service, inf }),
 
 			getNamePage: new GetNamePage({ service, inf }),
+			connectWs: new ConnectWs({ service, inf }),
 		};
 	}
 }

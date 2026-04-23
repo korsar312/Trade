@@ -8,7 +8,7 @@ import { useLayoutEffect } from "react";
 const loginA = "adm1";
 const tokenA = "2f47b58a-b530-4b10-acb5-9d6b413ab66e";
 
-function Model({ Props, Act }: TModel<TComponent>) {
+function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const {} = Props;
 
 	const currentRole = Act.Router.getRole();
@@ -21,12 +21,13 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		await login();
 		Act.Router.setRole("USER");
 		await Act.Wallet.refreshBalance();
+		await Pub.connectWs();
 
 		initDone();
 	}
 
 	function login() {
-		return Act.User.login(loginA, tokenA);
+		return Act.User.login({ login: loginA, token: tokenA });
 	}
 
 	function initDone() {

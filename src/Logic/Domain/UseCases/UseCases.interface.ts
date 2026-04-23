@@ -12,6 +12,7 @@ export namespace UseCasesInterface {
 		requestOrder: TScenarioBase<RestInterface.TGetOrderReq, Promise<void>>;
 
 		getNamePage: TScenarioBase<void, string | MessageInterface.EWord>;
+		connectWs: TScenarioBase<void, Promise<void>>;
 	};
 
 	export type TScenarioBase<T, R> = {

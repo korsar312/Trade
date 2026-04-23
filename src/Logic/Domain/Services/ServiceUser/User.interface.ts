@@ -2,9 +2,11 @@ import { PublicInterface } from "../Public.interface.ts";
 
 export namespace UserInterface {
 	export interface IAdapter {
-		login(login: string, token: string): Promise<void>;
+		login(data: IAuthData): Promise<void>;
 		refreshMyInfo(): Promise<void>;
 		setUserList(users: TUserMin[]): void;
+
+		getAuthData(): IAuthData | undefined;
 
 		getId(id?: string): string | undefined;
 		getTgId(id?: string): string | undefined | null;
@@ -26,6 +28,11 @@ export namespace UserInterface {
 		dislike: number;
 	}
 
+	export interface IAuthData {
+		login: string;
+		token: string;
+	}
+
 	export type TRating = 0 | 1 | 2 | 3 | 4 | 5;
 	export type TUserNeed = Pick<IUser, "id" | "nickname" | "like" | "dislike">;
 	export type TUserMin = Partial<Omit<IUser, keyof TUserNeed>> & Pick<IUser, keyof TUserNeed>;
@@ -34,6 +41,7 @@ export namespace UserInterface {
 
 	export interface Store {
 		user?: IUser;
+		authData?: IAuthData;
 		userList: TUserMap;
 	}
 }
