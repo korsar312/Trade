@@ -13,6 +13,7 @@ const View: TPresent = ({ Model, Style }) => {
 				onChange={onValid}
 				placeholder={""}
 				defaultValue={value === undefined ? String(text) : undefined}
+				value={value}
 				{...rest}
 			/>
 		</div>

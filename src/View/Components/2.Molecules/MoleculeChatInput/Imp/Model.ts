@@ -5,15 +5,16 @@ import { useState } from "react";
 function Model({ Props }: TModel<TComponent>) {
 	const { sendFn, input, btn } = Props;
 
-	const [textSend, setTextSend] = useState("");
+	const [text, setText] = useState("");
 
-	const isEmptyText = !textSend;
+	const isEmptyText = !text;
 
 	function sendText() {
-		sendFn?.(textSend);
+		sendFn?.(text);
+		setText("");
 	}
 
-	return { sendText, setTextSend, isEmptyText, input, btn };
+	return { text, sendText, setText, isEmptyText, input, btn };
 }
 
 export default Model;
