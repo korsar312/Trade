@@ -3,10 +3,10 @@ import type { TComponent } from "../";
 import { useLayoutEffect } from "react";
 
 //const loginA = "adm2";
-//const tokenA = "2aeb7e9b-9bed-484d-bb7e-b6d369d66207";
+//const tokenA = "10a92d4a-7779-4a1e-9315-301f65e21d8c";
 
 const loginA = "adm1";
-const tokenA = "2f47b58a-b530-4b10-acb5-9d6b413ab66e";
+const tokenA = "4a2a3fb6-32b1-4f46-8cfd-583d0f8c3fc6";
 
 function Model({ Props, Act, Pub }: TModel<TComponent>) {
 	const {} = Props;

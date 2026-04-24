@@ -6,7 +6,8 @@ class ConnectWs extends UseCasesBase {
 		if (!authData) return;
 
 		await this.inf.Ws.connect(authData);
-		//this.inf.Ws.addEvent(this.service.Chat.addMessage);
+
+		this.inf.Ws.addEvent("NEW_DEAL_MESSAGE", this.service.Chat.addMessage);
 	}
 }
 
