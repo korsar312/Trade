@@ -3,7 +3,7 @@ import Model from "./Imp/Model.ts";
 import Style from "./Imp/Style.ts";
 import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
-import type { ReactNode } from "react";
+import type { ReactNode, RefObject } from "react";
 import type { TDeepCSSObject } from "../../../ViewUtils.tsx";
 
 export type TPresent = TView<typeof Model, typeof Style>;
@@ -13,6 +13,7 @@ export type TComponent = {
 	styleType?: TAtomWrapperStyleType;
 	pos?: TAtomWrapperPot;
 	extStyle?: TDeepCSSObject;
+	ref?: RefObject<HTMLDivElement | null>;
 };
 
 export type TAtomWrapperStyleType = "row" | "col";

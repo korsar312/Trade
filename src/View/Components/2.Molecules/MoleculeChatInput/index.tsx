@@ -1,0 +1,17 @@
+import { Component } from "../../../Init.ts";
+import Model from "./Imp/Model.ts";
+import Style from "./Imp/Style.ts";
+import View from "./Imp/View.tsx";
+import type { TView } from "../../../CreateComponent.tsx";
+import type { TComponent as ITextarea } from "../../1.Atoms/AtomTextarea";
+import type { TComponent as IBtn } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
+
+export type TPresent = TView<typeof Model, typeof Style>;
+
+export type TComponent = {
+	sendFn?: (val: string) => void;
+	input?: Partial<ITextarea>;
+	btn?: Partial<IBtn>;
+};
+
+export default Component.Create(Model, Style, View, "MoleculeChatInput");

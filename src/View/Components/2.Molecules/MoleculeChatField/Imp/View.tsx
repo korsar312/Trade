@@ -3,10 +3,10 @@ import AtomWrapper from "../../../1.Atoms/AtomWrapper";
 import AtomMessageBubble from "../../../1.Atoms/AtomMessageBubble";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { textRow } = Model;
+	const { textRow, wrapRef } = Model;
 
 	return (
-		<AtomWrapper extStyle={Style.wrapper} styleType={"col"}>
+		<AtomWrapper ref={wrapRef} extStyle={Style.wrapper} styleType={"col"}>
 			{textRow.map(({ id, ...el }) => {
 				const isSend = el.type === "send";
 
