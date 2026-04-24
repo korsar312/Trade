@@ -1,14 +1,15 @@
 import type { TModel } from "../../../../CreateComponent.tsx";
 
 import type { TAtomTextareaText, TAtomTextareaTextPick, TComponent } from "../index";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { MessageInterface } from "../../../../../Logic/Domain/Services/ServiceMessage/Message.interface.ts";
 import type { StyleInterface } from "../../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 
 function Model({ Props, Act }: TModel<TComponent>) {
-	const { color, initText, placeholder, onChange, valid, value, ...rest } = Props;
+	const { color, initText, placeholder, onChange, valid, value, ref, ...rest } = Props;
 
 	const [isValid, setIsValid] = useState<boolean | undefined>();
+	const refArea = ref || useRef<HTMLTextAreaElement>(null);
 
 	const textObj = changePlace(initText, "SECOND_1", "BLUE_3", "RED_3");
 	const placeObj = placeholder && changePlace(placeholder, "SECOND_2", "BLUE_2", "RED_2");
@@ -39,7 +40,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		setIsValid(undefined);
 	}
 
-	return { color, textObj, text, placeObj, isValid, onValid, value, rest };
+	return { color, textObj, text, placeObj, isValid, onValid, value, refArea, rest };
 }
 
 export default Model;

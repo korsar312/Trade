@@ -7,6 +7,7 @@ import type { TTagPartial } from "../../../ViewUtils.tsx";
 import type { MessageInterface } from "../../../../Logic/Domain/Services/ServiceMessage/Message.interface.ts";
 import type { StyleInterface } from "../../../../Logic/Domain/Services/ServiceStyle/Style.interface.ts";
 import type { TAtomInputTextPick } from "../AtomInput";
+import type { RefObject } from "react";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 
@@ -17,6 +18,7 @@ export type TComponent = {
 	valid?: Array<(val: MessageInterface.EWordAll) => boolean>;
 	value?: string;
 	color?: StyleInterface.TColorChoice;
+	ref?: RefObject<HTMLTextAreaElement | null>;
 } & TTagPartial<HTMLTextAreaElement, "name" | "onClick" | "disabled" | "required">;
 
 export type TAtomTextareaText = {

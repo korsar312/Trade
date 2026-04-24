@@ -9,7 +9,7 @@ import type { TComponent as IBtn } from "../../1.Atoms/AtomButton/Variables/Atom
 export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
-	sendFn?: (val: string) => void;
+	sendFn?: (val: string) => Promise<void>;
 	input?: Partial<ITextarea>;
 	btn?: Partial<IBtn>;
 };

@@ -4,7 +4,7 @@ export namespace ChatInterface {
 		setMessage(message: IMessage[]): void;
 		addMessage(message: IMessage): void;
 
-		sendMessage(chatId: string, text: string): void;
+		sendMessage(chatId: string, text: string): Promise<void>;
 
 		getChatIdByDealId(dealId: string): string | undefined;
 		getMessageIdListByChatId(chatId?: string): string[];

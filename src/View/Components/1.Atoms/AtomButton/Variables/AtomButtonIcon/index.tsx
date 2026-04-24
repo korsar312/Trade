@@ -14,6 +14,6 @@ export type TComponent = {
 	colorIcon?: StyleInterface.TColorChoice;
 	isSubmit?: boolean;
 	isBig?: boolean;
-} & Pick<IParent, "isDisable" | "click" | "isFullWidth" | "type" | "color">;
+} & Pick<IParent, "isDisable" | "click" | "isFullWidth" | "type" | "color" | "isLoading">;
 
 export default Component.Create(Model, Style, View, "AtomButtonIcon");
