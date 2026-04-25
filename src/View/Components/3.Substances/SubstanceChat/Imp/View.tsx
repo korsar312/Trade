@@ -7,7 +7,7 @@ import AtomWrapper from "../../../1.Atoms/AtomWrapper";
 import AtomLine from "../../../1.Atoms/AtomLine";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { sendFn, input, titleRow, btn, messageList } = Model;
+	const { sendFn, input, titleRow, btn, messageList, ref } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_4"}>
@@ -22,7 +22,7 @@ const View: TPresent = ({ Model, Style }) => {
 
 			<AtomWrapper styleType={"col"}>
 				<AtomLine color={"SECOND_2"} />
-				<MoleculeChatInput sendFn={sendFn} input={input} btn={btn} />
+				<MoleculeChatInput ref={ref} sendFn={sendFn} input={input} btn={btn} />
 			</AtomWrapper>
 		</AtomPaper>
 	);

@@ -7,11 +7,13 @@ import type { TMoleculeRowControlCompType } from "../../2.Molecules/MoleculeRowC
 import type { TComponent as ITextarea } from "../../1.Atoms/AtomTextarea";
 import type { TComponent as IBtn } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
 import type { TMoleculeChatFieldText } from "../../2.Molecules/MoleculeChatField";
+import type { RefObject } from "react";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 
 export type TComponent = {
 	btn?: Partial<IBtn>;
+	ref?: RefObject<HTMLTextAreaElement | null>;
 	input?: Partial<ITextarea>;
 	sendFn?: (val: string) => Promise<void>;
 	titleRow: TMoleculeRowControlCompType[];

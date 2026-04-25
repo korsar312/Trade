@@ -30,7 +30,7 @@ class Style extends Styles {
 		return css`
 			visibility: ${isShowChat ? "visible" : "hidden"};
 			opacity: ${+isShowChat};
-			transition: ${this.variables.fastTransition};
+			transition: opacity ${this.variables.fastTransition};
 			position: absolute;
 			top: 0;
 			bottom: 0;

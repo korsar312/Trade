@@ -9,7 +9,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	const { color, initText, placeholder, onChange, valid, value, ref, ...rest } = Props;
 
 	const [isValid, setIsValid] = useState<boolean | undefined>();
-	const refArea = ref || useRef<HTMLTextAreaElement>(null);
+	const refArea = ref ?? useRef<HTMLTextAreaElement>(null);
 
 	const textObj = changePlace(initText, "SECOND_1", "BLUE_3", "RED_3");
 	const placeObj = placeholder && changePlace(placeholder, "SECOND_2", "BLUE_2", "RED_2");

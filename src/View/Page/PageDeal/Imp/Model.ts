@@ -1,13 +1,16 @@
 import type { TModel } from "../../../CreateComponent.tsx";
 import type { TComponent } from "../";
 import { useParamPage } from "../../../../Logic/Libs/Hooks/useParamPage/useParam.ts";
-import { useEffect, useState } from "react";
+import { useAutoFocus } from "../../../../Logic/Libs/Hooks/useAutoFocus/useAutoFocus.ts";
+import { useEffect, useRef, useState } from "react";
 import { Pub } from "../../../Init.ts";
 
 function Model({ Props, Act }: TModel<TComponent>) {
 	const {} = Props;
 
 	const param = useParamPage("ITEM");
+	const areaRef = useRef<HTMLTextAreaElement>(null);
+
 	const dealId = param.id || "";
 	const listingId = Act.Deal.getListingId(dealId) || "";
 
@@ -18,6 +21,8 @@ function Model({ Props, Act }: TModel<TComponent>) {
 	useEffect(() => {
 		Pub.requestOrder({ dealId });
 	}, [listingId]);
+
+	useAutoFocus(areaRef, isShowChat);
 
 	function success() {
 		Act.Router.goBack();
@@ -31,7 +36,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		setIsShowChat((old) => !old);
 	}
 
-	return { image, listingId, dealId, success, cancel, isShowChat, toggleChat };
+	return { image, listingId, dealId, success, cancel, isShowChat, toggleChat, areaRef };
 }
 
 export default Model;

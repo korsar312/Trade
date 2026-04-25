@@ -3,12 +3,12 @@ import type { TComponent } from "../";
 import { useRef, useState } from "react";
 
 function Model({ Props }: TModel<TComponent>) {
-	const { sendFn, input, btn } = Props;
+	const { sendFn, input, btn, ref } = Props;
 
 	const [text, setText] = useState("");
 	const [isLoad, setIsLoad] = useState(false);
 
-	const areaRef = useRef<HTMLTextAreaElement>(null);
+	const areaRef = ref ?? useRef<HTMLTextAreaElement>(null);
 
 	const isEmptyText = !text;
 

@@ -5,6 +5,7 @@ import View from "./Imp/View.tsx";
 import type { TView } from "../../../CreateComponent.tsx";
 import type { TComponent as ITextarea } from "../../1.Atoms/AtomTextarea";
 import type { TComponent as IBtn } from "../../1.Atoms/AtomButton/Variables/AtomButtonIcon";
+import type { RefObject } from "react";
 
 export type TPresent = TView<typeof Model, typeof Style>;
 
@@ -12,6 +13,7 @@ export type TComponent = {
 	sendFn?: (val: string) => Promise<void>;
 	input?: Partial<ITextarea>;
 	btn?: Partial<IBtn>;
+	ref?: RefObject<HTMLTextAreaElement | null>;
 };
 
 export default Component.Create(Model, Style, View, "MoleculeChatInput");

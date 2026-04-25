@@ -4,10 +4,9 @@ import type { TMoleculeRowControlCompType } from "../../../../2.Molecules/Molecu
 import type { TMoleculeChatFieldText } from "../../../../2.Molecules/MoleculeChatField";
 
 function Model({ Props, Act }: TModel<TComponent>) {
-	const { dealId } = Props;
+	const { dealId, ...rest } = Props;
 
 	const userId = Act.User.getId();
-
 	const chatId = Act.Chat.getChatIdByDealId(dealId) || "";
 	const messageIdList = Act.Chat.getMessageIdListByChatId(chatId);
 
@@ -41,7 +40,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		return Act.Chat.sendMessage(chatId, text);
 	}
 
-	return { titleProps, textProps, sendMessage };
+	return { titleProps, textProps, sendMessage, ...rest };
 }
 
 export default Model;

@@ -9,7 +9,7 @@ import TemplateBtnBack from "../../../Components/Templates/Comp/TemplateBtnBack"
 import TemplateDealChat from "../../../Components/Templates/Comp/TemplateDealChat";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { image, listingId, dealId, success, cancel, isShowChat, toggleChat } = Model;
+	const { image, listingId, dealId, success, cancel, isShowChat, toggleChat, areaRef } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
@@ -26,7 +26,7 @@ const View: TPresent = ({ Model, Style }) => {
 				</div>
 
 				<div css={Style.chat(isShowChat)}>
-					<TemplateDealChat dealId={dealId} />
+					<TemplateDealChat ref={areaRef} dealId={dealId} />
 				</div>
 			</AtomWrapper>
 
