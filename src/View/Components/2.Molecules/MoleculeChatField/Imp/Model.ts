@@ -3,18 +3,33 @@ import type { TComponent } from "../";
 import { useEffect, useLayoutEffect, useRef } from "react";
 
 function Model({ Props }: TModel<TComponent>) {
-	const { textRow } = Props;
+	const { textRow, ...rest } = Props;
 
 	const wrapRef = useRef<HTMLDivElement>(null);
 	const wasAtBottomRef = useRef(true);
 	const isAutoScrollingRef = useRef(false);
+	const isFirstRenderRef = useRef(true);
 
 	useLayoutEffect(() => {
 		const container = wrapRef.current?.parentElement ?? null;
+		if (!container) return;
+
+		const hasOverflow = container.scrollHeight > container.clientHeight;
+
+		if (isFirstRenderRef.current) {
+			if (!hasOverflow) return;
+
+			container.scrollTop = container.scrollHeight;
+			wasAtBottomRef.current = true;
+			isFirstRenderRef.current = false;
+
+			return;
+		}
+
 		const isLastSend = textRow.at(-1)?.type === "send";
 		const shouldScroll = wasAtBottomRef.current || isLastSend;
 
-		if (container && shouldScroll) scrollToBottom(container);
+		if (shouldScroll) scrollToBottom(container);
 	}, [textRow.length]);
 
 	useEffect(() => {
@@ -62,7 +77,7 @@ function Model({ Props }: TModel<TComponent>) {
 		container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
 	}
 
-	return { wrapRef, ...Props };
+	return { wrapRef, textRow, ...rest };
 }
 
 export default Model;
