@@ -73,7 +73,7 @@ export namespace RestInterface {
 	export type TRemoveDepositRes = void;
 	export type TGetBalanceRes = WalletInterface.TWallet;
 	export type TwWithdrawBalanceRes = void;
-	export type TStartBuyItemRes = void;
+	export type TStartBuyItemRes = string;
 	export type TGetOrderListRes = IOrderRes[];
 	export type TGetOrderRes = IOrderRes;
 	export type TDealCompleteRes = void;

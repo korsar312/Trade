@@ -74,14 +74,13 @@ class ChatImp extends ServiceBase<Interface.Store> implements Interface.IAdapter
 	}
 
 	public addMessage(message: Interface.IMessage) {
-		const normMessage = { [message.id]: message };
 		const chatId = message.chatId;
-		const chatMessage = { [chatId]: [...this.store.chatMessageLink[chatId], message.id] };
+		const prevList = this.store.chatMessageLink[chatId] || [];
 
 		this.store = {
 			...this.store,
-			chatMessageLink: chatMessage,
-			message: { ...this.store.message, ...normMessage },
+			chatMessageLink: { ...this.store.chatMessageLink, [chatId]: [...prevList, message.id] },
+			message: { ...this.store.message, [message.id]: message },
 		};
 	}
 

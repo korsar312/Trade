@@ -9,7 +9,7 @@ import TemplateBtnBack from "../../../Components/Templates/Comp/TemplateBtnBack"
 import TemplateDealChat from "../../../Components/Templates/Comp/TemplateDealChat";
 
 const View: TPresent = ({ Model, Style }) => {
-	const { image, listingId, dealId, success, cancel, isShowChat, toggleChat, areaRef } = Model;
+	const { image, listingId, dealId, confirmAction, isShowChat, toggleChat, areaRef } = Model;
 
 	return (
 		<AtomPaper extStyle={Style.wrapper} color={"MAIN_2"}>
@@ -32,12 +32,12 @@ const View: TPresent = ({ Model, Style }) => {
 
 			<AtomWrapper styleType={"col"}>
 				<AtomWrapper styleType={"row"}>
-					<AtomButtonMain isFullWidth text={"CONFIRM"} color={"BLUE_2"} click={success} />
+					<AtomButtonMain isFullWidth text={"CONFIRM"} color={"BLUE_2"} click={confirmAction(true)} />
 					<AtomButtonMain isFullWidth text={isShowChat ? "CLOSE_CHAT" : "OPEN_CHAT"} color={"SECOND_2"} click={toggleChat} />
 				</AtomWrapper>
 
 				<AtomWrapper styleType={"row"}>
-					<AtomButtonMain isFullWidth text={"DISPUTE"} color={"RED_1"} click={cancel} />
+					<AtomButtonMain isFullWidth text={"DISPUTE"} color={"RED_1"} click={confirmAction(false)} />
 					<TemplateBtnBack isFullWidth />
 				</AtomWrapper>
 			</AtomWrapper>

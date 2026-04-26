@@ -18,7 +18,7 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 
 	const mainBtn: TProps = { isFullWidth: true, ...rest };
 
-	function goItem() {
+	function goItem(id: string): void {
 		Act.Router.goTo("DEAL", { id });
 	}
 
@@ -27,7 +27,7 @@ function Template(Act: ProjectInterface.TActService, props: TComponent): TBtn[] 
 	}
 
 	function cancelItem() {
-		Act.Payment.buyLot(id).then(goItem).finally(Act.Wallet.refreshBalance);
+		//Act.Payment.buyLot(id).then(goItem).finally(Act.Wallet.refreshBalance);
 	}
 
 	function freezeItem() {}

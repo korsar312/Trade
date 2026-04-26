@@ -24,8 +24,16 @@ function Model({ Props, Act }: TModel<TComponent>) {
 
 	useAutoFocus(areaRef, isShowChat);
 
-	function success() {
-		Act.Router.goBack();
+	function confirmAction(isBuy: boolean) {
+		const action = isBuy ? success : cancel;
+
+		return () => Act.App.addModals("CONFIRM", (isTrue) => isTrue && action());
+	}
+
+	async function success() {
+		await Act.Deal.dealComplete(dealId);
+		await Act.Wallet.refreshBalance();
+		Act.Router.goTo("DEAL_LIST");
 	}
 
 	function cancel() {
@@ -36,7 +44,7 @@ function Model({ Props, Act }: TModel<TComponent>) {
 		setIsShowChat((old) => !old);
 	}
 
-	return { image, listingId, dealId, success, cancel, isShowChat, toggleChat, areaRef };
+	return { image, listingId, dealId, confirmAction, isShowChat, toggleChat, areaRef };
 }
 
 export default Model;
