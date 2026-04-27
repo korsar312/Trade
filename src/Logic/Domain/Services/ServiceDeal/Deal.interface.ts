@@ -31,6 +31,7 @@ export namespace DealInterface {
 
 export const DealStatus = {
 	IN_ACTIVE: "IN_ACTIVE",
+	DISPUTE: "DISPUTE",
 	COMPLETE: "COMPLETE",
 	CANCELLED: "CANCELLED",
 } as const;

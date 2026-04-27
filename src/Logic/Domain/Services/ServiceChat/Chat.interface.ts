@@ -18,6 +18,7 @@ export namespace ChatInterface {
 		id: string;
 		dealId: string;
 		participantId: string[];
+		status: EChatStatus;
 	}
 
 	export interface IMessage {
@@ -33,9 +34,16 @@ export namespace ChatInterface {
 	export type TMessageMap = Record<string, IMessage>;
 	export type TChatMessageLink = Record<string, string[]>;
 
+	export type EChatStatus = keyof typeof ChatStatus;
+
 	export interface Store {
 		chat: TChatMap;
 		message: TMessageMap;
 		chatMessageLink: TChatMessageLink;
 	}
 }
+
+const ChatStatus = {
+	ACTIVE: "ACTIVE",
+	READ_ONLY: "READ_ONLY",
+} as const;
